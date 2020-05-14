@@ -1,0 +1,59 @@
+<div *ngIf="getLogginStatus()">
+
+  <div class="rightMnu">
+
+    <button pButton type="button" (click)="getHelpHtmlContent();visibleSideMenu = true" icon="pi pi-question">
+    </button>
+    <p-sidebar [(visible)]="visibleSideMenu" position="right" [baseZIndex]="10000" [(fullScreen)]="visiblefull">
+      <h1 style="font-weight:normal">Help</h1>
+      
+  
+      You have called this page from {{getCurrentPage()}} 
+      <button pButton type="button" (click)="visiblefull = true" class="ui-button-secondary"
+        icon="pi pi-angle-double-left"></button>
+      &nbsp;&nbsp;&nbsp;
+      <button pButton type="button" (click)="visiblefull = false" class="ui-button-secondary"
+        icon="pi pi-angle-double-right"></button>
+      &nbsp;&nbsp;&nbsp;
+      <button pButton type="button" (click)="visibleSideMenu = false;visiblefull = false" label="Hide"
+        class="ui-button-secondary" icon="pi pi-eye-slash"></button>
+        <br/><br/><br/>
+        <div [innerHtml]="myTemplate"> </div>
+    </p-sidebar>
+          
+
+  </div>
+  <div class="footer">
+    <a routerLink="pages/dashboard" routerLinkActive="active">link</a>
+  </div>
+  
+  
+  
+  <nav class="bg-lights">
+    <div class="p-grid">
+      <div class="p-col-1">
+        <a routerLink="/pages/dashboard" routerLinkActive="active">
+          <img src="./assets/JC.png" style="height:65px;width:120px;padding-left:5px; ">
+        </a>
+      </div>
+      <div class="p-col-3 p-offset-8">
+        <div class="p-grid">
+          <div class="p-col-6 uname alignCenter ">             
+            Hi {{getLoginName()}}
+            <p>{{date|date:'dd-MMM HH:mm:ss'}}</p>
+          </div>
+          <div class="p-col-1">
+            <img src="./assets/iconLongSeperator.png" style="height: 100%">
+          </div>
+          <div class="p-col-2 logc" (click)="logout()" style="cursor: pointer;margin: auto;">
+            <img src="./assets/iconLogout_2.png" width="35" height="30">
+          </div>
+          <div class="p-col-3">.</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>
