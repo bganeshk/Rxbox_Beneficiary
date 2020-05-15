@@ -1,0 +1,174 @@
+.dash{
+    margin-left: 3%;
+    margin-right: 2%;
+}
+ 
+.divhed {
+    color: #002b80;
+    font-weight: bold;
+    margin-bottom: 2%;
+    border-bottom-color:lightgray;
+    border-bottom-style: inset;
+    border-bottom-width:1px; 
+}
+.divhed2 {
+    color: #3e6cc7;
+    margin-bottom: 3%;
+    border-bottom-width:1px;
+    border-bottom-color:lightgray;
+    border-bottom-style: inset;
+    box-shadow: 1px 1px 2px #F4F4F4;
+}
+.pname{
+    color: #2151b1;
+    font-weight: 600;
+    font-family: Arial;
+    text-transform: capitalize;
+    padding-left: 10%;
+    white-space: nowrap; 
+    text-align: right -moz-center ;
+}
+
+
+:host >>> .prof .ui-card{
+    height: 40%; 
+    border-radius: 1%;    
+    margin-top: 2%;
+}
+
+:host >>> .dshchart .ui-card{
+    
+    border-radius: 1%;    
+    margin-top: 2%;
+}
+:host >>> .noti .ui-card{
+    height: 60%; 
+    border-radius: 1%;
+        
+}
+
+.lblprogress{    
+    font-weight: bold;
+    font-size: 10px;
+    color: #002b80;
+}
+    
+:host >>> .prgs .ui-progressbar  {
+    margin-top: 1%;
+    background: rgb(155, 233, 172);
+    height: 5px;
+}
+
+:host >>> .prgs .ui-progressbar-value{            
+    background: rgb(8, 185, 46);
+}
+
+:host >>> .prgsE .ui-progressbar  {
+    margin-top: 1%;
+    background: rgb(231, 168, 210);
+    height: 5px;
+}
+:host >>>  .ui-button{
+    background: #274991;
+    color: #E6E7ED;
+}
+
+:host >>> .prgsE .ui-progressbar-value{
+         
+    background: rgb(153, 3, 103);
+}
+
+:host >>> .prgsB .ui-progressbar  {
+    margin-top: 1%;
+    background: rgb(129, 143, 187);
+    height: 5px;
+}
+
+:host >>> .prgsB .ui-progressbar-value{
+         
+    background: rgb(54, 43, 218);
+}
+
+:host >>> .prgsR .ui-progressbar  {
+    margin-top: 1%;
+    background: rgb(177, 216, 228);
+    height: 5px;
+}
+
+:host >>> .prgsR .ui-progressbar-value{         
+
+    background: rgb(38, 180, 223);
+}
+
+
+:host >>> .acbtn .ui-button{
+    background: #274991;
+    width: 125px;
+    height: 35px;
+}
+:host >>> .acbtn .ui-button-text{
+    font-size: 11px;
+    font-stretch: extra-expanded;
+    
+}
+.baroption{
+    text-align: center;
+    vertical-align: middle;
+    font-size: 9px;
+    font-weight: 700;    
+}
+.circletag {
+    display: block;
+    width: 90px;
+    height: 90px;
+    background: #E6E7ED;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;    
+    text-align:center;
+    border-radius: 100px;
+}
+
+.circletag img{
+    margin-top:7px;
+}
+.profdet{
+    color: rgb(160, 157, 157);
+    font-weight: 600;
+    font-size: 9px;
+    vertical-align: bottom;
+    padding-bottom: 3%;
+    width: 90%;
+    white-space: nowrap;
+}
+
+.belink{
+    font-size: 9px;    
+    padding-bottom: 1px;
+}
+.notidet{
+    color: #4471cc;
+    font-size: 9px;
+    white-space: nowrap;    
+    overflow-y: scroll;
+    -ms-overflow-style: 1px;  
+    scrollbar-width: 1px; 
+    opacity: 10%; 
+}
+
+.notidet::-webkit-scrollbar { /* WebKit */
+    width: 1px;
+    height: 1px;
+}
+.npi{
+    font-size: 20px;
+}
+.pointer{
+    cursor: pointer;
+}
+
+:host >>> .ui-dialog .ui-dialog-titlebar{
+ padding: 0px;
+}
+.unredmsg{
+    font-weight: bold;
+}
