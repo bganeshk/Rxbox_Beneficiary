@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashPoints, BeeNotification,DashboardService, TransData } from 'bee-lib';
-import {  } from 'primeng/api';
 import { MenuItem } from 'primeng/api';
+import { EChartOption } from 'echarts';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,19 +10,17 @@ import { MenuItem } from 'primeng/api';
   providers: [  DashboardService]
 })
 export class DashboardComponent implements OnInit {
-  data: any;
-  options: any;
-  options2: any;
- 
-  barData: any;
-  menuItems: MenuItem[];
-  pointSummary:DashPoints;
-  notifi:BeeNotification[];
-  selectedNotifi:BeeNotification;
-  notidlg:boolean;
-  earnerTx:TransData[];
-  getTx:TransData[];
-  giveTx:TransData[];
+  
+  chartOption: EChartOption = { xAxis: {
+    type: 'category',
+data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+  }, yAxis: {
+    type: 'value'
+  }, series: [{
+    data: [820, 932, 901, 934, 1290, 1330, 1320],
+    type: 'line'
+  }]}
+
 
   constructor(private dashboardService: DashboardService,) {
   }

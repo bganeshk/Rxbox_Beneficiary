@@ -172,3 +172,7 @@
 .unredmsg{
     font-weight: bold;
 }
+
+.demo-chart {
+    height: 400px;
+    }
