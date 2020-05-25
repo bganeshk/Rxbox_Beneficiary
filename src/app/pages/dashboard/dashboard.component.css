@@ -145,20 +145,7 @@
     font-size: 9px;    
     padding-bottom: 1px;
 }
-.notidet{
-    color: #4471cc;
-    font-size: 9px;
-    white-space: nowrap;    
-    overflow-y: scroll;
-    -ms-overflow-style: 1px;  
-    scrollbar-width: 1px; 
-    opacity: 10%; 
-}
 
-.notidet::-webkit-scrollbar { /* WebKit */
-    width: 1px;
-    height: 1px;
-}
 .npi{
     font-size: 20px;
 }
@@ -172,7 +159,71 @@
 .unredmsg{
     font-weight: bold;
 }
+.ddose{
+    width: 5%;
+    border: 0px !important;
+}
+.ddoseM{
+    width: 15%;
+    border: 0px !important;
+}
+.ddoseN{
+    width: 20%;
+    border: 0px !important;
+}
 
-.demo-chart {
-    height: 400px;
-    }
+.hilo_lights{
+    border: 5px;
+    font-size: small;
+ 
+}
+.hilo_ic{
+    width: 55px;
+    font-size: small;
+    box-shadow: inset 0 0 5px #9e9b9be8;
+    margin: 10px;
+    border-radius: 10px;
+    
+}
+.hilo_ic2{
+    width: 55px;
+    font-size: small;
+    box-shadow: inset 0 0 5px #9e9b9be8;
+    margin: 2px;
+    border-radius: 5px;
+    height: 55px;
+    
+}
+
+  .temperatureBtn{
+      height: 70px;
+
+  }
+  .tempbtn {
+    background-image: url('../../../assets/icons/Thermometer.png');
+    background-repeat: no-repeat;
+    padding-top:40px ;
+    background-position: 45%;
+    font-size: medium;
+}
+.sugbtn{
+    background-image: url('../../../assets/icons/Diabetics.png');
+    background-repeat: no-repeat;
+    padding-top:40px ;
+    background-position: 45%;
+    font-size: medium;
+}
+.bpbtn{
+    background-image: url('../../../assets/icons/BPCare.png');
+    background-repeat: no-repeat;
+    padding-top:40px ;
+    background-position: 45%;
+    font-size: medium;
+}
+.pulsebtn{
+    background-image: url('../../../assets/icons/pulse.png');
+    background-repeat: no-repeat;
+    padding-top:40px ;
+    background-position: 45%;
+    font-size: medium;
+}

@@ -2,4 +2,312 @@ I am from dashbaord
 https://xieziyu.github.io/ngx-echarts/api-doc/
 https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
 
-<div echarts [options]="chartOption" class="demo-chart"></div>
+<div class="dash">
+    <div class="p-grid">
+        <div class="p-col-12 p-md-12 p-lg-6 dshchart">
+            <p-card>
+                <div class="divhed">
+                    <p-header>
+                        Health Indicator
+                    </p-header>
+                </div>
+
+
+                <div class="p-grid p-">
+                    <div class="p-col-4">
+                        <div class="p-grid p-dir-col ">
+
+                            <div class=" p-col p-col-align-center profdet hilo_lights">
+                                Low-lights&nbsp;&nbsp;&nbsp;&nbsp;
+
+                            </div>
+                            <div class="p-col p-col-align-center">
+                                <div class="p-grid">
+                                    <div class="p-col-4 hilo_ic">
+                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)"
+                                            routerLinkActive="router-link-active">
+                                            <img src="../../../assets/icons/HeartCare.png" matTooltip="Heart Care"
+                                                width="35px" height="35px">
+                                        </a>
+                                    </div>
+                                    <div class="p-col-4 hilo_ic">
+                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)"
+                                            routerLinkActive="router-link-active">
+                                            <img src="../../../assets/icons/Diabetics.png" matTooltip="Diabetic Care"
+                                                width="30px" height="35px">
+                                        </a>&nbsp;&nbsp;</div>
+                                    <div class="p-col-4 hilo_ic">
+                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)"
+                                            routerLinkActive="router-link-active">
+                                            <img src="../../../assets/icons/Kidney.png" matTooltip="Kidney Care"
+                                                width="33px" height="33px">
+                                        </a>&nbsp;&nbsp;</div>
+                                    <div class="p-col-4 hilo_ic">
+                                        <a class="hilo_lights" [routerLink]="['/profile/prf']"
+                                            (click)="healthHigh.show($event)" routerLinkActive="router-link-active">
+                                            <img src="../../../assets/icons/BPCare.png" matTooltip="BP Care"
+                                                width="35px" height="35px">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" p-col p-col-align-center profdet hilo_lights">
+                                High-lights&nbsp;&nbsp;&nbsp;&nbsp;
+
+                            </div>
+                            <div class="p-col p-col-align-center">
+                                <div class="p-grid">
+                                    <div class="p-col-4 hilo_ic2">
+                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)"
+                                            routerLinkActive="router-link-active">
+                                            <img src="../../../assets/icons/Tetanus.png" matTooltip="Diabetic Care"
+                                                width="45px" height="40px">
+                                        </a>&nbsp;&nbsp;</div>
+                                    <div class="p-col-4 hilo_ic2">
+                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)"
+                                            routerLinkActive="router-link-active">
+                                            <img src="../../../assets/icons/Polio-2.png" matTooltip="Kidney Care"
+                                                width="45px" height="45px">
+                                        </a>&nbsp;&nbsp;</div>
+                                    <div class="p-col-4 hilo_ic2">
+                                        <a class="hilo_lights" [routerLink]="['/profile/prf']"
+                                            (click)="healthHigh.show($event)" routerLinkActive="router-link-active">
+                                            <img src="../../../assets/icons/H1N1.png" 
+                                            matTooltip="BP Care" width="45px"
+                                                height="45px">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class=" p-col p-col-align-center baroption">
+                                    <a href="#">Vaccin history</a>
+                                </div>
+                            </div>
+
+                            <div class=" p-col p-col-align-center">
+                                <p-tieredMenu #menu [model]="mgntMenuItems" [popup]="true"></p-tieredMenu>
+                                <button pButton type="button" class="ui-button-raised ui-button-rounded"
+                                    (click)="menu.toggle($event)" label="ManageData" icon="pi pi-share-alt"></button>
+                            </div>
+                            <div class=" p-col p-col-align-center">
+                                <p-tieredMenu #miscmenu [model]="miscMenuItems" [popup]="true"></p-tieredMenu>
+                                <button pButton type="button" class="ui-button-raised ui-button-rounded"
+                                    (click)="miscmenu.toggle($event)" label="Miscellaneous"
+                                    icon="pi pi-share-alt"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-col-8">
+                        <div class="p-grid p-dir-col ">
+                            <div class="p-col-9 p-col-align-center">
+                                <div class="p-grid">
+                                    <div class="p-col-3 hilo_lights">
+                                        <button mat-fab color="primary1" class="tempbtn"
+                                            matTooltip="80c at 1/12/2020:16:20">
+                                            80c
+                                        </button>
+                                    </div>
+                                    <div class="p-col-3 hilo_lights">
+                                        <button mat-fab color="primary1" class="sugbtn"
+                                            matTooltip="80c at 1/12/2020:16:20">
+                                            80/180
+                                        </button>
+                                    </div>
+                                    <div class="p-col-3 hilo_lights">
+                                        <button mat-fab color="primary1" class="bpbtn"
+                                            matTooltip="80c at 1/12/2020:16:20">
+                                            <span class="spanImage">
+                                                80c
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="p-col-3 hilo_lights">
+                                        <button mat-fab color="primary1" class="pulsebtn"
+                                            matTooltip="80c at 1/12/2020:16:20">
+                                            <span class="spanImage">
+                                                80c
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-col p-col-align-center">
+                                <br />
+                            </div>
+
+                            <div class="p-col p-col-align-center acbtn">
+                                <div>
+                                    <div class="baroption">
+                                        <div class="p-grid p-align-end">
+                                            <div class="p-col-12">
+                                                <br />
+
+                                            </div>
+                                            <div class="p-col-12">
+                                                <a [routerLink]="" (click)="switchBar('d')">Daily</a> <i
+                                                    class="pi pi-ellipsis-v"></i>
+                                                <a [routerLink]="" (click)="switchBar('w')">Weekly</a> <i
+                                                    class="pi pi-ellipsis-v"></i>
+                                                <a [routerLink]="" (click)="switchBar('m')">Monthly</a> <i
+                                                    class="pi pi-ellipsis-v"></i>
+                                                <a [routerLink]="" (click)="switchBar('y')">Yearly</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </p-card>
+        </div>
+        <div class="p-col-12  p-md-12 p-lg-6">
+            <div class="pgrid p-dir-col">
+                <div class="p-col prof">
+                    <p-card>
+                        <div class="divhed">
+                            <p-header>
+                                My Profile
+                            </p-header>
+                        </div>
+                        <div>
+                            <div class="p-grid">
+                                
+                                <div class="p-col-12 p-md-6 p-lg-3 pointer">
+                                    <a [routerLink]="['/profile/prf']" routerLinkActive="router-link-active">
+                                        <img src="../../../assets/JC.png" class="circletag">
+                                        <div class="pname">pet name</div>
+                                        <div class="pname">Age :
+                                            <span>34</span>
+                                        </div>
+                                        <div class="pname">Sex :
+                                            <span>Male</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="p-col-12 p-md-6 p-lg-9">
+                                    <div class="p-grid">
+                                        <div class="p-col-12 profdet divhed">
+                                            Health Tier`&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <img src="../../../assets/gold_star.jpg" width="20px" height="20px">&nbsp;
+                                            <img src="../../../assets/gold_star.jpg" width="20px" height="20px">&nbsp;
+                                            <img src="../../../assets/gold_star.jpg" width="20px" height="20px">
+                                        </div>
+                                        <div class="p-col-12 profdet ">
+                                            Daily Doseage
+                                            <p-table [value]="dms" [scrollable]="true" scrollHeight="100px">
+                                                <ng-template pTemplate="body" let-dm>
+                                                    <tr class="profdet divhed">
+                                                        <td class="ddoseM">{{dm.med}}</td>
+                                                        <td class="ddose" style="padding: 2px;">
+                                                            <img *ngIf="dm.afterFood=='Y'" alt="After Food"
+                                                                matTooltip="After Food"
+                                                                src="../../../assets/icons/food.png" width="18px"
+                                                                height="18px">
+                                                        </td>
+                                                        <td class="ddose" style="padding: 2px;">
+                                                            <img src="../../../assets/icons/{{dm.medType}}.png"
+                                                                width="18px" height="18px"
+                                                                [matTooltip]="'C'==dm.medType?'Capsule':'Injection'">
+                                                        </td>
+                                                        <td class="ddose">{{dm.morningQty}}</td>
+                                                        <td class="ddose">{{dm.afternoongQty}}</td>
+                                                        <td class="ddose">{{dm.eveninggQty}}</td>
+                                                        <td class="ddoseN">{{dm.medNotes}}</td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <!--div class="p-col-12">
+                                    <div class="p-grid">
+
+                                        <div class="divhed">
+                                            Health Lowlights&nbsp;&nbsp;&nbsp;&nbsp;
+                                        </div>
+                                        <div >
+                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)"
+                                        routerLinkActive="router-link-active">
+                                            <img src="../../../assets/icons/HeartCare.png" matTooltip="Heart Care"
+                                                width="25px" height="25px">
+                                        </a>&nbsp;&nbsp;
+                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)" routerLinkActive="router-link-active">
+                                            <img src="../../../assets/icons/Diabetics.png" matTooltip="Diabetic Care"
+                                                width="20px" height="25px">
+                                        </a>&nbsp;&nbsp;
+                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)" routerLinkActive="router-link-active">
+                                            <img src="../../../assets/icons/Kidney.png" matTooltip="Kidney Care"
+                                                width="23px" height="23px">
+                                        </a>&nbsp;&nbsp;
+                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)" routerLinkActive="router-link-active">
+                                            <img src="../../../assets/icons/BPCare.png" matTooltip="BP Care"
+                                                width="25px" height="25px">
+                                        </a>
+                                    </div>
+                                    </div>
+                                </div -->
+                        
+                        </div>
+                    </p-card>
+                </div>
+                <div class="p-col noti">
+                    <p-card>
+                        <div class="divhed">
+                            <p-header>
+                                My Notification
+                            </p-header>
+                        </div>
+                        <div class="p-grid ">
+                            <div class="p-col-12">
+
+                                <p-scrollPanel [style]="{width: '100%', height: '200px'}">
+                                    <div class="p-grid divhed2" *ngFor="let msg of notifi">
+
+                                        <div class="p-col-1" *ngIf="msg.type=='noti'"><i class="pi pi-bell npi"></i>
+                                        </div>
+                                        <div class="p-col-1" *ngIf="msg.type=='msg'"><i class="pi pi-envelope npi"></i>
+                                        </div>
+                                        <div class="p-col-1" *ngIf="msg.type=='chat'"><i class="pi pi-comment npi"></i>
+                                        </div>
+                                        <div class="p-col-6" [ngClass]="{'unredmsg': !msg.mread}">
+                                            <a href="" (click)="selectMsg($event,msg)">{{msg.subj}}</a>
+                                        </div>
+                                        <div class="p-col-3" [ngClass]="{'unredmsg': !msg.mread}">{{msg.dt|date}}</div>
+                                        <div class="p-col-2">
+                                            <button pButton type="button" icon="pi pi-trash" style="font-size: 10px;"
+                                                (click)="deleteMsg($event,msg)">
+                                            </button>
+                                            <i class="pi pi-eye-slash" style="font-size: 20px;" *ngIf="!msg.mread"></i>
+                                        </div>
+                                    </div>
+                                </p-scrollPanel>
+                            </div>
+                        </div>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dlg">
+    <p-dialog [(visible)]="notidlg" dismissableMask="true">
+        <p-header>
+            <div *ngIf="selectedNotifi.type=='noti'"><i class="pi pi-bell npi">Notification Details</i></div>
+            <div *ngIf="selectedNotifi.type=='msg'"><i class="pi pi-envelope npi">Message Details</i></div>
+            <div *ngIf="selectedNotifi.type=='chat'"><i class="pi pi-comment npi">Chat Details</i></div>
+        </p-header>
+        {{selectedNotifi.body}}
+        <p-footer>
+            <button type="button" pButton icon="pi pi-check" (click)="notidlg=false;" label="Close"></button>
+        </p-footer>
+    </p-dialog>
+</div>
+<p-overlayPanel #healthHigh [showCloseIcon]="true" [dismissable]="true">
+    dsfsd ajd<br />sl;<br />fja<br />ds <br />as<br />ldj<br />f;<br />asdf
+    dsafldsa <br />
+</p-overlayPanel>
