@@ -72,8 +72,7 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                     <div class="p-col-4 hilo_ic2">
                                         <a class="hilo_lights" [routerLink]="['/profile/prf']"
                                             (click)="healthHigh.show($event)" routerLinkActive="router-link-active">
-                                            <img src="../../../assets/icons/H1N1.png" 
-                                            matTooltip="BP Care" width="45px"
+                                            <img src="../../../assets/icons/H1N1.png" matTooltip="BP Care" width="45px"
                                                 height="45px">
                                         </a>
                                     </div>
@@ -103,21 +102,24 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                 <div class="p-grid">
                                     <div class="p-col-3 hilo_lights">
                                         <button mat-fab color="primary1" class="tempbtn"
+                                            (click)="getTempChart()"
                                             matTooltip="80c at 1/12/2020:16:20">
                                             80c
                                         </button>
                                     </div>
                                     <div class="p-col-3 hilo_lights">
                                         <button mat-fab color="primary1" class="sugbtn"
+                                           (click)="getDiabeticChart()"
                                             matTooltip="80c at 1/12/2020:16:20">
                                             80/180
                                         </button>
                                     </div>
                                     <div class="p-col-3 hilo_lights">
                                         <button mat-fab color="primary1" class="bpbtn"
+                                        (click)="getBPChart()"
                                             matTooltip="80c at 1/12/2020:16:20">
                                             <span class="spanImage">
-                                                80c
+                                                80/120
                                             </span>
                                         </button>
                                     </div>
@@ -131,37 +133,10 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                     </div>
                                 </div>
                             </div>
-                            <div class="p-col p-col-align-center">
-                                <br />
-                            </div>
-
-                            <div class="p-col p-col-align-center acbtn">
-                                <div>
-                                    <div class="baroption">
-                                        <div class="p-grid p-align-end">
-                                            <div class="p-col-12">
-                                                <br />
-
-                                            </div>
-                                            <div class="p-col-12">
-                                                <a [routerLink]="" (click)="switchBar('d')">Daily</a> <i
-                                                    class="pi pi-ellipsis-v"></i>
-                                                <a [routerLink]="" (click)="switchBar('w')">Weekly</a> <i
-                                                    class="pi pi-ellipsis-v"></i>
-                                                <a [routerLink]="" (click)="switchBar('m')">Monthly</a> <i
-                                                    class="pi pi-ellipsis-v"></i>
-                                                <a [routerLink]="" (click)="switchBar('y')">Yearly</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <div  echarts [options]="chartOption" class="rxchart p-col-align-center"></div>
                         </div>
                     </div>
                 </div>
-
-
             </p-card>
         </div>
         <div class="p-col-12  p-md-12 p-lg-6">
@@ -175,7 +150,7 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                         </div>
                         <div>
                             <div class="p-grid">
-                                
+
                                 <div class="p-col-12 p-md-6 p-lg-3 pointer">
                                     <a [routerLink]="['/profile/prf']" routerLinkActive="router-link-active">
                                         <img src="../../../assets/JC.png" class="circletag">
@@ -224,7 +199,7 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                     </div>
                                 </div>
                             </div>
-                                <!--div class="p-col-12">
+                            <!--div class="p-col-12">
                                     <div class="p-grid">
 
                                         <div class="divhed">
@@ -251,7 +226,7 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                     </div>
                                     </div>
                                 </div -->
-                        
+
                         </div>
                     </p-card>
                 </div>
@@ -264,7 +239,6 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                         </div>
                         <div class="p-grid ">
                             <div class="p-col-12">
-
                                 <p-scrollPanel [style]="{width: '100%', height: '200px'}">
                                     <div class="p-grid divhed2" *ngFor="let msg of notifi">
 

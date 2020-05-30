@@ -227,3 +227,8 @@
     background-position: 45%;
     font-size: medium;
 }
+.rxchart{
+    height: 275px;
+    width: 100%;
+    font-size: smaller;
+}
