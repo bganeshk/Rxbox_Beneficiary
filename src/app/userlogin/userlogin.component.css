@@ -5,7 +5,7 @@
     width:450px;
     margin-top: 5%;
     border-radius: 10px;  
-    position: relative;    
+    position: relative; 
 }
 :host >>>  .ui-button{
     background: #274991;
@@ -15,6 +15,13 @@
     border:1px solid #970b0b;
 }
 .bdyDiv{   
+  
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-content: center;
+    align-content: center;
     width: 50%;
     margin: 0 auto;
 }
@@ -34,13 +41,13 @@
     
 }
 .divRem{
-    color: #8898bb;
-    
+    color: #5f79af;
+    width: 50%;
+    margin: 0 auto;
 }
 .lblotp{
     font-size: 9px;
     text-decoration-line: underline;
-    
 }
 .dupLink{
     cursor: pointer;

@@ -1,0 +1,94 @@
+<div class="bdyDiv">
+
+    <p-card *ngIf="!forgetPwd">
+            <p-messages [(value)]="msgs"></p-messages>
+        <div class="p-gird ">
+                <div class="p-col-12 divsing">
+                     Sign in to True-B
+                    </div>
+            <!-- form -->
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+            <div class="p-col-12 divcol ">
+                Enter email/Phone number: <br />
+                <input type="text" pInputText formControlName="loginEmailAddress"
+                pattern="(^[6-9]\d{9}$)|([a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,})" />
+                <!-- p-message severity="error" text="Please enter valid email/phone number"
+                *ngIf="!userForm.controls['loginEmailAddress'].valid && userForm.controls['loginEmailAddress'].dirty">
+            </p-message -->
+            
+            </div>
+            <div class="p-col-12 divcol">
+                Password:<br /><input type="password" pInputText formControlName="loginpwd" minlength="8"/>
+                
+            </div>
+            <div class="p-col-12 "><br/>
+                <div class="p-grid">
+                    <div class="p-col-2 divRem">
+                        <mat-checkbox formControlName="rememberMe" binary="true" color="primary"></mat-checkbox> Remember
+                    </div>
+                    <div  class="p-col-4  p-col-align-start">
+                            <a  (click)="forgetPwdMeth()"> Forgot Password</a>
+                    </div>
+                </div>
+            </div>
+            <div class="p-col-12 divcol">    
+                                 
+                <button pButton type="submit" label="Login"  class="ui-button-rounded"  style="width: 200px;"></button>
+            </div>
+            <div class="p-col-12">                
+               <a href="#" > <img src="../../assets/login_other.png" style="width:370px;"></a>
+                <br/><br/>
+               <span class="divRem" style="margin-left: 25%;"> Don't have account?<b><a routerLink="/user_reg" >Register</a></b></span>
+            </div>
+            <!-- end form-->
+        </form>
+        </div>
+
+
+    </p-card>
+
+    <p-card *ngIf="forgetPwd">
+            <p-messages [(value)]="msgs"></p-messages>
+            <div class="p-gird ">
+                <div class="p-col-12 divsing">
+                    Reset Password
+                </div>
+                <!-- form -->
+                <form [formGroup]="userpwdforgotForm" (ngSubmit)="resetPwd()">
+                        <div class="p-col-12 divcol manda ">
+                            Enter Phone number: <br />
+                            <input type="text" pInputText formControlName="loginEmailAddress"
+                            pattern="^[6-9]\d{9}$" />
+                            <p-message severity="error" text="Please enter valid phone number"
+                            *ngIf="!userpwdforgotForm.controls['loginEmailAddress'].valid && userpwdforgotForm.controls['loginEmailAddress'].dirty">
+                        </p-message>
+                        </div>
+                    <div class="p-col-12 divcol manda">
+                        Enter OTP <br />
+                        <input type="text" pInputText [(ngModel)]="confirmOTP" [ngModelOptions]="{standalone: true}"  [disabled]="!userpwdforgotForm.valid"  />   
+                        <a [routerLink]="['/login']" (click)="resendOTP()" class="lblotp" 
+                        routerLinkActive="router-link-active"  *ngIf="userpwdforgotForm.valid">
+                                Send OTP</a>                   
+                    </div>
+                    
+                    <div class="p-col-12 divRem divcol" style="font-size:9PX " *ngIf="userpwdforgotForm.valid">
+                        <div >
+                            OR<br/>
+                            Scan QRcode using Bee App to Login
+                        </div>
+                    </div>
+                    <div class="p-col-12 divcol " *ngIf="userpwdforgotForm.valid">
+                            <qrcode [qrdata]="qrValue" [size]="256" [level]="'H'"></qrcode>
+                    </div>
+                    <div class="p-col-12 divcol">          
+                        <button pButton type="submit" label="Reset Password" class="ui-button-rounded" 
+                        (click)="resetPwd()" 
+                        style="width: 140px;">
+                        </button>                    
+                    </div>
+                    <div class="divcol"> You have an account?! <u class="dupLink" (click)="backtoLogin()">Login</u>
+                    </div>
+             </form>
+            </div>
+        </p-card>
+</div>

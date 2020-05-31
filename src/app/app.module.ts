@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
-import { UserLoginComponent } from './user-login/user-login.component';
+import { UserloginComponent } from './userlogin/userlogin.component';
 import { GlobalComponentModule} from './global/global-component/global-component.module';
 import { GlobalErrorHandler, GlobalBeeService } from 'bee-lib';
 import { BeeHttpInterceptorService } from 'bee-lib';
@@ -22,7 +22,7 @@ const IMPORT_MODULE = [
   declarations: [
     AppComponent,
     UserRegistrationComponent,
-    UserLoginComponent
+    UserloginComponent
   ],
   imports: [
     BrowserModule,

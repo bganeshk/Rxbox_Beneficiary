@@ -1,1 +1,86 @@
+<!--
 <p>user-registration works!</p>
+
+TO GENERATE THE QR CODE https://stackblitz.com/edit/angular-ja13vl
+TO READ THE QR CODE https://stackblitz.com/edit/angular-qr-reader
+
+
+-->
+<div class="bdyDiv">
+
+    <p-card *ngIf="!displayQrc">
+            <p-messages [(value)]="msgs"></p-messages>
+        <div class="p-gird ">
+            <div class="p-col-12 divsing">
+                Register to True-B
+            </div>
+            <!-- form -->
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+                <div class="p-col-12 divcol manda">
+                    Phone number: <br />
+                    <input type="text" pInputText formControlName="loginphone" pattern="^[6-9]\d{9}$" />
+                    <p-message severity="error" text="Please enter valid phone number"
+                        *ngIf="!userForm.controls['loginphone'].valid && userForm.controls['loginphone'].dirty">
+                    </p-message>
+                </div>
+                <div class="p-col-12 divcol manda">
+                    Bee Password: <br />
+                    <input type="password" pInputText formControlName="loginpwd" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,15}$" />
+                    <p-message severity="error" text="Your password should contain at least one alphabet, one numeric and should be 5 to 15 characters long."
+                        *ngIf="!userForm.controls['loginpwd'].valid && userForm.controls['loginpwd'].dirty">
+                    </p-message>
+                </div>
+                <div class="p-col-12 divcol" >
+                    Email: <br />
+                    <input type="text" pInputText formControlName="loginEmailAddress" placeholder="optional"
+                     pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" />
+                    <p-message severity="error" text="Please enter valid email address"
+                        *ngIf="!userForm.controls['loginEmailAddress'].valid && userForm.controls['loginEmailAddress'].dirty">
+                    </p-message>
+                   
+                </div>
+                <div class="p-col-12 divRem" style="font-size:12PX ">
+                    <div style="width: 60%;text-align: center;margin-left: 20%">
+                        By creating this account, you agree to our <a href="#">Terms & Conditions</a> & <a
+                            href="#">Privacy Policy</a>.
+                    </div>
+                </div>
+                <div class="p-col-12 divcol">                    
+                       
+                    <button pButton type="submit" label="Next" class="ui-button-rounded" icon="pi pi-forward"
+                        iconPos="right" style="width: 150px;">
+                    </button>
+                </div>
+                <div class="divcol"> You have an account?!<a [routerLink]="['/login']" routerLinkActive="router-link-active" class="dupLink" (click)="backtoLogin()">Login</a>  
+                </div>
+            </form>
+        </div>
+    </p-card>
+    <p-card *ngIf="displayQrc">
+            <p-messages [(value)]="msgs"></p-messages>
+            <div class="p-gird ">
+                <div class="p-col-12 divsing">
+                    Register to True-B
+                </div>
+                <!-- form -->
+                
+                    <div class="p-col-12 divcol manda">
+                        Enter OTP <br />
+                        <input type="text" pInputText [(ngModel)]="confirmOTP" />   
+                        <a [routerLink]="['/user_reg']" routerLinkActive="router-link-active"  (click)="resendOTP()" class="lblotp">
+                                Send OTP</a>                   
+                    </div>
+                    
+                    <div class="p-col-12 divcol">
+                          
+                        <button pButton type="submit" label="Register" class="ui-button-rounded" 
+                        (click)="submitRegister()"
+                        style="width: 150px;">
+                        </button>
+                    </div>
+                    <div class="divcol"> You have an account?!<a [routerLink]="['/login']" routerLinkActive="router-link-active" class="dupLink" (click)="backtoLogin()">Login</a>  
+                                        </div>
+             
+            </div>
+        </p-card>
+</div>

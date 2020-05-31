@@ -13,14 +13,19 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 const IMPORT_PRIME_MODULE = [
+  MessagesModule,MessageModule,ScrollPanelModule,OverlayPanelModule,  ButtonModule,
+   InputTextModule, TableModule, DialogModule, CardModule,SidebarModule,
 ];
 
 const IMPORT_ANG_MODULE = [
   FormsModule, ReactiveFormsModule,MatTooltipModule,
-  ButtonModule, InputTextModule, TableModule, DialogModule, CardModule,SidebarModule,
-  ScrollPanelModule,OverlayPanelModule, MatIconModule, MatButtonModule
+  MatIconModule, MatButtonModule,MatCheckboxModule
+  
 ];
 
 @NgModule({
