@@ -51,17 +51,17 @@ export class DashboardComponent implements OnInit {
   constructor(private dashboardService: DashboardService, ) {
     dashboardService.getNotification().then(res => this.notifi = res);
     this.mgntMenuItems = [
-      { label: 'Consents', icon: 'pi pi-fw pi-tags', routerLink: ['/pages/sharepts'] },
+      { label: 'Consents', icon: 'pi pi-fw pi-tags', routerLink: ['/pages/mgntConsent'] },
       { separator: true },
-      { label: 'Health Records', icon: 'pi pi-fw pi-inbox', routerLink: ['/pages/encash'] }
+      { label: 'Health Records', icon: 'pi pi-fw pi-inbox', routerLink: ['/pages/mgntEHR'] }
 
     ];
     this.miscMenuItems = [
-      { label: 'Notifications ', icon: 'pi pi-fw pi-bell', routerLink: ['/pages/encash'] },
-      { label: 'Export/Report', icon: 'pi pi-fw pi-tags', routerLink: ['/pages/sharepts'] },
+      { label: 'Notifications ', icon: 'pi pi-fw pi-bell', routerLink: ['/pages/mgntNotification'] },
+      { label: 'Export/Report', icon: 'pi pi-fw pi-tags', routerLink: ['/reports'] },
       { separator: true },
-      { label: 'My Appointments', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/pages/encash'] },
-      { label: 'Set Reminder ', icon: 'pi pi-fw pi-clock', routerLink: ['/pages/encash'] }
+      { label: 'My Appointments', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/pages/appointmnt'] },
+      { label: 'Set Reminder ', icon: 'pi pi-fw pi-clock', routerLink: ['/pages/reminder'] }
     ];
     this.getTempChart();
   }

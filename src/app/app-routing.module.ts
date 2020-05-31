@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'profile', loadChildren: './profile/profile.module#ProfileModule'},
   { path: 'user_reg',component:UserRegistrationComponent},
   { path: 'login',component:UserLoginComponent},
+  { path: 'reports', loadChildren: './rxreport/rxreport.module#RxreportModule' },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },
 ];
