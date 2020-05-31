@@ -45,7 +45,7 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                     <div class="p-col-4 hilo_ic">
                                         <a class="hilo_lights" [routerLink]="['/profile/prf']"
                                             (click)="healthHigh.show($event)" routerLinkActive="router-link-active">
-                                            <img src="../../../assets/icons/BPCare.png" matTooltip="BP Care"
+                                            <img src="../../../assets/icons/allergy.png" matTooltip="Allergic"
                                                 width="35px" height="35px">
                                         </a>
                                     </div>
@@ -125,6 +125,7 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                     </div>
                                     <div class="p-col-3 hilo_lights">
                                         <button mat-fab color="primary1" class="pulsebtn"
+                                        (click)="getPulseChart()"
                                             matTooltip="80c at 1/12/2020:16:20">
                                             <span class="spanImage">
                                                 80c
