@@ -14,8 +14,9 @@ import { GlobalComponentModule} from './global/global-component/global-component
 import { GlobalErrorHandler, GlobalBeeService } from 'bee-lib';
 import { BeeHttpInterceptorService } from 'bee-lib';
 
+
 const IMPORT_MODULE = [
-  QRCodeModule,
+  QRCodeModule
 ];
 
 @NgModule({

@@ -8,8 +8,13 @@
     background-color: #fff;
     border-bottom: 1px;
     box-shadow: 3px 3px 3px 3px #ececec;
+    height: 65px;
 }
-
+.tmenu{
+    background-color: #fff;
+    width: 100%;
+    box-shadow: 3px 3px 3px 3px #ececec;
+}
 
 
 .margLab{
@@ -19,7 +24,7 @@
 .uname{
     font-weight: bold;
     color: #09338F;
-    font-size: 14px;
+    font-size: 12px;
     float:right; 
     text-align:center;
     

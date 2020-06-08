@@ -1,6 +1,7 @@
 .dash{
     margin-left: 3%;
     margin-right: 2%;
+  
 }
  
 .divhed {
@@ -13,6 +14,7 @@
 }
 .divhed2 {
     color: #3e6cc7;
+    font-size: smaller;
     margin-bottom: 3%;
     border-bottom-width:1px;
     border-bottom-color:lightgray;
@@ -29,9 +31,16 @@
     text-align: right -moz-center ;
 }
 
+.dshlft{
+ height: 112%;
+ display: inline-block;
+}
 
+:host >>> .prof .ui-card .ui-card-body{
+    height: 210px;
+}
 :host >>> .prof .ui-card{
-    height: 40%; 
+   
     border-radius: 1%;    
     margin-top: 2%;
 }
@@ -39,12 +48,16 @@
 :host >>> .dshchart .ui-card{
     
     border-radius: 1%;    
-    margin-top: 2%;
+    margin-top: 3%;
+    height: 85%;
 }
+
+
+
 :host >>> .noti .ui-card{
-    height: 60%; 
+     
     border-radius: 1%;
-        
+    height: 40%;    
 }
 
 .lblprogress{    

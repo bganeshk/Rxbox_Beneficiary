@@ -1,5 +1,5 @@
 <div *ngIf="getLogginStatus()">
-
+  
   <div class="rightMnu">
 
     <button pButton type="button" (click)="getHelpHtmlContent();visibleSideMenu = true" icon="pi pi-question">
@@ -33,8 +33,13 @@
     <div class="p-grid">
       <div class="p-col-1">
         <a routerLink="/pages/dashboard" routerLinkActive="active">
-          <img src="./assets/JC.png" style="height:65px;width:120px;padding-left:5px; ">
+          <img src="./assets/JC.png" style="height:60px;width:120px;padding-left:5px; ">
         </a>
+        <!-- display menu only if loggedin and not dashboard-->
+        <div class="tmenu" *ngIf="getCurrentPage()!='dashboard'">
+              
+        </div>
+
       </div>
       <div class="p-col-3 p-offset-8">
         <div class="p-grid">
@@ -43,7 +48,7 @@
             <p>{{date|date:'dd-MMM HH:mm:ss'}}</p>
           </div>
           <div class="p-col-1">
-            <img src="./assets/iconLongSeperator.png" style="height: 100%">
+            <img src="./assets/iconLongSeperator.png" style="height: 60px">
           </div>
           <div class="p-col-2 logc" (click)="logout()" style="cursor: pointer;margin: auto;">
             <img src="./assets/iconLogout_2.png" width="35" height="30">
@@ -52,8 +57,19 @@
         </div>
       </div>
     </div>
+    
   </nav>
+  
 </div>
-<div>
-  <router-outlet></router-outlet>
+
+<div class="p-grid" >
+  <div class="p-col-2" *ngIf="!getLogginStatus()" >
+    <p-panelMenu [model]="items"       
+    *ngIf="(getCurrentPage()!='dashboard')" 
+    [style]="{'width':'100%'}" >
+    </p-panelMenu>
+  </div>
+  <div  >
+    <router-outlet></router-outlet>
+  </div>
 </div>

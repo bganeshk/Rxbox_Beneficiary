@@ -16,10 +16,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {PanelMenuModule} from 'primeng/panelmenu';
 
 const IMPORT_PRIME_MODULE = [
   MessagesModule,MessageModule,ScrollPanelModule,OverlayPanelModule,  ButtonModule,
    InputTextModule, TableModule, DialogModule, CardModule,SidebarModule,
+   PanelMenuModule
 ];
 
 const IMPORT_ANG_MODULE = [

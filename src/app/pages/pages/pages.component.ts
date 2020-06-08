@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {MessageService} from 'primeng/api';
+import { GlobalBeeService } from 'bee-lib';
 
 @Component({
   selector: 'app-pages',
@@ -12,9 +13,13 @@ export class PagesComponent implements OnInit {
   visibleSideMenu:boolean;
   visiblefull:boolean;
   
-  constructor() { }
+  constructor(private gsrv:GlobalBeeService,@Inject('environment')  environment) { }
 
   ngOnInit() {
   }
 
+  getCurrentPage():string{
+    
+    return this.gsrv.getCurrentPage();
+  }
 }

@@ -1,11 +1,11 @@
-I am from dashbaord
+<!--I am from dashbaord
 https://xieziyu.github.io/ngx-echarts/api-doc/
 https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
-
+-->
 <div class="dash">
     <div class="p-grid">
         <div class="p-col-12 p-md-12 p-lg-6 dshchart">
-            <p-card>
+            <p-card class="dshlft">
                 <div class="divhed">
                     <p-header>
                         Health Indicator
@@ -143,7 +143,7 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
         <div class="p-col-12  p-md-12 p-lg-6">
             <div class="pgrid p-dir-col">
                 <div class="p-col prof">
-                    <p-card>
+                    <p-card >                        
                         <div class="divhed">
                             <p-header>
                                 My Profile
@@ -200,35 +200,8 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                     </div>
                                 </div>
                             </div>
-                            <!--div class="p-col-12">
-                                    <div class="p-grid">
-
-                                        <div class="divhed">
-                                            Health Lowlights&nbsp;&nbsp;&nbsp;&nbsp;
-                                        </div>
-                                        <div >
-                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)"
-                                        routerLinkActive="router-link-active">
-                                            <img src="../../../assets/icons/HeartCare.png" matTooltip="Heart Care"
-                                                width="25px" height="25px">
-                                        </a>&nbsp;&nbsp;
-                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)" routerLinkActive="router-link-active">
-                                            <img src="../../../assets/icons/Diabetics.png" matTooltip="Diabetic Care"
-                                                width="20px" height="25px">
-                                        </a>&nbsp;&nbsp;
-                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)" routerLinkActive="router-link-active">
-                                            <img src="../../../assets/icons/Kidney.png" matTooltip="Kidney Care"
-                                                width="23px" height="23px">
-                                        </a>&nbsp;&nbsp;
-                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)" routerLinkActive="router-link-active">
-                                            <img src="../../../assets/icons/BPCare.png" matTooltip="BP Care"
-                                                width="25px" height="25px">
-                                        </a>
-                                    </div>
-                                    </div>
-                                </div -->
-
                         </div>
+                   
                     </p-card>
                 </div>
                 <div class="p-col noti">
@@ -240,7 +213,7 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                         </div>
                         <div class="p-grid ">
                             <div class="p-col-12">
-                                <p-scrollPanel [style]="{width: '100%', height: '200px'}">
+                                <p-scrollPanel [style]="{width: '100%', height: '155px'}">
                                     <div class="p-grid divhed2" *ngFor="let msg of notifi">
 
                                         <div class="p-col-1" *ngIf="msg.type=='noti'"><i class="pi pi-bell npi"></i>
@@ -264,7 +237,7 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                             </div>
                         </div>
                     </p-card>
-                </div>
+                </div >
             </div>
         </div>
     </div>
