@@ -57,33 +57,55 @@ export class AppComponent implements OnInit {
         label: 'Consents',
         //:'show all the active consent allow the user to revoke and modify the consent
         //shoud have search at the top and then after select a praticular consent for editing or inline revoke',
-        icon: 'pi pi-pw pi-file',
+        icon: 'pi pi-pw pi-file', routerLink: '/pages/mgntConsent',
         items: [{
-          label: 'Manage', expanded: true,
+          label: 'Manage', expanded: true, routerLink: '/pages/mgntConsent',
           //manage the consent template for assight the perisison to a doctor
           //ex: diabetic template and select what are the attributes possible in that template
           //add right to add new records
           //set default expiry in days 
 
           items: [
-            { label: 'Active', icon: 'pi pi-fw pi-user-plus' }, { separator: true },
-            { label: 'Expired', icon: 'pi pi-fw pi-spinner' },
+            {
+              label: 'Active', icon: 'pi pi-fw pi-user-plus',
+              queryParams: { status: 'active' },
+              routerLink: '/pages/consentdetails'
+            },
+            { separator: true },
+            {
+              label: 'Expired', icon: 'pi pi-fw pi-spinner',
+              queryParams: { status: 'expired' },
+              routerLink: '/pages/consentdetails'
+            },
           ]
         },
         {
-          label: 'Requests',
+          label: 'Consent Requests',
           items: [
-            { label: 'Approved', icon: 'pi pi-fw pi-check' }, { separator: true },
-            { label: 'Rejected', icon: 'pi pi-fw pi-times' },
-            { label: 'Expired', icon: 'pi pi-fw pi-spinner' },
+            {
+              label: 'Approved', icon: 'pi pi-fw pi-check',
+              routerLink: '/pages/mgntconsentsreq',
+              queryParams:{status:'appr'}
+            },
+            { separator: true },
+            {
+              label: 'Rejected', icon: 'pi pi-fw pi-times',
+              routerLink: '/pages/mgntconsentsreq',
+              queryParams:{status:'rej'}
+            },
+            {
+              label: 'Expired', icon: 'pi pi-fw pi-spinner',
+              routerLink: '/pages/mgntconsentsreq',
+              queryParams:{status:'exp'}
+            },
           ]
         },
         {
-          label: 'Templates',
+          label: 'Consent Templates',
           items: [
-            { label: 'Generic', icon: 'pi pi-fw pi-ellipsis-v' },
-            { label: 'Public', icon: 'pi pi-fw pi-ellipsis-h' },
-            { label: 'Custom', icon: 'pi pi-fw pi-filter' },
+            { label: 'Generic', icon: 'pi pi-fw pi-ellipsis-v',routerLink:'/pages/mgnttemplate',queryParams:{type:'generic'} },
+            { label: 'Public', icon: 'pi pi-fw pi-ellipsis-h',routerLink:'/pages/mgnttemplate',queryParams:{type:'public'} },
+            { label: 'Custom', icon: 'pi pi-fw pi-filter',routerLink:'/pages/mgnttemplate',queryParams:{type:'custom'} },
           ]
         }
         ]
@@ -91,11 +113,12 @@ export class AppComponent implements OnInit {
       {
         label: 'Prescription',
         icon: 'pi pi-fw pi-bookmark',
+        routerLink:'/presc/',
         items: [
-          { label: 'My Priscription', icon: 'pi pi-fw pi-user' },
-          { label: 'New/Create', icon: 'pi pi-fw pi-plus' },
+          { label: 'My Priscription', icon: 'pi pi-fw pi-user',routerLink:'/presc', },
+          //{ label: 'New/Create', icon: 'pi pi-fw pi-plus', routerLink:'/presc/',},
           { separator: true },
-          { label: 'Fullfillment details', icon: 'pi pi-angle-double-right' }
+          { label: 'Fullfillment details', icon: 'pi pi-angle-double-right', routerLink:'/presc/ffmnt' }
         ]
       },
       {
@@ -103,8 +126,10 @@ export class AppComponent implements OnInit {
         //:'show all the active consent allow the user to revoke and modify the consent
         //shoud have search at the top and then after select a praticular consent for editing or inline revoke',
         icon: 'pi pi-pw pi-file-o',
+        routerLink:'/ehr',
         items: [{
           label: 'Manage',
+          routerLink:'/ehr',
           //manage the consent template for assight the perisison to a doctor
           //ex: diabetic template and select what are the attributes possible in that template
           //add right to add new records
@@ -112,34 +137,39 @@ export class AppComponent implements OnInit {
 
           items: [
 
-            { label: 'General Records', icon: 'pi pi-fw pi-user-plus' },
-            { label: 'Public Records', icon: 'pi pi-fw pi-user-minus' },
-
+            { label: 'General Records', icon: 'pi pi-fw pi-user-plus',
+              routerLink:'/ehr', queryParams:{type:'gen'}
+           },
+            { label: 'Public Records', icon: 'pi pi-fw pi-user-minus',
+            routerLink:'/ehr', queryParams:{type:'pub'} },
           ]
         },
 
         { separator: true },
-        { label: 'Family Records', icon: 'pi pi-fw pi-users' },
+        { label: 'Family Records', icon: 'pi pi-fw pi-users',
+        routerLink:'/ehr/family' },
         {
           label: 'Lab Records',
+          routerLink:'/ehr/lab',
           items: [
-            { label: 'Diaganosis Req:', icon: 'pi pi-fw pi-search' },
-            { label: 'Add/Update Data', icon: 'pi pi-fw pi-pencil' }
+            { label: 'Diaganosis Req:', icon: 'pi pi-fw pi-search',routerLink:'/ehr/lab' },
+            { label: 'Add/Update Data', icon: 'pi pi-fw pi-pencil',routerLink:'/ehr/mgntdiarec' }
           ]
         },
 
-        { label: 'Summary Records', icon: 'pi pi-fw pi-folder' },
-        { label: 'Other docs', icon: 'pi pi-fw pi-paperclip' }
+        { label: 'Summary Records', icon: 'pi pi-fw pi-folder',routerLink:'/ehr/smrrec' },
+        { label: 'Other docs', icon: 'pi pi-fw pi-paperclip',routerLink:'/ehr/otrdoc' }
         ]
       },
       {
         label: 'Others', icon: 'pi-list',
+        routerLink:'/misc',
         items: [
-          { label: 'Appointments', icon: 'pi pi-calendar-plus' },
-          { label: 'Reminder', icon: 'pi pi-clock' },
+          { label: 'Appointments', icon: 'pi pi-calendar-plus',routerLink:'/misc', },
+          { label: 'Reminder', icon: 'pi pi-clock', routerLink:'/misc/reminder', },
           { separator: true },
-          { label: 'Health Events', icon: 'pi pi-tag' },
-          { label: 'Health roadmap', icon: 'pi pi-chart-bar' }
+          { label: 'Health Events', icon: 'pi pi-tag', routerLink:'/misc/ehevnt', },
+          { label: 'Health roadmap', icon: 'pi pi-chart-bar',routerLink:'/misc/ehrmap', }
         ]
       }];
     return items;

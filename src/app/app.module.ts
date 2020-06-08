@@ -23,7 +23,8 @@ const IMPORT_MODULE = [
   declarations: [
     AppComponent,
     UserRegistrationComponent,
-    UserloginComponent
+    UserloginComponent,
+    
   ],
   imports: [
     BrowserModule,

@@ -11,13 +11,16 @@ import { MgntEhrComponent } from './mgnt-ehr/mgnt-ehr.component';
 import { MgntNotifiComponent } from './mgnt-notifi/mgnt-notifi.component';
 import { MgntReminderComponent } from './mgnt-reminder/mgnt-reminder.component';
 import { MgntAppointComponent } from './mgnt-appoint/mgnt-appoint.component';
+import { ConsentdetailsComponent } from './consentdetails/consentdetails.component';
+import { MgntConsentreqComponent } from './mgnt-consentreq/mgnt-consentreq.component';
+import { MgntTemplateComponent } from './mgnt-template/mgnt-template.component';
 
 
 
 const PAGES_COMPONENTS = [
   PagesComponent, PagesComponent, DashboardComponent, MgntConsentComponent, MgntEhrComponent, 
-  MgntNotifiComponent, MgntReminderComponent, MgntAppointComponent
-
+  MgntNotifiComponent, MgntReminderComponent, MgntAppointComponent,
+  ConsentdetailsComponent, MgntConsentreqComponent, MgntTemplateComponent
 ];
 
 const PAGES_ENTRY_COMPONENTS = [
@@ -25,8 +28,9 @@ const PAGES_ENTRY_COMPONENTS = [
 ];
 
 
+
 @NgModule({
-  declarations: [...PAGES_COMPONENTS],
+  declarations: [...PAGES_COMPONENTS,],
   entryComponents: [...PAGES_ENTRY_COMPONENTS],
   imports: [
     PagesRoutingModule, GlobalComponentModule, NgxEchartsModule,TieredMenuModule,

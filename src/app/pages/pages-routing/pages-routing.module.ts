@@ -8,6 +8,9 @@ import { MgntConsentComponent } from '../mgnt-consent/mgnt-consent.component';
 import { MgntNotifiComponent } from '../mgnt-notifi/mgnt-notifi.component';
 import { MgntReminderComponent } from '../mgnt-reminder/mgnt-reminder.component';
 import { MgntAppointComponent } from '../mgnt-appoint/mgnt-appoint.component';
+import { ConsentdetailsComponent } from '../consentdetails/consentdetails.component';
+import { MgntConsentreqComponent } from '../mgnt-consentreq/mgnt-consentreq.component';
+import { MgntTemplateComponent } from '../mgnt-template/mgnt-template.component';
 
 
 const routes: Routes = [{
@@ -24,6 +27,15 @@ const routes: Routes = [{
     },{
       path: 'mgntConsent',
       component: MgntConsentComponent
+    },{
+      path: 'consentdetails',
+      component: ConsentdetailsComponent
+    },{
+      path: 'mgntconsentsreq',
+      component: MgntConsentreqComponent
+    },{
+      path: 'mgnttemplate',
+      component: MgntTemplateComponent
     },{
       path: 'mgntEHR',
       component: MgntEhrComponent
