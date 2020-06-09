@@ -1,1 +1,201 @@
-<p>mgnt-consent works!</p>
+<div class="serch">
+
+    <p-fieldset legend="Search Consent(s)" [toggleable]="true">
+        <div class="p-grid forms-grid p-justify-start">
+
+            <div class="p-col-12 p-md-4">
+                <span class="ui-float-label">
+                    <p-calendar id="float-dtrang" [(ngModel)]="search_dtrange" selectionMode="range"
+                        showButtonBar="true" readonlyInput="true"></p-calendar>
+                    <label for="float-dtrang">Consent Created between</label>
+                </span>
+            </div>
+            <div class="p-col-12 p-md-4">
+                <span class="ui-float-label">
+                    <p-chips id="float-tag" [(ngModel)]="cosnt_tag" separator=","></p-chips>
+                    <label for="float-tag">Consent Tag</label>
+                </span>
+            </div>
+            <div class="p-col-12 p-md-4">
+                <span class="ui-float-label">
+                    <input id="float-input" type="text" size="30" pInputText>
+                    <label for="float-input">Assignee Name</label>
+                </span>
+            </div>
+            <div class="p-col-12 p-md-4">
+                <div>Cons: Type</div>
+                <p-multiSelect [options]="cosnt_type"></p-multiSelect>
+            </div>
+
+            <div class="p-col-12 p-md-4">
+                <div>Visibility Type</div>
+                <p-multiSelect class="seltype" [options]="cosnt_cat_type"></p-multiSelect>
+            </div>
+            <div class="p-col-12 p-md-12">
+                <div class="p-grid p-justify-end">
+                    <div>
+                        <p-button icon="pi pi-search" type="submit" label="Search"></p-button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </p-fieldset>
+
+    <p-dataView #dv [value]="cosnts" [paginator]="true" [rows]="10" paginatorPosition="both"
+        filterBy="cosnt_name,cosnt_assignee">
+
+        <p-header>
+            <div class="ui-helper-clearfix">
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-4">
+                        <!--p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" 
+                    (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}">p-dropdown -->
+                    </div>
+                    <div class="p-col-6 p-md-4 filter-container">
+                        <div style="position:relative">
+                            <input type="search" pInputText placeholder="Search by Name/Assignee"
+                                (input)="dv.filter($event.target.value)">
+                        </div>
+                    </div>
+                    <div class="p-col-6 p-md-4" style="text-align:right">
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    </div>
+                </div>
+            </div>
+        </p-header>
+
+        <ng-template let-cnst pTemplate="listItem">
+            <div class="p-col-12">
+                <p-card>
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <div class="p-grid">
+                                <div class="p-col-12">Consent Name: <b>{{cnst.cosnt_name}}</b></div>
+                                <div class="p-col-12">Created: <b>{{cnst.created}}</b></div>
+                                <div class="p-col-12">Assignee: <b>{{cnst.cosnt_assignee}}</b></div>
+                                <div class="p-col-12">Consent Type: <b>{{cnst.cosnt_type}}</b></div>
+                            </div>
+                        </div>
+                        <div class="p-col-6">
+                            <b>Notes:</b><br />{{cnst.remarks}}
+                        </div>
+                        <div class="p-col-3">
+                            <button pButton class="ui-button-secondary" icon="pi pi-fw pi-pencil"
+                                (click)="editSelectConsent($event, cnst)" label="Edit"></button>
+                            <br /><br />
+                            <button pButton class="ui-button-secondary" icon="pi pi-search"
+                                (click)="selectConsent($event, cnst)" label="Details">
+                            </button>
+                            <br /><br />
+                            <p-button icon="pi pi-trash" (click)="selectConsent($event, cnst)" label="Revoke">
+                            </p-button>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+        </ng-template>
+        <ng-template let-cnst pTemplate="gridItem">
+            <div style="padding:.5em" class="p-col-12 p-md-3">
+                <p-panel>
+
+                    <p-header>
+                        <div class="ui-helper-clearfix tblHLbl">
+                            Name: {{cnst.cosnt_name}}
+                        </div>
+                    </p-header>
+                    <div class="p-grid">
+                        <div class="p-col-12">Assignee: <b>{{cnst.cosnt_assignee}}</b></div>
+                        <div class="p-col-12">Consent Type: <b>{{cnst.cosnt_type}}</b></div>
+                        <div class="p-col-12">Created: <b>{{cnst.created}}</b></div>
+                    </div>
+                    <p-footer>
+                        <!--
+                        <p-button icon="pi pi-fw pi-pencil" (click)="editSelectConsent($event, cnst)" label="Edit"></p-button>
+                        &nbsp;
+                        -->
+                        <button pButton class="ui-button-secondary" icon="pi pi-search"
+                            (click)="selectConsent($event, cnst)" label="Details"></button>
+                        &nbsp;
+                        <p-button icon="pi pi-trash" (click)="selectConsent($event, cnst)" label="Revoke"></p-button>
+
+                    </p-footer>
+                </p-panel>
+            </div>
+        </ng-template>
+    </p-dataView>
+
+    <p-dialog header="Consent Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+        [closeOnEscape]="true" *ngIf="selectedCons" [dismissableMask]="true" [style]="{width: '325px'}"
+        (onAfterHide)="onDialogHide($event)">
+
+        <div class="ui-g">
+            <div class="ui-g-4 tblLbl">Cons Validity : </div>
+            <div class="ui-g-8">{{selectedCons.validity}}<sub>.{{selectedCons.validity_unit}}</sub></div>
+            <div class="ui-g-4 tblLbl">EHR Categories: </div>
+            <div class="ui-g-8">{{selectedCons.cosnted_ehr}}</div>
+            <div class="ui-g-4 tblLbl">Consent Tags : </div>
+            <div class="ui-g-8">{{selectedCons.cosnt_tag}}</div>
+            <div class="ui-g-4 tblLbl">Consent Note : </div>
+            <div class="ui-g-8">{{selectedCons.remarks}}</div>
+        </div>
+        <p-footer class="acbtn">
+            <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" style="margin-right:10px;"
+                label="Revoke">
+            </button>
+            <button (click)="onDialogHide($event)" pButton type="button" class="ui-button-secondary"
+                label="Close"></button>
+        </p-footer>
+    </p-dialog>
+</div>
+
+<p-dialog header="Edit Consent" [(visible)]="displayEditDialog" [responsive]="true" showEffect="fade" [modal]="true"
+    [closeOnEscape]="true" *ngIf="selectedCons" [dismissableMask]="true" [style]="{width: '325px'}"
+    (onAfterHide)="onDialogHide($event)">
+    <div class="ui-g">
+        <div class="ui-g-12 dlgdspace">
+            <span class="ui-float-label">
+                <input id="cons_name" type="text" pInputText [(ngModel)]="selectedCons.cosnt_name" />
+                <label for="cons_name">Consent Name</label>
+            </span>
+        </div>
+        <div class="ui-g-2 dlgdspace">
+            <span class="ui-float-label">
+                <input id="cnst-validity" type="text" size="4" pInputText [(ngModel)]="selectedCons.validity" />
+                <label for="cnst-validity">Expire</label>
+            </span> 
+                </div>
+        <div class="ui-g-10 dlgdspace">
+            <p-dropdown [options]="valididty_unty" [(ngModel)]="selectedCons.validity_unit"></p-dropdown>
+        </div>
+        <div class="ui-g-12 dlgdspace">
+            <span class="ui-float-label">
+                <p-dropdown id="cnst-cat" [options]="cosnt_cat_type" [(ngModel)]="selectedCons.cosnt_cat_type">
+                </p-dropdown>
+                <label for="cnst-cat">Consent Category</label>
+            </span> 
+        </div>
+        <div class="ui-g-12 dlgdspace">
+            <span class="ui-float-label">
+                <p-chips id="cnst-tag" [(ngModel)]="selectedCons.cosnt_tag" separator=","></p-chips>
+                <label for="cnst-tag">Consent Tags</label>
+            </span>
+        </div>
+        <div class="ui-g-12 dlgdspace">
+            <span class="ui-float-label">
+                Consent Note
+                            <textarea id="cnst-rem" pInputTextarea [(ngModel)]="selectedCons.remarks"></textarea>
+            <label for="cnst-rem"></label>
+        </span>
+            </div>
+    </div>
+    <p-footer class="acbtn">
+        <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" style="margin-right:10px;"
+            label="Save">
+        </button>
+        <button (click)="onDialogHide($event)" pButton type="button" class="ui-button-secondary"
+        icon="pi pi-times" 
+        label="Cancel"></button>
+    </p-footer>
+
+</p-dialog>

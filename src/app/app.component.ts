@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
         label: 'Consents',
         //:'show all the active consent allow the user to revoke and modify the consent
         //shoud have search at the top and then after select a praticular consent for editing or inline revoke',
-        icon: 'pi pi-pw pi-file', routerLink: '/pages/mgntConsent',
+        icon: 'pi pi-pw pi-file', 
         items: [{
           label: 'Manage', expanded: true, routerLink: '/pages/mgntConsent',
           //manage the consent template for assight the perisison to a doctor
@@ -67,12 +67,16 @@ export class AppComponent implements OnInit {
 
           items: [
             {
-              label: 'Active', icon: 'pi pi-fw pi-user-plus',
-              queryParams: { status: 'active' },
-              routerLink: '/pages/consentdetails'
+              label: 'Assign', icon: 'pi pi-fw pi-user-plus',              
+              routerLink: '/pages/mgntconsentsreq',
+              
             },
             { separator: true },
             {
+              label: 'Active', icon: 'pi pi-fw pi-check',
+              queryParams: { status: 'active' },
+              routerLink: '/pages/consentdetails'
+            },{
               label: 'Expired', icon: 'pi pi-fw pi-spinner',
               queryParams: { status: 'expired' },
               routerLink: '/pages/consentdetails'
@@ -113,7 +117,6 @@ export class AppComponent implements OnInit {
       {
         label: 'Prescription',
         icon: 'pi pi-fw pi-bookmark',
-        routerLink:'/presc/',
         items: [
           { label: 'My Priscription', icon: 'pi pi-fw pi-user',routerLink:'/presc', },
           //{ label: 'New/Create', icon: 'pi pi-fw pi-plus', routerLink:'/presc/',},
@@ -126,7 +129,6 @@ export class AppComponent implements OnInit {
         //:'show all the active consent allow the user to revoke and modify the consent
         //shoud have search at the top and then after select a praticular consent for editing or inline revoke',
         icon: 'pi pi-pw pi-file-o',
-        routerLink:'/ehr',
         items: [{
           label: 'Manage',
           routerLink:'/ehr',
@@ -163,7 +165,6 @@ export class AppComponent implements OnInit {
       },
       {
         label: 'Others', icon: 'pi-list',
-        routerLink:'/misc',
         items: [
           { label: 'Appointments', icon: 'pi pi-calendar-plus',routerLink:'/misc', },
           { label: 'Reminder', icon: 'pi pi-clock', routerLink:'/misc/reminder', },

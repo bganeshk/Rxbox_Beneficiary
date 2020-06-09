@@ -17,11 +17,19 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {PanelMenuModule} from 'primeng/panelmenu';
+import {FieldsetModule} from 'primeng/fieldset';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {CalendarModule} from 'primeng/calendar';
+import {ChipsModule} from 'primeng/chips';
+import {DataViewModule} from 'primeng/dataview';
+import {DropdownModule} from 'primeng/dropdown';
+import {PanelModule} from 'primeng/panel';
 
 const IMPORT_PRIME_MODULE = [
   MessagesModule,MessageModule,ScrollPanelModule,OverlayPanelModule,  ButtonModule,
    InputTextModule, TableModule, DialogModule, CardModule,SidebarModule,
-   PanelMenuModule
+   PanelMenuModule, FieldsetModule,MultiSelectModule, CalendarModule, ChipsModule,
+   DataViewModule,DropdownModule,PanelModule
 ];
 
 const IMPORT_ANG_MODULE = [
