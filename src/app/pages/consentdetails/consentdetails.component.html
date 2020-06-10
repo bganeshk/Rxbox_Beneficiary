@@ -1,1 +1,202 @@
-<p>consentdetails works!</p>
+<div class="bdy">
+    <p-toast></p-toast>
+    <p-table #dt [columns]="cols" [value]="cosnts" [paginator]="true" [rows]="10" [(selection)]="selectedCons"
+        dataKey="cons_id" [scrollable]="false" scrollHeight="325px"
+        *ngIf="record_type=='active'">
+        <ng-template pTemplate="caption">
+            <div>
+                <button type="button" pButton icon="pi pi-user-minus" (click)="revokeConsent()"
+                style="margin-right: 2%;" label="Revoke">
+                </button>
+
+                <button type="button" pButton icon="pi pi-file-o" iconPos="left" label="CSV" (click)="dt.exportCSV()"
+                    style="margin-right: 0.5em;"></button>
+                <button type="button" pButton icon="pi pi-file-excel" iconPos="left" label="EXCEL"
+                    (click)="exportExcel()" style="margin-right: 0.5em;" class="ui-button-success"></button>
+                <button type="button" pButton icon="pi pi-file-pdf" iconPos="left" label="PDF" (click)="exportPdf()"
+                    class="ui-button-warning"></button>
+                <span>    
+                <i class="pi pi-search" style="margin:4px 4px 0 5%"></i>
+                <input type="text" pInputText size="50" placeholder="Global Filter"
+                    (input)="dt.filterGlobal($event.target.value, 'contains')"
+                     style="width:auto;">
+                    </span>    
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+               
+                <th style="width: 7em" colspan="2"></th>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                
+                <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                    <input *ngSwitchCase="'cosnt_name'" pInputText type="text"
+                    style="width: 95%;"
+                        (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    <input *ngSwitchCase="'cosnt_tag'" pInputText type="text"
+                        style="width: 95%;"
+                        (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    <input *ngSwitchCase="'cosnt_assignee'" pInputText type="text"
+                    style="width: 95%;" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    <p-multiSelect *ngSwitchCase="'cosnt_cat_type'" [options]="cosnt_cat_type" 
+                     defaultLabel="Select"
+                        (onChange)="dt.filter($event.value, col.field, 'contains')"></p-multiSelect>
+                    
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns" let-expanded="expanded">
+            <tr [pSelectableRow]="rowData">
+                <td style="width: 45px;">
+                    <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                  
+                </td>
+                <td style="width: 45px;">
+                    <a href="#" [pRowToggler]="rowData">
+                        <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+                    </a>
+                </td>
+                <td *ngFor="let col of columns" [ngSwitch]="col.field">
+                    <span *ngSwitchDefault style="word-wrap:break-word; display:block; ">
+                        {{rowData[col.field]}}
+                     </span>
+                    <span *ngSwitchCase="'validity'">
+                        {{rowData[col.field]}} {{rowData['validity_unit']}}
+                    </span>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+            <tr>
+                <td [attr.colspan]="columns.length + 1">
+                    <div class="p-grid -fluid" style="font-size:16px;padding:20px">
+                        <div class="p-col-12 p-md-9">
+                            <div class="p-grid">
+                                <div class="p-col-12">
+                                    <b>Consent Name:</b> {{rowData.cosnt_name}}
+                                </div>
+                                
+                                <div class="p-col-12">
+                                    <b>Consent Created:</b> {{rowData.cosnt_created}}
+                                </div>
+                                <div class="p-col-12">
+                                    <b>Consent Ehr:</b> {{rowData.cosnted_ehr}}
+                                </div>
+                                <div class="p-col-12">
+                                    <b>Consent Remarks:</b> {{rowData.remarks}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+ 
+
+    </p-table>
+
+
+    <p-table #dt [columns]="cols" [value]="cosnts" [paginator]="true" [rows]="10" [(selection)]="selectedCons"
+    *ngIf="record_type=='expired'"
+    dataKey="cons_id" [scrollable]="false" scrollHeight="325px">
+    <ng-template pTemplate="caption">
+        <div>
+           
+     
+            <button type="button" pButton icon="pi pi-file-excel" iconPos="left" label="EXCEL"
+                (click)="exportExcel()" style="margin-right: 0.5em;" class="ui-button-success"></button>
+            <button type="button" pButton icon="pi pi-file-pdf" iconPos="left" label="PDF" (click)="exportPdf()"
+                class="ui-button-warning"></button>
+            <span>    
+            <i class="pi pi-search" style="margin:4px 4px 0 5%"></i>
+            <input type="text" pInputText size="50" placeholder="Global Filter"
+                (input)="dt.filterGlobal($event.target.value, 'contains')"
+                 style="width:auto;">
+                </span>    
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+           
+            <th style="width: 3em"></th>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+        <tr>
+            <th >
+                
+            </th>
+            
+            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                <input *ngSwitchCase="'cosnt_name'" pInputText type="text"
+                style="width: 95%;"
+                    (input)="dt.filter($event.target.value, col.field, 'contains')">
+                <input *ngSwitchCase="'cosnt_tag'" pInputText type="text"
+                    style="width: 95%;"
+                    (input)="dt.filter($event.target.value, col.field, 'contains')">
+                <input *ngSwitchCase="'cosnt_assignee'" pInputText type="text"
+                style="width: 95%;" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                <p-multiSelect *ngSwitchCase="'cosnt_cat_type'" [options]="cosnt_cat_type" 
+                 defaultLabel="Select"
+                    (onChange)="dt.filter($event.value, col.field, 'contains')"></p-multiSelect>
+                
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-expanded="expanded">
+        <tr [pSelectableRow]="rowData">
+            
+            <td style="width: 45px;">
+                <a href="#" [pRowToggler]="rowData">
+                    <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+                </a>
+            </td>
+            <td *ngFor="let col of columns" [ngSwitch]="col.field">
+                <span *ngSwitchDefault style="word-wrap:break-word; display:block; ">
+                    {{rowData[col.field]}}
+                 </span>
+                <span *ngSwitchCase="'validity'">
+                    {{rowData[col.field]}} {{rowData['validity_unit']}}
+                </span>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+        <tr>
+            <td [attr.colspan]="columns.length + 1">
+                <div class="p-grid -fluid" style="font-size:16px;padding:20px">
+                    <div class="p-col-12 p-md-9">
+                        <div class="p-grid">
+                            <div class="p-col-12">
+                                <b>Consent Name:</b> {{rowData.cosnt_name}}
+                            </div>
+                            
+                            <div class="p-col-12">
+                                <b>Consent Created:</b> {{rowData.cosnt_created}}
+                            </div>
+                            <div class="p-col-12">
+                                <b>Consent Ehr:</b> {{rowData.cosnted_ehr}}
+                            </div>
+                            <div class="p-col-12">
+                                <b>Consent Remarks:</b> {{rowData.remarks}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+
+
+</p-table>
+</div>

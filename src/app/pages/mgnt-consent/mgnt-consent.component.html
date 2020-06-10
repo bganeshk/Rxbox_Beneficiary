@@ -74,7 +74,9 @@
                                 <div class="p-col-12">Consent Name: <b>{{cnst.cosnt_name}}</b></div>
                                 <div class="p-col-12">Created: <b>{{cnst.created}}</b></div>
                                 <div class="p-col-12">Assignee: <b>{{cnst.cosnt_assignee}}</b></div>
-                                <div class="p-col-12">Consent Type: <b>{{cnst.cosnt_type}}</b></div>
+                                <div class="p-col-12">Consent Type:                                     
+                                    <b>{{cnst.cosnt_type}}</b>
+                                </div>
                             </div>
                         </div>
                         <div class="p-col-6">
@@ -100,7 +102,8 @@
                 <p-panel>
 
                     <p-header>
-                        <div class="ui-helper-clearfix tblHLbl">
+                        
+                        <div class="ui-helper-clearfix tblHLbl">                            
                             Name: {{cnst.cosnt_name}}
                         </div>
                     </p-header>
@@ -136,6 +139,8 @@
             <div class="ui-g-8">{{selectedCons.cosnted_ehr}}</div>
             <div class="ui-g-4 tblLbl">Consent Tags : </div>
             <div class="ui-g-8">{{selectedCons.cosnt_tag}}</div>
+            <div class="ui-g-4 tblLbl" *ngIf="selectedCons.cosnted_ehr">EHR Records : </div>
+            <div class="ui-g-8" *ngIf="selectedCons.cosnted_ehr">{{selectedCons.cosnted_ehr}}</div>
             <div class="ui-g-4 tblLbl">Consent Note : </div>
             <div class="ui-g-8">{{selectedCons.remarks}}</div>
         </div>

@@ -4,6 +4,7 @@ import { MetadataService } from 'src/app/global/metadata.service';
 import {MessageService} from 'primeng/api';
 
 export interface Consnt{
+  cons_id:string
   created:Date,
   cosnt_name:string,
   cosnt_type:string,
@@ -65,8 +66,8 @@ export class MgntConsentComponent implements OnInit {
 }
     getConsents(){
       this.cosnts=[
-        {cosnt_name:'nam1',cosnt_assignee:['gkumar1'],cosnt_tag:null,cosnt_cat_type:null,cosnt_type:null,cosnted_ehr:null,remarks:'cosnent is crated for the generic test for Dr.Rama',created:null,validity:null,validity_unit:null,is_active:true},
-        {cosnt_name:'nam2',cosnt_assignee:null,cosnt_tag:null,cosnt_cat_type:null,cosnt_type:null,cosnted_ehr:['Summary Report','Lab Report'],remarks:'cosnent is crated for the generic test for Dr.Rama',created:null,validity:'8',validity_unit:'days',is_active:true},
+        {cons_id:'id1',cosnt_name:'nam1',cosnt_assignee:['gkumar1'],cosnt_tag:null,cosnt_cat_type:null,cosnt_type:null,cosnted_ehr:null,remarks:'cosnent is crated for the generic test for Dr.Rama',created:null,validity:null,validity_unit:null,is_active:true},
+        {cons_id:'id2',cosnt_name:'nam2',cosnt_assignee:null,cosnt_tag:null,cosnt_cat_type:null,cosnt_type:null,cosnted_ehr:['Summary Report','Lab Report'],remarks:'cosnent is crated for the generic test for Dr.Rama',created:null,validity:'8',validity_unit:'days',is_active:true},
       ];
     }
 }
@@ -99,7 +100,7 @@ export class AssignConsentComponent implements OnInit{
     this.cosnt_type=this.mdataSrvs.getConsentTypeList();
     this.cosnt_cat_type=this.mdataSrvs.getConsentCategoryList(); 
     this.valididty_unty=this.mdataSrvs.getConsentValidityUnit();
-   this.newConst={cosnt_name:null,cosnt_assignee:null,cosnt_tag:null,cosnt_cat_type:null,cosnt_type:null,cosnted_ehr:null,remarks:'cosnent is crated for the generic test for Dr.Rama',created:null,validity:null,validity_unit:null,is_active:true};
+   this.newConst={cons_id:null,cosnt_name:null,cosnt_assignee:null,cosnt_tag:null,cosnt_cat_type:null,cosnt_type:null,cosnted_ehr:null,remarks:'cosnent is crated for the generic test for Dr.Rama',created:null,validity:null,validity_unit:null,is_active:true};
   }
   
   filterTemplate(event){
@@ -119,7 +120,7 @@ export class AssignConsentComponent implements OnInit{
     this.messageService.add({key: 'c',sticky:true,severity:'success', summary:'Verify OTP', detail:'OTP has been send to registered email and phone'});
   }
   cancelAssing(){
-    this.newConst=this.newConst={cosnt_name:null,cosnt_assignee:null,cosnt_tag:null,cosnt_cat_type:null,cosnt_type:null,cosnted_ehr:null,remarks:null,created:null,validity:null,validity_unit:null,is_active:true};;
+    this.newConst=this.newConst={cons_id:null,cosnt_name:null,cosnt_assignee:null,cosnt_tag:null,cosnt_cat_type:null,cosnt_type:null,cosnted_ehr:null,remarks:null,created:null,validity:null,validity_unit:null,is_active:true};;
     this.verifyPhoneOTP=false;
     this.messageService.clear('c');
   }

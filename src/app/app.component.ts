@@ -74,12 +74,10 @@ export class AppComponent implements OnInit {
             { separator: true },
             {
               label: 'Active', icon: 'pi pi-fw pi-check',
-              queryParams: { status: 'active' },
-              routerLink: '/pages/consentdetails'
+              routerLink: '/pages/activeConsentdetails'
             },{
               label: 'Expired', icon: 'pi pi-fw pi-spinner',
-              queryParams: { status: 'expired' },
-              routerLink: '/pages/consentdetails'
+              routerLink: '/pages/expConsentdetails'
             },
           ]
         },

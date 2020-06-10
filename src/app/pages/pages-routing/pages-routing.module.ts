@@ -31,8 +31,13 @@ const routes: Routes = [{
       path: 'assignConsent',
       component: AssignConsentComponent
     },{
-      path: 'consentdetails',
-      component: ConsentdetailsComponent
+      path: 'activeConsentdetails',      
+      component: ConsentdetailsComponent,
+      data:{status:'active'}
+    },{
+      path: 'expConsentdetails',      
+      component: ConsentdetailsComponent,
+      data:{status:'expired'}
     },{
       path: 'mgntconsentsreq',
       component: MgntConsentreqComponent

@@ -26,12 +26,12 @@ export class MetadataService {
   }
   public getConsentCategoryList():SelectItem[]{
     return [
-      {label: 'Summary Report', value: 'gen'},
-      {label: 'Lab Report', value: 'pub'},
-      {label: 'Mental Record', value: 'pub'},
-      {label: 'Sexual Record', value: 'pub'},
-      {label: 'Heart/Cardiac Report', value: 'pub'},
-      {label: 'Eye/Opthalmic Report', value: 'pub'},
-      {label: 'Family Report', value: 'cust'}];
+      {label: 'Summary Report', value: 'Summary_Report'},
+      {label: 'Lab Report', value: 'Lab_Report'},
+      {label: 'Mental Record', value: 'Mental_Record'},
+      {label: 'Sexual Record', value: 'Sexual_Record'},
+      {label: 'Heart/Cardiac Report', value: 'Cardiac_Report'},
+      {label: 'Eye/Opthalmic Report', value: 'Opthalmic_Report'},
+      {label: 'Family Report', value: 'Family_Report'}];
   }
 }
