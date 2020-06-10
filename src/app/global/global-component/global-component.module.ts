@@ -24,12 +24,14 @@ import {ChipsModule} from 'primeng/chips';
 import {DataViewModule} from 'primeng/dataview';
 import {DropdownModule} from 'primeng/dropdown';
 import {PanelModule} from 'primeng/panel';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import {ToastModule} from 'primeng/toast';
 
 const IMPORT_PRIME_MODULE = [
   MessagesModule,MessageModule,ScrollPanelModule,OverlayPanelModule,  ButtonModule,
    InputTextModule, TableModule, DialogModule, CardModule,SidebarModule,
    PanelMenuModule, FieldsetModule,MultiSelectModule, CalendarModule, ChipsModule,
-   DataViewModule,DropdownModule,PanelModule
+   DataViewModule,DropdownModule,PanelModule, AutoCompleteModule, ToastModule
 ];
 
 const IMPORT_ANG_MODULE = [

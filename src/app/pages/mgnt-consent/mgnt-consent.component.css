@@ -3,7 +3,7 @@
     padding: 10px;;
 }
 :host >>> .serch .ui-fieldset-legend{
-    font-size: smaller;
+    font-size: small;
 
 }
 
@@ -48,9 +48,9 @@ min-width: 175px;
     padding-top: 10px;
 }
 
-.dlgdspace{
-    padding-top: 18px;
+.lblotp{
+    font-size: 9px;
+    text-decoration-line: underline;
+    
 }
-
-
 

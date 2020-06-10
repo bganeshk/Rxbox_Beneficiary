@@ -68,7 +68,7 @@ export class AppComponent implements OnInit {
           items: [
             {
               label: 'Assign', icon: 'pi pi-fw pi-user-plus',              
-              routerLink: '/pages/mgntconsentsreq',
+              routerLink: '/pages/assignConsent',
               
             },
             { separator: true },

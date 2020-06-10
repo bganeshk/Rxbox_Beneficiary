@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import {TieredMenuModule} from 'primeng/tieredmenu';
 import {ToggleButtonModule} from 'primeng/togglebutton';
-import { MgntConsentComponent } from './mgnt-consent/mgnt-consent.component';
+import { MgntConsentComponent, AssignConsentComponent } from './mgnt-consent/mgnt-consent.component';
 import { MgntEhrComponent } from './mgnt-ehr/mgnt-ehr.component';
 import { MgntNotifiComponent } from './mgnt-notifi/mgnt-notifi.component';
 import { MgntReminderComponent } from './mgnt-reminder/mgnt-reminder.component';
@@ -20,7 +20,7 @@ import { MgntTemplateComponent } from './mgnt-template/mgnt-template.component';
 const PAGES_COMPONENTS = [
   PagesComponent, PagesComponent, DashboardComponent, MgntConsentComponent, MgntEhrComponent, 
   MgntNotifiComponent, MgntReminderComponent, MgntAppointComponent,
-  ConsentdetailsComponent, MgntConsentreqComponent, MgntTemplateComponent
+  ConsentdetailsComponent, MgntConsentreqComponent, MgntTemplateComponent,AssignConsentComponent
 ];
 
 const PAGES_ENTRY_COMPONENTS = [
