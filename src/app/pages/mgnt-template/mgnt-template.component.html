@@ -1,1 +1,65 @@
-<p>mgnt-template works!</p>
+<div>
+    <p-card >
+<div class="p-grid">
+    
+    <div class="p-col-4">
+        <p-card header="Personal Health">
+            <div class="p-grid">
+                <div class="p-col-12">
+                Select the visibility of the personal health details which you would like to share with others without
+                consent
+            </div>
+                <div class="pi pi-eye p-col-6">All</div>
+                <div class="pi pi-eye p-col-6">Vaccinations</div>
+                <div class="pi pi-eye p-col-6">Allergic to medicine</div>
+                <div class="pi pi-eye p-col-6">Smoking</div>
+                <div class="pi pi-eye p-col-6">Alcaholic</div>
+                <div class="pi pi-eye p-col-6">Organ Transplanted</div>
+            </div>
+        </p-card>
+    </div>
+
+    <div class="p-col-4">
+        <p-card header="General Health">
+            <div class="p-grid">
+                <div class="p-col-12">
+
+                Select the visibility of the general health details which you would like to share with others without
+                consent
+            </div>
+            <div class="p-col-12">
+                <p-checkbox value="All" label="All"></p-checkbox>
+
+            </div>
+                <div class="p-col-6" (click)="setVisibility('diabeticrec')" >
+                <li class="pi pi-eye" *ngIf="visibilty.get('diabeticrec')">Diabetic Records</li>
+                <li class="pi pi-eye-slash" *ngIf="!visibilty.get('diabeticrec')">Diabetic Records</li>
+                </div>
+                <div class="pi pi-eye p-col-6">Pressure Records</div>
+                <div class="pi pi-eye p-col-6">Cardiac Records</div>
+                <div class="pi pi-eye p-col-6">Neuro diceces Records</div>
+                <div class="pi pi-eye p-col-6">Daialysis Records</div>
+            </div>
+        </p-card>
+    </div>
+
+    <div class="p-col-4">
+        <p-card header="eHealth Records">
+            <div class="p-grid">
+
+                <div class="p-col-12">
+                Select the visibility of the electorinc health records kept in this system which you would like to share with others without
+                consent
+            </div>
+            <div class="pi pi-eye p-col-6">All</div>
+                <div  class="pi pi-eye p-col-6">Family reocrd</div>
+                <div class="pi pi-eye p-col-6">Lab Reports</div>
+                <div class="pi pi-eye p-col-6">Discharge Summary</div>
+                <div class="pi pi-eye p-col-6">Generic Documnets</div>
+            </div>
+        </p-card>
+    </div>
+
+</div>
+</p-card>
+</div>

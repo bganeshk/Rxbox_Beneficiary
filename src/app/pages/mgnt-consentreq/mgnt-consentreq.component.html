@@ -1,1 +1,254 @@
-<p>mgnt-consentreq works!</p>
+
+<div class="serch">
+    <p-toast preventOpenDuplicates='true'></p-toast>
+    <p-panel *ngIf="this.consentReqStatus=='new'" header="Consent Request(s) waiting action">
+        <p-tabView (onChange)="handleChange($event)">
+            <p-tabPanel header="New" leftIcon="pi pi-bell">
+                <p-carousel [value]="conReq" [numVisible]="3" [numScroll]="1" [circular]="false">
+                     <ng-template let-crq pTemplate="item">
+                        
+                        <div class="cnst_detail">
+                            
+                            <div class="p-grid p-nogutter">
+                                <div class="p-col-12 req_data">
+                                    {{crq.reqAccess_category}} - {{crq.access_type}}
+                                </div>
+                                <div class="p-col-12 req_data">
+                                  Req: Created On: {{crq.reqCreated_on |date:'dd-MMM-yyyy '}}
+                                </div>
+                                <br/>
+                                <div class="p-col-12 req_data2">
+                                    <div class="req_data">Req: By: {{crq.reqCreated_by}}</div>
+                                    <div>
+                                        <div class="req_data"  *ngIf="crq.requstor_details">
+                                            {{crq.requstor_details.primemobile}}
+                                        </div>
+                                        <div class="req_data"  *ngIf="!crq.requstor_details">
+                                            Phone: 
+                                        </div>
+                                      </div>
+                                    <div class="cnst_buttons">
+                                        <button pButton type="button" class="ui-button-secondary btns"
+                                        (click)="showDetails(crq)" matTooltip="Details"   
+                                        icon="pi pi-search"></button>
+                                        <button pButton type="button" class="ui-button-secondary btns"
+                                        matTooltip="Approve" (click)="approve(crq)"
+                                        icon="pi pi-check"></button>
+                                        <button pButton type="button" class="ui-button-secondary btns"
+                                        matTooltip="Reject"    (click)="rejectReq(crq)"
+                                        icon="pi pi-times"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </ng-template>
+                </p-carousel>
+
+            </p-tabPanel>
+      
+            <p-tabPanel header="Pending" leftIcon="pi pi-paperclip">
+                <p-carousel [value]="conReq" [numVisible]="3" [numScroll]="1" [circular]="false">
+                     <ng-template let-crq pTemplate="item">
+                        
+                        <div class="cnst_detail">
+                            
+                            <div class="p-grid p-nogutter">
+                                <div class="p-col-12 req_data">
+                                    {{crq.reqAccess_category}} - {{crq.access_type}}
+                                </div>
+                                <div class="p-col-12 req_data">
+                                  Req: Created On: {{crq.reqCreated_on |date:'dd-MMM-yyyy '}}
+                                </div>
+                                <br/>
+                                <div class="p-col-12 req_data2">
+                                    <div class="req_data">Req: By: {{crq.reqCreated_by}}</div>
+                                    <div>
+                                        <div class="req_data"  *ngIf="crq.requstor_details">
+                                            {{crq.requstor_details.primemobile}}
+                                        </div>
+                                        <div class="req_data"  *ngIf="!crq.requstor_details">
+                                            Phone: 
+                                        </div>
+                                      </div>
+                                    <div class="cnst_buttons">
+                                        <button pButton type="button" class="ui-button-secondary btns"
+                                        (click)="showDetails(crq)" matTooltip="Details"   
+                                        icon="pi pi-search"></button>
+                                        <button pButton type="button" class="ui-button-secondary btns"
+                                        matTooltip="Approve" (click)="approve(crq)"
+                                        icon="pi pi-check"></button>
+                                        <button pButton type="button" class="ui-button-secondary btns"
+                                        matTooltip="Reject"    (click)="rejectReq(crq)"
+                                        icon="pi pi-times"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </ng-template>
+                </p-carousel>
+
+            </p-tabPanel>
+            <p-tabPanel header="To be expired" leftIcon="pi pi-calendar-minus">
+                <p-carousel [value]="conReq" [numVisible]="3" [numScroll]="1" [circular]="false">
+                     <ng-template let-crq pTemplate="item">
+                        
+                        <div class="cnst_detail">
+                            
+                            <div class="p-grid p-nogutter">
+                                <div class="p-col-12 req_data">
+                                    {{crq.reqAccess_category}} - {{crq.access_type}}
+                                </div>
+                                <div class="p-col-12 req_data">
+                                  Req: Created On: {{crq.reqCreated_on |date:'dd-MMM-yyyy '}}
+                                </div>
+                                <br/>
+                                <div class="p-col-12 req_data2">
+                                    <div class="req_data">Req: By: {{crq.reqCreated_by}}</div>
+                                    <div>
+                                        <div class="req_data"  *ngIf="crq.requstor_details">
+                                            {{crq.requstor_details.primemobile}}
+                                        </div>
+                                        <div class="req_data"  *ngIf="!crq.requstor_details">
+                                            Phone: 
+                                        </div>
+                                      </div>
+                                    <div class="cnst_buttons">
+                                        <button pButton type="button" class="ui-button-secondary btns"
+                                        (click)="showDetails(crq)" matTooltip="Details"   
+                                        icon="pi pi-search"></button>
+                                        <button pButton type="button" class="ui-button-secondary btns"
+                                        matTooltip="Approve" (click)="approve(crq)"
+                                        icon="pi pi-check"></button>
+                                        <button pButton type="button" class="ui-button-secondary btns"
+                                        matTooltip="Reject"    (click)="rejectReq(crq)"
+                                        icon="pi pi-times"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </ng-template>
+                </p-carousel>
+
+            </p-tabPanel>
+        </p-tabView>
+    </p-panel>
+    <p-panel *ngIf="this.consentReqStatus=='approved'" header="Approved Consent Request(s)">
+    <p-carousel  [value]="conReq" [numVisible]="3" [numScroll]="1" [circular]="false">
+        <ng-template let-crq pTemplate="item">
+           
+           <div class="cnst_detail">
+               
+               <div class="p-grid p-nogutter">
+                   <div class="p-col-12 req_data">
+                       {{crq.reqAccess_category}} - {{crq.access_type}}
+                   </div>
+                   <div class="p-col-12 req_data">
+                     Req: Created On: {{crq.reqCreated_on |date:'dd-MMM-yyyy '}}
+                   </div>
+                   <br/>
+                   <div class="p-col-12 req_data2">
+                       <div class="req_data">Req: By: {{crq.reqCreated_by}}</div>
+                       <div>
+                           <div class="req_data"  *ngIf="crq.requstor_details">
+                               {{crq.requstor_details.primemobile}}
+                           </div>
+                           <div class="req_data"  *ngIf="!crq.requstor_details">
+                               Phone: 
+                           </div>
+                         </div>
+                       <div class="cnst_buttons">
+                           <button pButton type="button" class="ui-button-secondary btns"
+                           (click)="showDetails(crq)" matTooltip="Details"   
+                           icon="pi pi-search"></button>
+                       </div>
+                   </div>
+               </div>
+           
+           </div>
+       </ng-template>
+   </p-carousel>
+   </p-panel>
+   <p-panel *ngIf="this.consentReqStatus=='rejected'" header="Rejected/Expired Consent Request(s)">
+    <p-carousel  [value]="conReq" [numVisible]="3" [numScroll]="1" [circular]="false">
+        <ng-template let-crq pTemplate="item">
+           
+           <div class="cnst_detail">
+               
+               <div class="p-grid p-nogutter">
+                   <div class="p-col-12 req_data">
+                       {{crq.reqAccess_category}} - {{crq.access_type}}
+                   </div>
+                   <div class="p-col-12 req_data">
+                     Req: Created On: {{crq.reqCreated_on |date:'dd-MMM-yyyy '}}
+                   </div>
+                   <br/>
+                   <div class="p-col-12 req_data2">
+                       <div class="req_data">Req: By: {{crq.reqCreated_by}}</div>
+                       <div>
+                           <div class="req_data"  *ngIf="crq.requstor_details">
+                               {{crq.requstor_details.primemobile}}
+                           </div>
+                           <div class="req_data"  *ngIf="!crq.requstor_details">
+                               Phone: 
+                           </div>
+                         </div>
+                       <div class="cnst_buttons">
+                           <button pButton type="button" class="ui-button-secondary btns"
+                           (click)="showDetails(crq)" matTooltip="Details"   
+                           icon="pi pi-search"></button>
+                       </div>
+                   </div>
+               </div>
+           
+           </div>
+       </ng-template>
+   </p-carousel>
+   </p-panel>
+    <p-dialog header="Consent Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+    [closeOnEscape]="true" *ngIf="selectedCons" [dismissableMask]="true" [style]="{width: '355px'}"
+    (onAfterHide)="onDialogHide($event)">
+
+    <div class="ui-g">
+        <div class="ui-g-4 tblLbl">Request Creator : </div>
+        <div class="ui-g-8">{{selectedCons.reqCreater}}</div>
+        <div class="ui-g-4 tblLbl">Req; Created On: </div>
+        <div class="ui-g-8">{{selectedCons.reqCreated_on|date:'dd-MMM-yyyy' }}</div>
+        <div class="ui-g-4 tblLbl">Request Type : </div>
+        <div class="ui-g-8">{{selectedCons.access_type}}</div>
+        <div class="ui-g-4 tblLbl">Category : </div>
+        <div class="ui-g-8">{{selectedCons.reqAccess_category}}</div>
+        
+        <div class="ui-g-2 tblLbl">Remarks-: </div>
+        <div class="ui-g-10" style="display: inline-block; word-wrap: break-word;">{{selectedCons.remarks}}</div>
+        <div class="ui-g-12 address" *ngIf="selectedCons.requstor_details">
+            <div class="ui-g">
+                <div class="ui-g-4 tblLbl">Phone : </div>
+                <div class="ui-g-8">{{selectedCons.requstor_details.primemobile}}</div>
+                <div class="ui-g-4 tblLbl">Request email : </div>
+                <div class="ui-g-8">{{selectedCons.requstor_details.primeEmail}}</div>
+                <div class="ui-g-4">{{selectedCons.requstor_details.state}},</div>
+                <div class="ui-g-4">{{selectedCons.requstor_details.city}},</div>
+                <div class="ui-g-4">{{selectedCons.requstor_details.pin}}</div>
+            </div>         
+        
+        </div>
+    </div>
+    <p-footer >
+        <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" 
+            style="margin-right:10px;" (click)="approve(selectedCons)"
+            *ngIf="this.consentReqStatus=='new'"
+            label="Approve">
+        </button>
+        <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" 
+            style="margin-right:10px;" (click)="rejectReq(selectedCons)"
+            *ngIf="this.consentReqStatus=='new'"
+            label="Reject">
+        </button>
+        <button (click)="onDialogHide($event)" pButton type="button" class="ui-button-secondary"
+            label="Close"></button>
+    </p-footer>
+</p-dialog>
+</div>

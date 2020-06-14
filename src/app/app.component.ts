@@ -83,21 +83,20 @@ export class AppComponent implements OnInit {
         },
         {
           label: 'Consent Requests',
+           
           items: [
             {
-              label: 'Approved', icon: 'pi pi-fw pi-check',
-              routerLink: '/pages/mgntconsentsreq',
-              queryParams:{status:'appr'}
+              label: 'New', icon: 'pi pi-fw pi-arrow-circle-right',
+              routerLink: '/pages/newConsentsReq',
             },
             { separator: true },
             {
-              label: 'Rejected', icon: 'pi pi-fw pi-times',
-              routerLink: '/pages/mgntconsentsreq',
-              queryParams:{status:'rej'}
+              label: 'Approved', icon: 'pi pi-fw pi-check',
+              routerLink: '/pages/approvedConsentsReq'
             },
             {
-              label: 'Expired', icon: 'pi pi-fw pi-spinner',
-              routerLink: '/pages/mgntconsentsreq',
+              label: 'Expired/Rejected', icon: 'pi pi-fw pi-spinner',              
+              routerLink: '/pages/rejectedConsentsReq',
               queryParams:{status:'exp'}
             },
           ]
@@ -162,7 +161,7 @@ export class AppComponent implements OnInit {
         ]
       },
       {
-        label: 'Others', icon: 'pi-list',
+        label: 'Others', icon: 'pi pi-list',
         items: [
           { label: 'Appointments', icon: 'pi pi-calendar-plus',routerLink:'/misc', },
           { label: 'Reminder', icon: 'pi pi-clock', routerLink:'/misc/reminder', },
@@ -170,7 +169,17 @@ export class AppComponent implements OnInit {
           { label: 'Health Events', icon: 'pi pi-tag', routerLink:'/misc/ehevnt', },
           { label: 'Health roadmap', icon: 'pi pi-chart-bar',routerLink:'/misc/ehrmap', }
         ]
-      }];
+      }, {
+        label: 'Settings', icon: 'pi pi-cog',
+        items: [
+          { label: 'profile', icon: 'pi pi-user',routerLink:'/misc', },
+          { label: 'Notification', icon: 'pi pi-bell', routerLink:'/misc/reminder', },
+          { separator: true },
+          { label: 'Security', icon: 'pi pi-lock', routerLink:'/misc/ehevnt', }
+          
+        ]
+      }
+    ];
     return items;
   }
 }

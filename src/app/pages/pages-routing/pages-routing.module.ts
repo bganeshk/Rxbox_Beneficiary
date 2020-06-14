@@ -39,8 +39,17 @@ const routes: Routes = [{
       component: ConsentdetailsComponent,
       data:{status:'expired'}
     },{
-      path: 'mgntconsentsreq',
-      component: MgntConsentreqComponent
+      path: 'newConsentsReq',
+      component: MgntConsentreqComponent,
+      data:{status:'new'}
+    },{
+      path: 'approvedConsentsReq',
+      component: MgntConsentreqComponent,
+      data:{status:'approved'}
+    },{
+      path: 'rejectedConsentsReq',
+      component: MgntConsentreqComponent,
+      data:{status:'rejected'}
     },{
       path: 'mgnttemplate',
       component: MgntTemplateComponent

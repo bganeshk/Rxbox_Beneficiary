@@ -27,14 +27,16 @@ import {PanelModule} from 'primeng/panel';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {ToastModule} from 'primeng/toast';
 import {ContextMenuModule} from 'primeng/contextmenu';
-
+import {TabViewModule} from 'primeng/tabview';
+import {CarouselModule} from 'primeng/carousel';
+import {CheckboxModule} from 'primeng/checkbox';
 
 const IMPORT_PRIME_MODULE = [
   MessagesModule,MessageModule,ScrollPanelModule,OverlayPanelModule,  ButtonModule,
    InputTextModule, TableModule, DialogModule, CardModule,SidebarModule,
    PanelMenuModule, FieldsetModule,MultiSelectModule, CalendarModule, ChipsModule,
    DataViewModule,DropdownModule,PanelModule, AutoCompleteModule, ToastModule,
-   ContextMenuModule
+   ContextMenuModule, TabViewModule, CarouselModule, CheckboxModule
 ];
 
 const IMPORT_ANG_MODULE = [

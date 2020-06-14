@@ -1,22 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
-import { MetadataService } from 'src/app/global/metadata.service';
+import { MetadataService, Consnt } from 'src/app/global/metadata.service';
 import {MessageService} from 'primeng/api';
 
-export interface Consnt{
-  cons_id:string
-  created:Date,
-  cosnt_name:string,
-  cosnt_type:string,
-  validity:string,
-  validity_unit:string,
-  cosnt_tag:string[],
-  cosnt_assignee:string[],
-  cosnt_cat_type:string[],
-  cosnted_ehr:string[],
-  is_active:boolean;
-  remarks:string;
-}
 
 
 
