@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { SelectItem } from 'primeng/api/selectitem';
 import { Profiledet, ProfileAdd } from 'bee-lib';
 import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
+import { stringify } from 'querystring';
 
 
 export interface Consnt{
@@ -28,6 +29,10 @@ export interface ConsntReq{
   access_type:string;//view,edit/upload
   remarks:string;
   requstor_details:ProfileAdd
+}
+export interface HealthType{
+  typeName:string;
+  typeOpt:Map<string,string>;
 }
 
 @Injectable({
@@ -87,5 +92,53 @@ export class MetadataService {
       {label: 'Heart/Cardiac Report', value: 'Cardiac_Report'},
       {label: 'Eye/Opthalmic Report', value: 'Opthalmic_Report'},
       {label: 'Family Report', value: 'Family_Report'}];
+  }
+
+  public getHealthType(){
+    var htype=[
+      {
+      typeName:'Personal',
+      typeOpt:this.getPersonalHealthType()
+    },{
+      typeName:'General',
+      typeOpt:this.getGeneralHealthType()
+    },{
+      typeName:'eHR',
+      typeOpt:this.getEHealthType()
+    },
+  ];
+    return htype;
+  }
+  private getGeneralHealthType(){
+    var ghrtype=new Map();
+    ghrtype.set('allghr', 'All');
+    ghrtype.set('diarec', 'Diabetic Records');
+    ghrtype.set('prsrec','Pressure Records');
+    ghrtype.set('crdrec','Cardiac Record');
+    ghrtype.set('nodrec','Neuro diceces Records');
+    ghrtype.set('dlsrec','Daialysis Records');
+    return ghrtype
+  }
+  private getPersonalHealthType(){
+    var phrtype=new Map();
+    phrtype.set('alphr', 'All');
+    phrtype.set('vacnan', 'Vaccinations');
+    phrtype.set('algmed', 'Allergic to medicine');
+    phrtype.set('smking', 'Smoking');
+    phrtype.set('alzchlc', 'Alcaholic');
+    phrtype.set('orgtrn', 'Organ Transplanted');
+    return phrtype
+    
+    
+  }
+  private getEHealthType(){
+    var ehrtype=new Map();
+    ehrtype.set('allehr', 'All');
+    ehrtype.set('fmlrec', 'Family reocrd');
+    ehrtype.set('labrpt', 'Lab Reports');
+    ehrtype.set('dcrsmr', 'Discharge Summary');
+    ehrtype.set('gendoc', 'Generic Documnets');
+    return ehrtype
+
   }
 }

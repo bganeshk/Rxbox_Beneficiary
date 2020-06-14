@@ -104,9 +104,9 @@ export class AppComponent implements OnInit {
         {
           label: 'Consent Templates',
           items: [
-            { label: 'Generic', icon: 'pi pi-fw pi-ellipsis-v',routerLink:'/pages/mgnttemplate',queryParams:{type:'generic'} },
-            { label: 'Public', icon: 'pi pi-fw pi-ellipsis-h',routerLink:'/pages/mgnttemplate',queryParams:{type:'public'} },
-            { label: 'Custom', icon: 'pi pi-fw pi-filter',routerLink:'/pages/mgnttemplate',queryParams:{type:'custom'} },
+            { label: 'Public', icon: 'pi pi-fw pi-ellipsis-h',routerLink:'/pages/mgntPubTemplate',queryParams:{type:'public'} },
+            { label: 'Generic', icon: 'pi pi-fw pi-ellipsis-v',routerLink:'/pages/mgntGenTemplate',queryParams:{type:'generic'} },            
+            { label: 'Custom', icon: 'pi pi-fw pi-filter',routerLink:'/pages/mgntCustTemplate',queryParams:{type:'custom'} },
           ]
         }
         ]

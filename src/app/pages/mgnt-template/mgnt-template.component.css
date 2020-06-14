@@ -1,0 +1,22 @@
+.tblHLbl {
+    color: #143983;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 3px 3px 3px 3px #ececec;
+}
+
+.tblLbl {
+    color: #143983;
+    font-size: 15px;
+    padding: 3px;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.tblLblDesc{
+    color: #143983;
+    font-size: 15px;
+    box-shadow: 3px 3px 3px 3px #ececec;
+}
+

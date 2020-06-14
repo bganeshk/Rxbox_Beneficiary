@@ -51,8 +51,17 @@ const routes: Routes = [{
       component: MgntConsentreqComponent,
       data:{status:'rejected'}
     },{
-      path: 'mgnttemplate',
-      component: MgntTemplateComponent
+      path: 'mgntPubTemplate',
+      component: MgntTemplateComponent,
+      data:{status:'publi'}
+    },{
+      path: 'mgntGenTemplate',
+      component: MgntTemplateComponent,
+      data:{status:'gen'}
+    },{
+      path: 'mgntCustTemplate',
+      component: MgntTemplateComponent,
+      data:{status:'cust'}
     },{
       path: 'mgntEHR',
       component: MgntEhrComponent
