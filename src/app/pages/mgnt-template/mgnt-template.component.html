@@ -1,7 +1,8 @@
 <div>
     <p-toast preventOpenDuplicates='true' modal='true'></p-toast>
+
     <p-card>
-        <div class="p-grid p-justify-center ">
+        <div class="p-grid ">
             <div class="p-col-10 tblLblDesc" *ngIf="mnuType=='publi'">
                 Select the visibility of the  Health Records details which you would like to
                 share with others <b><i><u>wihtout explicit Approval</u></i></b>
@@ -14,22 +15,84 @@
             <div class="p-col-10 tblLblDesc" *ngIf="mnuType=='cust'">
                 Select the visibility of the customized  Health Records details which you would like to
                 assign to service provider and share with them <b><i><u>based on your Approval</u></i></b> on consent access
+                <p-panel>
+                    <div class="p-grid">
+                        <div class="p-col-4">
+                            <p-splitButton label="Select eHR" [model]="items" styleClass="ui-button-secondary">
+                            </p-splitButton>
+                        </div>
+                        <div class="p-col-4">
+                            <span class="ui-float-label">
+                                <input id="float-input" type="text" size="30" pInputText>
+                                <label for="float-input">Tempalte Name</label>
+                            </span>
+                        </div>
+                        <div class="p-col-4">
+                            <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" style="margin-right:10px;"
+                                label="Save">                    
+                            </button></div>
+                    </div>
+                </p-panel>
             </div>                      
 
-            <div class="p-col-4" *ngFor="let typ of healthType">
+            <div class="p-col-6" *ngIf="mnuType=='cust'">
+                <p-card>
+                    <p-header>
+                        <span class="tblHLbl">Custom Health</span>
+
+                    </p-header>
+                    
+                    <p-table [columns]="cols" [value]="custSelectedRecs" [paginator]="true" [rows]="5" 
+                    [showCurrentPageReport]="true" selectionMode="single"
+                    dataKey="rec_no" [(selection)]="selectedRec"
+                    (onRowSelect)="showRecDlg()"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+
+                    
+                    <ng-template pTemplate="header" let-columns>
+
+
+                        <tr>
+                            <th >RecordId</th>
+                            <th style="width: 10em;">Type</th>
+                            <th style="width: 10em;"> Created On </th>
+                            <th style="width: 3em;"></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr [pSelectableRow]="rowData">
+                            <td *ngFor="let col of columns" [ngSwitch]="col.field">
+                                <span *ngSwitchCase="'created_on'">
+                                     {{rowData[col.field]|date }}
+                                 </span>
+                                 <span *ngSwitchCase="'rec_no'">
+                                    <a >{{rowData[col.field]}}</a>
+                                </span>
+                                <span *ngSwitchDefault>
+                                    {{rowData[col.field]}}
+                                </span>
+                            </td>
+                            <td (click)="removeFromCosnent(rowData)"><li class="pi pi-trash"></li></td>
+                        </tr>
+                    </ng-template>
+                    </p-table>
+                
+                </p-card>
+             </div>  
+
+            <div class="p-col-6" *ngFor="let typ of healthType">
                 <p-card  >
                     <p-header class="tblHLbl">
                         {{typ.typeName}} Health
                     </p-header>
                     <div class="p-grid">
-                
                         <div class="p-col-6" *ngFor="let typ of typ.typeOpt | keyvalue"
                             (click)="setVisibility(typ.key)">
                             <div>
-                                <li class="pi pi-eye tblLbl" *ngIf="visibilty.get(typ.key)">
+                                <li class="pi pi-eye tblLblptr" *ngIf="visibilty.get(typ.key)">
                                     {{typ.value}}
                                 </li>
-                                <li class="pi pi-eye-slash tblLbl" *ngIf="!visibilty.get(typ.key)">
+                                <li class="pi pi-eye-slash tblLblptr" *ngIf="!visibilty.get(typ.key)">
                                     <span >
                                         {{typ.value}}
                                     </span>
@@ -39,6 +102,108 @@
                     </div>
                 </p-card>
             </div>
+            
+
         </div>
     </p-card>
+
+     <p-dialog #dv header="Consent Details" [(visible)]="showRecTblDlg" [responsive]="true" showEffect="fade" [modal]="true"
+    [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '50vw'}"
+    header="eHR Records" maximizable='true'
+    (onAfterHide)="onDialogHide($event)">
+
+    <div class="ui-g" >
+       <div [ngClass]="dv.maximized ? 'ui-g-7' : 'ui-g-12'">
+        <p-table [columns]="colsDlg" [value]="custRecs" [paginator]="true" [rows]="10" 
+        [showCurrentPageReport]="true" selectionMode="single"
+        dataKey="rec_no" [(selection)]="selectedNewRec"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+        <ng-template pTemplate="header" let-columns>
+                  
+                        <tr>
+                            <th style="width: 3em;"></th>
+                            <th >Record No:</th>                            
+                            <th style="width: 10em;">Issuer</th>
+                            <th style="width: 10em;"> Created On </th>
+                            
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                            <tr [pSelectableRow]="rowData">
+                            <td>
+                                <span (click)="addToCosnent(rowData)">
+                                <li class="pi pi-plus-circle" matTooltip="Add to custom template">                                    
+                                </li>
+                            </span>
+                            </td>
+                            <td *ngFor="let colDlg of columns" [ngSwitch]="colDlg.field">
+                                <span *ngSwitchCase="'created_on'">
+                                     {{rowData[colDlg.field]|date }}
+                                 </span>
+                                 <span *ngSwitchCase="'rec_no'">
+                                    <a >{{rowData[colDlg.field]}}</a>
+                                </span>
+                                <span *ngSwitchDefault>                                    
+                                    {{rowData[colDlg.field]}}
+                                </span>
+                            </td>
+                            
+                        </tr>
+                    </ng-template>
+                    </p-table>
+
+       </div>     
+       <div class="ui-g-5" *ngIf="dv.maximized">
+        <p-card>
+            <header class="tblLblDesc">Details</header>
+            <div class="ui-g tblLbl" *ngIf="selectedNewRec">
+                <div class="ui-g-12"><b>Record No</b>:{{selectedNewRec.rec_no}}</div>
+                <div class='ui-g-7'>
+                    <div class="ui-g">        
+                        <div class="ui-g-12 "><b>Ref: No</b>:{{selectedNewRec.refNumber}}</div>
+                        <div class="ui-g-12"><b>Issuer</b>:{{selectedNewRec.recIssuer}}</div>
+                        <div class="ui-g-12" *ngIf="selectedNewRec.metadata"><b>Created On</b>:{{selectedRec.metadata.created_on}}
+                        </div>
+                        <div class="ui-g-12" *ngIf="selectedNewRec.metadata"><b>Version</b>:{{selectedRec.metadata.version}}</div>
+                    </div>
+                </div>
+                <div class="ui-g-5">
+                    <div class="ui-g">
+                        <div class="ui-g-12"><b>Attachments</b>:</div>
+                        <div class="ui-g-12">
+                            <p-scrollPanel [style]="{width: '100%', height: '80px'}">
+                            <div class="ui-g">
+                                <span *ngFor="let fle of selectedNewRec.attachments">
+                                <div class="ui-g-8 tblLblfile" >        
+                                    <a class="pi pi-file-pdf ">{{fle}}</a>
+                                </div>
+                                <div class="ui-g-4 ">
+                                    <li class="pi pi-search tblLblptr"></li>
+                                </div>
+                            </span>
+                            </div>
+                        </p-scrollPanel>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-g-12"><b>Desc:</b>
+                    <p-scrollPanel [style]="{width: '100%', height: '120px'}">
+                          {{selectedNewRec | json}}
+                    </p-scrollPanel>
+                </div>
+            </div>
+        </p-card>
+        <!--img ng-show="file.data.type && file.data.type.indexOf('image') != -1" data-ng-src="{{file.data.data}}" />
+         <p ng-show="file.data.type && file.data.type.indexOf('image') == -1" ng-bind="file.data.data"></p>
+        -->
+       </div>
+       <div class="ui-g-12" *ngIf="dv.maximized">
+           <p-card>
+            <header class="tblLblDesc">Preview</header>
+           preview of attachment tab
+           
+        </p-card>
+       </div>
+     </div>
+</p-dialog>
 </div>

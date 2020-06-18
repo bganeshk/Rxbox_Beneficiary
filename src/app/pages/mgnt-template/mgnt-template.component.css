@@ -6,12 +6,22 @@
     box-shadow: 3px 3px 3px 3px #ececec;
 }
 
-.tblLbl {
+.tblLblptr {
     color: #143983;
     font-size: 15px;
     padding: 3px;
     margin: 2px;
     cursor: pointer;
+}
+.tblLbl {
+    color: #143983;
+    font-size: 15px;
+}
+.tblLblfile{
+    color: #143983;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .tblLblDesc{
@@ -19,4 +29,3 @@
     font-size: 15px;
     box-shadow: 3px 3px 3px 3px #ececec;
 }
-

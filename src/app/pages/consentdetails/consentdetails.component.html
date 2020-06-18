@@ -4,7 +4,7 @@
         dataKey="cons_id" [scrollable]="false" scrollHeight="325px"
         *ngIf="record_type=='active'">
         <ng-template pTemplate="caption">
-            <div>
+            <div >
                 <button type="button" pButton icon="pi pi-user-minus" (click)="revokeConsent()"
                 style="margin-right: 2%;" label="Revoke">
                 </button>
@@ -28,7 +28,7 @@
             <tr>
                
                 <th style="width: 7em" colspan="2"></th>
-                <th *ngFor="let col of columns">
+                <th *ngFor="let col of columns" class="tblHLbl">
                     {{col.header}}
                 </th>
             </tr>
@@ -79,8 +79,8 @@
                 <td [attr.colspan]="columns.length + 1">
                     <div class="p-grid -fluid" style="font-size:16px;padding:20px">
                         <div class="p-col-12 p-md-9">
-                            <div class="p-grid">
-                                <div class="p-col-12">
+                            <div class="p-grid tblLbl">
+                                <div class="p-col-12 ">
                                     <b>Consent Name:</b> {{rowData.cosnt_name}}
                                 </div>
                                 
@@ -88,10 +88,10 @@
                                     <b>Consent Created:</b> {{rowData.cosnt_created}}
                                 </div>
                                 <div class="p-col-12">
-                                    <b>Consent Ehr:</b> {{rowData.cosnted_ehr}}
+                                    <b >Consent Ehr:</b> {{rowData.cosnted_ehr}}
                                 </div>
                                 <div class="p-col-12">
-                                    <b>Consent Remarks:</b> {{rowData.remarks}}
+                                    <b > Consent Remarks:</b> {{rowData.remarks}}
                                 </div>
                             </div>
                         </div>
@@ -128,7 +128,7 @@
         <tr>
            
             <th style="width: 3em"></th>
-            <th *ngFor="let col of columns">
+            <th *ngFor="let col of columns" class="tblHLbl">
                 {{col.header}}
             </th>
         </tr>
@@ -176,9 +176,9 @@
             <td [attr.colspan]="columns.length + 1">
                 <div class="p-grid -fluid" style="font-size:16px;padding:20px">
                     <div class="p-col-12 p-md-9">
-                        <div class="p-grid">
-                            <div class="p-col-12">
-                                <b>Consent Name:</b> {{rowData.cosnt_name}}
+                        <div class="p-grid tblLbl">
+                            <div class="p-col-12 ">
+                                <b > Consent Name:</b> {{rowData.cosnt_name}}
                             </div>
                             
                             <div class="p-col-12">

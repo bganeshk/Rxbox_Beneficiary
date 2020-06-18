@@ -136,7 +136,7 @@
         </p-tabView>
     </p-panel>
     <p-panel *ngIf="this.consentReqStatus=='approved'" header="Approved Consent Request(s)">
-    <p-carousel  [value]="conReq" [numVisible]="3" [numScroll]="1" [circular]="false">
+    <p-carousel  [value]="conReq" [numVisible]="3" [numScroll]="1" [circular]="false" >
         <ng-template let-crq pTemplate="item">
            
            <div class="cnst_detail">

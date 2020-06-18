@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SelectItem } from 'primeng/api/selectitem';
 import { Profiledet, ProfileAdd } from 'bee-lib';
-import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
-import { stringify } from 'querystring';
+import { Url } from 'url';
 
 
 export interface Consnt{
@@ -35,10 +34,45 @@ export interface HealthType{
   typeOpt:Map<string,string>;
 }
 
+export interface HealthRec{
+  rec_no:string;
+  desc:string;
+  recType:string;
+  refNumber:string;
+  recIssuer:string;
+  attachments:URL[];
+  metadata:AuditData;
+}
+
+export interface AuditData{
+  created_on:Date;
+  version:number;
+  createdBy:string;
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class MetadataService {
+  
+  getCustSelectedRec(): HealthRec[] {
+    var hrec=[
+      {rec_no:'sum10102020110234567891',recType:'summary_rec',created_on:new Date(),desc:'Summary of admission due to headhache',refNumber:null,recIssuer:'GK Hospital',
+      attachments:[new URL('ftp://lab_cult_test1.pdf'),new URL('ftp://lab_cult_test1.pdf')],metadata:null},
+      {rec_no:'lab10102020110234567891',recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for virus test',refNumber:null,recIssuer:'DDRC',attachments:null,metadata:null},
+      {rec_no:'sum10102020110234567892',recType:'summary_rec',created_on:new Date(),desc:'Summary of admission due to viral fever',refNumber:null,recIssuer:'GK Hospital',attachments:null,metadata:null},
+      {rec_no:'lab20102020110234567892',recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for cuture test',refNumber:null,recIssuer:'LAb 1',attachments:null,metadata:null},
+      {rec_no:'sum10102020110234567893',recType:'summary_rec',created_on:new Date(),desc:'Summary of admission by accident',refNumber:null,recIssuer:'df',attachments:null,metadata:null},
+      {rec_no:'lab11102020110234567893',recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for bloodsugar test',refNumber:null,recIssuer:'dsf',attachments:null,metadata:null},
+      {rec_no:'lab12102020110234567894',recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for virus test after antibody',refNumber:null,recIssuer:'sdf',attachments:null,metadata:null},
+      {rec_no:'fmly1102020110234567891',recType:'family_rec',created_on:new Date(),desc:'diabetic history',refNumber:null,recIssuer:'sdf',attachments:null,metadata:null},
+      {rec_no:'other102020110234567891',recType:'other_rec',created_on:new Date(),desc:'genric activity test',refNumber:null,recIssuer:'sdfsd',attachments:null,metadata:null}
+    ];
+    return hrec;
+  }
+
+
   getConsReq(staus: string): ConsntReq[] {
    // throw new Error("Method not implemented.");
    return [

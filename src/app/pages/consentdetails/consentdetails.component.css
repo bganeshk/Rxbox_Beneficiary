@@ -2,3 +2,16 @@
     border: 2px;
     padding: 10px;;
 }
+
+.tblHLbl {
+    color: #143983;
+    font-size: 11px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.tblLbl {
+    color: #143983;
+    font-size: 14px;
+    padding-top: 10px;
+}
