@@ -1,1 +1,95 @@
-<p>mgnt-prescription works!</p>
+<p-table [value]="prescriptions" [scrollable]="true" selectionMode="single" 
+        [(selection)]="selectedphr" dataKey="pid"
+        (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="caption" >
+        <div class="tblHLbl">Active Prescriptions</div>
+    </ng-template>
+    <ng-template pTemplate="header" >
+        <tr>
+            <th *ngFor="let col of cols" [pSortableColumn]="col.field">
+                <div class="tblLblptr">{{col.header}}
+                <p-sortIcon [field]="col.field" *ngIf="col.header=='Medicien'"></p-sortIcon>
+            </div>
+            </th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-dm>        
+        <tr class="profdet divhed"  [pSelectableRow]="dm">
+            <td >{{dm.med.medname}}</td>
+            <td  style="padding: 2px;text-align: center;">
+                <i class="pi  pi-times" *ngIf="!dm.afterFood"></i>
+               
+                <i class="pi  pi-check-square"  *ngIf="dm.afterFood"></i>
+            </td>
+            <td  style="padding: 2px; padding-left:5%;" >
+                <img src="../../../assets/icons/{{dm.medType}}.png" 
+                    width="23px" height="23px"
+                    [matTooltip]="'C'==dm.medType?'Capsule':'Injection'">
+            </td>
+            <td >{{dm.morningQty}}</td>
+            <td >{{dm.afternoongQty}}</td>
+            <td >{{dm.eveninggQty}}</td>
+            <td >{{dm.medNotes}}</td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="summary" let-rowData>
+        <div style="text-align:left">
+            <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
+        </div>
+    </ng-template> 
+</p-table>
+
+<p-dialog header="Prescription Details" [(visible)]="displayDlg"  
+[focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" 
+ [style]="{width: '300px'}">
+    <div class="p-grid ui-fluid" *ngIf="selectedphr||newphr">
+        <div class="p-col-4">
+            <label for="vin">Medicine</label>
+        </div>
+        <div class="p-col-8">
+            <p-dropdown [options]="meds" [(ngModel)]="selectedphr.med" optionLabel="medname"
+            dataKey='id' [filter]="true"></p-dropdown>
+        </div>
+        <div class="p-col-4">
+            <label for="year">After Food</label>
+        </div>
+        <div class="p-col-8">
+            <p-inputSwitch [(ngModel)]="selectedphr.afterFood"></p-inputSwitch>
+        </div>
+        <div class="p-col-4">
+            <label for="brand">Moring Dose</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText  [(ngModel)]="selectedphr.morningQty" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">AfterNoon Dose</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText [(ngModel)]="selectedphr.afternoongQty" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Evening Dose</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText  [(ngModel)]="selectedphr.eveninggQty" />
+        </div>
+        
+        <div class="p-col-4">
+            <label for="color">Notes</label>
+        </div>
+        <div class="p-col-8">
+            <textarea pInputTextarea [(ngModel)]="selectedphr.medNotes" [cols]="15"></textarea>
+            
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="pi pi-trash" (click)="delete()" label="Delete" *ngIf="!newphr"></button>
+            <button type="button" pButton icon="pi pi-times" (click)="displayDlg=false;selectedphr=null;" label="Cancel"></button>
+            <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>

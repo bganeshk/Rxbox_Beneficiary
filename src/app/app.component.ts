@@ -118,7 +118,9 @@ export class AppComponent implements OnInit {
           { label: 'My Priscription', icon: 'pi pi-fw pi-user',routerLink:'/presc', },
           //{ label: 'New/Create', icon: 'pi pi-fw pi-plus', routerLink:'/presc/',},
           { separator: true },
+          { label: 'Prescription History', icon: 'pi pi-chart-bar', routerLink:'/presc/prhs' },
           { label: 'Fullfillment details', icon: 'pi pi-angle-double-right', routerLink:'/presc/ffmnt' }
+          
         ]
       },
       {

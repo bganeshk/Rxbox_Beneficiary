@@ -50,12 +50,45 @@ export interface AuditData{
   createdBy:string;
 }
 
+export class DailyMedClass implements DailyMed{
+
+}
+export interface DailyMed {
+  pid?:string;
+  med?:Medicine;
+  afterFood?:boolean;
+  morningQty?:number;
+  afternoongQty?:number;
+  eveninggQty?:number;
+  medType?:string;
+  medNotes?:string;
+  numberOfdays?:number;//number of days to consme the medicine -for indefiniete
+  
+}
+
+export interface Medicine{
+ id:string;
+ medname:string;
+ genericName:string;
+ dose:string;
+ expDt:Date;
+ mfgDt:Date;
+ manufacturer:string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class MetadataService {
   
+  
+  getMedicines():Medicine[]{
+    return [
+      {id:'1',medname:'medname1',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'},
+      {id:'2',medname:'medname2',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'},
+      {id:'3',medname:'medname3',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}
+    ];
+  }
   getCustSelectedRec(): HealthRec[] {
     var hrec=[
       {rec_no:'sum10102020110234567891',recType:'summary_rec',created_on:new Date(),desc:'Summary of admission due to headhache',refNumber:null,recIssuer:'GK Hospital',
@@ -72,7 +105,21 @@ export class MetadataService {
     return hrec;
   }
 
-
+  getDailyMed():DailyMed[]{
+    var dm = [
+      { pid:'1',med:{ id:'1',medname:'paracetamol',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: true, morningQty: 1, afternoongQty: 0, eveninggQty: 1, medType: 'C', medNotes: 'water mix' ,numberOfdays:-1},
+      { pid:'2',med:{ id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'} , afterFood: false, morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50',numberOfdays:1 },
+      { pid:'3',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: false, morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'4',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: true, morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:10},
+      { pid:'5',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: true, morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'6',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: false, morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'7',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: true, morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'8',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: false, morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'9',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: false, morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'10',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: true, morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:1}
+    ];
+  return dm;
+  }
   getConsReq(staus: string): ConsntReq[] {
    // throw new Error("Method not implemented.");
    return [

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MgntPrescriptionComponent } from '../mgnt-prescription/mgnt-prescription.component';
 import { Routes, RouterModule } from '@angular/router';
 import { PrescFfmntComponent } from '../presc-ffmnt/presc-ffmnt.component';
-
+import { PrescHistoryComponent } from '../presc-history/presc-history.component';
 const routes: Routes = [{
   path: '',
   component: null,
@@ -15,6 +15,10 @@ const routes: Routes = [{
     {
       path: 'ffmnt',
       component: PrescFfmntComponent
+    },
+    {
+      path: 'prhs',
+      component: PrescHistoryComponent
     }
   ]
 }];

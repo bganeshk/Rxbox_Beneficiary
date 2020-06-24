@@ -2,16 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DashPoints, BeeNotification, DashboardService, TransData } from 'bee-lib';
 import { MenuItem } from 'primeng/api';
 import { EChartOption } from 'echarts';
+import { DailyMed, MetadataService } from 'src/app/global/metadata.service';
 
-export interface DailyMed {
-  med;
-  afterFood;
-  morningQty;
-  afternoongQty;
-  eveninggQty;
-  medType;
-  medNotes;
-}
+
 
 const data = [["2000-06-05", 101], ["2000-06-06", 100], ["2000-07-24", 80], ["2000-06-07", 100.5], ["2000-06-08", 86], ["2000-06-09", 91],
 ["2000-06-10", 85], ["2000-06-11", 83], ["2000-06-12", 88],
@@ -48,7 +41,7 @@ export class DashboardComponent implements OnInit {
   miscMenuItems: MenuItem[];
   checked1: boolean = false;
 
-  constructor(private dashboardService: DashboardService, ) {
+  constructor(private dashboardService: DashboardService, private mdataSrvs:MetadataService) {
     dashboardService.getNotification().then(res => this.notifi = res);
     this.mgntMenuItems = [
       { label: 'Consents', icon: 'pi pi-fw pi-tags', routerLink: ['/pages/mgntConsent'] },
@@ -69,19 +62,7 @@ export class DashboardComponent implements OnInit {
     this.notidlg = false;
 
     this.selectedNotifi = new BeeNotification();
-    this.dms = [
-      { med: 'paracetamol', afterFood: 'Y', morningQty: 1, afternoongQty: 0, eveninggQty: 1, medType: 'C', medNotes: 'water mix' },
-      { med: 'dolo-23-25ml', afterFood: 'Y', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50' },
-      { med: 'dolo-23-25ml', afterFood: 'N', morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' },
-      { med: 'dolo-23-25ml', afterFood: 'Y', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' },
-      { med: 'dolo-23-25ml', afterFood: 'Y', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50' },
-      { med: 'dolo-23-25ml', afterFood: 'N', morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' },
-      { med: 'dolo-23-25ml', afterFood: 'Y', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' },
-      { med: 'dolo-23-25ml', afterFood: 'Y', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50' },
-      { med: 'dolo-23-25ml', afterFood: 'N', morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' },
-      { med: 'dolo-23-25ml', afterFood: 'Y', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' }
-    ];
-
+    this.dms = this.mdataSrvs.getDailyMed();
   }
 
 

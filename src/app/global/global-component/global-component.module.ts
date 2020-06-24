@@ -32,13 +32,15 @@ import {CarouselModule} from 'primeng/carousel';
 import {CheckboxModule} from 'primeng/checkbox';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {DragDropModule} from 'primeng/dragdrop';
+import {InputSwitchModule} from 'primeng/inputswitch';
 
 const IMPORT_PRIME_MODULE = [
   MessagesModule,MessageModule,ScrollPanelModule,OverlayPanelModule,  ButtonModule,
    InputTextModule, TableModule, DialogModule, CardModule,SidebarModule,
    PanelMenuModule, FieldsetModule,MultiSelectModule, CalendarModule, ChipsModule,
    DataViewModule,DropdownModule,PanelModule, AutoCompleteModule, ToastModule,
-   ContextMenuModule, TabViewModule, CarouselModule, CheckboxModule,SplitButtonModule,DragDropModule
+   ContextMenuModule, TabViewModule, CarouselModule, CheckboxModule,SplitButtonModule,
+   DragDropModule,InputSwitchModule
 ];
 
 const IMPORT_ANG_MODULE = [

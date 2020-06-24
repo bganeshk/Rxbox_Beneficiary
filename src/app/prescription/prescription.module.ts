@@ -4,6 +4,7 @@ import { PrescRoutingModule } from './presc-routing/presc-routing.module';
 import { GlobalComponentModule } from 'src/app/global/global-component/global-component.module';
 import { MgntPrescriptionComponent } from './mgnt-prescription/mgnt-prescription.component';
 import { PrescFfmntComponent } from './presc-ffmnt/presc-ffmnt.component';
+import { PrescHistoryComponent } from './presc-history/presc-history.component';
 
 
 const PRESC_COMPONENTS = [
@@ -16,7 +17,7 @@ const PRESC_ENTRY_COMPONENTS = [
 
 
 @NgModule({
-  declarations: [...PRESC_COMPONENTS,],
+  declarations: [...PRESC_COMPONENTS, PrescHistoryComponent,],
   entryComponents: [...PRESC_ENTRY_COMPONENTS],
   imports: [
     PrescRoutingModule,GlobalComponentModule,
