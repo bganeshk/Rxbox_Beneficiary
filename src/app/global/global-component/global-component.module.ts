@@ -33,6 +33,10 @@ import {CheckboxModule} from 'primeng/checkbox';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {DragDropModule} from 'primeng/dragdrop';
 import {InputSwitchModule} from 'primeng/inputswitch';
+import {TreeTableModule} from 'primeng/treetable';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {AccordionModule} from 'primeng/accordion';
+import {ProgressBarModule} from 'primeng/progressbar';
 
 const IMPORT_PRIME_MODULE = [
   MessagesModule,MessageModule,ScrollPanelModule,OverlayPanelModule,  ButtonModule,
@@ -40,7 +44,8 @@ const IMPORT_PRIME_MODULE = [
    PanelMenuModule, FieldsetModule,MultiSelectModule, CalendarModule, ChipsModule,
    DataViewModule,DropdownModule,PanelModule, AutoCompleteModule, ToastModule,
    ContextMenuModule, TabViewModule, CarouselModule, CheckboxModule,SplitButtonModule,
-   DragDropModule,InputSwitchModule
+   DragDropModule,InputSwitchModule,TreeTableModule,RadioButtonModule,AccordionModule,
+   ProgressBarModule
 ];
 
 const IMPORT_ANG_MODULE = [

@@ -7,5 +7,9 @@
 
 .tblLblptr {
     color: #143983;
+    font-size: 13px;
+}
+.hint{
+    color: cornflowerblue;
     font-size: 11px;
 }

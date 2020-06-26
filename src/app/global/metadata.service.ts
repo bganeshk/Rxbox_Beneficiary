@@ -56,14 +56,51 @@ export class DailyMedClass implements DailyMed{
 export interface DailyMed {
   pid?:string;
   med?:Medicine;
-  afterFood?:boolean;
+  afterFood?:String;
   morningQty?:number;
-  afternoongQty?:number;
+  afternoongQty?:number; 
   eveninggQty?:number;
   medType?:string;
-  medNotes?:string;
-  numberOfdays?:number;//number of days to consme the medicine -for indefiniete
-  
+  medNotes?:string;  
+  repeatCycle?:string;//Daily, every monday
+  repeatCycleNumber?:string//everymondy for 5times or everymonth for 12 months
+  numberOfCycle?:number;//number of days to consme the medicine -1 for indefiniete
+  startDate?:Date;
+  endDate?:Date;//need to fill after calculation
+  prescribedBy?:string;
+  prescribed_dt?:Date;
+ 
+}
+
+export interface FullFillmentSummary{
+  totalQty:number;
+  fullfilledQty:number;
+  balanceQty?:number;
+  nextRefill:Date;
+  lastRefill:Date;
+  totalNoRefill:number;
+  fullfillpercentage?:number;
+}
+
+export interface MedFFill{
+  purchaseQty:number;
+  fullfilledBy?:string;
+  purchase_dt?:Date;
+  purchaseAmnt?:number;
+}
+
+export interface MedFullFillment{
+  pid:string;
+  medi:DailyMed; 
+  fullFillsmry:FullFillmentSummary;
+  fullFillDetails?:MedFFill[];
+}
+
+export class MedFullFillmentC implements MedFullFillment{
+  pid:string;
+  medi: DailyMed;
+  fullFillsmry: FullFillmentSummary;
+  fullFillDetails?:MedFFill[];
 }
 
 export interface Medicine{
@@ -82,6 +119,24 @@ export interface Medicine{
 export class MetadataService {
   
   
+  getMedFullFillments():MedFullFillment[]{
+    var mdfill:MedFullFillment[]=[];
+    for(let i=0;i<5;i++){
+        let mdf=new MedFullFillmentC();
+        mdf.medi=this.getDailyMed()[i];
+        mdf.fullFillsmry={ totalQty:Math.floor(Math.random() * 10),lastRefill:new Date(),fullfilledQty:Math.floor(Math.random() * 10)/2,nextRefill:new Date(),totalNoRefill:2};
+        let fullfillpercentage=Math.floor( (100*mdf.fullFillsmry.fullfilledQty)/mdf.fullFillsmry.totalNoRefill);
+        mdf.fullFillsmry.fullfillpercentage=fullfillpercentage;
+        mdf.pid=i+'';
+        mdf.fullFillDetails=[
+          {purchaseQty:2,fullfilledBy:'Gk Medicals',purchaseAmnt:30.90,purchase_dt:new Date()},
+          {purchaseQty:2,fullfilledBy:'Gk Medicals',purchaseAmnt:30.90,purchase_dt:new Date()},
+          {purchaseQty:2,fullfilledBy:'Gk Medicals',purchaseAmnt:30.90,purchase_dt:new Date()},
+        ];
+        mdfill.push(mdf);
+    }
+    return mdfill;
+  }
   getMedicines():Medicine[]{
     return [
       {id:'1',medname:'medname1',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'},
@@ -107,16 +162,16 @@ export class MetadataService {
 
   getDailyMed():DailyMed[]{
     var dm = [
-      { pid:'1',med:{ id:'1',medname:'paracetamol',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: true, morningQty: 1, afternoongQty: 0, eveninggQty: 1, medType: 'C', medNotes: 'water mix' ,numberOfdays:-1},
-      { pid:'2',med:{ id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'} , afterFood: false, morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50',numberOfdays:1 },
-      { pid:'3',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: false, morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'4',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: true, morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:10},
-      { pid:'5',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: true, morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'6',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: false, morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'7',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: true, morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'8',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: false, morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'9',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: false, morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'10',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: true, morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:1}
+      { pid:'1',prescribedBy:'Dr.Ganesh kumare balasubramonian PRS',med:{ id:'1',medname:'paracetamol',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'Y', morningQty: 1, afternoongQty: 0, eveninggQty: 1, medType: 'C', medNotes: 'water mix' ,numberOfdays:-1,startDate:new Date(),endDate:new Date()},
+      { pid:'2',prescribedBy:'Dr.GK',med:{ id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'} , afterFood: 'Y', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50',numberOfdays:1,endDate:new Date() },
+      { pid:'3',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'Y', morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'4',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N/A', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:10},
+      { pid:'5',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'6',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'7',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N/A', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'8',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'9',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'10',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N/A', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:1}
     ];
   return dm;
   }
