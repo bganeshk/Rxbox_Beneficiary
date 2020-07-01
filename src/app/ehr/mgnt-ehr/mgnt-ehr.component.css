@@ -1,0 +1,22 @@
+.tblHLbl {
+    color: #143983 !important;
+    font-size: 11px;
+    text-align: center;
+    font-weight: bold;
+    text-transform: capitalize ;
+}
+
+.tblLbl {
+    color: #143983;
+    font-size: 13px;
+}
+
+.grpitem{
+    padding-left: 5px;
+    font-size: 8px;
+}
+
+:host >>> .grp .ng-star-inserted{
+    color: #143983;
+    font-size: 13px;
+}

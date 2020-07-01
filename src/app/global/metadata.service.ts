@@ -3,7 +3,37 @@ import { HttpClient } from '@angular/common/http';
 import { SelectItem } from 'primeng/api/selectitem';
 import { Profiledet, ProfileAdd } from 'bee-lib';
 import { Url } from 'url';
+import { SelectItemGroup } from 'primeng/api';
 
+
+
+export interface ehr_bp{
+  ehrId:string;
+  dias:number;
+  syst:number;
+  auditData:AuditData;
+}
+
+export interface ehr_diabetic{
+  ehrId:string;
+  bf:number;
+  af:number;
+  auditData:AuditData;
+}
+export interface ehr_tempoxypulse{
+  ehrId:string;
+  temp:number;
+  oxireading:number;
+  pulsepersec:number;
+  auditData:AuditData;
+}
+
+export interface ehr_other{
+  ehrId:string;
+  ehrCategory:string;
+  dataValue:Map<string,string>;
+  auditData:AuditData;
+}
 
 export interface Consnt{
   cons_id:string
@@ -72,6 +102,14 @@ export interface DailyMed {
  
 }
 
+export interface Prescription{
+  pid:string;
+  prescribedBy?:string;
+  prescribed_dt?:Date;
+  medNotes?:string;  
+  medicine:DailyMed[];
+}
+
 export interface FullFillmentSummary{
   totalQty:number;
   fullfilledQty:number;
@@ -117,6 +155,19 @@ export interface Medicine{
   providedIn: 'root'
 })
 export class MetadataService {
+ 
+ 
+ 
+ 
+  getPrescription(): Prescription[] {
+    let pres:Prescription[]=[
+      { pid:'1',prescribedBy:'Dr GK',prescribed_dt:new Date(), medNotes:'No notes',medicine:null},
+      { pid:'2',prescribedBy:'Dr GK2',prescribed_dt:new Date(), medNotes:'No notes',medicine:null}
+    ]
+    pres[0].medicine=this.getDailyMed();
+    pres[1].medicine=this.getDailyMed();
+    return pres;
+  }
   
   
   getMedFullFillments():MedFullFillment[]{
@@ -219,7 +270,7 @@ export class MetadataService {
       {label: 'Public Consents', value: 'pub'},
       {label: 'Custom Consents', value: 'cust'}];
   }
-  public getConsentCategoryList():SelectItem[]{
+  public getEhrCategoryList():SelectItem[]{
     return [
       {label: 'Summary Report', value: 'Summary_Report'},
       {label: 'Lab Report', value: 'Lab_Report'},
@@ -229,6 +280,41 @@ export class MetadataService {
       {label: 'Eye/Opthalmic Report', value: 'Opthalmic_Report'},
       {label: 'Family Report', value: 'Family_Report'}];
   }
+  public getEhrCategoryDetList(): SelectItemGroup[] {
+    return [
+      {
+        label: 'Heart/Cardiac',
+        items: [
+          { label: 'Procedure', value: 'CAR_PRO' },
+          { label: 'Other', value: 'CAR_OTH' }
+        ]
+      },  {
+        label: 'Phsycology & Mental',
+        items: [
+          { label: 'Counseling', value: 'MENT_COUS' },
+          { label: 'Others', value: 'MENT_OTH' },
+        ]
+      }, {
+        label: 'Eye/opthalmic',
+        items: [
+          { label: 'Cadillac', value: 'Cadillac' },
+        ]
+      },{
+        label: 'Sexual Records',
+        items: [
+          { label: 'Skin & Infections', value: 'SEX_SKINF' },
+          { label: 'Other', value: 'SEX_OTH' },          
+        ]
+      },
+       {
+        label: 'Procedures & Operations',
+        items: [
+          { label: 'General', value: 'PRO_GEN' },
+        ]
+      }]
+
+  }
+
 
   public getHealthType(){
     var htype=[

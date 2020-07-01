@@ -7,6 +7,8 @@ import { FmlyEhrComponent } from './fmly-ehr/fmly-ehr.component';
 import { SmryEhrComponent } from './smry-ehr/smry-ehr.component';
 import { OtherDocComponent } from './other-doc/other-doc.component';
 import { MgntDiaganosisComponent } from './mgnt-diaganosis/mgnt-diaganosis.component';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
  
 
@@ -24,7 +26,8 @@ const EHR_ENTRY_COMPONENTS = [
   declarations: [...EHR_COMPONENTS, ],
   entryComponents: [...EHR_ENTRY_COMPONENTS],
   imports: [
-    EhrRoutingModule, GlobalComponentModule
+    EhrRoutingModule, GlobalComponentModule,TieredMenuModule,
+    ToggleButtonModule
   ]
 })
 export class EHRModule { }

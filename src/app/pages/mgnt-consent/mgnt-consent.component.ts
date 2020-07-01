@@ -30,7 +30,7 @@ export class MgntConsentComponent implements OnInit {
 
   ngOnInit() {
     this.cosnt_type=this.mdataSrvs.getConsentTypeList();
-    this.cosnt_cat_type=this.mdataSrvs.getConsentCategoryList(); 
+    this.cosnt_cat_type=this.mdataSrvs.getEhrCategoryList(); 
     this.valididty_unty=this.mdataSrvs.getConsentValidityUnit();
     this.getConsents();  
   }
@@ -84,7 +84,7 @@ export class AssignConsentComponent implements OnInit{
 
   ngOnInit(): void {
     this.cosnt_type=this.mdataSrvs.getConsentTypeList();
-    this.cosnt_cat_type=this.mdataSrvs.getConsentCategoryList(); 
+    this.cosnt_cat_type=this.mdataSrvs.getEhrCategoryList(); 
     this.valididty_unty=this.mdataSrvs.getConsentValidityUnit();
    this.newConst={cons_id:null,cosnt_name:null,cosnt_assignee:null,cosnt_tag:null,cosnt_cat_type:null,cosnt_type:null,cosnted_ehr:null,remarks:'cosnent is crated for the generic test for Dr.Rama',created:null,validity:null,validity_unit:null,is_active:true};
   }

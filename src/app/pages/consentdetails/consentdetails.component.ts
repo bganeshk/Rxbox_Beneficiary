@@ -65,7 +65,7 @@ export class ConsentdetailsComponent implements OnInit {
     {cons_id:'id14',cosnt_name:'nam2',cosnt_assignee:null,cosnt_tag:null,cosnt_cat_type:['Summary_Report','Lab_Report'],cosnt_type:null,cosnted_ehr:['Ehr_023243','Ehr_0232e43'],remarks:'cosnent is crated for the generic test for Dr.Rama',created:null,validity:'8',validity_unit:'days',is_active:true},
     {cons_id:'id15',cosnt_name:'nam1',cosnt_assignee:['gkumar1'],cosnt_tag:null,cosnt_cat_type:null,cosnt_type:null,cosnted_ehr:null,remarks:'cosnent is crated for the generic test for Dr.Rama',created:null,validity:null,validity_unit:null,is_active:true}
   ];
-  this.cosnt_cat_type=this.mdataSrvs.getConsentCategoryList();
+  this.cosnt_cat_type=this.mdataSrvs.getEhrCategoryList();
   this.record_type=this.getParamValue('status');
   
   console.debug(this.record_type);

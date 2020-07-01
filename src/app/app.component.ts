@@ -129,33 +129,31 @@ export class AppComponent implements OnInit {
         //shoud have search at the top and then after select a praticular consent for editing or inline revoke',
         icon: 'pi pi-pw pi-file-o',
         items: [{
-          label: 'Manage',
-          routerLink:'/ehr',
+          label: 'Manage Record',
+          routerLink:'/ehr',icon: 'pi pi-file',
           //manage the consent template for assight the perisison to a doctor
           //ex: diabetic template and select what are the attributes possible in that template
           //add right to add new records
           //set default expiry in days 
-
+          /*--
           items: [
-
+            { label: 'Public Records', icon: 'pi pi-fw pi-user-minus',
+            routerLink:'/ehr', queryParams:{type:'pub'} },
             { label: 'General Records', icon: 'pi pi-fw pi-user-plus',
               routerLink:'/ehr', queryParams:{type:'gen'}
            },
-            { label: 'Public Records', icon: 'pi pi-fw pi-user-minus',
-            routerLink:'/ehr', queryParams:{type:'pub'} },
-          ]
+          ] */
         },
-
         { separator: true },
         { label: 'Family Records', icon: 'pi pi-fw pi-users',
         routerLink:'/ehr/family' },
         {
           label: 'Lab Records',
-          routerLink:'/ehr/lab',
-          items: [
+          routerLink:'/ehr/lab', icon: 'pi pi-fw pi-pencil'
+         /* items: [
             { label: 'Diaganosis Req:', icon: 'pi pi-fw pi-search',routerLink:'/ehr/lab' },
             { label: 'Add/Update Data', icon: 'pi pi-fw pi-pencil',routerLink:'/ehr/mgntdiarec' }
-          ]
+          ]*/
         },
 
         { label: 'Summary Records', icon: 'pi pi-fw pi-folder',routerLink:'/ehr/smrrec' },

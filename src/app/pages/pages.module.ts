@@ -38,3 +38,4 @@ const PAGES_ENTRY_COMPONENTS = [
   ]
 })
 export class PagesModule { }
+

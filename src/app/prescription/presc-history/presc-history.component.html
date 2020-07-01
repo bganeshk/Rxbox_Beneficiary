@@ -1,1 +1,93 @@
-<p>presc-history works!</p>
+<p-table [value]="prescriptions" [scrollable]="true" selectionMode="single" dataKey="pid"
+    [(selection)]="selectedPerscription" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="caption">
+        <div class="tblHLbl">Prescriptions History</div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 3em"></th>
+            <th style="width: 15%;">
+                <div class="tblLblptr">Prescription By
+                    <p-sortIcon [field]="'prescribedBy'"></p-sortIcon>
+                </div>
+            </th>
+            <th>
+                <div class="tblLblptr">Date
+                    <p-sortIcon [field]="'prescribed_dt'"></p-sortIcon>
+                </div>
+            </th>
+            <th>
+                <div class="tblLblptr">Notes</div>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-expanded="expanded"  >
+        <tr>
+            <td style="width: 3em">
+                <a href="#" [pRowToggler]="rowData">
+                    <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+                </a>
+            </td>
+            <td style="width: 15%;">
+                {{rowData['prescribedBy']}}
+            </td>
+            <td>
+                {{rowData['prescribed_dt']| date }}
+            </td>
+            <td>
+                {{rowData['medNotes'] }}
+            </td>           
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+        <tr>
+            <td [attr.colspan]=4>
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        <p-card>
+                            <p-table [value]="rowData.medicine" [scrollable]="true"  [rows]="10">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 20%;">
+                                        <div class="tblLblptr">Medicien
+                                            <p-sortIcon [field]="'Medicien'"></p-sortIcon>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="tblLblptr">AfterFood</div>
+                                    </th>
+                                    <th>
+                                        <div class="tblLblptr">Med: Type</div>
+                                    </th>
+                                    <th>
+                                        <div class="tblLblptr">Dose</div>
+                                    </th>
+                                    <th style="width: 30%;">
+                                        <div class="tblLblptr">Note</div>
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-dm>
+                                <tr class="tblLblptr" >
+                                    <td style="width: 20%;">{{dm.med.medname}}</td>
+                                    <td style="padding: 2px;text-align: center;">
+                                        <i class="tblLblptr pi  pi-check-square" *ngIf="dm.afterFood=='Y'"></i>
+                                        <i class="tblLblptr" *ngIf="dm.afterFood=='N/A'">{{dm.afterFood}}</i>
+                                    </td>
+                                    <td style="padding: 2px; padding-left:5%;">
+                                        <img src="../../../assets/icons/{{dm.medType}}.png" width="23px" height="23px"
+                                            [matTooltip]="'C'==dm.medType?'Capsule':'Injection'">
+                                    </td>
+                                    <td>{{dm.morningQty}}-{{dm.afternoongQty}}-{{dm.eveninggQty}}</td>                                   
+                                    <td style="width: 30%;">{{dm.medNotes}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                        </p-card>
+                    </div>
+               
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+  </p-table>
