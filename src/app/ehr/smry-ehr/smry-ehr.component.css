@@ -1,0 +1,82 @@
+.serch{
+    border: 2px;
+    padding: 10px;;
+}
+
+.cnst_detail{
+    border: 1px solid #b3c2ca;
+    border-radius: 3px;
+    margin: 0.3em;
+    text-align: center;
+    padding: 2em 0 2.25em 0;
+}
+.cnst_data{
+    font-weight: 700;
+			font-size: 20px;
+			margin-top: 24px;
+}
+.cnst_buttons{
+    margin-left: 0.5em;
+}
+
+.cnst_button{
+    padding: 2px;
+}
+.req_data{
+    color: #143983;
+    font-size: 11px;
+    text-align: center;
+    font-weight: bold;
+}
+.req_data2{
+    color: #143983;
+    font-size: 11px;
+    text-align: center;
+    
+}
+
+.btns{
+    margin: 5px;
+}
+.req-rem{
+    display: inline-block;
+    word-wrap: break-word;
+}
+.tblHLbl {
+    color: #143983;
+    font-size: 11px;
+    font-weight: bold;
+}
+.address{
+    border: 1px 1px 0 0;
+}
+
+.tblLbl {
+    color: #143983;
+    font-size: 11px;
+  
+}
+
+.ntnote{
+    width: 20%;
+    height: 6em;
+}
+.hint{
+    font-size: 11px;
+
+}
+
+.tblLblfile{
+    color: #143983;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tblLblptr {
+    color: #143983;
+    font-size: 15px;
+    padding: 3px;
+    margin: 2px;
+    cursor: pointer;
+}

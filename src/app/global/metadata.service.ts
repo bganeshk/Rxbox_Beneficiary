@@ -5,7 +5,12 @@ import { Profiledet, ProfileAdd } from 'bee-lib';
 import { Url } from 'url';
 import { SelectItemGroup } from 'primeng/api';
 
-
+export interface RxNote{
+  recId:string;
+  rxNote:string;
+  refNumber?:string;
+  metadata?:AuditData;
+}
 
 export interface ehr_bp{
   ehrId:string;
@@ -25,13 +30,6 @@ export interface ehr_tempoxypulse{
   temp:number;
   oxireading:number;
   pulsepersec:number;
-  auditData:AuditData;
-}
-
-export interface ehr_other{
-  ehrId:string;
-  ehrCategory:string;
-  dataValue:Map<string,string>;
   auditData:AuditData;
 }
 
@@ -64,15 +62,31 @@ export interface HealthType{
   typeOpt:Map<string,string>;
 }
 
-export interface HealthRec{
+export interface FmlyHealthRec {
+  realtions:string[];
+  data:HealthRec;
+}
+export interface SummaryHealthRec extends HealthRec{
+  admissionDt:Date;
+  dischargeDate:Date;
+  summaryNote:string;
+  refRecNo:Set<string>;  
+  attachments:URL[];
+}
+
+export interface  HealthRec{
   rec_no:string;
-  desc:string;
+  desc:string;  
+  dataValue?:Map<string,string>;
   recType:string;
+  recTypeDesc?:string;
   refNumber:string;
   recIssuer:string;
+  issuerDetails?:ProfileAdd
   attachments:URL[];
   metadata:AuditData;
 }
+
 
 export interface AuditData{
   created_on:Date;
@@ -156,9 +170,66 @@ export interface Medicine{
 })
 export class MetadataService {
  
+  getSummaryHealthRec():SummaryHealthRec[]{
+    let smryRecs:SummaryHealthRec[]=[];
+    this.getCustSelectedRec().forEach(e => {
+      let smry:SummaryHealthRec=JSON.parse(JSON.stringify(e));
+      smry.admissionDt=new Date();
+      smry.dischargeDate=new Date();
+      smry.refNumber=' ref '+e.rec_no;
+      smry.summaryNote=" Summary of cv "+e.rec_no;
+      if(e.attachments){
+        smry.attachments=[];  
+        smry.attachments=smry.attachments.concat(e.attachments);
+        smry.refNumber=" 1111111Summary of cv "+e.rec_no;
+      }
+      smryRecs.push(smry);
+    });
+    return smryRecs;
+  }
  
- 
- 
+  getLabHealthRec():HealthRec[]{
+    let fmlyRecs:HealthRec[]=[];
+    this.getCustSelectedRec().forEach(e => {
+      e.dataValue.set('attr1','value1');
+      e.dataValue.set('attr2','value2');
+      fmlyRecs.push(e);
+    });
+    return fmlyRecs;
+  }
+  
+
+  getRxNote():RxNote[]{
+    return [
+      {recId:'1',metadata:{created_on:new Date(),createdBy:'GK',version:1},
+      rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
+      {recId:'2',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
+      {recId:'3',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore  the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
+      {recId:'4',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore  the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
+      {recId:'1',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
+      {recId:'2',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
+      {recId:'3',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore  the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
+      {recId:'4',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore  the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
+      {recId:'1',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
+      {recId:'2',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
+      {recId:'3',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore  the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
+      {recId:'4',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore  the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
+
+    ]
+  }
+
+ getFmlyHealthRec():FmlyHealthRec[]{
+   let fmlyRecs:FmlyHealthRec[]=[];
+    this.getCustSelectedRec().forEach(e => {
+      e.dataValue.set('attr1','value1');
+      e.dataValue.set('attr2','value2');
+      let fmlyRec:FmlyHealthRec;
+      fmlyRec={realtions:['Father','Mother'],data:e}
+      fmlyRecs.push(fmlyRec);
+     
+    });
+    return fmlyRecs;
+ }
   getPrescription(): Prescription[] {
     let pres:Prescription[]=[
       { pid:'1',prescribedBy:'Dr GK',prescribed_dt:new Date(), medNotes:'No notes',medicine:null},
@@ -197,16 +268,16 @@ export class MetadataService {
   }
   getCustSelectedRec(): HealthRec[] {
     var hrec=[
-      {rec_no:'sum10102020110234567891',recType:'summary_rec',created_on:new Date(),desc:'Summary of admission due to headhache',refNumber:null,recIssuer:'GK Hospital',
+      {rec_no:'sum10102020110234567891',dataValue:new Map() ,recType:'summary_rec',created_on:new Date(),desc:'Summary of admission due to headhache',refNumber:null,recIssuer:'GK Hospital',
       attachments:[new URL('ftp://lab_cult_test1.pdf'),new URL('ftp://lab_cult_test1.pdf')],metadata:null},
-      {rec_no:'lab10102020110234567891',recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for virus test',refNumber:null,recIssuer:'DDRC',attachments:null,metadata:null},
-      {rec_no:'sum10102020110234567892',recType:'summary_rec',created_on:new Date(),desc:'Summary of admission due to viral fever',refNumber:null,recIssuer:'GK Hospital',attachments:null,metadata:null},
-      {rec_no:'lab20102020110234567892',recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for cuture test',refNumber:null,recIssuer:'LAb 1',attachments:null,metadata:null},
-      {rec_no:'sum10102020110234567893',recType:'summary_rec',created_on:new Date(),desc:'Summary of admission by accident',refNumber:null,recIssuer:'df',attachments:null,metadata:null},
-      {rec_no:'lab11102020110234567893',recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for bloodsugar test',refNumber:null,recIssuer:'dsf',attachments:null,metadata:null},
-      {rec_no:'lab12102020110234567894',recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for virus test after antibody',refNumber:null,recIssuer:'sdf',attachments:null,metadata:null},
-      {rec_no:'fmly1102020110234567891',recType:'family_rec',created_on:new Date(),desc:'diabetic history',refNumber:null,recIssuer:'sdf',attachments:null,metadata:null},
-      {rec_no:'other102020110234567891',recType:'other_rec',created_on:new Date(),desc:'genric activity test',refNumber:null,recIssuer:'sdfsd',attachments:null,metadata:null}
+      {rec_no:'lab10102020110234567891',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for virus test',refNumber:null,recIssuer:'DDRC',attachments:null,metadata:null},
+      {rec_no:'sum10102020110234567892',dataValue:new Map(),recType:'summary_rec',created_on:new Date(),desc:'Summary of admission due to viral fever',refNumber:null,recIssuer:'GK Hospital',attachments:null,metadata:null},
+      {rec_no:'lab20102020110234567892',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for cuture test',refNumber:null,recIssuer:'LAb 1',attachments:null,metadata:null},
+      {rec_no:'sum10102020110234567893',dataValue:new Map(),recType:'summary_rec',created_on:new Date(),desc:'Summary of admission by accident',refNumber:null,recIssuer:'df',attachments:null,metadata:null},
+      {rec_no:'lab11102020110234567893',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for bloodsugar test',refNumber:null,recIssuer:'dsf',attachments:null,metadata:null},
+      {rec_no:'lab12102020110234567894',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for virus test after antibody',refNumber:null,recIssuer:'sdf',attachments:null,metadata:null},
+      {rec_no:'fmly1102020110234567891',dataValue:new Map(),recType:'family_rec',created_on:new Date(),desc:'diabetic history',refNumber:null,recIssuer:'sdf',attachments:null,metadata:null},
+      {rec_no:'other102020110234567891',dataValue:new Map(),recType:'other_rec',created_on:new Date(),desc:'genric activity test',refNumber:null,recIssuer:'sdfsd',attachments:null,metadata:null}
     ];
     return hrec;
   }
@@ -346,7 +417,7 @@ export class MetadataService {
     phrtype.set('alphr', 'All');
     phrtype.set('vacnan', 'Vaccinations');
     phrtype.set('algmed', 'Allergic to medicine');
-    phrtype.set('smking', 'Smoking');
+    phrtype.set('smoking', 'Smoking');
     phrtype.set('alzchlc', 'Alcaholic');
     phrtype.set('orgtrn', 'Organ Transplanted');
     return phrtype

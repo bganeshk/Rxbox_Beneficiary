@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MetadataService, ehr_bp, ehr_diabetic, ehr_tempoxypulse, ehr_other } from 'src/app/global/metadata.service';
-import { NgSwitchCase } from '@angular/common';
+import { MetadataService, ehr_bp, ehr_diabetic, ehr_tempoxypulse, HealthRec } from 'src/app/global/metadata.service';
 import { SelectItemGroup, MenuItem } from 'primeng/api';
-
+import { Message } from 'primeng//api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-mgnt-ehr',
@@ -14,13 +14,13 @@ export class MgntEhrComponent implements OnInit {
   bpData: ehr_bp[];
   diaData: ehr_diabetic[];
   tempoxyData: ehr_tempoxypulse[];
-  otherEhrs: ehr_other[];
+  otherEhrs: HealthRec[];
   newBpData: ehr_bp;
   newDiaData: ehr_diabetic;
   newTempoxyData: ehr_tempoxypulse;
-  newOtherEhr: ehr_other;
+  newOtherEhr: HealthRec;
   bpDlg: boolean;
-  latestTblItm:string;
+  latestTblItm: string;
 
   rowsize = 5;
   bpfirst = 0;
@@ -33,7 +33,7 @@ export class MgntEhrComponent implements OnInit {
   cols: any[];
   items: MenuItem[];
 
-  constructor(private mdataSrvs: MetadataService) {
+  constructor(private mdataSrvs: MetadataService, private messageService: MessageService) {
 
   }
 
@@ -42,7 +42,7 @@ export class MgntEhrComponent implements OnInit {
     this.items = [
       { label: 'Edit', icon: 'pi pi-pencil', command: (event) => this.editData() },
       { label: 'Delete', icon: 'pi pi-times', command: (event) => this.blDlgDelete('') }
-  ];
+    ];
     this.bpData = [
       { ehrId: '1', syst: 90.9, dias: 83.3, auditData: { createdBy: 'GK', created_on: new Date(), version: 1 } },
       { ehrId: '2', syst: 90.9, dias: 83.3, auditData: { createdBy: 'GK', created_on: new Date(), version: 1 } },
@@ -58,32 +58,34 @@ export class MgntEhrComponent implements OnInit {
       { ehrId: '2', temp: 90.9, oxireading: 83.3, pulsepersec: 80, auditData: { createdBy: 'GK', created_on: new Date(), version: 1 } },
       { ehrId: '3', temp: 90.9, oxireading: 83.3, pulsepersec: 80, auditData: { createdBy: 'GK', created_on: new Date(), version: 1 } }
     ];
-
+    this.otherEhrs=this.mdataSrvs.getCustSelectedRec();
   }
 
-  editData(){
-    switch(this.latestTblItm){
+  editData() {
+    switch (this.latestTblItm) {
       case 'BP': {
         this.addNewData('');
-      }case 'BS': {
+      } case 'BS': {
         this.addNewData('');
-      }case 'TO': {
+      } case 'TO': {
         this.addNewData('');
-      }case 'OE': {
+      } case 'OE': {
         this.addNewData('');
       }
     }
   }
 
   onSelectOthrOpt() {
-    this.otherEhrs = [
-      { ehrId: '1', ehrCategory: 'x', dataValue: new Map(), auditData: { createdBy: 'GK', created_on: new Date(), version: 1 } }
-    ]
-    this.otherEhrs[0].dataValue.set('attr1', this.selectedOpts + 'value1');
-    this.otherEhrs[0].dataValue.set('attr2', this.selectedOpts + 'value2');
-    this.otherEhrs[0].dataValue.set('attr3', this.selectedOpts + 'value3');
-    this.cols = Array.from(this.otherEhrs[0].dataValue.keys());
-
+    this.otherEhrs = this.mdataSrvs.getCustSelectedRec();
+    this.otherEhrs.forEach(e => {
+    if(!e){
+      e.dataValue=new Map();
+    }
+    e.dataValue.set('attr1', this.selectedOpts + 'value1');
+    e.dataValue.set('attr2', this.selectedOpts + 'value2');
+    e.dataValue.set('attr3', this.selectedOpts + 'value3');
+  });
+  this.cols = Array.from(this.otherEhrs[0].dataValue.keys());
   }
 
   next(type: string) {
@@ -198,20 +200,21 @@ export class MgntEhrComponent implements OnInit {
       }
     }
   }
+
   addNewData(ty: string) {
     this.bpDlg = true;
 
-  if(ty==''){
-    return;
-  }
-    this.newBpData=null;
-    this.newDiaData=null;
-    this.newTempoxyData=null;
-   
-  
+    if (ty == '') {
+      return;
+    }
+    this.newBpData = null;
+    this.newDiaData = null;
+    this.newTempoxyData = null;
+
+
     switch (ty) {
       case 'BP': {
-        
+
         this.newBpData = { ehrId: '', auditData: { createdBy: 'GK', created_on: new Date(), version: 1 }, dias: 0, syst: 0 };
         break;
       }
@@ -220,17 +223,15 @@ export class MgntEhrComponent implements OnInit {
         break;
       }
       case 'TO': {
-        this.newTempoxyData = { ehrId: '', auditData: { createdBy: 'GK', created_on: new Date(), version: 1 }, pulsepersec: 0, oxireading: 0,temp:0 };
+        this.newTempoxyData = { ehrId: '', auditData: { createdBy: 'GK', created_on: new Date(), version: 1 }, pulsepersec: 0, oxireading: 0, temp: 0 };
         break;
       }
       case 'OE': {
-        this.newOtherEhr = { ehrId: '', ehrCategory: null,dataValue:new Map(), auditData: { createdBy: 'GK', created_on: new Date(), version: 1 } };
+        this.newOtherEhr=this.otherEhrs[0];
+        this.newOtherEhr.dataValue =  new Map();
         this.cols.forEach(e => {
-          this.newOtherEhr.dataValue.set(e,'');
-        });
-        this.newOtherEhr.ehrCategory=this.selectedOpts;
-
-    
+          this.newOtherEhr.dataValue.set(e, '');
+        });        
         break;
       }
     }
@@ -239,9 +240,9 @@ export class MgntEhrComponent implements OnInit {
   blDlgCancel(ty: string) {
     this.bpDlg = false;
     this.newBpData = null;
-    this.newDiaData=null;
-    this.newOtherEhr=null;
-    this.newTempoxyData=null;
+    this.newDiaData = null;
+    this.newOtherEhr = null;
+    this.newTempoxyData = null;
   }
 
   blDlgSave(ty: string) {
@@ -263,17 +264,20 @@ export class MgntEhrComponent implements OnInit {
         break;
       }
       case 'OE': {
-        this.newOtherEhr.ehrId = 'dfdsa';
+        this.newOtherEhr.rec_no = 'dfdsa';
         this.otherEhrs.push(this.newOtherEhr);
         break;
       }
-    }
+    }this.messageService.clear();
+        this.messageService.add({ sticky: true, severity: 'success', summary: 'Record Saved', detail: 'Record has been saved successfully' });
+
+    
   }
 
   blDlgDelete(ty: string) {
     this.bpDlg = false;
-    if(ty==''){
-      ty=this.latestTblItm;
+    if (ty == '') {
+      ty = this.latestTblItm;
       console.debug(ty);
     }
     switch (ty) {
@@ -298,5 +302,8 @@ export class MgntEhrComponent implements OnInit {
         break;
       }
     }
+    this.messageService.clear();
+    this.messageService.add({ sticky: true, severity: 'success', summary: 'Record delted', detail: 'Record has been deleted successfully' });
+
   }
 }

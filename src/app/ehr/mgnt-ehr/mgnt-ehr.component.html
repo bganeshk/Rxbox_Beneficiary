@@ -1,11 +1,12 @@
 <div class="bdy">
-
+    <p-toast preventOpenDuplicates='true' modal='true'></p-toast>
     <div class="p-grid">
         <div class="p-col-12 p-md-6 p-lg-3">
             <p-card>
-                <p-table [value]="bpData" [(first)]="bpfirst" [scrollable]="true" [rows]='5' [paginator]="true"  [(first)]="bpfirst"
-                [contextMenu]="cm"  [(contextMenuSelection)]="newBpData" (onRowSelect)="latestTblItm='BP'"
-                selectionMode="single" [(selection)]="newBpData" dataKey="ehrId" scrollHeight="200px;">
+                <p-table [value]="bpData" [(first)]="bpfirst" [scrollable]="true" [rows]='5' [paginator]="true"
+                    [(first)]="bpfirst" [contextMenu]="cm" [(contextMenuSelection)]="newBpData"
+                    (onRowSelect)="latestTblItm='BP'" selectionMode="single" [(selection)]="newBpData" dataKey="ehrId"
+                    scrollHeight="200px;">
                     <ng-template pTemplate="caption">
                         <div class="p-grid">
                             <div class="p-col-2">
@@ -19,12 +20,13 @@
                             </div>
                             <div class="p-col-3 tblHLbl">Blood Press:</div>
                             <div class="p-col-2" style="text-align: right">
-                                <button pButton type="button" label="Add" icon="pi pi-plus" (click)="addNewData('BP')"></button>
+                                <button pButton type="button" label="Add" icon="pi pi-plus"
+                                    (click)="addNewData('BP')"></button>
                             </div>
                         </div>
                     </ng-template>
                     <ng-template pTemplate="header">
-                        <tr class="tblHLbl" >
+                        <tr class="tblHLbl">
                             <th class="tblHLbl" style="width: 25%;"> Sys</th>
                             <th class="tblHLbl" style="width: 25%;">Dias</th>
                             <th class="tblHLbl">Date</th>
@@ -42,9 +44,9 @@
         </div>
         <div class="p-col-12 p-md-6 p-lg-3">
             <p-card>
-                <p-table [value]="diaData" [(first)]="diafirst" [paginator]="true"  [scrollable]="true" [rows]='5'
-                [contextMenu]="cm"  [(contextMenuSelection)]="newDiaData"  (onRowSelect)="latestTblItm='BS'"
-                selectionMode="single" [(selection)]="newDiaData" dataKey="ehrId" scrollHeight="200px;">
+                <p-table [value]="diaData" [(first)]="diafirst" [paginator]="true" [scrollable]="true" [rows]='5'
+                    [contextMenu]="cm" [(contextMenuSelection)]="newDiaData" (onRowSelect)="latestTblItm='BS'"
+                    selectionMode="single" [(selection)]="newDiaData" dataKey="ehrId" scrollHeight="200px;">
                     <ng-template pTemplate="caption">
                         <div class="p-grid">
                             <div class="p-col-2">
@@ -58,7 +60,8 @@
                             </div>
                             <div class="p-col-3 tblHLbl">Blood Sugar</div>
                             <div class="p-col-2" style="text-align: right">
-                                <button pButton type="button" label="Add" (click)="addNewData('BS')" icon="pi pi-plus"></button>
+                                <button pButton type="button" label="Add" (click)="addNewData('BS')"
+                                    icon="pi pi-plus"></button>
                             </div>
                         </div>
                     </ng-template>
@@ -70,7 +73,7 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-rowData>
-                        <tr [pSelectableRow]="rowData"  [pContextMenuRow]="rowData">
+                        <tr [pSelectableRow]="rowData" [pContextMenuRow]="rowData">
                             <td class="tblLbl" style="width: 30%;">{{rowData.bf}}</td>
                             <td class="tblLbl" style="width: 30%;">{{rowData.af}}</td>
                             <td class="tblLbl">{{rowData['auditData']['created_on']|date}}</td>
@@ -81,9 +84,9 @@
         </div>
         <div class="p-col-12 p-md-6 p-lg-3">
             <p-card>
-                <p-table [value]="tempoxyData" [(first)]="toxyfirst" [paginator]="true"  [scrollable]="true" [rows]='5'
-                [contextMenu]="cm"  [(contextMenuSelection)]="newTempoxyData"  (onRowSelect)="latestTblItm='TO'"
-                selectionMode="single" [(selection)]="newTempoxyData" dataKey="ehrId" scrollHeight="200px;">
+                <p-table [value]="tempoxyData" [(first)]="toxyfirst" [paginator]="true" [scrollable]="true" [rows]='5'
+                    [contextMenu]="cm" [(contextMenuSelection)]="newTempoxyData" (onRowSelect)="latestTblItm='TO'"
+                    selectionMode="single" [(selection)]="newTempoxyData" dataKey="ehrId" scrollHeight="200px;">
                     <ng-template pTemplate="caption">
                         <div class="p-grid">
                             <div class="p-col-2">
@@ -97,7 +100,8 @@
                             </div>
                             <div class="p-col-3 tblHLbl">Temp: Pulse Oxy</div>
                             <div class="p-col-2" style="text-align: right">
-                                <button pButton type="button" label="Add" (click)="addNewData('TO')" icon="pi pi-plus"></button>
+                                <button pButton type="button" label="Add" (click)="addNewData('TO')"
+                                    icon="pi pi-plus"></button>
                             </div>
                         </div>
                     </ng-template>
@@ -110,7 +114,7 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-rowData>
-                        <tr [pSelectableRow]="rowData"  [pContextMenuRow]="rowData">
+                        <tr [pSelectableRow]="rowData" [pContextMenuRow]="rowData">
                             <td class="tblLbl">{{rowData.pulsepersec}}</td>
                             <td class="tblLbl">{{rowData.temp}}</td>
                             <td class="tblLbl">{{rowData.oxireading}}</td>
@@ -137,10 +141,10 @@
         </div>
         <div class="p-col-12">
             <p-card *ngIf="selectedOpts">
-                <p-table [value]="otherEhrs" [columns]="cols" [(first)]="oefirst" [scrollable]="true" [paginator]="true" 
-                [contextMenu]="cm"  [(contextMenuSelection)]="newOtherEhr"   (onRowSelect)="latestTblItm='OE'"
-                selectionMode="single" [(selection)]="newOtherEhr" dataKey="ehrId"
-                    scrollHeight="200px;" [rows]='10'>
+                <p-table [value]="otherEhrs" [columns]="cols" [(first)]="oefirst" [scrollable]="true" [paginator]="true"
+                    [contextMenu]="cm" [(contextMenuSelection)]="newOtherEhr" (onRowSelect)="latestTblItm='OE'"
+                    selectionMode="single" [(selection)]="newOtherEhr" dataKey="rec_no" scrollHeight="200px;"
+                    [rows]='5'>
                     <ng-template pTemplate="caption">
                         <div class="p-grid">
                             <div class="p-col-2">
@@ -153,7 +157,8 @@
                             </div>
                             <div class="p-col-3 tblHLbl">{{selectedOpts}}</div>
                             <div class="p-col-2" style="text-align: right">
-                                <button pButton type="button" label="Add" icon="pi pi-plus"  (click)="addNewData('OE')"></button>
+                                <button pButton type="button" label="Add" icon="pi pi-plus"
+                                    (click)="addNewData('OE')"></button>
                             </div>
                         </div>
                     </ng-template>
@@ -165,7 +170,7 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-rowData>
-                        <tr [pSelectableRow]="rowData"  [pContextMenuRow]="rowData">
+                        <tr [pSelectableRow]="rowData" [pContextMenuRow]="rowData">
                             <td class="tblLbl" *ngFor="let col of cols">{{rowData.dataValue.get(col)}}</td>
                         </tr>
                     </ng-template>
@@ -175,10 +180,9 @@
     </div>
 </div>
 <p-contextMenu #cm [model]="items"></p-contextMenu>
-<p-dialog header="Blood Pressure" [(visible)]="bpDlg"  [responsive]="true" showEffect="fade" 
-    [draggable]="false" [resizable]="false" [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '25vw'}"
-    *ngIf="newBpData" >
-    <div class="p-grid" >
+<p-dialog header="Blood Pressure" [(visible)]="bpDlg" [responsive]="true" showEffect="fade" [draggable]="false"
+    [resizable]="false" [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '25vw'}" *ngIf="newBpData">
+    <div class="p-grid">
         <div class="p-col-4">
             <label for="float-input" class="tblHLbl">Diastolic : </label>
         </div>
@@ -193,21 +197,19 @@
         </div>
     </div>
     <p-footer>
-        <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" 
-           (click)="blDlgDelete('BP')" label="Delete">
+        <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" (click)="blDlgDelete('BP')"
+            label="Delete">
         </button>
-        <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" 
-           (click)="blDlgSave('BP')" label="Save">
+        <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" (click)="blDlgSave('BP')"
+            label="Save">
         </button>
-        <button pButton type="button" class="ui-button-secondary"
-        (click)="blDlgCancel('BP')"
-        icon="pi pi-times" label="Cancel"></button>
+        <button pButton type="button" class="ui-button-secondary" (click)="blDlgCancel('BP')" icon="pi pi-times"
+            label="Cancel"></button>
     </p-footer>
 </p-dialog>
-<p-dialog header="Blood Sugar" [(visible)]="bpDlg"  [responsive]="true" showEffect="fade" 
-    [draggable]="false" [resizable]="false" [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '25vw'}"
-    *ngIf="newDiaData" >
-    <div class="p-grid" >
+<p-dialog header="Blood Sugar" [(visible)]="bpDlg" [responsive]="true" showEffect="fade" [draggable]="false"
+    [resizable]="false" [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '25vw'}" *ngIf="newDiaData">
+    <div class="p-grid">
         <div class="p-col-4">
             <label for="float-input" class="tblHLbl">Before Food : </label>
         </div>
@@ -222,21 +224,20 @@
         </div>
     </div>
     <p-footer>
-        <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" 
-           (click)="blDlgDelete('BS')" label="Delete">
+        <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" (click)="blDlgDelete('BS')"
+            label="Delete">
         </button>
-        <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" 
-           (click)="blDlgSave('BS')" label="Save">
+        <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" (click)="blDlgSave('BS')"
+            label="Save">
         </button>
-        <button pButton type="button" class="ui-button-secondary"
-        (click)="blDlgCancel('BS')"
-        icon="pi pi-times" label="Cancel"></button>
+        <button pButton type="button" class="ui-button-secondary" (click)="blDlgCancel('BS')" icon="pi pi-times"
+            label="Cancel"></button>
     </p-footer>
 </p-dialog>
-<p-dialog header="Others" [(visible)]="bpDlg"  [responsive]="true" showEffect="fade" 
-    [draggable]="false" [resizable]="false" [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '25vw'}"
-    *ngIf="newTempoxyData" >
-    <div class="p-grid" >
+<p-dialog header="Others" [(visible)]="bpDlg" [responsive]="true" showEffect="fade" [draggable]="false"
+    [resizable]="false" [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '25vw'}"
+    *ngIf="newTempoxyData">
+    <div class="p-grid">
         <div class="p-col-4">
             <label for="float-input" class="tblHLbl">Pulse/sec : </label>
         </div>
@@ -257,40 +258,61 @@
         </div>
     </div>
     <p-footer>
-        <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" 
-           (click)="blDlgDelete('TO')" label="Delete">
+        <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" (click)="blDlgDelete('TO')"
+            label="Delete">
         </button>
-        <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" 
-           (click)="blDlgSave('TO')" label="Save">
+        <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" (click)="blDlgSave('TO')"
+            label="Save">
         </button>
-        <button pButton type="button" class="ui-button-secondary"
-        (click)="blDlgCancel('TO')"
-        icon="pi pi-times" label="Cancel"></button>
+        <button pButton type="button" class="ui-button-secondary" (click)="blDlgCancel('TO')" icon="pi pi-times"
+            label="Cancel"></button>
     </p-footer>
 </p-dialog>
-<p-dialog header="Others EHRs" [(visible)]="bpDlg"  [responsive]="true" showEffect="fade" 
-    [draggable]="false" [resizable]="false" [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '25vw'}"
-    *ngIf="newOtherEhr" >
-    <div class="p-grid" >
-        <div *ngFor="let col of cols">               
+<p-dialog header="Other EHRs" [(visible)]="bpDlg" [responsive]="true" showEffect="fade" [draggable]="false"
+    [resizable]="false" [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '45vw'}" *ngIf="newOtherEhr">
+    <div class="p-grid">
+
         <div class="p-col-4">
-            <label for="float-input" class="tblHLbl">{{col}} </label>
+            <label for="float-input" class="tblHLbl">Reference #: </label>
         </div>
         <div class="p-col-8">
-            <input id="float-input" type="text" size="5" pInputText
-            [ngModel]="newOtherEhr.dataValue.get(col)" (ngModelChange)="newOtherEhr.dataValue.set(col, $event)">
+            <input id="float-input" type="text" size="25" pInputText [ngModel]="newOtherEhr.refNumber">
         </div>
-    </div>
+        <div  class="p-col-3" *ngFor="let col of cols">
+            <span>
+            <div>
+                <label for="float-input" class="tblHLbl">{{col}} </label>
+            </div>
+            <div>
+                <input id="float-input" type="text" size="5" pInputText [ngModel]="newOtherEhr.dataValue.get(col)"
+                    (ngModelChange)="newOtherEhr.dataValue.set(col, $event)">
+            </div>
+        </span>
+        </div>
+        <div class="p-col-4">
+            <label for="float-input" class="tblHLbl">Description: </label>
+        </div>
+        <div class="p-col-8">
+            <textarea pInputTextarea [rows]="5" [cols]="30" [ngModel]="newOtherEhr.desc"></textarea>
+        </div>
+        <div class="p-col-4">
+            <label for="float-input" class="tblHLbl">Files: </label>
+        </div>
+        <div class="p-col-8">
+
+            <p-fileUpload name="myfile[]" url="./upload.php" multiple="multiple" accept=".pdf,image/*"
+                maxFileSize="1000000"></p-fileUpload>
+        </div>
+
     </div>
     <p-footer>
-        <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" 
-           (click)="blDlgDelete('OE')" label="Delete">
+        <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" (click)="blDlgDelete('OE')"
+            label="Delete">
         </button>
-        <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" 
-           (click)="blDlgSave('OE')" label="Save">
+        <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" (click)="blDlgSave('OE')"
+            label="Save">
         </button>
-        <button pButton type="button" class="ui-button-secondary"
-        (click)="blDlgCancel('OE')"
-        icon="pi pi-times" label="Cancel"></button>
+        <button pButton type="button" class="ui-button-secondary" (click)="blDlgCancel('OE')" icon="pi pi-times"
+            label="Cancel"></button>
     </p-footer>
 </p-dialog>

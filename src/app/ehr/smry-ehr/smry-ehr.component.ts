@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MetadataService, HealthRec, SummaryHealthRec, DailyMed, RxNote } from 'src/app/global/metadata.service';
+import { MessageService, SelectItemGroup } from 'primeng/api';
 
 @Component({
   selector: 'app-smry-ehr',
@@ -6,10 +8,77 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./smry-ehr.component.css']
 })
 export class SmryEhrComponent implements OnInit {
+  summryRecs:SummaryHealthRec[];
+  newsmryRec:SummaryHealthRec;
+  showDlg:boolean=false;
+  otherOpts: SelectItemGroup[];
+  smryDailyMed:DailyMed[];
+  smryLabRpt:HealthRec[];
+  rxnotes:RxNote[];
 
-  constructor() { }
 
-  ngOnInit() {
+  constructor(private mdataSrvs: MetadataService, private messageService: MessageService) { }
+
+  ngOnInit() {    
+    this.otherOpts = this.mdataSrvs.getEhrCategoryDetList();
+    this.summryRecs=this.mdataSrvs.getSummaryHealthRec();
+    this.rxnotes=this.mdataSrvs.getRxNote();
   }
+
+  onDelete(rec){
+    let recs=this.summryRecs.splice(this.summryRecs.indexOf(rec),1);
+    this.summryRecs.push(recs[0]);
+    this.summryRecs.pop();
+    this.messageService.add({ sticky: false, severity: 'success', summary: 'Record Deleted', detail: 'Record has been deleted successfully' });
+  }
+  onEdit(e:SummaryHealthRec){
+    this.showDlg=true;
+    this.newsmryRec=e;  
+    console.debug(e.attachments); 
+  }
+  addNewData(){
+    this.showDlg=true;
+    
+  }
+
+  blDlgSave(){
+    if( !this.newsmryRec.rec_no){
+      this.newsmryRec.rec_no='dsaf';
+      this.summryRecs.push(this.newsmryRec);
+    }else{
+    this.summryRecs.forEach(e => {
+      if(e.rec_no===this.newsmryRec.rec_no){
+        e=this.newsmryRec;
+      }
+    });
+  }
+    this.showDlg=false;
+    this.messageService.add({ sticky: false, severity: 'success', summary: 'Record Saved', detail: 'Record has been saved successfully' });
+  }
+
+  blDlgCancel(){
+    this.showDlg=false;
+  }
+  onTabClose(event){
+    switch(event.index){
+      case 0:{
+      }case 1:{
+
+      }case 2:{
+
+      }
+    }  
+  }
+  onTabOpen(event){
+    switch(event.index){
+      case 0:{
+        this.smryDailyMed=this.mdataSrvs.getDailyMed();
+      }case 1:{
+        this.smryLabRpt=this.mdataSrvs.getLabHealthRec();
+      }case 2:{
+
+      }
+    }
+  } 
 
 }

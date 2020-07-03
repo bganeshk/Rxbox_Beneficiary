@@ -1,1 +1,151 @@
-<p>fmly-ehr works!</p>
+<div class="bdy">
+    <p-toast preventOpenDuplicates='true' modal='true' [hideTransitionOptions]="'100ms'"></p-toast>
+    <p-table [value]="fmlyRecs" [scrollable]="true" [paginator]="true"   
+    selectionMode="single" [(selection)]="newFmlyRec" dataKey="data.rec_no" scrollHeight="200px;"
+    [rows]='5'>
+    <ng-template pTemplate="caption">
+        <div class="p-grid">
+            <div class="p-col-10 tblHLbl">Family Health Record</div>
+            <div class="p-col-2" style="text-align: right">
+                <button pButton type="button" label="Add" icon="pi pi-plus"
+                    (click)="addNewData()"></button>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" >
+        <tr>
+            <th style="width: 4em;"></th>
+            <th class="tblHLbl">
+                Desc
+            </th>
+            <th class="tblHLbl">
+                Relations
+            </th>
+            <th class="tblHLbl">
+                Record type
+            </th>
+            <th style="width: 4em;"></th>
+            <th style="width: 4em;"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-expanded="expanded">
+        <tr  [pSelectableRow]="rowData">
+               <td style="width: 4em;">
+                <a href="#" [pRowToggler]="rowData">
+                    <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+                </a>
+            </td>
+            <td class="tblLbl">
+                {{rowData['data']['desc']}}
+            </td>
+            <td class="tblLbl">
+                {{rowData.realtions}}
+            </td>            
+            <td class="tblLbl">
+                {{rowData['data']['recTypeDesc']}} ({{rowData['data']['recType']}})
+            </td>
+            <td style="width: 4em;"> 
+             <button pButton icon="pi pi-trash" type="button" (click)="onDelete(rowData)"></button>
+            </td>            
+            <td style="width: 4em;"> 
+                <button pButton icon="pi pi-pencil" type="button" (click)="onEdit(rowData)"></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-rowData>
+        <tr>
+            <td [attr.colspan]="2">
+                <div class="p-grid -fluid" style="font-size:16px;padding:20px">
+                <div class="p-col-4 tblHLbl">Ref: No:</div>
+                <div class="p-col-8 tblLbl">{{rowData.data['refNumber']}}</div>
+                <div class="p-col-4 tblHLbl">Issued By</div>
+                <div class="p-col-8 tblLbl">{{rowData.data['recIssuer']}}</div>
+            </div>
+            </td>
+            <td>
+                <div  *ngFor="let key of rowData.data['dataValue'].keys()">
+                    <span class="tblHLbl">{{key}} : &nbsp;&nbsp;</span>
+                    <span class="tblLbl">{{rowData.data['dataValue'].get(key)}}</span>
+                </div>
+            </td>
+            <td [attr.colspan]="3">
+                <div >Attachements</div>
+                <div>
+                    <p-scrollPanel [style]="{width: '100%', height: '80px'}">
+                        <div class="ui-g">
+                            <span *ngFor="let fle of rowData.data['attachments']">
+                            <div class="ui-g-8 tblLblfile" >        
+                                <a class="pi pi-file-pdf ">{{fle}}</a>
+                            </div>
+
+                        </span>
+                        </div>
+                    </p-scrollPanel>
+                </div>
+            </td>
+            </tr>
+    </ng-template>
+</p-table>
+</div>
+
+<p-dialog header="Family EHR" [(visible)]="visibleDlg" [responsive]="true" showEffect="fade" [draggable]="false"
+    [resizable]="false" [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '45vw'}">
+    <div class="p-grid">
+        <div class="p-col-4">
+            <label for="float-input" class="tblHLbl">Reference #: </label>
+        </div>
+        <div class="p-col-8">
+            <input id="float-input" type="text" size="25" pInputText [(ngModel)]="newFmlyRec.data.refNumber">
+        </div> 
+        <div class="p-col-4">
+            <label for="float-input" class="tblHLbl">Relations: </label>
+        </div>
+        <div class="p-col-8 grp">
+            <p-multiSelect [options]="relations" [(ngModel)]="newFmlyRec.realtions"></p-multiSelect>
+          
+        </div> 
+        
+        <div class="p-col-4">
+            <label for="float-input" class="tblHLbl">Rec: Type</label>
+        </div>
+        <div class="p-col-8">
+            <p-dropdown #dn [options]="otherOpts" [(ngModel)]="newFmlyRec.data.recType" placeholder="Select a Category"
+            (onChange)="newFmlyRec.data.recTypeDesc=dn.label" [group]="true" class="grpitem">            
+        </p-dropdown>
+        </div>
+        <div  class="p-col-12" *ngFor="let col of newFmlyRec.data.dataValue.keys()">
+            <span>
+            <div>
+                <label for="float-input" class="tblHLbl">{{col}} </label>
+            </div>
+            <div>
+                <input id="float-input" type="text" size="5" pInputText [ngModel]="newFmlyRec.data.dataValue.get(col)"
+                    (ngModelChange)="newFmlyRec.data.dataValue.set(col, $event)">
+            </div>
+        </span>
+        </div>
+        <div class="p-col-4">
+            <label for="float-input" class="tblHLbl">Description: </label>
+        </div>
+        <div class="p-col-8">
+            <textarea pInputTextarea [rows]="5" [cols]="30" [(ngModel)]="newFmlyRec.data.desc"></textarea>
+        </div>
+        <div class="p-col-4">
+            <label for="float-input" class="tblHLbl">Files: </label>
+        </div>
+        <div class="p-col-8">
+
+            <p-fileUpload name="myfile[]" url="./upload.php" multiple="multiple" accept=".pdf,image/*"
+                maxFileSize="1000000"></p-fileUpload>
+        </div>
+
+    </div>
+    <p-footer>
+     
+        <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" (click)="blDlgSave()"
+            label="Save">
+        </button>
+        <button pButton type="button" class="ui-button-secondary" (click)="blDlgCancel()" icon="pi pi-times"
+            label="Cancel"></button>
+    </p-footer>
+</p-dialog>

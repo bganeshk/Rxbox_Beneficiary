@@ -9,7 +9,8 @@ import { OtherDocComponent } from './other-doc/other-doc.component';
 import { MgntDiaganosisComponent } from './mgnt-diaganosis/mgnt-diaganosis.component';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-
+import { MessageService } from 'primeng/api';
+import {FileUploadModule} from 'primeng/fileupload';
  
 
 const EHR_COMPONENTS = [
@@ -18,16 +19,17 @@ const EHR_COMPONENTS = [
 ]
 
 const EHR_ENTRY_COMPONENTS = [
-
+  
 ];
 
 
 @NgModule({
   declarations: [...EHR_COMPONENTS, ],
   entryComponents: [...EHR_ENTRY_COMPONENTS],
+  providers: [MessageService],
   imports: [
     EhrRoutingModule, GlobalComponentModule,TieredMenuModule,
-    ToggleButtonModule
+    ToggleButtonModule,FileUploadModule
   ]
 })
 export class EHRModule { }

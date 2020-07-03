@@ -1,1 +1,195 @@
-<p>smry-ehr works!</p>
+a<div class="bdy">
+    <p-toast preventOpenDuplicates='true'></p-toast>
+    <p-panel header="Summary Records(s)">
+        <p-carousel [value]="summryRecs" [numVisible]="3" [numScroll]="1" [circular]="false">
+            <p-header>
+                <button pButton type="button" label="Add" icon="pi pi-plus" (click)="addNewData()"></button>
+            </p-header>
+            <ng-template let-crq pTemplate="item">
+
+                <div class="cnst_detail">
+
+                    <div class="p-grid p-nogutter">
+                        <div class="p-col-12 req_data">
+                            Admission Date {{crq.admissionDt|date}} - Discharge Date{{crq.dischargeDate|date}}
+                        </div>
+                        <div class="p-col-12 req_data">
+                            Reference Number: {{crq.refNumber}}
+                        </div>
+
+                        <div class="p-col-12 req_data">
+                            {{crq.desc}}
+                        </div>
+                        <br />
+                        <div class="p-col-12 req_data2">
+                            <div class="req_data">Created By: {{crq.recIssuer}}</div>
+                            <div>
+                                <div class="req_data" *ngIf="crq.issuerDetails">
+                                    {{crq.issuerDetails.primemobile}}
+                                </div>
+                                <div class="req_data" *ngIf="!crq.issuerDetails">
+                                    Phone:
+                                </div>
+                            </div>
+                            <div class="cnst_buttons">
+                                <button pButton type="button" class="ui-button-secondary btns" (click)="onEdit(crq)"
+                                    matTooltip="Details" icon="pi pi-search"></button>
+                                <button pButton type="button" class="ui-button-secondary btns" (click)="onDelete(crq)"
+                                    matTooltip="Delete" icon="pi pi-trash"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </ng-template>
+        </p-carousel>
+    </p-panel>
+
+    <p-dialog #dv header="Consent Details" [(visible)]="showDlg" [responsive]="true" showEffect="fade" [modal]="true"
+        [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '50vw'}"        
+        header="Summary Details"
+        maximizable='true' (onAfterHide)="blDlgCancel($event)" *ngIf="newsmryRec">
+        <div class="ui-g">
+            <div [ngClass]="dv.maximized ? 'ui-g-4' : 'ui-g-12'">
+
+                <div class="ui-g">
+                    <div class="p-col-2 tblHLbl">Admission:</div>
+                    <div class="p-col-2 tblLbl">{{newsmryRec.admissionDt|date}}</div>
+                    <div class="p-col-2 tblHLbl">Reff: No:</div>
+                    <div class="p-col-6 tblLbl">{{newsmryRec.refNumber}}</div>
+                    <div class="p-col-2 tblHLbl">Discharge:</div>
+                    <div class="p-col-2 tblLbl">{{newsmryRec.dischargeDate|date}}</div>
+
+                    <div class="p-col-2 tblHLbl">Issuer:</div>
+                    <div class="p-col-6 tblLbl">{{newsmryRec.recIssuer}}</div>
+
+                    <div class="p-col-2 tblHLbl">Description: </div>
+                    <div class="p-col-10 tblLbl">{{newsmryRec.desc}}</div>
+
+                    <div class="p-col-12">
+                        <p-scrollPanel [style]="{width: '100%', height: '20em'}">
+                            The story beginnewsmryRec.des as Don Vito Corleone, the head of a New York Mafia family,
+                            oversees his daughter's wedding. His beloved son Michael has just come home from the war,
+                            but does not intend to become part of his father's business. Through Michael's life the
+                            nature of the family business becomes clear. The business of the family is just like the
+                            head of the family, kind and benevolent to those who give respect, but given to ruthless
+                            violence whenever anything stands against the good of the family. The story begins as Don
+                            Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding. His
+                            beloved son Michael has just come home from the war, but does not intend to become part of
+                            his father's business. Through Michael's life the nature of the family business becomes
+                            clear. The business of the family is just like the head of the family, kind and benevolent
+                            to those who give respect, but given to ruthless violence whenever anything stands against
+                            the good of the family.
+
+                            The story beginnewsmryRec.des as Don Vito Corleone, the head of a New York Mafia family,
+                            oversees his daughter's wedding. His beloved son Michael has just come home from the war,
+                            but does not intend to become part of his father's business. Through Michael's life the
+                            nature of the family business becomes clear. The business of the family is just like the
+                            head of the family, kind and benevolent to those who give respect, but given to ruthless
+                            violence whenever anything stands against the good of the family. The story begins as Don
+                            Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding. His
+                            beloved son Michael has just come home from the war, but does not intend to become part of
+                            his father's business. Through Michael's life the nature of the family business becomes
+                            clear. The business of the family is just like the head of the family, kind and benevolent
+                            to those who give respect, but given to ruthless violence whenever anything stands against
+                            the good of the family.
+                        </p-scrollPanel>
+                    </div>
+                </div>
+            </div>
+            <div class="p-col-8" *ngIf="dv.maximized">
+                <p-accordion (onClose)="onTabClose($event)" (onOpen)="onTabOpen($event)">
+                    <p-accordionTab header="Prescriptions" > 
+                        
+                      <p-table [value]="smryDailyMed" [scrollable]="true" scrollHeight="13em">
+                          <ng-template pTemplate="header">
+                            <tr >
+                                <th>Date</th>
+                                <th style="width: 30%;">Medicine</th>
+                                <th>Dose</th>
+                                <th style="width: 40%;">Notes</th>                                
+                            </tr>
+                          </ng-template>
+                          <ng-template pTemplate="body" let-rowData>
+                            <tr>
+                                <td>{{rowData.prescribed_dt}}</td>
+                                <td style="width: 30%;">{{rowData.med.medname}}</td>
+                                <td>{{rowData.morningQty}}-{{rowData.afternoongQty}}-{{rowData.eveninggQty}}</td>
+                                <td style="width: 40%;">{{rowData.medNotes}}</td>                                
+                            </tr>
+                          </ng-template>
+                      </p-table>
+                    </p-accordionTab>
+                    <p-accordionTab header="Lab Reports">
+                        <ng-template pTemplate="content">
+                        
+                            
+                            <p-table [value]="smryLabRpt" [scrollable]="true" scrollHeight="13em">
+                                <ng-template pTemplate="header">
+                                  <tr >
+                                      <th style="width: 10%;">Date</th>
+                                      <th >Desc</th>
+                                      <th>Details</th>
+                                      <th style="width: 60%;">Value</th>                                
+                                  </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-rowData>
+                                  <tr>
+                                      <td style="width: 10%;">{{rowData.metadata?.created_on}}</td>
+                                      <td>{{rowData.recTypeDesc}}({{rowData.recType}})</td>
+                                       <td >{{rowData.desc}}</td>                                     
+                                      <td style="width: 60%;">
+                                       <div *ngFor="let k of rowData.dataValue.keys()">
+                                       {{k}} - {{rowData.dataValue.get(k)}}
+                                    </div>
+                                    </td>                                
+                                  </tr>
+                                </ng-template>
+                            </p-table>                        
+                       
+                    </ng-template>
+                    </p-accordionTab>
+                    <p-accordionTab header="Daily Notes">
+                        <ng-template pTemplate="content">   
+                            <p-scrollPanel [style]="{width: '100%', height: '60vh'}">
+                            <div class="ui-g">                         
+                                <div *ngFor="let nt of rxnotes" class="p-col-4">
+                                    <b>{{nt.metadata?.created_on|date:'medium'}}</b> &nbsp;&nbsp;&nbsp;<i class="hint"><span ><b>Creator:</b></span> {{nt.metadata?.createdBy}}</i>
+                                <p-card >
+                                    
+                                    <p-scrollPanel [style]="{width: '100%', height: '6em'}">
+                                    {{nt.rxNote}}
+                                </p-scrollPanel>
+                                </p-card></div>
+                            </div>
+                        </p-scrollPanel>
+                        </ng-template>
+                           
+                    </p-accordionTab>
+                    <p-accordionTab header="Other Docs">
+                        <ng-template pTemplate="content">                            
+                            <p-scrollPanel [style]="{width: '100%', height: '8em'}">
+                                <div class="ui-g">
+                                    <span *ngFor="let fle of newsmryRec.attachments">
+                                    <div class="ui-g-8 tblLblfile" >        
+                                        <a class="pi pi-file-pdf ">{{fle}}</a>
+                                    </div>
+                                    <div class="ui-g-4 ">
+                                        <li class="pi pi-search tblLblptr"></li>
+                                    </div>
+                                </span>
+                                </div>
+                            </p-scrollPanel>
+                        </ng-template>    
+                    </p-accordionTab>
+                </p-accordion>
+            </div>
+        </div>
+        <p-footer>
+            <button pButton type="button" icon="pi pi-window-maximize" iconPos="left" label="Details"             
+            (click)="dv.maximize()" ></button>
+            <button pButton type="button" icon="pi pi-times" iconPos="left" label="Close" (click)="blDlgCancel()"></button>
+
+        </p-footer>
+    </p-dialog>
+</div>
