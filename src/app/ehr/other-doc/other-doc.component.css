@@ -1,0 +1,14 @@
+.bdy{
+    border: 2px;
+    padding: 10px;;
+}
+.previw{
+    background-color: #c4c5c3;
+    height: 70vh;
+}
+
+.tblHLbl {
+    color: #143983;
+    font-size: 11px;
+    font-weight: bold;
+}

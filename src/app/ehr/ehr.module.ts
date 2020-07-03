@@ -11,7 +11,7 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MessageService } from 'primeng/api';
 import {FileUploadModule} from 'primeng/fileupload';
- 
+import {TreeModule} from 'primeng/tree';
 
 const EHR_COMPONENTS = [
   MgntEhrComponent, LabEhrComponent, FmlyEhrComponent, 
@@ -29,7 +29,7 @@ const EHR_ENTRY_COMPONENTS = [
   providers: [MessageService],
   imports: [
     EhrRoutingModule, GlobalComponentModule,TieredMenuModule,
-    ToggleButtonModule,FileUploadModule
+    ToggleButtonModule,FileUploadModule,TreeModule
   ]
 })
 export class EHRModule { }

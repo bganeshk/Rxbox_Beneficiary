@@ -1,1 +1,24 @@
-<p>other-doc works!</p>
+<div class="bdy">
+    <p-contextMenu #cm [model]="items"></p-contextMenu>
+    <p-toast></p-toast>
+
+    <div class="p-grid">
+        <div class="p-col-5" >
+            <p-card [style]="{height: '75vh'}">
+            <p-tree [value]="otherDocs" [draggableNodes]="true" [droppableNodes]="true" draggableScope="self"
+                [contextMenu]="cm" selectionMode="single" [(selection)]="selectedFile"
+                scrollHeight="70vh"
+                (onNodeSelect)="nodeSelect($event)" droppableScope="self"></p-tree>
+            </p-card>
+        </div>
+        <div class="p-col-7">
+            <p-card>
+                <div class="p-grid previw">
+                    <div class="p-col-12  box-stretched">
+                        <span class="tblHLbl"> select file to preview</span>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+    </div>
+</div>
