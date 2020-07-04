@@ -1,0 +1,39 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<br/>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+<div class="p-grid">
+    <div class="p-col-4 p-offset-1">
+        <div class="p-grid" >
+            <!-- div class="p-col-6 tblBor lblBold ">
+                Current Password* :
+            </div>
+            <div class="p-col-6 tblBor  ">
+                    <input type="text" pInputText placeholder="current password" formControlName="oldpwd">
+            </div -->
+            <div class="p-col-6 tblBor lblBold ">
+                New Password* :
+            </div>
+            <div class="p-col-6 tblBor  manda">
+                    <input type="password" pPassword formControlName="newpwd1" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,15}$">
+                    <p-message severity="error" text="Your password should contain at least one alphabet, one numeric and should be 5 to 15 characters long."
+                    *ngIf="!userForm.controls['newpwd1'].valid&&userForm.controls['newpwd1'].dirty">
+                </p-message>
+            </div>
+            <div class="p-col-6 tblBor lblBold ">
+                Re-enter New Password* :
+            </div>
+            <div class="p-col-6 tblBor  ">
+                    <input type="password" pPassword formControlName="newpwd2" minlength="8">
+                    <p-message severity="error" text="Please enter valid password"
+                    *ngIf="!userForm.controls['newpwd2'].valid&&userForm.controls['newpwd2'].dirty">
+                </p-message>
+            </div>
+            <div class="p-col-6 tblBor p-offset-6 ">
+                    <button pButton type="submit" label="Change Password" icon="pi pi-check"                    
+                    [disabled]="!userForm.valid" [style]="{'width':'100px'}"></button>
+                </div>
+        </div>
+    </div>
+    <div class="p-col-7"></div>
+</div>
+</form>

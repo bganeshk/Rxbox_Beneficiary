@@ -1,0 +1,37 @@
+
+:host >>> .ui-panel .ui-panel-content{
+    width: 750px;
+    
+}
+:host >>> .acbtn .ui-button{
+    background: #274991;
+ 
+}
+:host >>>  .ui-button{
+    background: #274991;
+ 
+}
+.lftWidth{
+    width: 125px;
+}
+.rftWidth{
+    width: 350px;
+}
+
+.tblBor1 {
+    border: 1px solid #c8c8c8;    
+}
+
+.lblBold{
+  font-weight: bold;
+  color: gray;
+  text-align: right;
+}
+.lblotp{
+    font-size: 9px;
+    text-decoration-line: underline;
+    
+}
+:host >>> .manda .ui-inputtext{
+    border:1px solid #970b0b;
+}

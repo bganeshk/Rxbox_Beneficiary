@@ -1,0 +1,109 @@
+
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<div class="p-grid" style="width: 70%;">
+    <div class="p-col-11">
+        <p-carousel [value]="otherAdd" headerText="Avilable Address">
+            <ng-template let-item pTemplate="item">
+                <div class="ui-grid ui-grid-responsive lblDet" *ngIf="item.adId!=null">
+                    <div class="ui-grid-row" style="font-weight: bold;">
+                        {{item?.address_line1}}
+                    </div>
+                    <div class="ui-grid-row">
+                        {{item?.address_line2}}
+                    </div>
+                    <div class="ui-grid-row">
+                        {{item?.city}}
+                    </div>
+                    <div class="ui-grid-row">
+                        {{item?.state}} - {{item?.pin}}
+                    </div>
+                    <div class="ui-grid-row">
+                        <i class="pi pi-mobile"></i>:  {{item?.primemobile}}
+                    </div>
+                    <div class="ui-grid-row lblDel">
+                             <i class="pi pi-trash lblDel" (click)="deleteAdd(item.adId)">&nbsp;</i>
+                        </div>
+                </div>
+                <div class="p-col-1" *ngIf="item.adId==null">
+                        <img src="../../../assets/add.png"  (click)="displayAdddlg=true"
+                            style="width: 190px; height: 135px;" >                
+                    </div>
+            </ng-template>
+        </p-carousel>
+    </div>   
+</div>
+<p-dialog header="Add New Address" [(visible)]="displayAdddlg" [modal]="true" [responsive]="true"
+ [style]="{width: '350px'}"  [maximizable]="true" [baseZIndex]="10000">
+    <form [formGroup]="userAddressform" (ngSubmit)="onSubmit(userAddressform.value)">
+        <div >
+    <div class="p-grid lftWidth1" >
+        <div class="p-col-6 lftWidth">
+            Address Line1*
+        </div>
+        <div class="p-col-6 manda">
+                <input type="text" pInputText formControlName="address_line1"  placeholder="Required"  [maxLength]="75"/>
+                <p-message severity="error" text="Valid address is required" *ngIf="!userAddressform.controls['address_line1'].valid&&userAddressform.controls['address_line1'].dirty"></p-message>
+                
+        </div>
+        <div class="p-col-6 lftWidth">
+            Address Line2
+        </div>
+        <div class="p-col-6">
+                <input type="text" pInputText formControlName="address_line2"   [maxLength]="75"/>
+        </div>
+        <div class="p-col-6 lftWidth">
+            State*
+        </div>
+        <div class="p-col-6 manda">
+                <p-dropdown  [options]="cities" formControlName="state" filter="true" dataKey="value.name">
+
+                        <ng-template let-item pTemplate="selectedItem">
+                               {{item.label}}
+                            </ng-template>
+                            <ng-template let-item pTemplate="item">
+                                    <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                    {{item.label}}
+                                    </div>
+                            </ng-template>
+                </p-dropdown>
+                <p-message severity="error" text="Please selct state" *ngIf="!userAddressform.controls['state'].valid&&userAddressform.controls['state'].dirty"></p-message>
+        </div>
+
+        <div class="p-col-6 lftWidth">
+                City*
+            </div>
+            <div class="p-col-6 manda">
+                 <p-dropdown [options]="cities" formControlName="city" filter="true">
+                        <ng-template let-item pTemplate="selectedItem">
+                                {{item.label}}
+                             </ng-template>
+                             <ng-template let-item pTemplate="item">
+                                     <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                     {{item.label}}
+                                     </div>
+                             </ng-template>
+                 </p-dropdown>
+                 <p-message severity="error" text="Please selct city" *ngIf="!userAddressform.controls['city'].valid&&userAddressform.controls['city'].dirty"></p-message>
+            </div>
+        <div class="p-col-6 lftWidth">
+            Zip*
+        </div>
+        <div class="p-col-6 manda">
+                <input type="text" pInputText formControlName="pin"  pattern="^[1-9][0-9]{5}$" [maxLength]="15"/>
+                <p-message severity="error" text="Please enter valid pin" *ngIf="!userAddressform.controls['pin'].valid&&userAddressform.controls['pin'].dirty"></p-message>
+        </div>
+        <div class="p-col-6 lftWidth">
+            Phone
+        </div>
+        <div class="p-col-6"> 
+            <input type="text" pInputText pattern="^[6-9]\d{9}$" formControlName="primemobile"  [maxLength]="15"/></div>
+        <p-message severity="error" text="Please enter valid phonenumber" *ngIf="!userAddressform.controls['primemobile'].valid&&userAddressform.controls['primemobile'].dirty"></p-message>
+    </div>
+    <p-footer>
+            <button pButton type="submit" label="Submit" [disabled]="!userAddressform.valid"></button>
+      
+        <button type="button" pButton icon="pi pi-close" (click)="displayAdddlg=false" label="Cancel"
+            class="ui-button-secondary"></button>
+    </p-footer></div>
+</form>
+</p-dialog>

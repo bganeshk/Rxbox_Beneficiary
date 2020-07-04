@@ -1,0 +1,35 @@
+.lblDet{
+    font-size: 18px;
+    padding: 10px;
+    height: 30%;
+    display: block;
+}
+
+:host >>> .ui-carousel .ui-carousel-viewport .ui-carousel-items .ui-carousel-item{
+    margin: 15px;
+}
+:host >>>  .ui-button{
+    background: #274991;
+ 
+}
+
+.tblBor1 {
+    border: 1px solid #c8c8c8
+
+}
+.lftWidth{
+    width: 125px;
+}
+.lftWidth1{
+    width: 300px;
+}
+:host >>> .manda .ui-inputtext{
+    border:1px solid #970b0b;
+}
+.lblDel{    
+    color: #970b0b;
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    cursor: pointer; 
+}

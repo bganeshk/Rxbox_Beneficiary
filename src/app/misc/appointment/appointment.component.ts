@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppointmentComponent implements OnInit {
 
+  events: any[];
+
+  options: any;
+
   constructor() { }
 
   ngOnInit() {
-  }
+      }
+  
 
 }

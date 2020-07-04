@@ -1,0 +1,115 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-panel>
+    <div class="p-grid">
+        
+            <div class="p-col-9">
+                    <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+                <div class="p-grid">
+                    <div class="p-col-6 tblBor lblBold lftWidth">
+                        Name :
+                    </div>
+                    <div class="p-col-6 tblBor rftWidth">
+                        <div *ngIf="savemode">{{primaryAdd?.fname}},{{primaryAdd?.mname}},{{primaryAdd?.lname}}</div>
+                        <div class="ui-inputgroup" *ngIf="!savemode">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                            <div class="manda">
+                            <input type="text" pInputText placeholder="FirstName" formControlName="fname" [value]="primaryAdd?.fname">
+                        </div>
+                            <input type="text" pInputText placeholder="MiddleName" formControlName="mname" [value]="primaryAdd.mname?primaryAdd.mname:''">
+                            <div class="manda">
+                            <input type="text" pInputText placeholder="LastName" formControlName="lname" [value]="primaryAdd.lname?primaryAdd.lname:''">
+                            </div>
+                            <p-message severity="error" text="Please enter Name details"
+                                *ngIf="!userForm.controls['fname'].valid&&userForm.controls['fname'].dirty">
+                            </p-message>
+                        </div>
+                    </div>
+                    <div class="p-col-6 tblBor lblBold lftWidth">
+                        Mobile :
+                    </div>
+                    <div class="p-col-6 tblBor rftWidth" *ngIf="savemode">
+                        <span *ngIf="!primaryAdd.address?.primephoneStatus  && primaryAdd.address?.primemobile ">
+                            {{primaryAdd.address.primemobile}}<a *ngIf="!verifyPhoneOTP" [routerLink]="" (click)="sendOTP()" class="lblotp">
+                                Send OTP</a>
+                        </span>
+                        <span *ngIf="primaryAdd.address?.primephoneStatus  && primaryAdd.address?.primemobile">
+                            {{primaryAdd.address.primemobile}}<i class="pi pi-check" style="color: green;"></i>
+                        </span>
+                        <span *ngIf="verifyPhoneOTP">
+                        <input type="text" [(ngModel)]="phoneOTP" [ngModelOptions]="{standalone: true}" size=5> &nbsp;<a [routerLink]="" (click)="verifyOTP()" class="lblotp">
+                                Verify OTP</a>
+                                &nbsp;&nbsp;<a  [routerLink]="" (click)="sendOTP(true)" class="lblotp">
+                                    Re-send OTP</a>
+                        </span>
+                    </div>
+                    <div class="p-col-6 tblBor rftWidth ui-inputgroup" *ngIf="!savemode">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-mobile"></i></span>
+                            <div class="manda">
+                        <input type="text" pInputText pattern="^[6-9]\d{9}$" placeholder="mobile"
+                                [value]="primaryAdd.address?.primemobile"
+                            formControlName="primemobile"></div>
+                        <p-message severity="error" text="Please enter valid phonenumber"
+                            *ngIf="!userForm.controls['primemobile'].valid&&userForm.controls['primemobile'].dirty">
+                        </p-message>
+                    </div>
+                    <div class="p-col-6 tblBor lblBold lftWidth">
+                        Email :
+                    </div>
+                    <div class="p-col-6 tblBor rftWidth" *ngIf="savemode">
+                        <span *ngIf="!primaryAdd.address?.primeemailStatus  && primaryAdd.address?.primeEmail">
+                            {{primaryAdd.address.primeEmail}}<a [routerLink]="" (click)="sendEmailOTP()" class="lblotp">
+                                Send Email OTP</a>
+                        </span>
+                        <span *ngIf="primaryAdd.address?.primeemailStatus   && primaryAdd.address?.primeEmail">
+                            {{primaryAdd.address.primeEmail}}<i class="pi pi-check" style="color: green;"></i>
+                        </span>
+                    </div>
+                    <div class="p-col-6 tblBor rftWidth ui-inputgroup" *ngIf="!savemode">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+                        <input type="email" pInputText placeholder="email"
+                        [value]="primaryAdd.address?.primeEmail"
+                        pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                            formControlName="primeEmail">
+                        <p-message severity="error" text="Please enter valid email"
+                            *ngIf="!userForm.controls['primeEmail'].valid&&userForm.controls['primeEmail'].dirty">
+                        </p-message>
+                    </div>
+                    <div class="p-col-6 tblBor lblBold lftWidth">
+                        Login Id :
+                    </div>
+                    <div class="p-col-6 tblBor rftWidth">
+                        {{primaryAdd.loginId}}
+                    </div>
+                    <div class="p-col-6 tblBor lblBold lftWidth">
+                        Status :
+                    </div>
+                    <div class="p-col-6 tblBor rftWidth">
+                        <div *ngIf="primaryAdd.address?.primeemailStatus"> Approved</div>
+                        <div *ngIf="!primaryAdd.address?.primeemailStatus"> Pending Approval</div>
+                    </div>
+
+                    <div class="p-col-6 tblBor lblBold lftWidth">
+                        KYC Status :
+                    </div>
+                    <div class="p-col-6 tblBor rftWidth">
+                        <div *ngIf="prfolieStatus">Verified</div>
+                        <div *ngIf="!prfolieStatus">Pending</div>
+                    </div>
+                </div>                
+            </form>
+            </div>
+
+            <div class="p-col-1">
+                    <br/><br/><br/><br/><br/><br/><br/>
+                    <button pButton type="submit" label="Submit" icon="pi pi-check" *ngIf="!savemode"
+                    (click)="onSubmit(userForm.value)"
+                    [disabled]="!userForm.valid" [style]="{'width':'100px'}"></button>
+                    <p-button (click)="savemode=!savemode" label=" Cancel " *ngIf="!savemode" 
+                    style="margin-top: 5px;width:100px"></p-button>    
+                  
+                <p-button (click)="savemode=!savemode" label="Edit" *ngIf="savemode"></p-button>
+            </div>
+
+        
+    </div>
+</p-panel>
