@@ -8,7 +8,6 @@ import { SmryEhrComponent } from './smry-ehr/smry-ehr.component';
 import { OtherDocComponent } from './other-doc/other-doc.component';
 import { MgntDiaganosisComponent } from './mgnt-diaganosis/mgnt-diaganosis.component';
 import { TieredMenuModule } from 'primeng/tieredmenu';
-import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MessageService } from 'primeng/api';
 import {FileUploadModule} from 'primeng/fileupload';
 import {TreeModule} from 'primeng/tree';
@@ -29,7 +28,7 @@ const EHR_ENTRY_COMPONENTS = [
   providers: [MessageService],
   imports: [
     EhrRoutingModule, GlobalComponentModule,TieredMenuModule,
-    ToggleButtonModule,FileUploadModule,TreeModule
+    FileUploadModule,TreeModule
   ]
 })
 export class EHRModule { }

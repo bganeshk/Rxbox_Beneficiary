@@ -172,7 +172,7 @@ export class AppComponent implements OnInit {
       }, {
         label: 'Settings', icon: 'pi pi-cog',
         items: [
-          { label: 'profile', icon: 'pi pi-user',routerLink:'/misc', },
+          { label: 'profile', icon: 'pi pi-user',routerLink:'/profile', },
           { label: 'Notification', icon: 'pi pi-bell', routerLink:'/misc/reminder', },
           { separator: true },
           { label: 'Security', icon: 'pi pi-lock', routerLink:'/misc/ehevnt', }
