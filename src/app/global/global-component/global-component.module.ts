@@ -37,6 +37,7 @@ import {TreeTableModule} from 'primeng/treetable';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {AccordionModule} from 'primeng/accordion';
 import {ProgressBarModule} from 'primeng/progressbar';
+import {FullCalendarModule} from 'primeng/fullcalendar';
 
 const IMPORT_PRIME_MODULE = [
   MessagesModule,MessageModule,ScrollPanelModule,OverlayPanelModule,  ButtonModule,
@@ -50,7 +51,7 @@ const IMPORT_PRIME_MODULE = [
 
 const IMPORT_ANG_MODULE = [
   FormsModule, ReactiveFormsModule,MatTooltipModule,
-  MatIconModule, MatButtonModule,MatCheckboxModule
+  MatIconModule, MatButtonModule,MatCheckboxModule, FullCalendarModule
   
 ];
 
