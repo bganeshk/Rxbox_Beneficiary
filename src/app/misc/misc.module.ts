@@ -10,6 +10,7 @@ import { ReminderComponent } from './reminder/reminder.component';
 
 import { MessageService } from 'primeng/api';
 import {CalendarModule} from 'primeng/calendar';
+import { RxsettingsComponent } from './rxsettings/rxsettings.component';
 
 const MISC_COMPONENTS = [
     AppointmentComponent, EhRoadmapComponent, HealthEventsComponent, ReminderComponent,
@@ -21,7 +22,7 @@ const MISC_ENTRY_COMPONENTS = [
 ];
 
 @NgModule({
-  declarations: [...MISC_COMPONENTS],
+  declarations: [...MISC_COMPONENTS, RxsettingsComponent],
   providers: [MessageService],
   entryComponents:[...MISC_ENTRY_COMPONENTS],
   imports: [

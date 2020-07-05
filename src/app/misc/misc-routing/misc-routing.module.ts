@@ -5,6 +5,7 @@ import { ReminderComponent } from '../reminder/reminder.component';
 import { HealthEventsComponent } from '../health-events/health-events.component';
 import { EhRoadmapComponent } from '../eh-roadmap/eh-roadmap.component';
 import { Routes, RouterModule } from '@angular/router';
+import { RxsettingsComponent } from '../rxsettings/rxsettings.component';
 
 
 const routes: Routes = [{
@@ -26,6 +27,9 @@ const routes: Routes = [{
     {
       path: 'ehrmap',
       component: EhRoadmapComponent
+    },{
+      path :'security',
+      component: RxsettingsComponent
     }
   ]
 }];
