@@ -1,0 +1,25 @@
+
+.bdy{
+    border: 2px;
+    padding: 10px;;
+}
+.spacer{
+    margin: 5px;
+    padding: 5px;
+}
+.tblHLbl {
+    color: #143983;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 3px 3px 3px 3px #ececec;
+}
+.tblNHLbl {
+    color: #143983;
+    font-size: 14px;
+}
+.tblLbl {
+    color: #143983;
+    font-size: 11px;
+  
+}
