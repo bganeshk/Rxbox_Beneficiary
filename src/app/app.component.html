@@ -63,7 +63,7 @@
 </div>
 
 <div class="p-grid" >
-  <div class="p-col-2" *ngIf="!getLogginStatus()" >
+  <div class="p-col-2" *ngIf="getLogginStatus()" >
     <p-panelMenu [transitionOptions]="'0ms'" [model]="items"       
     *ngIf="(getCurrentPage()!='dashboard')"
     [style]="{'width':'100%'}" >

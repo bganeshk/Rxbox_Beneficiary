@@ -13,7 +13,8 @@ import { MgntConsentreqComponent } from '../mgnt-consentreq/mgnt-consentreq.comp
 import { MgntTemplateComponent } from '../mgnt-template/mgnt-template.component';
 
 
-const routes: Routes = [{
+const routes: Routes = [
+  {
   path: '',
   component: PagesComponent,
   children :[

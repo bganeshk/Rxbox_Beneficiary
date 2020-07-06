@@ -1,7 +1,4 @@
-.serch{
-    border: 2px;
-    padding: 10px;;
-}
+
 :host >>> .serch .ui-fieldset-legend{
     font-size: small;
 

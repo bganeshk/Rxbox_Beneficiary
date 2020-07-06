@@ -6,14 +6,18 @@ import { HealthEventsComponent } from '../health-events/health-events.component'
 import { EhRoadmapComponent } from '../eh-roadmap/eh-roadmap.component';
 import { Routes, RouterModule } from '@angular/router';
 import { RxsettingsComponent } from '../rxsettings/rxsettings.component';
+import { MiscComponent } from '../misc/misc.component';
 
 
 const routes: Routes = [{
   path: '',
-  component: null,
+  component: MiscComponent,
   children :[
     {
-      path: '',
+      path: '',      
+      component: AppointmentComponent
+    },{
+      path: 'appointment',      
       component: AppointmentComponent
     },
     {
@@ -36,6 +40,7 @@ const routes: Routes = [{
 
 @NgModule({
   declarations: [],
+  
   imports: [
     RouterModule.forChild(routes)
   ],

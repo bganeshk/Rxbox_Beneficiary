@@ -46,15 +46,15 @@ export class DashboardComponent implements OnInit {
     this.mgntMenuItems = [
       { label: 'Consents', icon: 'pi pi-fw pi-tags', routerLink: ['/pages/mgntConsent'] },
       { separator: true },
-      { label: 'Health Records', icon: 'pi pi-fw pi-inbox', routerLink: ['/pages/mgntEHR'] }
+      { label: 'Health Records', icon: 'pi pi-fw pi-inbox', routerLink: ['/ehr'] }
 
     ];
     this.miscMenuItems = [
       { label: 'Notifications ', icon: 'pi pi-fw pi-bell', routerLink: ['/pages/mgntNotification'] },
       { label: 'Export/Report', icon: 'pi pi-fw pi-tags', routerLink: ['/reports'] },
       { separator: true },
-      { label: 'My Appointments', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/pages/appointmnt'] },
-      { label: 'Set Reminder ', icon: 'pi pi-fw pi-clock', routerLink: ['/pages/reminder'] }
+      { label: 'My Appointments', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/misc/appointment']},
+      { label: 'Set Reminder ', icon: 'pi pi-fw pi-clock', routerLink: ['/misc'] }
     ];
     this.getTempChart();
   }

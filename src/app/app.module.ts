@@ -13,6 +13,11 @@ import { UserloginComponent } from './userlogin/userlogin.component';
 import { GlobalComponentModule} from './global/global-component/global-component.module';
 import { GlobalErrorHandler, GlobalBeeService } from 'bee-lib';
 import { BeeHttpInterceptorService } from 'bee-lib';
+import { PrescriptionModule } from './prescription/prescription.module';
+import { MiscModule } from './misc/misc.module';
+import { EHRModule } from './ehr/ehr.module';
+import { PagesModule } from './pages/pages.module';
+import { ProfileModule } from './profile/profile.module';
 
 
 const IMPORT_MODULE = [
@@ -26,11 +31,17 @@ const IMPORT_MODULE = [
     UserloginComponent,
     
   ],
+  
   imports: [
+    PrescriptionModule,
+    PagesModule,
+    MiscModule,
+    EHRModule,
+    ProfileModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    GlobalComponentModule,
+    GlobalComponentModule,    
     HttpClientModule, ...IMPORT_MODULE
   ],
   providers: [

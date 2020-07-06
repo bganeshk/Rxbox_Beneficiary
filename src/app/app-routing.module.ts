@@ -3,7 +3,6 @@ import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
 
-
 const routes: Routes = [
   { path: 'pages', loadChildren: './pages/pages.module#PagesModule' },
   { path: 'presc', loadChildren: './prescription/prescription.module#PrescriptionModule' },
@@ -17,12 +16,13 @@ const routes: Routes = [
   { path: '**', redirectTo: 'pages' },
 ];
 const config: ExtraOptions = {
-  useHash: true,
+ // useHash: true,
   enableTracing: true,
+  onSameUrlNavigation: 'reload'
 };
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,config)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

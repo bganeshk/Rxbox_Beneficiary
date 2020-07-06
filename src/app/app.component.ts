@@ -149,7 +149,8 @@ export class AppComponent implements OnInit {
         routerLink:'/ehr/family' },
         {
           label: 'Lab Records',
-          routerLink:'/ehr/lab', icon: 'pi pi-fw pi-pencil'
+          routerLink:'/ehr/lab',
+          icon: 'pi pi-fw pi-pencil'
          /* items: [
             { label: 'Diaganosis Req:', icon: 'pi pi-fw pi-search',routerLink:'/ehr/lab' },
             { label: 'Add/Update Data', icon: 'pi pi-fw pi-pencil',routerLink:'/ehr/mgntdiarec' }
@@ -166,7 +167,7 @@ export class AppComponent implements OnInit {
           { label: 'Appointments', icon: 'pi pi-calendar-plus',routerLink:'/misc', },
           { label: 'Reminder', icon: 'pi pi-clock', routerLink:'/misc/reminder', },
           { separator: true },
-          { label: 'Health Events', icon: 'pi pi-tag', routerLink:'/misc/ehevnt', },
+          { label: 'Health Events', icon: 'pi pi-tag', routerLink:'../misc/ehevnt', },
           { label: 'Health roadmap', icon: 'pi pi-chart-bar',routerLink:'/misc/ehrmap', }
         ]
       }, {
@@ -176,7 +177,7 @@ export class AppComponent implements OnInit {
           { label: 'Notification', icon: 'pi pi-bell', routerLink:'/misc/reminder', },
           { separator: true },
           { label: 'Security', icon: 'pi pi-lock', routerLink:'/misc/security', }
-          
+           
         ]
       }
     ];

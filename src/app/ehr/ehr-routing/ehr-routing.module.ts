@@ -7,12 +7,13 @@ import { MgntDiaganosisComponent } from '../mgnt-diaganosis/mgnt-diaganosis.comp
 import { FmlyEhrComponent } from '../fmly-ehr/fmly-ehr.component';
 import { SmryEhrComponent } from '../smry-ehr/smry-ehr.component';
 import { OtherDocComponent } from '../other-doc/other-doc.component';
+import { EhrComponent } from '../ehr/ehr.component';
 
 //mgntdiarec , lab family smrrec otrdoc 
 
 const routes: Routes = [{
   path: '',
-  component: null,
+  component: EhrComponent,
   children :[
     {
       path: '',

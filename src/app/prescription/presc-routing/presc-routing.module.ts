@@ -4,12 +4,18 @@ import { MgntPrescriptionComponent } from '../mgnt-prescription/mgnt-prescriptio
 import { Routes, RouterModule } from '@angular/router';
 import { PrescFfmntComponent } from '../presc-ffmnt/presc-ffmnt.component';
 import { PrescHistoryComponent } from '../presc-history/presc-history.component';
-const routes: Routes = [{
+import { PrescComponent } from '../presc/presc.component';
+const routes: Routes = [
+
+  {
   path: '',
-  component: null,
+  component: PrescComponent,  
   children :[
     {
       path: '',
+      component: MgntPrescriptionComponent
+    }, {
+      path: 'mgmntpres',
       component: MgntPrescriptionComponent
     },
     {
