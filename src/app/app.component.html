@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div *ngIf="getLogginStatus()">
   
   <div class="rightMnu">
@@ -24,7 +25,7 @@
 
   </div>
   <div class="footer">
-    <a routerLink="pages/dashboard" routerLinkActive="active">link</a>
+    <a routerLink="pages/dashboard" routerLinkActive="active"> &nbsp; &nbsp; Copyright © rx360.com 2020. All Rights Reserved</a>
   </div>
   
   
@@ -61,20 +62,22 @@
   </nav>
   
 </div>
-
+<p-scrollPanel [style]="{width: '100%', height: '83%'}">
 <div class="p-grid" >
-  <div class="p-col-3" *ngIf="getLogginStatus()" >
+  <div class="p-col-3" *ngIf="getLogginStatus() && (getCurrentPage()!='dashboard')" >
     <br/>
     <p-panelMenu [transitionOptions]="'0ms'" [model]="items" [multiple]="false"       
-    *ngIf="(getCurrentPage()!='dashboard')"
      class="lmenu">
     </p-panelMenu>
   
   </div>
   <div  class="p-col-9" *ngIf="getLogginStatus()&&(getCurrentPage()!='dashboard')">
+    
     <router-outlet></router-outlet>
+  
   </div>  
   <div  class="p-col-12" *ngIf="!getLogginStatus()||(getCurrentPage()=='dashboard')">
     <router-outlet></router-outlet>
   </div>
 </div>
+</p-scrollPanel>

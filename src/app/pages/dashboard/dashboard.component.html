@@ -24,27 +24,27 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                             <div class="p-col p-col-align-center">
                                 <div class="p-grid">
                                     <div class="p-col-4 hilo_ic">
-                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)"
+                                        <a [routerLink]="['/ehr','heart']" (click)="showHealthHigh($event,'heart',healthHigh)"
                                             routerLinkActive="router-link-active">
                                             <img src="../../../assets/icons/HeartCare.png" matTooltip="Heart Care"
                                                 width="35px" height="35px">
                                         </a>
                                     </div>
                                     <div class="p-col-4 hilo_ic">
-                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)"
+                                        <a [routerLink]="['/ehr','diabetic']" (click)="showHealthHigh($event,'diabetic',healthHigh)"
                                             routerLinkActive="router-link-active">
                                             <img src="../../../assets/icons/Diabetics.png" matTooltip="Diabetic Care"
                                                 width="30px" height="35px">
                                         </a>&nbsp;&nbsp;</div>
                                     <div class="p-col-4 hilo_ic">
-                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)"
+                                        <a [routerLink]="['/ehr','kidney']" (click)="showHealthHigh($event,'kidney',healthHigh)"
                                             routerLinkActive="router-link-active">
                                             <img src="../../../assets/icons/Kidney.png" matTooltip="Kidney Care"
                                                 width="33px" height="33px">
                                         </a>&nbsp;&nbsp;</div>
                                     <div class="p-col-4 hilo_ic">
-                                        <a class="hilo_lights" [routerLink]="['/profile/prf']"
-                                            (click)="healthHigh.show($event)" routerLinkActive="router-link-active">
+                                        <a class="hilo_lights" 
+                                            (click)="showHealthHigh($event,'allergy',healthHigh)" >
                                             <img src="../../../assets/icons/allergy.png" matTooltip="Allergic"
                                                 width="35px" height="35px">
                                         </a>
@@ -58,28 +58,23 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                             <div class="p-col p-col-align-center">
                                 <div class="p-grid">
                                     <div class="p-col-4 hilo_ic2">
-                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)"
-                                            routerLinkActive="router-link-active">
-                                            <img src="../../../assets/icons/Tetanus.png" matTooltip="Diabetic Care"
+                                       
+                                            <img src="../../../assets/icons/Tetanus.png" matTooltip="Tetanus Care"
                                                 width="45px" height="40px">
-                                        </a>&nbsp;&nbsp;</div>
+                                        &nbsp;&nbsp;</div>
                                     <div class="p-col-4 hilo_ic2">
-                                        <a [routerLink]="['/profile/prf']" (click)="healthHigh.show($event)"
-                                            routerLinkActive="router-link-active">
-                                            <img src="../../../assets/icons/Polio-2.png" matTooltip="Kidney Care"
+                                            <img src="../../../assets/icons/Polio-2.png" matTooltip="Polio Care"
                                                 width="45px" height="45px">
-                                        </a>&nbsp;&nbsp;</div>
+                                        &nbsp;&nbsp;</div>
                                     <div class="p-col-4 hilo_ic2">
-                                        <a class="hilo_lights" [routerLink]="['/profile/prf']"
-                                            (click)="healthHigh.show($event)" routerLinkActive="router-link-active">
-                                            <img src="../../../assets/icons/H1N1.png" matTooltip="BP Care" width="45px"
+                                            <img src="../../../assets/icons/H1N1.png" matTooltip="H1N1 Care" width="45px"
                                                 height="45px">
-                                        </a>
+                                        
                                     </div>
                                 </div>
 
                                 <div class=" p-col p-col-align-center baroption">
-                                    <a href="#">Vaccin history</a>
+                                    <a [routerLink]="['/ehr/vaccine']" routerLinkActive="router-link-active">Vaccine history</a>
                                 </div>
                             </div>
 
@@ -154,13 +149,13 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
 
                                 <div class="p-col-12 p-md-6 p-lg-3 pointer">
                                     <a [routerLink]="['/profile/prf']" routerLinkActive="router-link-active">
-                                        <img src="../../../assets/JC.png" class="circletag">
+                                        <img src="../../../assets/profile_pic.png" class="circletag">
                                         <div class="pname">pet name</div>
                                         <div class="pname">Age :
                                             <span>34</span>
                                         </div>
                                         <div class="pname">Sex :
-                                            <span>Male</span>
+                                            <span>Female</span>
                                         </div>
                                     </a>
                                 </div>
@@ -228,7 +223,7 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                         <div class="p-col-3" [ngClass]="{'unredmsg': !msg.mread}">{{msg.dt|date}}</div>
                                         <div class="p-col-1">
                                             <button pButton type="button" icon="pi pi-trash" style="font-size: 10px;"
-                                                (click)="deleteMsg($event,msg)">
+                                                (click)="deleteMsg($event,msg)" *ngIf="msg.type!='chat'">
                                             </button>
                                             
                                         </div>
@@ -258,7 +253,11 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
         </p-footer>
     </p-dialog>
 </div>
-<p-overlayPanel #healthHigh [showCloseIcon]="true" [dismissable]="true">
-    dsfsd ajd<br />sl;<br />fja<br />ds <br />as<br />ldj<br />f;<br />asdf
-    dsafldsa <br />
+<p-overlayPanel #healthHigh [showCloseIcon]="true" [dismissable]="true" >
+    
+    <ng-template pTemplate >
+        <div class="opanel">
+    {{overlaypanelContent}}
+</div>
+</ng-template>
 </p-overlayPanel>

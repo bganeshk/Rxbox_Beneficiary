@@ -26,7 +26,7 @@ export class MgntConsentComponent implements OnInit {
   displayEditDialog: boolean;
 
 
-  constructor(private mdataSrvs:MetadataService) { }
+  constructor(private mdataSrvs:MetadataService,private messageService: MessageService) { }
 
   ngOnInit() {
     this.cosnt_type=this.mdataSrvs.getConsentTypeList();
@@ -49,6 +49,10 @@ export class MgntConsentComponent implements OnInit {
 
   onDialogHide() {
     this.selectedCons = null;
+}
+
+revokeConsent(){
+  this.messageService.add({ sticky: false, severity: 'error', summary: 'Revocation failed', detail: 'Consent revocation cannot done at this moment' });
 }
     getConsents(){
       this.cosnts=[

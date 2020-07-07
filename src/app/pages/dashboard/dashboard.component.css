@@ -42,13 +42,11 @@
 :host >>> .prof .ui-card{
    
     border-radius: 1%;    
-    margin-top: 2%;
 }
 
 :host >>> .dshchart .ui-card{
     
     border-radius: 1%;    
-    margin-top: 3%;
     height: 85%;
 }
 
@@ -60,58 +58,12 @@
     height: 40%;    
 }
 
-.lblprogress{    
-    font-weight: bold;
-    font-size: 10px;
-    color: #002b80;
-}
-    
-:host >>> .prgs .ui-progressbar  {
-    margin-top: 1%;
-    background: rgb(155, 233, 172);
-    height: 5px;
-}
-
-:host >>> .prgs .ui-progressbar-value{            
-    background: rgb(8, 185, 46);
-}
-
-:host >>> .prgsE .ui-progressbar  {
-    margin-top: 1%;
-    background: rgb(231, 168, 210);
-    height: 5px;
-}
 :host >>>  .ui-button{
     background: #274991;
     color: #E6E7ED;
 }
 
-:host >>> .prgsE .ui-progressbar-value{
-         
-    background: rgb(153, 3, 103);
-}
 
-:host >>> .prgsB .ui-progressbar  {
-    margin-top: 1%;
-    background: rgb(129, 143, 187);
-    height: 5px;
-}
-
-:host >>> .prgsB .ui-progressbar-value{
-         
-    background: rgb(54, 43, 218);
-}
-
-:host >>> .prgsR .ui-progressbar  {
-    margin-top: 1%;
-    background: rgb(177, 216, 228);
-    height: 5px;
-}
-
-:host >>> .prgsR .ui-progressbar-value{         
-
-    background: rgb(38, 180, 223);
-}
 
 
 :host >>> .acbtn .ui-button{
@@ -244,4 +196,8 @@
     height: 275px;
     width: 100%;
     font-size: smaller;
+}
+.opanel{
+    display: inline-block;
+    width: 25vw;
 }

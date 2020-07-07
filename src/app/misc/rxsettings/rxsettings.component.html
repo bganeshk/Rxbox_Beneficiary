@@ -1,78 +1,77 @@
-<p-card [style]="{height:'78vh'}">     
-            <p-card styleClass="ui-card-shadow">
-                <p-header class="tblHLbl">Encryption Details</p-header>
-                <div class="p-grid">
-                    <div class="p-col-5 spacer">
-                        <span class="ui-float-label ">
-                            <input id="float-input" type="text" size="30" pInputText>
-                            <label class="tblNHLbl" for="float-input">Data Encryption Secret</label>
-                        </span>
-                    </div>
-                    <div class="p-col-5 spacer">
-                        <span class="ui-float-label ">
-                            <input id="float-input" type="text" size="30" value="xxx-xxx-9999" pInputText>
-                            <label class="tblNHLbl" for="float-input">Contact Masking pattern</label>
-                        </span>
-                    </div>
+<p-card [style]="{height:'78vh'}">
+    <div class="p-grid">
+        <div class="p-col-12 tblLbl">
+            <b class="tblHLbl">Encryption Details</b>
+        </div>
+        <div class="p-col-5 spacer">
+            <span class="ui-float-label ">
+                <input id="float-input" type="text" size="30" pInputText>
+                <label class="tblNHLbl" for="float-input">Data Encryption Secret</label>
+            </span>
+        </div>
+        <div class="p-col-5 spacer">
+            <span class="ui-float-label ">
+                <input id="float-input" type="text" size="30" value="xxx-xxx-9999" pInputText>
+                <label class="tblNHLbl" for="float-input">Contact Masking pattern</label>
+            </span>
+        </div>
+    </div>
+
+
+    <div class="p-grid">
+        <div class="p-col-12 tblLbl">
+            <b class="tblHLbl">2FA Authentication</b>
+        </div>
+        <div class="p-col-6">
+            <div class="p-grid">
+                <div class="p-col-12 tblLbl">
+                    <p-checkbox id="omn" value="val2" label="Mobile App Notification"></p-checkbox>
                 </div>
-            </p-card>
+                <div class="p-col-12 tblLbl">
 
-
-            <p-card styleClass="ui-card-shadow">
-                <p-header class="tblHLbl">2FA Authentication</p-header>
-                <div class="p-grid">
-                    <div class="p-col-6">
-                        <div class="p-grid">
-                            <div class="p-col-12 tblLbl">
-                                <p-checkbox id="omn" value="val2" label="Mobile App Notification"></p-checkbox>
-                            </div>
-                            <div class="p-col-12 tblLbl">
-
-                                <p-checkbox id="omn" value="val2" label="SMS Notification"></p-checkbox>
-                            </div>
-                            <div class="p-col-12 tblLbl">
-                                <p-checkbox id="omn" value="val2" label="Email Notification"></p-checkbox>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-col-6">
-                        <div class="p-grid">
-                            <div class="p-col-12 tblLbl">
-                                <span class ="tblNHLbl"> Secondry/Emergency 2FA</span>
-                            </div>
-                            <div class="p-col-12 tblLbl">
-                                <p-checkbox id="omn" value="val2" label="Allow Doctor's using emergency code"></p-checkbox>
-                            </div>
-                            <div class="p-col-12 tblLbl">
-                                <p-checkbox id="omn" value="val2" label="Route to secondry number"></p-checkbox>
-                            </div>
-                            <div class="p-col-12 tblLbl">
-                                <p-checkbox id="omn" value="val2" label="Auto enable with emergency call"></p-checkbox>
-                            </div>
-                        </div>
-                    </div>   
-                                   
+                    <p-checkbox id="omn" value="val2" label="SMS Notification"></p-checkbox>
                 </div>
-            </p-card>
+                <div class="p-col-12 tblLbl">
+                    <p-checkbox id="omn" value="val2" label="Email Notification"></p-checkbox>
+                </div>
+            </div>
+        </div>
+        <div class="p-col-6">
+            <div class="p-grid">
+                <div class="p-col-12 tblLbl">
+                    <span class="tblNHLbl"> Secondry/Emergency 2FA</span>
+                </div>
+                <div class="p-col-12 tblLbl">
+                    <p-checkbox id="omn" value="val2" label="Allow Doctor's using emergency code"></p-checkbox>
+                </div>
+                <div class="p-col-12 tblLbl">
+                    <p-checkbox id="omn" value="val2" label="Route to secondry number"></p-checkbox>
+                </div>
+                <div class="p-col-12 tblLbl">
+                    <p-checkbox id="omn" value="val2" label="Auto enable with emergency call"></p-checkbox>
+                </div>
+            </div>
+        </div>
 
-     
-            <p-card>
-                <p-header class="tblHLbl">Notification Setting</p-header>
+    </div>
 
-                    <div class="p-grid">
-                    
-                        <div class="p-col-12 tblLbl">
-                            <p-checkbox id="omn" value="val2" label="SMS on EHR change/Access"></p-checkbox>
-                        </div>
-                        <div class="p-col-12 tblLbl">
-                            <p-checkbox id="omn" value="val2" label="Email me EHR change/access summary per week"></p-checkbox>
-                        </div>
-                        <div class="p-col-12 tblLbl">
-                            <p-checkbox id="omn" value="val2" label="Notify only on Lab reports"></p-checkbox>
-                        </div>
-                        <div class="p-col-12 tblLbl">
-                            <p-checkbox id="omn" value="val2" label="Notify only on Consent expiry"></p-checkbox>
-                        </div>
-                    </div>
-            </p-card>
+
+    <div class="p-grid">
+        <div class="p-col-12 tblLbl">
+            <b class="tblHLbl">Notification Setting</b>
+        </div>
+        <div class="p-col-12 tblLbl">
+            <p-checkbox id="omn" value="val2" label="SMS on EHR change/Access"></p-checkbox>
+        </div>
+        <div class="p-col-12 tblLbl">
+            <p-checkbox id="omn" value="val2" label="Email me EHR change/access summary per week"></p-checkbox>
+        </div>
+        <div class="p-col-12 tblLbl">
+            <p-checkbox id="omn" value="val2" label="Notify only on Lab reports"></p-checkbox>
+        </div>
+        <div class="p-col-12 tblLbl">
+            <p-checkbox id="omn" value="val2" label="Notify only on Consent expiry"></p-checkbox>
+        </div>
+    </div>
+
 </p-card>

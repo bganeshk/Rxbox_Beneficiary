@@ -21,3 +21,10 @@
     color: #143983;
     font-size: 13px;
 }
+
+.fldsetHead{
+    color: #143983 !important;
+    font-size: 15px ;
+    font-weight: bold;
+    text-transform: capitalize ;
+}
