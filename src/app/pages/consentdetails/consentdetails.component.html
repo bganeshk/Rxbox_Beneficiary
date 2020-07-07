@@ -1,7 +1,8 @@
-<div class="bdy">
-    <p-toast></p-toast>
-    <p-table #dt [columns]="cols" [value]="cosnts" [paginator]="true" [rows]="10" [(selection)]="selectedCons"
-        dataKey="cons_id" [scrollable]="false" scrollHeight="325px"
+<p-toast></p-toast>
+<p-card>
+    
+    <p-table #dt [columns]="cols" [value]="cosnts" [paginator]="true" [rows]="5" [(selection)]="selectedCons"
+        dataKey="cons_id" [scrollable]="false" scrollHeight="325px" 
         *ngIf="record_type=='active'">
         <ng-template pTemplate="caption">
             <div >
@@ -54,7 +55,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns" let-expanded="expanded">
-            <tr [pSelectableRow]="rowData">
+            <tr [pSelectableRow]="rowData" class="tblLbl">
                 <td style="width: 45px;">
                     <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
                   
@@ -76,7 +77,7 @@
         </ng-template>
         <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
             <tr>
-                <td [attr.colspan]="columns.length + 1">
+                <td [attr.colspan]="columns.length + 2">
                     <div class="p-grid -fluid" style="font-size:16px;padding:20px">
                         <div class="p-col-12 p-md-9">
                             <div class="p-grid tblLbl">
@@ -104,7 +105,7 @@
     </p-table>
 
 
-    <p-table #dt [columns]="cols" [value]="cosnts" [paginator]="true" [rows]="10" [(selection)]="selectedCons"
+    <p-table #dt [columns]="cols" [value]="cosnts" [paginator]="true" [rows]="5" [(selection)]="selectedCons"
     *ngIf="record_type=='expired'"
     dataKey="cons_id" [scrollable]="false" scrollHeight="325px">
     <ng-template pTemplate="caption">
@@ -154,7 +155,7 @@
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns" let-expanded="expanded">
-        <tr [pSelectableRow]="rowData">
+        <tr [pSelectableRow]="rowData" class="tblLbl">
             
             <td style="width: 45px;">
                 <a href="#" [pRowToggler]="rowData">
@@ -199,4 +200,4 @@
 
 
 </p-table>
-</div>
+</p-card>

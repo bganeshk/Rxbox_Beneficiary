@@ -1,14 +1,17 @@
-
-
+.bdy{
+    position: absolute;
+    height: 200px;
+}
+ 
 .tblHLbl {
-    color: #143983;
+    color: #143983 !important;
     font-size: 11px;
     text-align: center;
     font-weight: bold;
 }
 
 .tblLbl {
-    color: #143983;
-    font-size: 14px;
+    color: #143983 !important;
+    font-size: 12px;
     padding-top: 10px;
 }

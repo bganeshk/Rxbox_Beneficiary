@@ -40,11 +40,13 @@
 .pointer{
     cursor: pointer;
 }
-
+.lmenu{
+    width: 100%;   
+}
 .rightMnu {
     position: absolute;
-    bottom: 20%;
-    left: 0%;
+    bottom: 10%;
+    right: 0%;
     z-index: 100000;
   }
   .footer{

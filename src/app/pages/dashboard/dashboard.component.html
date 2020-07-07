@@ -173,7 +173,7 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                             <img src="../../../assets/gold_star.jpg" width="20px" height="20px">
                                         </div>
                                         <div class="p-col-12 profdet ">
-                                            Daily Doseage
+                                            <a [routerLink]="['/presc/mgmntpres']" routerLinkActive="router-link-active">Daily Doseage</a>
                                             <p-table [value]="dms" [scrollable]="true" scrollHeight="100px">
                                                 <ng-template pTemplate="body" let-dm>
                                                     <tr class="profdet divhed">
@@ -226,10 +226,13 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                             <a href="" (click)="selectMsg($event,msg)">{{msg.subj}}</a>
                                         </div>
                                         <div class="p-col-3" [ngClass]="{'unredmsg': !msg.mread}">{{msg.dt|date}}</div>
-                                        <div class="p-col-2">
+                                        <div class="p-col-1">
                                             <button pButton type="button" icon="pi pi-trash" style="font-size: 10px;"
                                                 (click)="deleteMsg($event,msg)">
                                             </button>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
                                             <i class="pi pi-eye-slash" style="font-size: 20px;" *ngIf="!msg.mread"></i>
                                         </div>
                                     </div>

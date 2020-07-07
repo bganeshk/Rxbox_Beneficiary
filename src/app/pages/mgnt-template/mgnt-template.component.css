@@ -1,5 +1,5 @@
 .tblHLbl {
-    color: #143983;
+    color: #143983 !important;
     font-size: 14px;
     text-align: center;
     font-weight: bold;
@@ -14,8 +14,8 @@
     cursor: pointer;
 }
 .tblLbl {
-    color: #143983;
-    font-size: 15px;
+    color: #143983 !important;
+    font-size: 12px;
 }
 .tblLblfile{
     color: #143983;
@@ -23,9 +23,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+.pnote{
+    color: lightcoral;
+    font-size: large;
+    font-weight: bold;
+}
 .tblLblDesc{
     color: #143983;
     font-size: 15px;
+    width: 100%;
     box-shadow: 3px 3px 3px 3px #ececec;
 }

@@ -1,7 +1,7 @@
 <p-toast></p-toast>
-<div >
+<p-card [style]="{height:'81vh'}"> 
     <p-fullCalendar #fc [events]="events" [options]="options"></p-fullCalendar>
-</div>
+</p-card>
 <p-dialog header="Appointment Details" [(visible)]="showDlg" [focusOnShow]="false" [responsive]="true"
     showEffect="fade" [modal]="true" [style]="{width: '300px'}">    
     <div class="p-grid ui-fluid" *ngIf="selectEvent">

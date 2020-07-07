@@ -1,4 +1,4 @@
-<div class="bdy">
+<p-card [style]="{height:'78vh'}"> 
     <p-toast preventOpenDuplicates='true' modal='true' [hideTransitionOptions]="'100ms'"></p-toast>
     <p-table [value]="fmlyRecs" [scrollable]="true" [paginator]="true"   
     selectionMode="single" [(selection)]="newFmlyRec" dataKey="data.rec_no" scrollHeight="200px;"
@@ -86,10 +86,10 @@
             </tr>
     </ng-template>
 </p-table>
-</div>
+</p-card>
 
 <p-dialog header="Family EHR" [(visible)]="visibleDlg" [responsive]="true" showEffect="fade" [draggable]="false"
-    [resizable]="false" [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '45vw'}">
+    [resizable]="false" [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '40vw'}">
     <div class="p-grid">
         <div class="p-col-4">
             <label for="float-input" class="tblHLbl">Reference #: </label>
@@ -113,7 +113,7 @@
             (onChange)="newFmlyRec.data.recTypeDesc=dn.label" [group]="true" class="grpitem">            
         </p-dropdown>
         </div>
-        <div  class="p-col-12" *ngFor="let col of newFmlyRec.data.dataValue.keys()">
+        <div   *ngFor="let col of newFmlyRec.data.dataValue.keys()">
             <span>
             <div>
                 <label for="float-input" class="tblHLbl">{{col}} </label>
@@ -124,16 +124,17 @@
             </div>
         </span>
         </div>
+        <div class="p-col-12"></div>
         <div class="p-col-4">
             <label for="float-input" class="tblHLbl">Description: </label>
         </div>
         <div class="p-col-8">
             <textarea pInputTextarea [rows]="5" [cols]="30" [(ngModel)]="newFmlyRec.data.desc"></textarea>
         </div>
-        <div class="p-col-4">
+        <div class="p-col-2">
             <label for="float-input" class="tblHLbl">Files: </label>
         </div>
-        <div class="p-col-8">
+        <div class="p-col-10">
 
             <p-fileUpload name="myfile[]" url="./upload.php" multiple="multiple" accept=".pdf,image/*"
                 maxFileSize="1000000"></p-fileUpload>

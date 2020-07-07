@@ -33,15 +33,16 @@ min-width: 175px;
 .tblHLbl {
     color: #143983;
     font-size: 11px;
-    text-align: center;
     font-weight: bold;
 }
-
+.tblH1Lbl {
+    color: #143983;
+    font-size: 15px;
+    font-weight: bold;
+}
 .tblLbl {
     color: #143983;
     font-size: 11px;
-    text-align: center;
-    font-weight: bold;
     padding-top: 10px;
 }
 

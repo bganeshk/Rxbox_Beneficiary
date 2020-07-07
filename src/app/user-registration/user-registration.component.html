@@ -12,7 +12,7 @@ TO READ THE QR CODE https://stackblitz.com/edit/angular-qr-reader
             <p-messages [(value)]="msgs"></p-messages>
         <div class="p-gird ">
             <div class="p-col-12 divsing">
-                Register to True-B
+                Register to Rx-Box
             </div>
             <!-- form -->
             <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
@@ -24,7 +24,7 @@ TO READ THE QR CODE https://stackblitz.com/edit/angular-qr-reader
                     </p-message>
                 </div>
                 <div class="p-col-12 divcol manda">
-                    Bee Password: <br />
+                    RxBox Password: <br />
                     <input type="password" pInputText formControlName="loginpwd" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,15}$" />
                     <p-message severity="error" text="Your password should contain at least one alphabet, one numeric and should be 5 to 15 characters long."
                         *ngIf="!userForm.controls['loginpwd'].valid && userForm.controls['loginpwd'].dirty">

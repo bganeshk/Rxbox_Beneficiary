@@ -49,8 +49,8 @@ export class AppointmentComponent implements AfterViewInit, OnInit {
       eventClick: this.mngeEvent.bind(this),
       selectable: true,
       editable: true,
-      height:'80vh',
-      width:'80vw',
+      height:'70vh',
+      width:'75vw',
       defaultDate: '2017-02-01',
       headerToolbar: {
         left: 'prev,next',

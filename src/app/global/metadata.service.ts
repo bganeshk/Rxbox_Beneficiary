@@ -416,7 +416,7 @@ export class MetadataService {
     var phrtype=new Map();
     phrtype.set('alphr', 'All');
     phrtype.set('vacnan', 'Vaccinations');
-    phrtype.set('algmed', 'Allergic to medicine');
+    phrtype.set('alrmed', 'Allergic to medicine');
     phrtype.set('smoking', 'Smoking');
     phrtype.set('alzchlc', 'Alcaholic');
     phrtype.set('orgtrn', 'Organ Transplanted');

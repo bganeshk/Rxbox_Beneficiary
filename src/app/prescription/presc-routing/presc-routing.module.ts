@@ -12,9 +12,6 @@ const routes: Routes = [
   component: PrescComponent,  
   children :[
     {
-      path: '',
-      component: MgntPrescriptionComponent
-    }, {
       path: 'mgmntpres',
       component: MgntPrescriptionComponent
     },

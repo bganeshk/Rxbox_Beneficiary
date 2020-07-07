@@ -1,20 +1,22 @@
 <div>
     <p-toast preventOpenDuplicates='true' modal='true'></p-toast>
 
-    <p-card>
+    <p-card [style]="{height:'78vh'}">
         <div class="p-grid ">
             <div class="p-col-10 tblLblDesc" *ngIf="mnuType=='publi'">
-                Select the visibility of the  Health Records details which you would like to
-                share with others <b><i><u>wihtout explicit Approval</u></i></b>
-
+                <p class="pnote">Note:</p>Select the visibility of the  Health Records details which you would like to
+                share <b><i><u>wihtout explicit Approval</u></i></b>
+                <br/><br/><br/>
             </div>                      
             <div class="p-col-10 tblLblDesc" *ngIf="mnuType=='gen'">
-                Select the visibility of the  Health Records details which you would like to
-                share with others <b><i><u>based on your Approval</u></i></b> on consent access
+                <p class="pnote">Note:</p>Select the visibility of the  Health Records details which you would like to
+                share <b><i><u>based on your Approval</u></i></b> on consent access
+                <br/><br/><br/>
             </div>                      
             <div class="p-col-10 tblLblDesc" *ngIf="mnuType=='cust'">
-                Select the visibility of the customized  Health Records details which you would like to
-                assign to service provider and share with them <b><i><u>based on your Approval</u></i></b> on consent access
+                <p class="pnote">Note:</p>Select the visibility of the customized  Health Records details which you would like to
+                assign to service provider and share with them only after <b><i><u>based on your Approval</u></i></b> on consent 
+                <br/>
                 <p-panel>
                     <div class="p-grid">
                         <div class="p-col-4">
@@ -52,10 +54,10 @@
                     <ng-template pTemplate="header" let-columns>
 
 
-                        <tr>
-                            <th >RecordId</th>
-                            <th style="width: 10em;">Type</th>
-                            <th style="width: 10em;"> Created On </th>
+                        <tr class="tblLbl">
+                            <th class="tblLbl">RecordId</th>
+                            <th class="tblLbl" style="width: 10em;">Type</th>
+                            <th class="tblLbl" style="width: 10em;"> Created On </th>
                             <th style="width: 3em;"></th>
                         </tr>
                     </ng-template>
@@ -120,11 +122,11 @@
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
         <ng-template pTemplate="header" let-columns>
                   
-                        <tr>
-                            <th style="width: 3em;"></th>
-                            <th >Record No:</th>                            
-                            <th style="width: 10em;">Issuer</th>
-                            <th style="width: 10em;"> Created On </th>
+                        <tr class="tblLbl">
+                            <th class="tblLbl" style="width: 3em;"></th>
+                            <th class="tblLbl" >Record No:</th>                            
+                            <th class="tblLbl" style="width: 10em;">Issuer</th>
+                            <th class="tblLbl" style="width: 10em;"> Created On </th>
                             
                         </tr>
                     </ng-template>
@@ -159,7 +161,7 @@
             <div class="ui-g tblLbl" *ngIf="selectedNewRec">
                 <div class="ui-g-12"><b>Record No</b>:{{selectedNewRec.rec_no}}</div>
                 <div class='ui-g-7'>
-                    <div class="ui-g">        
+                    <div class="ui-g ">        
                         <div class="ui-g-12 "><b>Ref: No</b>:{{selectedNewRec.refNumber}}</div>
                         <div class="ui-g-12"><b>Issuer</b>:{{selectedNewRec.recIssuer}}</div>
                         <div class="ui-g-12" *ngIf="selectedNewRec.metadata"><b>Created On</b>:{{selectedRec.metadata.created_on}}

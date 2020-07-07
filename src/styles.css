@@ -7,3 +7,8 @@ html, body { height: 100%; margin: 0; font-family: Roboto, "Helvetica Neue", san
     color: #143983;
     height: 100%;  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.pbdy{
+    margin-right: 1vw;
+    margin-top: 1vw;        
+}

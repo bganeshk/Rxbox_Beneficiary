@@ -63,13 +63,15 @@
 </div>
 
 <div class="p-grid" >
-  <div class="p-col-2" *ngIf="getLogginStatus()" >
-    <p-panelMenu [transitionOptions]="'0ms'" [model]="items"       
+  <div class="p-col-3" *ngIf="getLogginStatus()" >
+    <br/>
+    <p-panelMenu [transitionOptions]="'0ms'" [model]="items" [multiple]="false"       
     *ngIf="(getCurrentPage()!='dashboard')"
-    [style]="{'width':'100%'}" >
+     class="lmenu">
     </p-panelMenu>
+  
   </div>
-  <div  class="p-col-10" *ngIf="getLogginStatus()&&(getCurrentPage()!='dashboard')">
+  <div  class="p-col-9" *ngIf="getLogginStatus()&&(getCurrentPage()!='dashboard')">
     <router-outlet></router-outlet>
   </div>  
   <div  class="p-col-12" *ngIf="!getLogginStatus()||(getCurrentPage()=='dashboard')">

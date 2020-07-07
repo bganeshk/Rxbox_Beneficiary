@@ -1,5 +1,5 @@
 
-<div class="serch">
+<p-card [style]="{height:'80vh'}">
     <p-toast preventOpenDuplicates='true'></p-toast>
     <p-panel *ngIf="this.consentReqStatus=='new'" header="Consent Request(s) waiting action">
         <p-tabView (onChange)="handleChange($event)">
@@ -160,6 +160,10 @@
                            </div>
                          </div>
                        <div class="cnst_buttons">
+                        <button pButton type="button" class="ui-button-secondary btns"
+                        matTooltip="Reject"    (click)="rejectReq(crq)" matTooltip="Revoke"   
+                        icon="pi pi-times"></button>
+                    
                            <button pButton type="button" class="ui-button-secondary btns"
                            (click)="showDetails(crq)" matTooltip="Details"   
                            icon="pi pi-search"></button>
@@ -221,8 +225,6 @@
         <div class="ui-g-4 tblLbl">Category : </div>
         <div class="ui-g-8">{{selectedCons.reqAccess_category}}</div>
         
-        <div class="ui-g-2 tblLbl">Remarks-: </div>
-        <div class="ui-g-10" style="display: inline-block; word-wrap: break-word;">{{selectedCons.remarks}}</div>
         <div class="ui-g-12 address" *ngIf="selectedCons.requstor_details">
             <div class="ui-g">
                 <div class="ui-g-4 tblLbl">Phone : </div>
@@ -235,6 +237,9 @@
             </div>         
         
         </div>
+        <div class="ui-g-2 tblLbl">Remarks-: </div>
+        <div class="ui-g-10" style="display: inline-block; word-wrap: break-word;">{{selectedCons.remarks}}</div>
+
     </div>
     <p-footer >
         <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" 
@@ -251,4 +256,4 @@
             label="Close"></button>
     </p-footer>
 </p-dialog>
-</div>
+</p-card>

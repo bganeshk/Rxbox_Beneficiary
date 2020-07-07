@@ -1,4 +1,4 @@
-a<div class="bdy">
+<p-card [style]="{height:'78vh'}"> 
     <p-toast preventOpenDuplicates='true'></p-toast>
     <p-panel header="Summary Records(s)">
         <p-carousel [value]="summryRecs" [numVisible]="3" [numScroll]="1" [circular]="false">
@@ -67,7 +67,7 @@ a<div class="bdy">
                     <div class="p-col-10 tblLbl">{{newsmryRec.desc}}</div>
 
                     <div class="p-col-12">
-                        <p-scrollPanel [style]="{width: '100%', height: '20em'}">
+                        <p-scrollPanel [style]="{width: '100%', height: '20em'}" class="tblLbl">
                             The story beginnewsmryRec.des as Don Vito Corleone, the head of a New York Mafia family,
                             oversees his daughter's wedding. His beloved son Michael has just come home from the war,
                             but does not intend to become part of his father's business. Through Michael's life the
@@ -103,11 +103,11 @@ a<div class="bdy">
                         
                       <p-table [value]="smryDailyMed" [scrollable]="true" scrollHeight="13em">
                           <ng-template pTemplate="header">
-                            <tr >
-                                <th>Date</th>
-                                <th style="width: 30%;">Medicine</th>
-                                <th>Dose</th>
-                                <th style="width: 40%;">Notes</th>                                
+                            <tr class="tblHLbl">
+                                <th class="tblHLbl">Date</th>
+                                <th class="tblHLbl" style="width: 30%;">Medicine</th>
+                                <th class="tblHLbl">Dose</th>
+                                <th class="tblHLbl" style="width: 40%;">Notes</th>                                
                             </tr>
                           </ng-template>
                           <ng-template pTemplate="body" let-rowData>
@@ -127,10 +127,10 @@ a<div class="bdy">
                             <p-table [value]="smryLabRpt" [scrollable]="true" scrollHeight="13em">
                                 <ng-template pTemplate="header">
                                   <tr >
-                                      <th style="width: 10%;">Date</th>
-                                      <th >Desc</th>
-                                      <th>Details</th>
-                                      <th style="width: 60%;">Value</th>                                
+                                      <th class="tblHLbl" style="width: 10%;">Date</th>
+                                      <th class="tblHLbl">Desc</th>
+                                      <th class="tblHLbl">Details</th>
+                                      <th class="tblHLbl" style="width: 60%;">Value</th>                                
                                   </tr>
                                 </ng-template>
                                 <ng-template pTemplate="body" let-rowData>
@@ -153,11 +153,11 @@ a<div class="bdy">
                         <ng-template pTemplate="content">   
                             <p-scrollPanel [style]="{width: '100%', height: '60vh'}">
                             <div class="ui-g">                         
-                                <div *ngFor="let nt of rxnotes" class="p-col-4">
+                                <div *ngFor="let nt of rxnotes" class="p-col-4 tblHLbl">
                                     <b>{{nt.metadata?.created_on|date:'medium'}}</b> &nbsp;&nbsp;&nbsp;<i class="hint"><span ><b>Creator:</b></span> {{nt.metadata?.createdBy}}</i>
                                 <p-card >
                                     
-                                    <p-scrollPanel [style]="{width: '100%', height: '6em'}">
+                                    <p-scrollPanel class="tblLbl" [style]="{width: '100%', height: '6em'}">
                                     {{nt.rxNote}}
                                 </p-scrollPanel>
                                 </p-card></div>
@@ -192,4 +192,4 @@ a<div class="bdy">
 
         </p-footer>
     </p-dialog>
-</div>
+</p-card>
