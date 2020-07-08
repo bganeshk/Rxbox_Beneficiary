@@ -16,6 +16,7 @@ export class MgntEhrComponent implements OnInit {
   tempoxyData: ehr_tempoxypulse[];
   otherEhrs: HealthRec[];
   newBpData: ehr_bp;
+  vaccineEhrs: HealthRec[];
   newDiaData: ehr_diabetic;
   newTempoxyData: ehr_tempoxypulse;
   newOtherEhr: HealthRec;
@@ -81,9 +82,12 @@ export class MgntEhrComponent implements OnInit {
     if(!e){
       e.dataValue=new Map();
     }
-    e.dataValue.set('attr1', this.selectedOpts + 'value1');
-    e.dataValue.set('attr2', this.selectedOpts + 'value2');
-    e.dataValue.set('attr3', this.selectedOpts + 'value3');
+    e.dataValue.set('Creatin', '200/ml');
+    e.dataValue.set('Cholestorl',  '210');
+    e.dataValue.set('WBC', '200000');
+    e.dataValue.set('Sample', '200/ml');
+    e.dataValue.set('ItemOne',  '210/g');
+    e.dataValue.set('ItemTwo', '200');
   });
   this.cols = Array.from(this.otherEhrs[0].dataValue.keys());
   }

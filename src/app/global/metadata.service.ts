@@ -87,7 +87,6 @@ export interface  HealthRec{
   metadata:AuditData;
 }
 
-
 export interface AuditData{
   created_on:Date;
   version:number;
@@ -170,29 +169,29 @@ export interface Medicine{
 })
 export class MetadataService {
  
-  getSummaryHealthRec():SummaryHealthRec[]{
+getSummaryHealthRec():SummaryHealthRec[]{
     let smryRecs:SummaryHealthRec[]=[];
     this.getCustSelectedRec().forEach(e => {
       let smry:SummaryHealthRec=JSON.parse(JSON.stringify(e));
       smry.admissionDt=new Date();
       smry.dischargeDate=new Date();
-      smry.refNumber=' ref '+e.rec_no;
-      smry.summaryNote=" Summary of cv "+e.rec_no;
+      smry.refNumber=e.rec_no;
+      smry.summaryNote=" Summary of case number "+e.rec_no;
       if(e.attachments){
         smry.attachments=[];  
         smry.attachments=smry.attachments.concat(e.attachments);
-        smry.refNumber=" 1111111Summary of cv "+e.rec_no;
+        smry.refNumber="EHR20200618-"+e.rec_no;
       }
       smryRecs.push(smry);
     });
     return smryRecs;
-  }
+ }
  
   getLabHealthRec():HealthRec[]{
     let fmlyRecs:HealthRec[]=[];
     this.getCustSelectedRec().forEach(e => {
-      e.dataValue.set('attr1','value1');
-      e.dataValue.set('attr2','value2');
+      e.dataValue.set('Platelet','200000');
+      e.dataValue.set('Blood Count','10000/mg');
       fmlyRecs.push(e);
     });
     return fmlyRecs;
@@ -201,19 +200,11 @@ export class MetadataService {
 
   getRxNote():RxNote[]{
     return [
-      {recId:'1',metadata:{created_on:new Date(),createdBy:'GK',version:1},
-      rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
-      {recId:'2',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
-      {recId:'3',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore  the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
-      {recId:'4',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore  the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
-      {recId:'1',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
-      {recId:'2',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
-      {recId:'3',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore  the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
-      {recId:'4',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore  the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
-      {recId:'1',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
-      {recId:'2',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
-      {recId:'3',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore  the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
-      {recId:'4',rxNote:'Aksah is looking the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore  the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore the mkonitor for simpley not without gettign anythingds a;lasdjf;lajds;lf althis fnaore'},
+      {recId:'1',metadata:{created_on:new Date(),createdBy:'Dr.GKumar',version:1},
+      rxNote:'The patient a 56-year-oldCaucasian male. He is currently diagnosed with Major Depressive Disorder and Anxiety Disorder and has been experiencing symptoms for many years. Jimpresents well, appearing well-spoken. However, upon delving deeper into his history and symptoms, he experiences a significant amount of anxiety, tension,and paranoia surrounding his day-to-day life. He has difficulties in social situations, especially meeting new people,being incrowded areas, or tolerating social situations. He often picks at his hands when relaying symptoms and is in pain daily. He experiencessignificant symptoms of depression aswell that debilitate him tothepoint of being unable to leave his houseor tent. He is easily agitated and quick to become angry.He feels that his mood shifts quickly where one moment he isfunctional and the next he can’t leave the house or tent. He is always on edge, and when feeling depressed,can’t move and it’s hard to even get out of bed. He feels shaky and unsteadyas he isolates from others'},
+      {recId:'2',rxNote:'This note has to be used only as sample note for the medical condition provided by the doctor and other medical practitioner. The situation of the note may be changing after over a period of time so reading and updating is not part of this. the notes are not updatable but new notes could be created in parallel in the system . Both notes can co-exists in the same way we looking now'},
+      {recId:'3',rxNote:'This note has to be used only as sample note for the medical condition provided by the doctor and other medical practitioner. The situation of the note may be changing after over a period of time so reading and updating is not part of this. the notes are not updatable but new notes could be created in parallel in the system . Both notes can co-exists in the same way we looking now'},
+      {recId:'4',rxNote:'This note has to be used only as sample note for the medical condition provided by the doctor and other medical practitioner. The situation of the note may be changing after over a period of time so reading and updating is not part of this. the notes are not updatable but new notes could be created in parallel in the system . Both notes can co-exists in the same way we looking now'},
 
     ]
   }
@@ -221,8 +212,8 @@ export class MetadataService {
  getFmlyHealthRec():FmlyHealthRec[]{
    let fmlyRecs:FmlyHealthRec[]=[];
     this.getCustSelectedRec().forEach(e => {
-      e.dataValue.set('attr1','value1');
-      e.dataValue.set('attr2','value2');
+      e.dataValue.set('Diabatic','230');
+      e.dataValue.set('Cholestrol','199');
       let fmlyRec:FmlyHealthRec;
       fmlyRec={realtions:['Father','Mother'],data:e}
       fmlyRecs.push(fmlyRec);
@@ -232,8 +223,8 @@ export class MetadataService {
  }
   getPrescription(): Prescription[] {
     let pres:Prescription[]=[
-      { pid:'1',prescribedBy:'Dr GK',prescribed_dt:new Date(), medNotes:'No notes',medicine:null},
-      { pid:'2',prescribedBy:'Dr GK2',prescribed_dt:new Date(), medNotes:'No notes',medicine:null}
+      { pid:'1',prescribedBy:'Dr GKumar',prescribed_dt:new Date(), medNotes:'This medical presciption does not have any valid notes. this is created as sample note to display how an actula notes looks like in the system. This may give overall idea of how notes are created and presented to the end user',medicine:null},
+      { pid:'2',prescribedBy:'Dr Xing',prescribed_dt:new Date(), medNotes:'This medical presciption does not have any valid notes. this is created as sample note to display how an actula notes looks like in the system',medicine:null}
     ]
     pres[0].medicine=this.getDailyMed();
     pres[1].medicine=this.getDailyMed();
@@ -261,66 +252,66 @@ export class MetadataService {
   }
   getMedicines():Medicine[]{
     return [
-      {id:'1',medname:'medname1',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'},
-      {id:'2',medname:'medname2',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'},
-      {id:'3',medname:'medname3',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}
+      {id:'1',medname:'Calpol-250mg',genericName:'name2',dose:'250mg',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'},
+      {id:'2',medname:'Tab-200mg',genericName:'name2',dose:'200mg',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'},
+      {id:'3',medname:'Tab3-10mg',genericName:'name2',dose:'10mg',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}
     ];
   }
   getCustSelectedRec(): HealthRec[] {
     var hrec=[
-      {rec_no:'sum10102020110234567891',dataValue:new Map() ,recType:'summary_rec',created_on:new Date(),desc:'Summary of admission due to headhache',refNumber:null,recIssuer:'GK Hospital',
+      {rec_no:'sum/10102020110/234567891',dataValue:new Map() ,recType:'summary_rec',created_on:new Date(),desc:'Summary of admission due to headhache',refNumber:null,recIssuer:'GK Hospital',
       attachments:[new URL('ftp://lab_cult_test1.pdf'),new URL('ftp://lab_cult_test1.pdf')],metadata:null},
-      {rec_no:'lab10102020110234567891',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for virus test',refNumber:null,recIssuer:'DDRC',attachments:null,metadata:null},
-      {rec_no:'sum10102020110234567892',dataValue:new Map(),recType:'summary_rec',created_on:new Date(),desc:'Summary of admission due to viral fever',refNumber:null,recIssuer:'GK Hospital',attachments:null,metadata:null},
-      {rec_no:'lab20102020110234567892',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for cuture test',refNumber:null,recIssuer:'LAb 1',attachments:null,metadata:null},
-      {rec_no:'sum10102020110234567893',dataValue:new Map(),recType:'summary_rec',created_on:new Date(),desc:'Summary of admission by accident',refNumber:null,recIssuer:'df',attachments:null,metadata:null},
-      {rec_no:'lab11102020110234567893',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for bloodsugar test',refNumber:null,recIssuer:'dsf',attachments:null,metadata:null},
-      {rec_no:'lab12102020110234567894',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for virus test after antibody',refNumber:null,recIssuer:'sdf',attachments:null,metadata:null},
-      {rec_no:'fmly1102020110234567891',dataValue:new Map(),recType:'family_rec',created_on:new Date(),desc:'diabetic history',refNumber:null,recIssuer:'sdf',attachments:null,metadata:null},
-      {rec_no:'other102020110234567891',dataValue:new Map(),recType:'other_rec',created_on:new Date(),desc:'genric activity test',refNumber:null,recIssuer:'sdfsd',attachments:null,metadata:null}
+      {rec_no:'lab/1010/2020110234567891',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for virus test',refNumber:null,recIssuer:'DDRC',attachments:null,metadata:null},
+      {rec_no:'sum/10102020110234567892',dataValue:new Map(),recType:'summary_rec',created_on:new Date(),desc:'Summary of admission due to viral fever',refNumber:null,recIssuer:'GK Hospital',attachments:null,metadata:null},
+      {rec_no:'lab/20102020110234567892',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for cuture test',refNumber:null,recIssuer:'LAb 1',attachments:null,metadata:null},
+      {rec_no:'sum/10102020110234567893',dataValue:new Map(),recType:'summary_rec',created_on:new Date(),desc:'Summary of admission by accident',refNumber:null,recIssuer:'df',attachments:null,metadata:null},
+      {rec_no:'lab/11102020110234567893',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for bloodsugar test',refNumber:null,recIssuer:'dsf',attachments:null,metadata:null},
+      {rec_no:'lab/12102020110234567894',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for virus test after antibody',refNumber:null,recIssuer:'sdf',attachments:null,metadata:null},
+      {rec_no:'fmly/1102020110234567891',dataValue:new Map(),recType:'family_rec',created_on:new Date(),desc:'diabetic history',refNumber:null,recIssuer:'sdf',attachments:null,metadata:null},
+      {rec_no:'other/102020110234567891',dataValue:new Map(),recType:'other_rec',created_on:new Date(),desc:'genric activity test',refNumber:null,recIssuer:'sdfsd',attachments:null,metadata:null}
     ];
     return hrec;
   }
 
   getDailyMed():DailyMed[]{
     var dm = [
-      { pid:'1',prescribedBy:'Dr.Ganesh kumare balasubramonian PRS',med:{ id:'1',medname:'paracetamol',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'Y', morningQty: 1, afternoongQty: 0, eveninggQty: 1, medType: 'C', medNotes: 'water mix' ,numberOfdays:-1,startDate:new Date(),endDate:new Date()},
-      { pid:'2',prescribedBy:'Dr.GK',med:{ id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'} , afterFood: 'Y', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50',numberOfdays:1,endDate:new Date() },
-      { pid:'3',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'Y', morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'4',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N/A', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:10},
-      { pid:'5',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'6',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'7',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N/A', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'8',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'9',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'10',prescribedBy:'Dr.GK',med: { id:'1',medname:'dolo-23-25ml',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N/A', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:1}
+      { pid:'1',prescribedBy:'Dr.Ganesh kumar (SRS Hospital)',med:{ id:'1',medname:'p-amol',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'Y', morningQty: 1, afternoongQty: 0, eveninggQty: 1, medType: 'C', medNotes: 'water mix' ,numberOfdays:-1,startDate:new Date(),endDate:new Date()},
+      { pid:'2',prescribedBy:'Dr.Doctor Name',med:{ id:'1',medname:'dolo-23-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'} , afterFood: 'Y', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50',numberOfdays:1,endDate:new Date() },
+      { pid:'3',prescribedBy:'Dr.Doctor Name2',med: { id:'1',medname:'Capo-23-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'Y', morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'4',prescribedBy:'Dr.Doctor Name',med: { id:'1',medname:'Abra-23-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N/A', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:10},
+      { pid:'5',prescribedBy:'Dr.Doctor Name',med: { id:'1',medname:'Kada-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'6',prescribedBy:'Dr.Doctor Name',med: { id:'1',medname:'Bara-15mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'7',prescribedBy:'Dr.Doctor Name',med: { id:'1',medname:'Tilu-43-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N/A', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'8',prescribedBy:'Dr.Doctor Name',med: { id:'1',medname:'Kotil-33-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'9',prescribedBy:'Dr.Doctor Name',med: { id:'1',medname:'Botin-23-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
+      { pid:'10',prescribedBy:'Dr.Doctor Name',med: { id:'1',medname:'Chemos-13-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N/A', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:1}
     ];
   return dm;
   }
   getConsReq(staus: string): ConsntReq[] {
    // throw new Error("Method not implemented.");
    return [
-         {reqCreated_on:new Date(),reqCreater:'gk1', access_statrdt:new Date(), reqAccess_category:['Family_health'], access_type:'view',remarks:'my ream 1 is created as remarks for fsadlfjlsadkfjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
+         {reqCreated_on:new Date(),reqCreater:'Dr.Gkumar (SRS Hospital)', access_statrdt:new Date(), reqAccess_category:['Family_health'], access_type:'view',remarks:'I am from hospital SRS, Plesae provide access to get the details of history',
           requstor_details:{
             adId:'343',
-            primemobile:'34334343',
-            primeEmail: 'eeee@elementEventFullName.ee',
-            city: 'ciuty',
+            primemobile:'3498787654',
+            primeEmail: 'exg@sample.com',
+            city: 'city',
             state: 'state',
             pin: '3434', primephoneStatus:null, primeemailStatus:null, 
-            address_line1:'address_line1', 
-            address_line2 :'address_line2'
+            address_line1:'address-line1', 
+            address_line2 :'address-line2'
           }
         },
-         {reqCreated_on:new Date(),reqCreater:'gk2', access_statrdt:new Date(), reqAccess_category:['Cardiac'], access_type:'All',remarks:'my ream 1 is created as remarks for fsadlfjlsadkfjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'gk3', access_statrdt:new Date(), reqAccess_category:['Summary'], access_type:'All',remarks:'my ream 1 is created as remarks for fsadlfjlsadkfjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'gk4', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'view',remarks:'my ream 1 is created as remarks for fsadlfjlsadkfjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'gk5', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'All',remarks:'my ream 1 is created as remarks for fsadlfjlsadkfjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'gk6', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'',remarks:'my ream 1 is created as remarks for fsadlfjlsadkfjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'gk7', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'',remarks:'my ream 1 is created as remarks for fsadlfjlsadkfjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'gk8', access_statrdt:new Date(), reqAccess_category:[''], access_type:'',remarks:'my ream 1 is created as remarks for fsadlfjlsadkfjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'gk9', access_statrdt:new Date(), reqAccess_category:[''], access_type:'',remarks:'my ream 1 is created as remarks for fsadlfjlsadkfjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'gk10', access_statrdt:new Date(), reqAccess_category:[''], access_type:'',remarks:'my ream 1 is created as remarks for fsadlfjlsadkfjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', requstor_details:null} ,          
+         {reqCreated_on:new Date(),reqCreater:'Dr GRS2', access_statrdt:new Date(), reqAccess_category:['Cardiac'], access_type:'All',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
+         {reqCreated_on:new Date(),reqCreater:'Dr GRS3', access_statrdt:new Date(), reqAccess_category:['Summary'], access_type:'All',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
+         {reqCreated_on:new Date(),reqCreater:'Dr GRS4', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'view',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
+         {reqCreated_on:new Date(),reqCreater:'Dr GRS2', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'All',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
+         {reqCreated_on:new Date(),reqCreater:'Dr GRS2', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
+         {reqCreated_on:new Date(),reqCreater:'Dr Klm kong S3', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
+         {reqCreated_on:new Date(),reqCreater:'SRS', access_statrdt:new Date(), reqAccess_category:[''], access_type:'',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
+         {reqCreated_on:new Date(),reqCreater:'Kolmn', access_statrdt:new Date(), reqAccess_category:[''], access_type:'',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
+         {reqCreated_on:new Date(),reqCreater:'Komn', access_statrdt:new Date(), reqAccess_category:[''], access_type:'',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,          
    ];
   }
   getConsentValidityUnit(): SelectItem[] {
@@ -356,25 +347,26 @@ export class MetadataService {
       {
         label: 'Heart/Cardiac',
         items: [
-          { label: 'Procedure', value: 'CAR_PRO' },
-          { label: 'Other', value: 'CAR_OTH' }
+          { label: 'Procedures', value: 'CAR_PRO' },
+          { label: 'Other Cardiac', value: 'CAR_OTH' }
         ]
       },  {
-        label: 'Phsycology & Mental',
+        label: 'Psychology & Mental',
         items: [
           { label: 'Counseling', value: 'MENT_COUS' },
-          { label: 'Others', value: 'MENT_OTH' },
+          { label: 'Others psychology', value: 'MENT_OTH' },
         ]
       }, {
-        label: 'Eye/opthalmic',
+        label: 'Eye/Opthalmic',
         items: [
-          { label: 'Cadillac', value: 'Cadillac' },
+          { label: 'Vision related', value: 'VSI_EYE' },
+          { label: 'Other Opthalmic', value: 'OPT_EYE' },
         ]
       },{
         label: 'Sexual Records',
         items: [
-          { label: 'Skin & Infections', value: 'SEX_SKINF' },
-          { label: 'Other', value: 'SEX_OTH' },          
+          { label: 'Skin & Infections', value: 'SEX_SKIN' },
+          { label: 'Other Skin', value: 'SEX_OTH' },          
         ]
       },
        {
@@ -408,20 +400,21 @@ export class MetadataService {
     ghrtype.set('diarec', 'Diabetic Records');
     ghrtype.set('prsrec','Pressure Records');
     ghrtype.set('crdrec','Cardiac Record');
-    ghrtype.set('nodrec','Neuro diceces Records');
-    ghrtype.set('dlsrec','Daialysis Records');
+    ghrtype.set('nodrec','Neuro diseases Records');
+    ghrtype.set('dlsrec','Dialysis Records');
     return ghrtype
   }
   private getPersonalHealthType(){
     var phrtype=new Map();
     phrtype.set('alphr', 'All');
-    phrtype.set('vacnan', 'Vaccinations');
-    phrtype.set('alrmed', 'Allergic to medicine');
+    phrtype.set('vacnan', 'Vaccination Details');
+    phrtype.set('alrmed', 'Allergic Details');
     phrtype.set('smoking', 'Smoking');
-    phrtype.set('alzchlc', 'Alcaholic');
+    phrtype.set('alzchlc', 'Alcoholic');
     phrtype.set('orgtrn', 'Organ Transplanted');
-    return phrtype
-    
+    phrtype.set('hevent', 'Health Events');
+    phrtype.set('hroadmap', 'Health Roadmap');
+    return phrtype    
     
   }
   private getEHealthType(){

@@ -260,7 +260,7 @@
         "data":[
             {"msgId":1,"type":"msg","subj":"Welcome","body":"Welcome to true bee loyality programe","dt":"9/9/2019"},
             {"msgId":2,"type":"noti","subj":"Consent Req: from KIMS","body":"Welcome to true bee loyality programe","dt":"9/9/2019"},
-            {"msgId":3,"type":"chat","subj":"(Dr.Gkumar) As pert the diag..","body":"Welcome to true bee loyality programe","dt":"9/9/2019"},
+            {"msgId":3,"type":"chat","subj":"(Dr.Gkumar) As part of the diag..","body":"Welcome to true bee loyality programe","dt":"9/9/2019"},
             {"msgId":4,"type":"msg","subj":"Your first message","body":"Welcome to true bee loyality programe","dt":"9/9/2019"},
             {"msgId":5,"type":"noti","subj":"Consent Req: from Dr.Reddy","body":"Welcome to true bee loyality programe","dt":"9/9/2019"}
         ]  

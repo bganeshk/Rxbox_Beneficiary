@@ -10,11 +10,21 @@
                 <div class="cnst_detail">
 
                     <div class="p-grid p-nogutter">
-                        <div class="p-col-12 req_data">
-                            Admission Date {{crq.admissionDt|date}} - Discharge Date{{crq.dischargeDate|date}}
+                        <div class="p-col-4 ">
+                            Admission Date:
                         </div>
-                        <div class="p-col-12 req_data">
-                            Reference Number: {{crq.refNumber}}
+                        <div class="p-col-8 req_data">
+                            {{crq.admissionDt|date}} 
+                        </div>
+                        <div class="p-col-4">Discharge Date:</div>
+                        <div class="p-col-8 req_data">
+                            {{crq.dischargeDate|date}}
+                        </div>
+                        <div class="p-col-4">
+                            Reference Number:
+                        </div>
+                        <div class="p-col-8 req_data">
+                             {{crq.refNumber}}
                         </div>
 
                         <div class="p-col-12 req_data">
@@ -25,11 +35,9 @@
                             <div class="req_data">Created By: {{crq.recIssuer}}</div>
                             <div>
                                 <div class="req_data" *ngIf="crq.issuerDetails">
-                                    {{crq.issuerDetails.primemobile}}
+                                   Phone: {{crq.issuerDetails.primemobile}}
                                 </div>
-                                <div class="req_data" *ngIf="!crq.issuerDetails">
-                                    Phone:
-                                </div>
+                               
                             </div>
                             <div class="cnst_buttons">
                                 <button pButton type="button" class="ui-button-secondary btns" (click)="onEdit(crq)"

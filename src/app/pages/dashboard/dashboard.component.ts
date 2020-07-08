@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
 
     ];
     this.miscMenuItems = [
-      { label: 'Notifications ', icon: 'pi pi-fw pi-bell', routerLink: ['/misc/security'] },
+      { label: 'Settings ', icon: 'pi pi-fw pi-cog', routerLink: ['/misc/security'] },
       { label: 'Export/Report', icon: 'pi pi-fw pi-tags', routerLink: ['/reports'] },
       { separator: true },
       { label: 'My Appointments', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/misc/appointment']},

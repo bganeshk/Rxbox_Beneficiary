@@ -1,10 +1,11 @@
 <p-card [style]="{height:'78vh'}"> 
     <p-toast preventOpenDuplicates='true' modal='true'></p-toast>
-    <p-fieldset [toggleable]="true" >
-        <p-header class="tblHLbl">Generic Records</p-header>
+    <p-accordion [multiple]="false">
+
+    <p-accordionTab header="Generic Records" [selected]="true">
         <div class="p-grid">
             <div class="p-col-12 p-md-6 p-lg-4">
-                <p-card>
+             
                     <p-table [value]="bpData" [(first)]="bpfirst" [scrollable]="true" [rows]='5' [paginator]="true"
                         [(first)]="bpfirst" [contextMenu]="cm" [(contextMenuSelection)]="newBpData"
                         (onRowSelect)="latestTblItm='BP'" selectionMode="single" [(selection)]="newBpData" dataKey="ehrId"
@@ -42,10 +43,10 @@
                             </tr>
                         </ng-template>
                     </p-table>
-                </p-card>
+               
             </div>
             <div class="p-col-12 p-md-6 p-lg-4">
-                <p-card>
+               
                     <p-table [value]="diaData" [(first)]="diafirst" [paginator]="true" [scrollable]="true" [rows]='5'
                         [contextMenu]="cm" [(contextMenuSelection)]="newDiaData" (onRowSelect)="latestTblItm='BS'"
                         selectionMode="single" [(selection)]="newDiaData" dataKey="ehrId" scrollHeight="200px;">
@@ -82,10 +83,10 @@
                             </tr>
                         </ng-template>
                     </p-table>
-                </p-card>
+               
             </div>
             <div class="p-col-12 p-md-6 p-lg-4">
-                <p-card>
+                
                     <p-table [value]="tempoxyData" [(first)]="toxyfirst" [paginator]="true" [scrollable]="true" [rows]='5'
                         [contextMenu]="cm" [(contextMenuSelection)]="newTempoxyData" (onRowSelect)="latestTblItm='TO'"
                         selectionMode="single" [(selection)]="newTempoxyData" dataKey="ehrId" scrollHeight="200px;">
@@ -124,31 +125,22 @@
                             </tr>
                         </ng-template>
                     </p-table>
-                </p-card>
+               
             </div>
  
         </div>
-    </p-fieldset>
-    <p-fieldset  [toggleable]="true" [collapsed]="true">
-        <p-header class="tblHLbl">Vaccine Records</p-header>
-    </p-fieldset>
-    <p-fieldset  [toggleable]="true" [collapsed]="true">
-        <p-header class="tblHLbl">Other Records</p-header>
-        <div class="p-grid">
-            <div class="p-col-12 p-md-6 p-lg-4">
-                  <div class="grp">
-                            <label for="dsel" class="tblLbl">Select Type</label><br/>
+    </p-accordionTab>
+    <p-accordionTab>
+        <p-header class="tblHLbl">Other Records
+            <label for="dsel" class="tblLbl">Select Type :</label>
                             <p-dropdown [options]="otherOpts" [(ngModel)]="selectedOpts" placeholder="Select a Category"
                                 id="dsel"    
                             (onChange)="onSelectOthrOpt()" [group]="true" class="grpitem">
-    
                             </p-dropdown>
-                            
-                        </div>
-   
-            </div>
+        </p-header>
+        <div class="p-grid">
             <div class="p-col-12">
-                <p-card *ngIf="selectedOpts">
+                <div *ngIf="selectedOpts">
                     <p-table [value]="otherEhrs" [columns]="cols" [(first)]="oefirst" [scrollable]="true" [paginator]="true"
                         [contextMenu]="cm" [(contextMenuSelection)]="newOtherEhr" (onRowSelect)="latestTblItm='OE'"
                         selectionMode="single" [(selection)]="newOtherEhr" dataKey="rec_no" scrollHeight="200px;"
@@ -183,10 +175,53 @@
                             </tr>
                         </ng-template>
                     </p-table>
-                </p-card>
+                </div>
             </div>
         </div>
-    </p-fieldset>
+    </p-accordionTab>
+    <p-accordionTab  header="Vaccine Records">
+        <div class="p-grid">
+            <div class="p-col-12">
+                <div *ngIf="selectedOpts">
+                    <p-table [value]="vaccineEhrs" [columns]="cols" [(first)]="oefirst" [scrollable]="true" [paginator]="true"
+                        [contextMenu]="cm" [(contextMenuSelection)]="newOtherEhr" (onRowSelect)="latestTblItm='OE'"
+                        selectionMode="single" [(selection)]="newOtherEhr" dataKey="rec_no" scrollHeight="200px;"
+                        [rows]='5'>
+                        <ng-template pTemplate="caption">
+                            <div class="p-grid">
+                                <div class="p-col-2">
+                                    <button type="button" pButton icon="pi pi-chevron-left" style="margin-right:.5em"
+                                        (click)="prev('OE')" [disabled]="isFirstPage('OE')"></button>
+                                    <button type="button" pButton icon="pi pi-refresh" (click)="reset('OE')"
+                                        style="margin-right:.5em"></button>
+                                    <button type="button" pButton icon="pi pi-chevron-right" (click)="next('OE')"
+                                        [disabled]="isLastPage('OE')"></button>
+                                </div>
+                                <div class="p-col-3 tblHLbl">{{selectedOpts}}</div>
+                                <div class="p-col-2" style="text-align: right">
+                                    <button pButton type="button" label="Add" icon="pi pi-plus"
+                                        (click)="addNewData('OE')"></button>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header" let-columns>
+                            <tr class="tblHLbl">
+                                <th class="tblHLbl" *ngFor="let col of columns">
+                                    {{col}}
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData>
+                            <tr [pSelectableRow]="rowData" [pContextMenuRow]="rowData">
+                                <td class="tblLbl" *ngFor="let col of cols">{{rowData.dataValue.get(col)}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>  
+    </p-accordionTab>
+</p-accordion>
 </p-card>
 <p-contextMenu #cm [model]="items"></p-contextMenu>
 <p-dialog header="Blood Pressure" [(visible)]="bpDlg" [responsive]="true" showEffect="fade" [draggable]="false"
@@ -298,17 +333,17 @@
             </div>
         </span>
         </div>
-        <div class="p-col-4">
+        <div class="p-col-12"></div>
+        <div class="p-col-2">
             <label for="float-input" class="tblHLbl">Description: </label>
         </div>
-        <div class="p-col-8">
+        <div class="p-col-10">
             <textarea pInputTextarea [rows]="5" [cols]="30" [ngModel]="newOtherEhr.desc"></textarea>
         </div>
-        <div class="p-col-4">
+        <div class="p-col-2">
             <label for="float-input" class="tblHLbl">Files: </label>
         </div>
-        <div class="p-col-8">
-
+        <div class="p-col-10">
             <p-fileUpload name="myfile[]" url="./upload.php" multiple="multiple" accept=".pdf,image/*"
                 maxFileSize="1000000"></p-fileUpload>
         </div>
