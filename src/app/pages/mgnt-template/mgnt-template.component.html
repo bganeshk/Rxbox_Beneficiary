@@ -1,7 +1,7 @@
 <div>
     <p-toast preventOpenDuplicates='true' modal='true'></p-toast>
 
-    <p-card [style]="{height:'78vh'}">
+    <p-card [style]="{height:'85vh'}">
         <div class="p-grid ">
             <div class="p-col-10 tblLblDesc" *ngIf="mnuType=='publi'">
                 <p class="pnote">Note:</p>Select the visibility of the  Health Records details which you would like to
@@ -38,8 +38,8 @@
             </div>                      
             
             <div class="p-col-6" *ngIf="mnuType=='cust'">
-                <p-scrollPanel [style]="{height:'30vh', width:'100%'}">
-                <p-card [style]="{ width:'100%'}">
+                <p-scrollPanel [style]="{height:'28vh', width:'100%'}">
+                <p-card [style]="{ width:'60vw'}">
                   
                     <p-table [columns]="cols" [value]="custSelectedRecs" [paginator]="true" [rows]="5" 
                     [showCurrentPageReport]="true" selectionMode="single"
@@ -79,8 +79,9 @@
                 </p-card>
             </p-scrollPanel>
              </div>  
+             
             <div class="p-col-6" *ngFor="let typ of healthType">
-               
+                <p-scrollPanel [style]="{height:'28vh', width:'100%'}">  
                     <div class="tblLbl">
                         <b>{{typ.typeName}} Health</b>
                     </div>
@@ -88,6 +89,9 @@
                         <div class="p-col-6" *ngFor="let typ of typ.typeOpt | keyvalue"
                             (click)="setVisibility(typ.key)">
                             <div>
+                                <p-checkbox [value]="typ.value" matTooltip="Edit/Create">
+                                    <div class="tblLblptr">Edit/Create</div>
+                                </p-checkbox>
                                 <li class="pi pi-eye tblLblptr" *ngIf="visibilty.get(typ.key)">
                                     {{typ.value}}
                                 </li>
@@ -96,10 +100,11 @@
                                         {{typ.value}}
                                     </span>
                                 </li>
+                                
                             </div>
                         </div>
                     </div>
-                
+                </p-scrollPanel>
             </div>
             
 

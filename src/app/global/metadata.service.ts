@@ -409,8 +409,7 @@ getSummaryHealthRec():SummaryHealthRec[]{
     phrtype.set('alphr', 'All');
     phrtype.set('vacnan', 'Vaccination Details');
     phrtype.set('alrmed', 'Allergic Details');
-    phrtype.set('smoking', 'Smoking');
-    phrtype.set('alzchlc', 'Alcoholic');
+    phrtype.set('lifest', 'Lifestyle');
     phrtype.set('orgtrn', 'Organ Transplanted');
     phrtype.set('hevent', 'Health Events');
     phrtype.set('hroadmap', 'Health Roadmap');
@@ -424,6 +423,8 @@ getSummaryHealthRec():SummaryHealthRec[]{
     ehrtype.set('labrpt', 'Lab Reports');
     ehrtype.set('dcrsmr', 'Discharge Summary');
     ehrtype.set('gendoc', 'Generic Documnets');
+    ehrtype.set('dailpil', 'Daily Pills');
+    ehrtype.set('dailpil', 'Health Summary/Indica:');
     return ehrtype
 
   }
