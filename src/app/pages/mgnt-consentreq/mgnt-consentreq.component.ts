@@ -45,7 +45,7 @@ selectedCons:ConsntReq;
     var tabindex = e.index;
   }
 
-  onDialogHide() {
+  onDialogHide(e) {
     this.selectedCons = null;
 } 
 }

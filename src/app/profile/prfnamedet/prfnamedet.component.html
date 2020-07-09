@@ -29,7 +29,7 @@
                     </div>
                     <div class="p-col-6 tblBor rftWidth" *ngIf="savemode">
                         <span *ngIf="!primaryAdd.address?.primephoneStatus  && primaryAdd.address?.primemobile ">
-                            {{primaryAdd.address.primemobile}}<a *ngIf="!verifyPhoneOTP" [routerLink]="" (click)="sendOTP()" class="lblotp">
+                            {{primaryAdd.address.primemobile}}<a *ngIf="!verifyPhoneOTP" [routerLink]="" (click)="sendOTP(false)" class="lblotp">
                                 Send OTP</a>
                         </span>
                         <span *ngIf="primaryAdd.address?.primephoneStatus  && primaryAdd.address?.primemobile">

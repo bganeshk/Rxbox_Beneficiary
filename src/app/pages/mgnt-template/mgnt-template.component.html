@@ -44,7 +44,7 @@
                     <p-table [columns]="cols" [value]="custSelectedRecs" [paginator]="true" [rows]="5" 
                     [showCurrentPageReport]="true" selectionMode="single"
                     dataKey="rec_no" [(selection)]="selectedRec"
-                    (onRowSelect)="showRecDlg()"
+                    (onRowSelect)="showRecDlg(selectedRec)"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
 
                     

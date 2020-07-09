@@ -47,7 +47,7 @@ export class MgntConsentComponent implements OnInit {
     event.preventDefault();
    }
 
-  onDialogHide() {
+  onDialogHide(e) {
     this.selectedCons = null;
 }
 

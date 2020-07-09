@@ -56,7 +56,7 @@ export class SmryEhrComponent implements OnInit {
     this.messageService.add({ sticky: false, severity: 'success', summary: 'Record Saved', detail: 'Record has been saved successfully' });
   }
 
-  blDlgCancel(){
+  blDlgCancel(e){
     this.showDlg=false;
   }
   onTabClose(event){
