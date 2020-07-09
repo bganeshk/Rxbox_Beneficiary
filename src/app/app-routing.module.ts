@@ -4,14 +4,14 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 import { UserloginComponent } from './userlogin/userlogin.component';
 
 const routes: Routes = [
-  { path: 'pages', loadChildren: './pages/pages.module#PagesModule' },
-  { path: 'presc', loadChildren: './prescription/prescription.module#PrescriptionModule' },
-  { path: 'ehr', loadChildren: './ehr/ehr.module#EHRModule' },
-  { path: 'misc', loadChildren: './misc/misc.module#MiscModule' },
-  { path: 'profile', loadChildren: './profile/profile.module#ProfileModule'},
+  { path: 'pages', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) },
+  { path: 'presc', loadChildren: () => import('./prescription/prescription.module').then(m => m.PrescriptionModule) },
+  { path: 'ehr', loadChildren: () => import('./ehr/ehr.module').then(m => m.EHRModule) },
+  { path: 'misc', loadChildren: () => import('./misc/misc.module').then(m => m.MiscModule) },
+  { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)},
   { path: 'user_reg',component:UserRegistrationComponent},
   { path: 'login',component:UserloginComponent},
-  { path: 'reports', loadChildren: './rxreport/rxreport.module#RxreportModule' },
+  { path: 'reports', loadChildren: () => import('./rxreport/rxreport.module').then(m => m.RxreportModule) },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },
 ];
