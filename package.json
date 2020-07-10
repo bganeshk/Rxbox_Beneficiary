@@ -28,7 +28,7 @@
     "@fullcalendar/timegrid": "^5.1.0",
     "@types/echarts": "^4.6.3",
     "angularx-qrcode": "^10.0.3",
-    "echarts": "^4.7.0",
+    "echarts": "^4.8.0",
     "moment": "^2.25.3",
     "ngx-echarts": "^5.0.0",
     "primeflex": "^2.0.0-rc.1",

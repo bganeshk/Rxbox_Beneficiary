@@ -4,6 +4,7 @@ import { PagesRoutingModule } from './pages-routing/pages-routing.module';
 import { GlobalComponentModule } from '../global/global-component/global-component.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import * as echarts from 'echarts';
 import {TieredMenuModule} from 'primeng/tieredmenu';
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import { MgntConsentComponent, AssignConsentComponent } from './mgnt-consent/mgnt-consent.component';
@@ -34,7 +35,10 @@ const PAGES_ENTRY_COMPONENTS = [
   entryComponents: [...PAGES_ENTRY_COMPONENTS],
   imports: [
     PagesRoutingModule, GlobalComponentModule, NgxEchartsModule,TieredMenuModule,
-    ToggleButtonModule
+    ToggleButtonModule,
+    NgxEchartsModule.forRoot({
+      echarts,
+    }),
   ]
 })
 export class PagesModule { }
