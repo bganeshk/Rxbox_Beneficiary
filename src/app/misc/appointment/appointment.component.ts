@@ -21,15 +21,15 @@ export class AppointmentComponent implements AfterViewInit, OnInit {
   options: any;
   showDlg: boolean = false;
   newEvent = false;
-
-
+  physicians_id:string;
+  filteredPhysician:any[];
   constructor(private mdataSrvs: MetadataService, private messageService: MessageService) { }
   ngAfterViewInit(): void {
     
   }
 
   ngOnInit() {
-
+   
     this.events = [{
       "id": 1,
       "title": "All Day Event",
@@ -60,6 +60,10 @@ export class AppointmentComponent implements AfterViewInit, OnInit {
     }
   }
 
+  filterPhysicians(e){
+    this.filteredPhysician = [];
+    throw new Error("method not implemented");
+  }
   createEvent(info) {
     this.showDlg = true;
     console.debug(info);

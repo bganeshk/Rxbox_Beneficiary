@@ -5,7 +5,7 @@
         <div class="ui-g">
             <div class="ui-g-6">
                 <span class="ui-fluid">
-                    <label class="tblHLbl" for="assig">Assignee(s) *</label>
+                    <label class="tblHLbl" for="assig">Assignee(s) </label>
                     <p-autoComplete [(ngModel)]="newConst.cosnt_assignee" [suggestions]="filteredAssigneeMultiple" 
                         (completeMethod)="filterAssigneMultiple($event)"  id='assig'
                 maxlength="5" 
@@ -58,9 +58,18 @@
             
         
         </div>
+        <div class="ui-g-12">
+            <label for="cnst-rem" class="tblLbl" > Direct Share</label><br/>
+            <p class="ghint">Enter emailId(Email) or phone number(SMS), Valid for 7days </p>
+            <div class="ui-inputgroup">
+                <p-chips [(ngModel)]="cosnt_tag" separator="," ></p-chips>                
+                <button pButton type="button" icon="pi pi-share-alt" class="ui-button-secondary ui-button-raised" style="margin-right:10px;"
+                (click)="saveAssignment($event)" 
+                label="Share"></button>                
+            </div>
+        </div>
         <div class="ui-g-12" >
             <div class="p-grid p-justify-end">
-                <div>
             <button pButton type="button" icon="pi pi-save" class="ui-button-secondary ui-button-raised" style="margin-right:10px;"
                 (click)="saveAssignment($event)" 
                 label="Assign">
@@ -69,7 +78,6 @@
             <button  pButton type="button" class="ui-button-secondary ui-button-raised"
             icon="pi pi-times" (click)="cancelAssing()"
             label="Clear"></button>
-            </div>
             </div>
         </div>
     </p-fieldset>
@@ -99,3 +107,4 @@
         </div>
     </ng-template>
 </p-toast>
+
