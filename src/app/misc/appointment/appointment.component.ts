@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-// import dayGridPlugin from '@fullcalendar/daygrid';
-// import timeGridPlugin from '@fullcalendar/timegrid';
-// import interactionPlugin from '@fullcalendar/interaction';
-//import { FullCalendar } from 'primeng/fullcalendar';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import { FullCalendar } from 'primeng/fullcalendar';
 import { MetadataService } from 'src/app/global/metadata.service';
 import { MessageService } from 'primeng/api';
 
@@ -14,7 +14,7 @@ import { MessageService } from 'primeng/api';
 })
 export class AppointmentComponent implements AfterViewInit, OnInit {
 
-  @ViewChild('fc', { static: false }) fc: any;
+  @ViewChild('fc', { static: false }) fc: FullCalendar
   events: any[];
   selectEvent: any;
   options: any;
@@ -44,7 +44,7 @@ export class AppointmentComponent implements AfterViewInit, OnInit {
       "end": "2020-07-11T12:30:00"
     }];
     this.options = {
-      // plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+      plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
       select: this.createEvent.bind(this),
       eventClick: this.mngeEvent.bind(this),
       selectable: true,

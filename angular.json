@@ -16,7 +16,11 @@
             "preserveSymlinks": true,
             
             "allowedCommonJsDependencies": [
-                            "rxjs/internal/operators", "qrcode"
+                            "rxjs/internal/operators", 
+                            "qrcode",
+                            "echarts",
+                            "zrender/lib/svg/svg",
+                            "zrender/lib/vml/vml"
            ],
             "outputPath": "dist/rxbox-beneficiary",
             "index": "src/index.html",
