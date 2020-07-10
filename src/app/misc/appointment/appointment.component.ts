@@ -3,9 +3,10 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { FullCalendar } from 'primeng/fullcalendar';
+
 import { MetadataService } from 'src/app/global/metadata.service';
 import { MessageService } from 'primeng/api';
-
+import { CalendarOptions } from '@fullcalendar/angular'; 
 
 @Component({
   selector: 'app-appointment',
@@ -24,8 +25,7 @@ export class AppointmentComponent implements AfterViewInit, OnInit {
 
   constructor(private mdataSrvs: MetadataService, private messageService: MessageService) { }
   ngAfterViewInit(): void {
-    //this.fc.options.set('width', 700);
-    this.fc.calendar.options
+    
   }
 
   ngOnInit() {
