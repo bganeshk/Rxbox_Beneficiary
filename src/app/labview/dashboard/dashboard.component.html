@@ -1,1 +1,181 @@
-labview dash works
+<p-toast preventOpenDuplicates='true' modal='true' [hideTransitionOptions]="'100ms'"></p-toast>
+<p-card [style]="{height:'78vh'}">
+    <div class="p-grid ">
+        <div class="p-col-12 tblHLbl">
+            Please enter customerID/Scan Customer QR code on your mobile APP
+        </div>
+        <div class="p-col-12">
+            <div class="ui-inputgroup">
+                <button pButton type="button" label="Search" (click)="selectCutomer($event)"></button>
+                <p-autoComplete [(ngModel)]="customerId" [suggestions]="filteredCustomers"
+                    (completeMethod)="filterCustomer($event)" maxlength="15" [minLength]="1"
+                    placeholder="Select Customer " field="name" (onSelect)="selectCutomer($event)">
+                </p-autoComplete>
+            </div>
+        </div>
+        <div class="p-col-12" *ngIf="selectedCustomerId">
+
+            <p-table [value]="labRecs" [scrollable]="true" [paginator]="true" selectionMode="single"
+                [(selection)]="newLabRec" dataKey="rec_no" scrollHeight="200px;" [rows]='5'>
+                <ng-template pTemplate="caption">
+                    <div class="p-grid">
+                        <div class="p-col-10 tblHLbl">Laboratary Health Record</div>
+                        <div class="p-col-2" style="text-align: right">
+                            <button pButton type="button" label="Add" icon="pi pi-plus" (click)="addNewData()"></button>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 4em;"></th>
+                        <th class="tblHLbl">
+                            Requestor/Dr.
+                        </th>
+                        <th class="tblHLbl">
+                            Desc
+                        </th>
+                        <th class="tblHLbl">
+                            Details
+                        </th>
+                        <th class="tblHLbl">
+                            Rec: Type
+                        </th>
+                        <th style="width: 4em;"></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-expanded="expanded">
+                    <tr [pSelectableRow]="rowData">
+                        <td style="width: 4em;">
+                            <a href="#" [pRowToggler]="rowData">
+                                <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+                            </a>
+                        </td>
+                        <td class="tblLbl">
+                            {{rowData['recRequester']}}
+                        </td>
+                        <td class="tblLbl">
+                            {{rowData['desc']}}
+                        </td>
+                        <td class="tblLbl">
+
+                            <div *ngFor="let key of rowData['dataValue'].keys()">
+                                <span class="tblHLbl">{{key}} : &nbsp;&nbsp;</span>
+                                <span class="tblLbl">{{rowData['dataValue'].get(key)}}</span>
+                            </div>
+
+                        </td>
+                        <td class="tblLbl">
+                            {{rowData.recTypeDesc}}
+                        </td>
+
+                        <td style="width: 4em;">
+                            <button pButton icon="pi pi-pencil" type="button" (click)="onEdit(rowData)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="rowexpansion" let-rowData>
+                    <tr>
+                        <td [attr.colspan]="3">
+                            <div class="p-grid -fluid" style="font-size:16px;padding:20px">
+                                <div class="p-col-4 tblHLbl">Ref: No:</div>
+                                <div class="p-col-8 tblLbl">{{rowData['refNumber']}}</div>
+                                <div class="p-col-4 tblHLbl">Requestor Details: </div>
+                                <div class="p-col-8 tblLbl">
+                                    {{rowData.requesterDetails?.primemobile}}/{{rowData.requesterDetails?.primeEmail}}
+                                </div>
+                                <div class="p-col-4 tblHLbl">Issued By</div>
+                                <div class="p-col-8 tblLbl">{{rowData['recIssuer']}}</div>
+                            </div>
+                        </td>
+                        <td colspan="3">
+                            <div>Attachements</div>
+
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</p-card>
+
+<p-dialog header="Lab EHR" [(visible)]="visibleDlg" [responsive]="true" showEffect="fade" [draggable]="false"
+    [resizable]="false" [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '40vw'}"
+    *ngIf="newLabRec">
+    <div class="p-grid">
+        <div class="p-col-4">
+            <label for="float-input" class="tblHLbl">Reference #: </label>
+        </div>
+        <div class="p-col-8">
+            <input id="float-input" type="text" size="25" pInputText [(ngModel)]="newLabRec.refNumber">
+        </div>
+        <div class="p-col-4">
+            <label for="float-input" class="tblHLbl">Rec: Type</label>
+        </div>
+        <div class="p-col-8">
+            <p-dropdown #dn [options]="otherOpts" [(ngModel)]="newLabRec.recType" placeholder="Select a Category"
+                (onChange)="newLabRec.recTypeDesc=dn.label" [group]="true" class="grpitem">
+            </p-dropdown>
+        </div>
+        <div class="p-col-4">
+            <label for="float-input" class="tblHLbl">Add Attribute</label>
+        </div>
+        <div class="p-col-8">
+            <p-chips [(ngModel)]="labAttrib" (onAdd)="addAttrib($event)"></p-chips>
+        </div>
+        <div *ngFor="let col of newLabRec.dataValue.keys()">
+            <span>
+                <div>
+                    <label for="{{col}}" class="tblHLbl">{{col}} </label>
+                </div>
+                <div>
+                    <input id="{{col}}" type="text" size="5" pInputText [ngModel]="newLabRec.dataValue.get(col)"
+                        (ngModelChange)="newLabRec.dataValue.set(col, $event)">
+                </div>
+            </span>
+        </div>
+        <div class="p-col-12"></div>
+        <div class="p-col-4">
+            <label for="float-input" class="tblHLbl">Description: </label>
+        </div>
+        <div class="p-col-8">
+            <textarea pInputTextarea [rows]="5" [cols]="30" [(ngModel)]="newLabRec.desc"></textarea>
+        </div>
+        <div class="p-col-2">
+            <label for="float-input" class="tblHLbl">Files: </label>
+        </div>
+        <div class="p-col-10">
+
+            <p-fileUpload name="myfile[]" url="./upload.php" multiple="multiple" accept=".pdf,image/*"
+                maxFileSize="1000000"></p-fileUpload>
+        </div>
+
+    </div>
+    <p-footer>
+
+        <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" (click)="blDlgSave()" label="Save">
+        </button>
+        <button pButton type="button" class="ui-button-secondary" (click)="blDlgCancel()" icon="pi pi-times"
+            label="Cancel"></button>
+    </p-footer>
+</p-dialog>
+<p-toast position="center" key="c" (onClose)="cancelSearch()" [modal]="false" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <input type="text" [(ngModel)]="phoneOTP" [ngModelOptions]="{standalone: true}" size=15> &nbsp;
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="p-grid ui-fluid">
+            <div class="p-col-6">
+                <button pButton type="button" icon="pi pi-check" class="ui-button-secondary ui-button-raised"
+                    style="margin-right:10px;" (click)="verifyOTP()" *ngIf="verifyPhoneOTP" label="Verify">
+                </button>
+            </div>
+            <div class="p-col-6">
+                <button type="button" pButton (click)="sendOTP(true)" label="Resend OTP"
+                    class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

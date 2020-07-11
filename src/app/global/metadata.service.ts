@@ -81,10 +81,13 @@ export interface  HealthRec{
   recType:string;
   recTypeDesc?:string;
   refNumber:string;
+  recRequester?:string;
+  requesterDetails?:ProfileAdd
   recIssuer:string;
   issuerDetails?:ProfileAdd
   attachments:URL[];
   metadata:AuditData;
+  recFullfilled?:boolean;//to indicate whether the requet is completed or not
 }
 
 export interface AuditData{
@@ -264,7 +267,7 @@ getSummaryHealthRec():SummaryHealthRec[]{
       attachments:[new URL('ftp://lab_cult_test1.pdf'),new URL('ftp://lab_cult_test1.pdf')],metadata:null},
       {rec_no:'lab/1010/2020110234567891',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for virus test',refNumber:null,recIssuer:'DDRC',attachments:null,metadata:null},
       {rec_no:'sum/10102020110234567892',dataValue:new Map(),recType:'summary_rec',created_on:new Date(),desc:'Summary of admission due to viral fever',refNumber:null,recIssuer:'GK Hospital',attachments:null,metadata:null},
-      {rec_no:'lab/20102020110234567892',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for cuture test',refNumber:null,recIssuer:'LAb 1',attachments:null,metadata:null},
+      {rec_no:'lab/20102020110234567892',dataValue:new Map(),recRequester:'Dr.Gkumar' , recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for cuture test',refNumber:'203Ref/2323/2f',recIssuer:'LAb 1',attachments:null,metadata:null},
       {rec_no:'sum/10102020110234567893',dataValue:new Map(),recType:'summary_rec',created_on:new Date(),desc:'Summary of admission by accident',refNumber:null,recIssuer:'df',attachments:null,metadata:null},
       {rec_no:'lab/11102020110234567893',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for bloodsugar test',refNumber:null,recIssuer:'dsf',attachments:null,metadata:null},
       {rec_no:'lab/12102020110234567894',dataValue:new Map(),recType:'lab_report',created_on:new Date(),desc:'Lab test conducted for virus test after antibody',refNumber:null,recIssuer:'sdf',attachments:null,metadata:null},

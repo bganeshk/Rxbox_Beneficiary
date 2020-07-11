@@ -6,7 +6,7 @@ import { MessageService } from 'primeng/api';
 import { GlobalComponentModule } from '../global/global-component/global-component.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LabviewComponent } from './labview/labview.component';
-
+import {FileUploadModule} from 'primeng/fileupload';
 const COMPONENTS = [
   DashboardComponent, LabviewComponent
 ];
@@ -18,7 +18,7 @@ const ENTRY_COMPONENTS = [
   providers: [MessageService],
   entryComponents:[...ENTRY_COMPONENTS],
   imports: [
-    GlobalComponentModule, LabviewRoutingModule
+    GlobalComponentModule, LabviewRoutingModule,FileUploadModule
   ]
 })
 export class LabviewModule { }
