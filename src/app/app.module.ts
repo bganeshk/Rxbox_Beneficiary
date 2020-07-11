@@ -13,11 +13,7 @@ import { UserloginComponent } from './userlogin/userlogin.component';
 import { GlobalComponentModule} from './global/global-component/global-component.module';
 import { GlobalErrorHandler, GlobalBeeService } from 'bee-lib';
 import { BeeHttpInterceptorService } from 'bee-lib';
-import { PrescriptionModule } from './prescription/prescription.module';
-import { MiscModule } from './misc/misc.module';
-import { EHRModule } from './ehr/ehr.module';
-import { PagesModule } from './pages/pages.module';
-import { ProfileModule } from './profile/profile.module';
+import { MessageService } from 'primeng/api';
 
 
 const IMPORT_MODULE = [
@@ -30,22 +26,25 @@ const IMPORT_MODULE = [
     UserRegistrationComponent,
     UserloginComponent,
     
+
   ],
-  
+
   imports: [
-    PrescriptionModule,
+ /*   PrescriptionModule,
     PagesModule,
     MiscModule,
     EHRModule,
     ProfileModule,
+    LabviewModule,
+    MedicosModule,*/
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    GlobalComponentModule,    
+    GlobalComponentModule,
     HttpClientModule, ...IMPORT_MODULE
   ],
   providers: [
-    GlobalBeeService,
+    GlobalBeeService,MessageService,
     {provide: 'environment', useValue: environment},
     { provide: APP_BASE_HREF, useValue: '/' },
     //{ provide: ErrorHandler,  useClass: GlobalErrorHandler },
