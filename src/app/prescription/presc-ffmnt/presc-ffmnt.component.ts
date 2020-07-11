@@ -19,7 +19,6 @@ export class PrescFfmntComponent implements OnInit {
   ngOnInit() {
 
    this.mediFullFillments=this.mdataSrvs.getMedFullFillments();
-   console.debug(this.mediFullFillments);
   }
   onDisplayRefillDet(rowData)  {
    this.displayRefillDet=true;  

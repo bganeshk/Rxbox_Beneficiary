@@ -1,0 +1,217 @@
+<p-toast></p-toast>
+<p-card [style]="{height:'78vh'}">
+<div class="p-grid p-justify-center">
+    <div class="p-col-12 tblHLbl">
+        Please enter customerID/Scan Customer QR code on your mobile APP
+    </div>
+    <div class="p-col-12 ">
+        <div class="ui-inputgroup">
+            <button pButton type="button" label="Search" (click)="selectCutomer($event)"></button>
+        <p-autoComplete [(ngModel)]="customerId" [suggestions]="filteredCustomers"
+            (completeMethod)="filterCustomer($event)" maxlength="15" [minLength]="1" placeholder="Select Customer "
+            field="name" (onSelect)="selectCutomer($event)">
+        </p-autoComplete>
+        </div>
+    </div>
+    <div class="p-col-12" *ngIf="selectedCustomerId">
+
+        <p-table [value]="mediFullFillments" [scrollable]="true" selectionMode="single" dataKey="pid"
+        [(selection)]="selectedphr" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="caption">
+            <div class="p-grid">
+            <div class="p-col-5 tblHLbl">Active Prescriptions</div>
+            <div class="p-col">
+            <button pButton type="button" icon="pi pi-shopping-cart" label="Update Purchase" 
+            (click)="updatePurchase($event)"></button>
+        </div>
+        </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3em"></th>
+                <th style="width: 15%;">
+                    <div class="tblHLbl">Medicine
+                        <p-sortIcon [field]="'Medicine'"></p-sortIcon>
+                    </div>
+                </th>
+                <th>
+                    <div class="tblHLbl">Start Date</div>
+                </th>
+                <th>
+                    <div class="tblHLbl">End Date</div>
+                </th>                
+                <th>
+                    <div class="tblHLbl">No:Of Refills</div>
+                </th>
+                <th>
+                    <div class="tblHLbl">Issued Qty</div>
+                </th>
+                <th style="width: 15%;">
+                    <div class="tblHLbl" >Dr. Name</div>
+                </th>
+                <th style="width: 35%;">
+                    <div class="tblHLbl">%Completion</div>
+                </th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
+            <tr class="tblLbl">
+                <td style="width: 3em">
+                    <a href="#" [pRowToggler]="rowData">
+                        <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+                    </a>
+                    <img src="../../../assets/icons/{{rowData['medi']['medType']}}.png" width="20px" height="20px"
+                    [matTooltip]="'C'==rowData['medi']['medType']?'Capsule':'Injection'">
+                </td>
+                <td style="width: 15%;">
+                    {{rowData['medi']['med']['medname']}}
+                    
+                </td>
+                <td>
+                    {{rowData['medi']['startDate']| date }}
+                </td>
+                <td>
+                    <span *ngIf="rowData['medi']['numberOfdays']>0"> {{rowData['medi']['endDate']| date }}</span>
+                    <span *ngIf="rowData['medi']['numberOfdays']<1"> N/A</span>
+    
+                </td>
+                <td >
+                    {{rowData['fullFillsmry']['totalNoRefill']  }} &nbsp;&nbsp;&nbsp;
+                    <i class="pi pi-window-maximize spacarund hower" (click)="onDisplayRefillDet(rowData)"></i>
+                </td>
+                <td>
+                    <input pInputText type="text" [(ngModel)]="rowData['fullFillsmry']['newQty']" size="3" placeholder="0">
+                </td>
+                <td class="txtwrp" style="width: 15%;">
+                    {{rowData['medi']['prescribedBy'] }}
+                </td>
+                
+                <td style="width: 35%;">
+                    <p-progressBar [value]="rowData['fullFillsmry']['fullfillpercentage']"></p-progressBar>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+            <tr>
+                <td [attr.colspan]=8>
+    
+                    <div class="p-grid">
+                        <div class="p-col-6">
+                            <p-card>
+                                <div class="p-grid">
+                                    <div class="p-col-4 tblHLbl">
+                                        Priscribed By:
+                                    </div>
+                                    <div class="p-col-8 tblLblptr">
+                                        {{rowData['medi']['prescribedBy']}}
+                                    </div>
+                                    <div class="p-col-4 tblHLbl">
+                                        Medicine Type:
+                                    </div>
+                                    <div class="p-col-8 tblLblptr">
+                                        <span *ngIf="rowData['medi']['medType']==='C'">Capsule</span>
+                                        <span *ngIf="rowData['medi']['medType']==='I'">Injection</span>
+                                        <span *ngIf="rowData['medi']['medType']==='O'">Oilment</span>
+                                        <span *ngIf="rowData['medi']['medType']==='T'">Trip</span>
+                                    </div>
+                                    <div class="p-col-4 tblHLbl">
+                                        Dose:
+                                    </div>
+                                    <div class="p-col-8 tblLblptr">
+                                        {{rowData['medi']['morningQty']}}-{{rowData['medi']['afternoongQty']}}-{{rowData['medi']['eveninggQty']}}
+                                    </div>
+    
+                                    <div class="p-col-4 tblHLbl">
+                                        Note:
+                                    </div>
+                                    <div class="p-col-8 tblLblptr">
+                                        {{rowData['medi']['medNotes']}}
+                                    </div>
+                                </div>
+                            </p-card>
+                        </div>
+                        <div class="p-col-6">
+                            <p-card>
+                                <div class="p-grid">
+                                    <div class="p-col-4 tblHLbl">
+                                        Total Qty:
+                                    </div>
+                                    <div class="p-col-8 tblLblptr">
+                                        {{rowData['fullFillsmry']['totalQty']}}
+                                    </div>
+                                    <div class="p-col-4 tblHLbl">
+                                        Completed Qty:
+                                    </div>
+                                    <div class="p-col-8 tblLblptr">
+                                        {{rowData['fullFillsmry']['fullfilledQty']}}
+                                    </div>
+                                    <div class="p-col-4 tblHLbl">
+                                        Balance Qty:
+                                    </div>
+                                    <div class="p-col-8 tblLblptr">
+                                        {{rowData['fullFillsmry']['balanceQty']}}
+                                    </div>
+                                    <div class="p-col-4 tblHLbl">
+                                        Refill Inprogress
+                                    </div>
+                                    <div class="p-col-8 tblLblptr">
+                                        0
+                                    </div>
+                                </div>
+                            </p-card>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+
+        </p-table>
+    </div>
+</div>
+</p-card>
+<p-dialog header="Refill Details" (onHide)="displayRefillDet=false" [style]="{width: '60vw'}" [modal]="true"
+    [(visible)]="displayRefillDet">
+    <p-table [value]="selectedphr.fullFillDetails" [paginator]="false" [rows]="5" [responsive]="true"
+        *ngIf="displayRefillDet">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th>Refill Dt:</th>
+                <th>Refill From:</th>
+                <th>Refill Qty</th>
+            </tr>
+        </ng-template>
+        <ng-template let-rowData pTemplate="body">
+            <tr>
+                <td>{{rowData.purchase_dt |date}}</td>
+                <td>{{rowData.fullfilledBy}}</td>
+                <td>{{rowData.purchaseQty}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-times" (click)="displayRefillDet=false;selectedphr=null;"
+            label="Close"></button>
+    </p-footer>
+</p-dialog>
+<p-toast position="center" key="c" (onClose)="cancelSearch()" [modal]="false" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+                <input type="text" [(ngModel)]="phoneOTP" [ngModelOptions]="{standalone: true}" size=15> &nbsp;
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="p-grid ui-fluid">
+            <div class="p-col-6">
+                <button pButton type="button" icon="pi pi-check" class="ui-button-secondary ui-button-raised" style="margin-right:10px;"
+            (click)="verifyOTP()" *ngIf="verifyPhoneOTP"
+            label="Verify">
+        </button>
+            </div>
+            <div class="p-col-6">
+                <button type="button" pButton (click)="sendOTP(true)" label="Resend OTP" class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

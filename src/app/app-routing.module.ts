@@ -12,13 +12,15 @@ const routes: Routes = [
   { path: 'user_reg',component:UserRegistrationComponent},
   { path: 'login',component:UserloginComponent},
   { path: 'reports', loadChildren: () => import('./rxreport/rxreport.module').then(m => m.RxreportModule) },
+  { path: 'lab', loadChildren: () => import('./labview/labview.module').then(m => m.LabviewModule) },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
+  { path: 'medcos', loadChildren: () => import('./medicosite/medicos/medicos.module').then(m => m.MedicosModule) },
   { path: '**', redirectTo: 'pages' },
 ];
 const config: ExtraOptions = {
  // useHash: true,
  // enableTracing: true,
-  onSameUrlNavigation: 'reload'
+  //onSameUrlNavigation: 'reload'
 };
 
 @NgModule({

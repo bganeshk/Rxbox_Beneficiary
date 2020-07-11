@@ -130,6 +130,7 @@ export interface FullFillmentSummary{
   nextRefill:Date;
   lastRefill:Date;
   totalNoRefill:number;
+  newQty?:number;
   fullfillpercentage?:number;
 }
 

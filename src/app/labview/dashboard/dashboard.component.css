@@ -1,0 +1,17 @@
+.tblHLbl {
+    color: #143983;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.tblLbl {
+    color: #143983;
+    font-size: 11px;
+    padding-top: 10px;
+}
+
+.txtwrp{
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+}

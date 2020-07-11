@@ -179,6 +179,20 @@ export class AppComponent implements OnInit {
           { label: 'Security', icon: 'pi pi-lock', routerLink:'/misc/security', }
            
         ]
+      },{
+        label: 'labview', icon: 'pi pi-cog',
+        items: [
+          { label: 'labdash', icon: 'pi pi-user',routerLink:'/lab/dash', },
+          { label: 'Notification', icon: 'pi pi-bell', routerLink:'/misc/reminder', },
+          { separator: true },
+          { label: 'Security', icon: 'pi pi-lock', routerLink:'/misc/security', }
+           
+        ]
+      },{
+        label: 'medicos', icon: 'pi pi-cog',
+        items: [
+          { label: 'medidash', icon: 'pi pi-user',routerLink:'/medcos/dash', }           
+        ]
       }
     ];
     return items;
