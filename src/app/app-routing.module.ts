@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'lab', loadChildren: () => import('./labview/labview.module').then(m => m.LabviewModule) },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   { path: 'medcos', loadChildren: () => import('./medicosite/medicos/medicos.module').then(m => m.MedicosModule) },
+  { path: 'drview', loadChildren: () => import('./drsite/drview.module').then(m => m.DrviewModule) },
   { path: '**', redirectTo: 'pages' },
 ];
 const config: ExtraOptions = {

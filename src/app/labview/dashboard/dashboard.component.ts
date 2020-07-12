@@ -9,7 +9,7 @@ import { MessageService, SelectItemGroup } from 'primeng/api';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
-
+ 
   filteredCustomers:any[];
   customerId:string;
   selectedCustomerId:string;
