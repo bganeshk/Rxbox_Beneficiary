@@ -7,18 +7,22 @@ import { GlobalComponentModule } from '../global/global-component/global-compone
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LabviewComponent } from './labview/labview.component';
 import {FileUploadModule} from 'primeng/fileupload';
+import { CustomerSerachComponent } from '../global/customer-serach/customer-serach.component';
+import { ShareModule } from '../global/share/share.module';
+
+
 const COMPONENTS = [
-  DashboardComponent, LabviewComponent
+  DashboardComponent, LabviewComponent,
 ];
 const ENTRY_COMPONENTS = [
 
 ];
 @NgModule({
   declarations: [...COMPONENTS, ],
-  providers: [MessageService],
+  providers: [MessageService,CustomerSerachComponent],
   entryComponents:[...ENTRY_COMPONENTS],
   imports: [
-    GlobalComponentModule, LabviewRoutingModule,FileUploadModule
+    GlobalComponentModule, LabviewRoutingModule,FileUploadModule,ShareModule
   ]
 })
 export class LabviewModule { }

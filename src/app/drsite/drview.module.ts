@@ -8,20 +8,22 @@ import { GlobalComponentModule } from '../global/global-component/global-compone
 import { FileUploadModule } from 'primeng/fileupload';
 import { DrviewComponent } from './drview/drview.component';
 import { DrdashComponent } from './drdash/drdash.component';
+import { CustomerSerachComponent } from '../global/customer-serach/customer-serach.component';
+import { ShareModule } from '../global/share/share.module';
 
 
 const COMPONENTS = [
-  DrviewComponent,DrdashComponent
+  DrviewComponent,DrdashComponent,
 ];
 const ENTRY_COMPONENTS = [
-
+  
 ];
 @NgModule({
   declarations: [...COMPONENTS,  ],
-  providers: [MessageService],
+  providers: [MessageService,CustomerSerachComponent],
   entryComponents:[...ENTRY_COMPONENTS],
   imports: [
-    GlobalComponentModule, DrviewRoutingModule,FileUploadModule
+    GlobalComponentModule, DrviewRoutingModule,FileUploadModule,ShareModule
   ]
 })
 

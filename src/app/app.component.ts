@@ -193,6 +193,11 @@ export class AppComponent implements OnInit {
         items: [
           { label: 'medidash', icon: 'pi pi-user',routerLink:'/medcos/dash', }           
         ]
+      },{
+        label: 'drview', icon: 'pi pi-cog',
+        items: [
+          { label: 'medidash', icon: 'pi pi-user',routerLink:'/drview/dash', }           
+        ]
       }
     ];
     return items;

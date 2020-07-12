@@ -6,6 +6,8 @@ import { MedicosComponent } from './medicos.component';
 import { MessageService } from 'primeng/api';
 import { GlobalComponentModule } from 'src/app/global/global-component/global-component.module';
 import { MedidashComponent } from '../medidash/medidash.component';
+import { ShareModule } from 'src/app/global/share/share.module';
+import { CustomerSerachComponent } from 'src/app/global/customer-serach/customer-serach.component';
 
 const COMPONENTS = [
   MedicosComponent,MedidashComponent
@@ -16,10 +18,10 @@ const ENTRY_COMPONENTS = [
 
 @NgModule({
   declarations: [...COMPONENTS, ],
-  providers: [MessageService],
+  providers: [MessageService,CustomerSerachComponent],
   entryComponents:[...ENTRY_COMPONENTS],
   imports: [
-    GlobalComponentModule, MedicosRoutingModule
+    GlobalComponentModule, MedicosRoutingModule,ShareModule
   ]
  
 })
