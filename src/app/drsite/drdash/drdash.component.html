@@ -86,9 +86,15 @@
                     </div>
                 </div>
                 <div class="p-col-6">
-                    <p-tabMenu [model]="items">
-                        
+                    <p-tabMenu [model]="items" [activeItem]="items[0]">
                     </p-tabMenu>
+                  <div [ngSwitch]="mnuItem">
+                      <app-review-hist *ngSwitchCase="'Home'"></app-review-hist>
+                      <app-drconsent *ngSwitchCase="'Consents'"></app-drconsent>
+                      <app-drehr *ngSwitchCase="'Ehrs'"></app-drehr>
+                      <app-drnotes *ngSwitchCase="'Notes'"></app-drnotes>
+                      <app-myappointment *ngSwitchCase="'Appointments'"></app-myappointment>
+                  </div>
                 </div>
                 <div class="p-col-3">
                     <div class="p-grid">

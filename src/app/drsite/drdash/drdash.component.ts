@@ -17,22 +17,38 @@ export class DrdashComponent implements OnInit {
   fmlyEHRs:FmlyHealthRec[];
   dms: DailyMed[];
   labRecs:HealthRec[];
+  mnuItem:string;
 
   constructor(private mdataSrvs: MetadataService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.items = [
-      { label: 'Home', icon: 'pi pi-fw pi-home' },
-      { label: 'Consents', icon: 'pi pi-fw pi-calendar' },      
-      { label: 'Ehrs', icon: 'pi pi-fw pi-file' },
-      { label: 'Notes', icon: 'pi pi-fw pi-pencil' },
-      { label: 'Appointments', icon: 'pi pi-fw pi-calendar-plus' }
+      { label: 'Home', icon: 'pi pi-fw pi-home',command: (e) => {
+        this.selectMenu(e);              
+      } },
+      { label: 'Consents', icon: 'pi pi-fw pi-calendar',command: (e) => {
+        this.selectMenu(e);             
+      } },      
+      { label: 'Ehrs', icon: 'pi pi-fw pi-file',command: (e) => {
+        this.selectMenu(e);              
+      } },
+      { label: 'Notes', icon: 'pi pi-fw pi-pencil',command: (e) => {
+        this.selectMenu(e);             
+      } },
+      { label: 'Appointments', icon: 'pi pi-fw pi-calendar-plus',command: (e) => {
+        this.selectMenu(e);      
+      } }
     ];
+    
     this.fmlyEHRs=this.mdataSrvs.getFmlyHealthRec();
     this.dms = this.mdataSrvs.getDailyMed();
     this.labRecs=this.mdataSrvs.getLabHealthRec(); 
   }
 
+  selectMenu(e){
+    this.mnuItem=e.item.label; 
+    console.debug("df",this.mnuItem);
+  }
   selectCutomer(e) {
     this.customerId = e;
     console.debug(this.customerId, e);
