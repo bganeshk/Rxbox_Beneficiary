@@ -2,11 +2,12 @@
 
 <p-toast preventOpenDuplicates='true' modal='true'></p-toast> 
 
-    <div class="p-grid ">
+    <div class="p-grid " style="height: 11vh;">
         <div class="p-col-12 tblHLbl">
-            Please enter customerID/Scan Customer QR code on your mobile APP
+            
         </div>
-        <div class="p-col-6">
+        <div class="p-col-4 tblHLbl">
+            Please enter/Scan Customer QR code/ID
             <div class="ui-inputgroup">
                 <button pButton type="button" label="Search" (click)="selectCutomer($event)"></button>
                 <p-autoComplete [(ngModel)]="customerId" [suggestions]="filteredCustomers"
@@ -14,6 +15,30 @@
                     placeholder="Select Customer " field="name" (onSelect)="selectCutomer($event)">
                 </p-autoComplete>
             </div>
+        </div>
+        <div class="p-col-8" *ngIf="selectedCustomerId">
+            <div class="p-grid">
+                <div class="p-col-10">
+                    <div class="p-grid">
+                        <div class="p-col-1 tblHLbl">Name </div>
+                        <div class="p-col-4 tblLbl">Sample Patient </div>                
+                        <div class="p-col-1 tblHLbl">Age </div>
+                        <div class="p-col-2 tblLbl">36 </div>
+                        <div class="p-col-1 tblHLbl">Sex </div>
+                        <div class="p-col-3 tblLbl">36 </div>
+                        <div class="p-col-1 tblHLbl">Address </div>
+                        <div class="p-col-4 tblLbl">Address Line1, State, City, </div>
+                        
+                        <div class="p-col-1 tblHLbl">Mobile </div>
+                        <div class="p-col-2 tblLbl">9343292332</div>
+                        <div class="p-col-4 tblLbl">email@em.com</div>
+                    </div>
+                </div>
+                <div class="p-col-2">
+                    <img src="../../../assets//profile_pic.png" height="80%" width="60">
+                </div>
+            </div>
+
         </div>
     </div>
 

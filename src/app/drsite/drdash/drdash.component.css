@@ -39,3 +39,64 @@
 :host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
     color: #ffffff;
 }
+.spacarund{
+    padding-left: 45%;
+    font-size: 15px;
+}
+.hower{
+    cursor: pointer;
+}
+.hilow{
+    color: #143983;
+    font-size: 13px;
+    border-bottom: thick solid brown;   
+}
+.profdet{
+    color: rgb(160, 157, 157);
+    font-weight: 600;
+    font-size: 9px;
+    vertical-align: bottom;
+    padding-bottom: 3%;
+    width: 90%;
+    white-space: nowrap;
+}
+ 
+.divhed {
+    color: #002b80;
+    font-weight: bold;
+    margin-bottom: 2%;
+    border-bottom-color:lightgray;
+    border-bottom-style: inset;
+    border-bottom-width:1px; 
+}
+.ddose{
+    width: 5%;
+    border: 0px !important;
+}
+.ddoseM{
+    width: 15%;
+    border: 0px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ddoseN{
+    width: 20%;
+    border: 0px !important;
+}
+.chat_panel{
+    background-color: #a6f1df;
+}
+.mycmnt{
+    background-color: #ffffff;
+    text-align: left;
+    margin: 5px;
+    margin-right: 25px;
+    line-height:2;
+}
+.thermnt{
+    text-align: right;
+    background-color: lightblue;
+    margin: 5px;
+    margin-left: 25px;
+    line-height:2;
+}

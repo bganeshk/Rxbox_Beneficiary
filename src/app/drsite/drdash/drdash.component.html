@@ -1,9 +1,177 @@
+<p-toast preventOpenDuplicates='true' modal='true'></p-toast>
 
+<p-card [style]="{height:'100%'}">
+    <div class="p-grid">
+        <div class="p-col-12">
+            <app-customer-serach (onSelect)="selectCutomer($event)"></app-customer-serach>
+        </div>
+        <div class="p-col-12">
+            <div class="p-grid">
+                <div class="p-col-3">
+                    <div class="p-grid">
+                        <div class="p-col-12">
+                            <p-panel [toggleable]="true">
+                                <p-header class="tblHLbl">
+                                    <span class="pi pi-chart-bar">High-low Facts</span>
+                                    <i class="pi pi-window-maximize  spacarund hower"></i>
+                                </p-header>
+                                <div class="tblLbl">
+                                    <p-scrollPanel [style]="{height:'35vh'}">
+                                        <p class="hilow">Content realted to heart care health highlights and lowlights
+                                            shall be displayed. Right now system could not find the details realted to
+                                            the care provided or treatment realted to the subject. </p>
+                                        <p class="hilow">Content realted to heart care health highlights and lowlights
+                                            shall be displayed. Right now system could not find the details realted to
+                                            the care provided or treatment realted to the subject. </p>
+                                        <p class="hilow">Content realted to heart care health highlights and lowlights
+                                            shall be displayed. Right now system could not find the details realted to
+                                            the care provided or treatment realted to the subject. </p>
+                                    </p-scrollPanel>
+                                </div>
 
-<p-toast preventOpenDuplicates='true' modal='true'></p-toast> 
+                            </p-panel>
+                        </div>
 
-<p-card [style]="{height:'78vh'}">
-    <app-customer-serach  (onSelect)="selectCutomer($event)"></app-customer-serach> 
- 
+                        <div class="p-col-12">
+                            <p-panel [toggleable]="true" [collapsed]="true">
+                                <p-header class="tblHLbl">
+                                    <span class="pi pi-info-circle">Allergic Infor: </span>
 
-</p-card>    
+                                    <i class="pi pi-window-maximize  spacarund hower"></i>
+                                </p-header>
+                                <div class="tblLbl">
+                                    <p-scrollPanel [style]="{height:'35vh'}">
+                                        <span>
+                                            <div class="tblHLbl">Food Allergy</div>
+                                            <p class="hilow">Content realted to allergy care health highlights and
+                                                lowlights shall be displayed. Right now system could not find the
+                                                details realted to the care provided or treatment realted to the
+                                                subject. </p>
+                                        </span>
+                                        <span>
+                                            <div class="tblHLbl">Medicine Allergy</div>
+                                            <p class="hilow">Content realted to allergy care health highlights and
+                                                lowlights shall be displayed. Right now system could not find the
+                                                details realted to the care provided or treatment realted to the
+                                                subject.. </p>
+                                        </span>
+                                    </p-scrollPanel>
+                                </div>
+
+                            </p-panel>
+                        </div>
+
+                        <div class="p-col-12">
+
+                            <p-panel [toggleable]="true" [collapsed]="true">
+                                <p-header class="tblHLbl">
+                                    <span class="pi pi-users">Family Facts :</span>
+                                    <i class="pi pi-window-maximize  spacarund hower"></i>
+                                </p-header>
+                                <div class="tblLbl">
+                                    <p-scrollPanel [style]="{height:'35vh'}">
+                                        <span *ngFor="let ehr of fmlyEHRs">
+                                            <div class="tblHLbl">{{ehr.data.recTypeDesc}}({{ehr.data.recType}})</div>
+                                            <p class="hilow">Content realted to allergy care health highlights and
+                                                lowlights shall be displayed. Right now system could not find the
+                                                details realted to the care provided or treatment realted to the
+                                                subject.. </p>
+                                        </span>
+                                    </p-scrollPanel>
+                                </div>
+
+                            </p-panel>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="p-col-6">
+                    <p-tabMenu [model]="items">
+                        
+                    </p-tabMenu>
+                </div>
+                <div class="p-col-3">
+                    <div class="p-grid">
+                        <div class="p-col-12">
+                            <p-panel [toggleable]="true" >
+                                <p-header class="tblHLbl">
+
+                                    <span class="pi pi-bookmark">Prescription(s)</span>
+                                    <i class="pi pi-window-maximize  spacarund hower"></i>
+                                </p-header>
+                                <div class="tblLbl">
+                                    <p-scrollPanel [style]="{height:'35vh'}">
+                                        <p-table [value]="dms" [style]="{height:'50vh'}">
+                                            <ng-template pTemplate="body" let-dm>
+                                                <tr class="profdet divhed">
+                                                    <td class="ddoseM" style="width: 55%;">{{dm.med.medname}}</td>
+                                                    <td class="ddose">{{dm.morningQty}}</td>
+                                                    <td class="ddose">{{dm.afternoongQty}}</td>
+                                                    <td class="ddose">{{dm.eveninggQty}}</td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </p-scrollPanel>
+                                </div>
+
+                            </p-panel>
+                        </div>
+                        <div class="p-col-12">
+                            <p-panel [toggleable]="true" [collapsed]="true">
+                                <p-header class="tblHLbl">
+                                    <span class="pi pi-pencil"> Lab Reports </span>
+
+                                    <i class="pi pi-window-maximize  spacarund hower"></i>
+                                </p-header>
+                                <div class="tblLbl">
+                                    <p-scrollPanel [style]="{height:'35vh'}">
+                                        <p-table [value]="labRecs.slice(0,5)" [style]="{height:'50vh'}">
+                                            <ng-template pTemplate="body" let-lr>
+                                                <tr class="profdet divhed">
+                                                    <td class="ddoseM">{{lr.desc}} - ({{lr.issueDate | date}})</td>
+                                                <tr>
+                                            </ng-template>
+                                        </p-table>
+
+                                    </p-scrollPanel>
+                                </div>
+
+                            </p-panel>
+                        </div>
+                        <div class="p-col-12">
+                            <p-panel [toggleable]="true" [collapsed]="true">
+                                <p-header class="tblHLbl">
+                                    <span class="pi pi-bell">&nbsp;Chat details</span>
+
+                                    <i class="pi pi-window-maximize  spacarund hower"></i>
+                                </p-header>
+                                <div class="tblLbl">
+                                    <p-scrollPanel [style]="{height:'35vh'}">
+                                        <div class="chat_panel">
+                                            <br />
+                                            <div class="mycmnt">
+                                                Hi, Can i get an appointment
+                                            </div>
+                                            <br />
+                                            <div class="thermnt">
+                                                Yes, please book of this saturday
+                                            </div><br />
+                                            <div class="mycmnt">
+                                                ok,I am making
+                                            </div>
+                                            <br />
+
+                                            <div class="mycmnt">
+                                                Done!!:)
+                                            </div><br />
+                                        </div>
+                                    </p-scrollPanel>
+                                </div>
+                            </p-panel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-card>

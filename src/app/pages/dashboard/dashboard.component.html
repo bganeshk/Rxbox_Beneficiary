@@ -172,7 +172,7 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                             <p-table [value]="dms" [scrollable]="true" scrollHeight="100px">
                                                 <ng-template pTemplate="body" let-dm>
                                                     <tr class="profdet divhed">
-                                                        <td class="ddoseM">{{dm.med}}</td>
+                                                        <td class="ddoseM">{{dm.med.medname}}</td>
                                                         <td class="ddose" style="padding: 2px;">
                                                             <img *ngIf="dm.afterFood=='Y'" alt="After Food"
                                                                 matTooltip="After Food"

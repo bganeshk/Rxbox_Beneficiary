@@ -83,17 +83,22 @@ export interface  HealthRec{
   refNumber:string;
   recRequester?:string;
   requesterDetails?:ProfileAdd
+  reqDate?:Date;
   recIssuer:string;
   issuerDetails?:ProfileAdd
+  issueDate?:Date;
   attachments:URL[];
+  remarks?:string;
   metadata:AuditData;
   recFullfilled?:boolean;//to indicate whether the requet is completed or not
 }
 
 export interface AuditData{
   created_on:Date;
+  updated_on?:Date;
   version:number;
   createdBy:string;
+  updatedBy?:string;
 }
 
 export class DailyMedClass implements DailyMed{
@@ -194,9 +199,12 @@ getSummaryHealthRec():SummaryHealthRec[]{
   getLabHealthRec():HealthRec[]{
     let fmlyRecs:HealthRec[]=[];
     this.getCustSelectedRec().forEach(e => {
+      if("lab_report"===e.recType){
       e.dataValue.set('Platelet','200000');
       e.dataValue.set('Blood Count','10000/mg');
+      e.issueDate=new Date();
       fmlyRecs.push(e);
+      }
     });
     return fmlyRecs;
   }
@@ -216,11 +224,13 @@ getSummaryHealthRec():SummaryHealthRec[]{
  getFmlyHealthRec():FmlyHealthRec[]{
    let fmlyRecs:FmlyHealthRec[]=[];
     this.getCustSelectedRec().forEach(e => {
+      if('family_rec'===e.recType){
       e.dataValue.set('Diabatic','230');
       e.dataValue.set('Cholestrol','199');
       let fmlyRec:FmlyHealthRec;
       fmlyRec={realtions:['Father','Mother'],data:e}
       fmlyRecs.push(fmlyRec);
+      }
      
     });
     return fmlyRecs;

@@ -12,6 +12,7 @@ export class CustomerSerachComponent {
 
   filteredCustomers:any[];
   customerId:string;
+  selectedCustomerId:string;
   
   @Output() public onSelect = new EventEmitter();
   verifyPhoneOTP:boolean;
@@ -42,17 +43,18 @@ export class CustomerSerachComponent {
   verifyOTP() {
    this.verifyPhoneOTP=!this.verifyPhoneOTP;
     this.verifyPhoneOTP=true;
-    this.onSelect.emit(this.customerId);
+    this.onSelect.emit(this.selectedCustomerId);
     this.messageService.add({severity:'error', summary:'OTP Verification', detail:'Invalid OTP, Please enter valid OTP'});
   }
   filterCustomer(e){
+    this.selectedCustomerId=null;
     let query = e.query;
     this.filteredCustomers = [{name:query+'aaaaa',id:'custid-1'},{name:query+'aaab',id:'custid-2'}] ;
   }
   selectCutomer(e){
     this.verifyPhoneOTP=true;
-    this.customerId=e.id;
-    this.onSelect.emit(this.customerId);    
+    this.selectedCustomerId=e.id;
+    this.onSelect.emit(this.selectedCustomerId);    
     this.messageService.clear('c');
     this.messageService.add({key: 'c',sticky:true,severity:'success', summary:'Verify OTP', detail:'OTP has been send to registered email and phone'});
   }

@@ -10,7 +10,7 @@ import { DrviewComponent } from './drview/drview.component';
 import { DrdashComponent } from './drdash/drdash.component';
 import { CustomerSerachComponent } from '../global/customer-serach/customer-serach.component';
 import { ShareModule } from '../global/share/share.module';
-
+import {TabMenuModule} from 'primeng/tabmenu';
 
 const COMPONENTS = [
   DrviewComponent,DrdashComponent,
@@ -23,7 +23,7 @@ const ENTRY_COMPONENTS = [
   providers: [MessageService,CustomerSerachComponent],
   entryComponents:[...ENTRY_COMPONENTS],
   imports: [
-    GlobalComponentModule, DrviewRoutingModule,FileUploadModule,ShareModule
+    GlobalComponentModule, DrviewRoutingModule,FileUploadModule,ShareModule,TabMenuModule
   ]
 })
 
