@@ -14,7 +14,7 @@ import { CalendarOptions } from '@fullcalendar/angular';
   styleUrls: ['./appointment.component.css']
 })
 export class AppointmentComponent implements AfterViewInit, OnInit {
-
+ 
   @ViewChild('fc', { static: false }) fc: FullCalendar
   events: any[];
   selectEvent: any;

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DrviewRoutingModule } from './drview-routing.module';
@@ -11,20 +11,24 @@ import { DrdashComponent } from './drdash/drdash.component';
 import { CustomerSerachComponent } from '../global/customer-serach/customer-serach.component';
 import { ShareModule } from '../global/share/share.module';
 import {TabMenuModule} from 'primeng/tabmenu';
-import { ReviewHistComponent } from './review-hist/review-hist.component';
 import { DrconsentComponent } from './drconsent/drconsent.component';
 import { DrehrComponent } from './drehr/drehr.component';
 import { DrnotesComponent } from './drnotes/drnotes.component';
 import { MyappointmentComponent } from './myappointment/myappointment.component';
+import { DrhomeComponent } from './drhome/drhome.component';
+
+
+
 
 const COMPONENTS = [
-  DrviewComponent,DrdashComponent,ReviewHistComponent, DrconsentComponent, DrehrComponent, DrnotesComponent, MyappointmentComponent,
+  DrviewComponent,DrdashComponent, DrhomeComponent, DrconsentComponent, DrehrComponent, 
+  DrnotesComponent, MyappointmentComponent
 ];
 const ENTRY_COMPONENTS = [
   
 ];
 @NgModule({
-  declarations: [...COMPONENTS,  ],
+  declarations: [...COMPONENTS,   ],
   providers: [MessageService,CustomerSerachComponent],
   entryComponents:[...ENTRY_COMPONENTS],
   imports: [

@@ -1,1 +1,15 @@
-<p>drnotes works!</p>
+<div class="tblHLbl" *ngIf="reffNo"> Refference No:{{reffNo }}</div><br/>
+<div>
+    <p-scrollPanel [style]="{width: '100%', height: '60vh'}">
+        <div class="ui-g">                         
+            <div *ngFor="let nt of rxnotes" class="p-col-4 tblLbl">
+                <b>{{nt.metadata?.created_on|date:'medium'}}</b> &nbsp;&nbsp;&nbsp;<i class="hint"><span ><b>Creator:</b></span> {{nt.metadata?.createdBy}}</i>
+            <p-card >
+                
+                <p-scrollPanel class="tblLbl" [style]="{width: '100%', height: '6em'}">
+                <span class="tblLbl">{{nt.rxNote}}</span>
+            </p-scrollPanel>
+            </p-card></div>
+        </div>
+    </p-scrollPanel>
+</div>

@@ -18,6 +18,7 @@ export class DrdashComponent implements OnInit {
   dms: DailyMed[];
   labRecs:HealthRec[];
   mnuItem:string;
+  reviewRef:string;
 
   constructor(private mdataSrvs: MetadataService, private messageService: MessageService) { }
 
@@ -25,17 +26,17 @@ export class DrdashComponent implements OnInit {
     this.items = [
       { label: 'Home', icon: 'pi pi-fw pi-home',command: (e) => {
         this.selectMenu(e);              
-      } },
-      { label: 'Consents', icon: 'pi pi-fw pi-calendar',command: (e) => {
-        this.selectMenu(e);             
       } },      
-      { label: 'Ehrs', icon: 'pi pi-fw pi-file',command: (e) => {
+      { label: 'Ehr', icon: 'pi pi-fw pi-file',command: (e) => {
         this.selectMenu(e);              
       } },
       { label: 'Notes', icon: 'pi pi-fw pi-pencil',command: (e) => {
         this.selectMenu(e);             
       } },
-      { label: 'Appointments', icon: 'pi pi-fw pi-calendar-plus',command: (e) => {
+      { label: 'Consent', icon: 'pi pi-fw pi-calendar',command: (e) => {
+        this.selectMenu(e);             
+      } },
+      { label: 'Appointment', icon: 'pi pi-fw pi-calendar-plus',command: (e) => {
         this.selectMenu(e);      
       } }
     ];
@@ -43,15 +44,18 @@ export class DrdashComponent implements OnInit {
     this.fmlyEHRs=this.mdataSrvs.getFmlyHealthRec();
     this.dms = this.mdataSrvs.getDailyMed();
     this.labRecs=this.mdataSrvs.getLabHealthRec(); 
+    this.mnuItem='Home';
   }
 
   selectMenu(e){
     this.mnuItem=e.item.label; 
-    console.debug("df",this.mnuItem);
+    console.debug(this.reviewRef);
   }
   selectCutomer(e) {
     this.customerId = e;
     console.debug(this.customerId, e);
   }
-
+  selectReview(e){
+    this.reviewRef=e;
+  }
 }

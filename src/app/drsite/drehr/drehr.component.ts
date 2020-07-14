@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
   selector: 'app-drehr',
@@ -6,11 +6,20 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./drehr.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DrehrComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class DrehrComponent  implements OnInit {
+  reffNo: string;
+  
+  constructor() { 
+   
   }
 
+  ngOnInit(): void {
+    
+  }
+  
+  @Input()
+  public set reviewRef(reviewRef:string){
+    this.reffNo=reviewRef;
+  }
+  
 }
