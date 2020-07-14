@@ -19,7 +19,8 @@ export class DrdashComponent implements OnInit {
   labRecs:HealthRec[];
   mnuItem:string;
   reviewRef:string;
-
+  lsbar:boolean=true;
+  rsbar:boolean=true;
   constructor(private mdataSrvs: MetadataService, private messageService: MessageService) { }
 
   ngOnInit(): void {

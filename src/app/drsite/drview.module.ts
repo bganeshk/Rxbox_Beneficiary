@@ -17,6 +17,9 @@ import { DrnotesComponent } from './drnotes/drnotes.component';
 import { MyappointmentComponent } from './myappointment/myappointment.component';
 import { DrhomeComponent } from './drhome/drhome.component';
 import { SmryEhrComponent } from '../ehr/smry-ehr/smry-ehr.component';
+import { OtherDocComponent } from '../ehr/other-doc/other-doc.component';
+import { EhRoadmapComponent } from '../misc/eh-roadmap/eh-roadmap.component';
+import { HealthEventsComponent } from '../misc/health-events/health-events.component';
 
 
 
@@ -28,9 +31,12 @@ const COMPONENTS = [
 const ENTRY_COMPONENTS = [
   
 ];
+const PORVIDED_COMPONENET=[
+  CustomerSerachComponent,SmryEhrComponent,OtherDocComponent,EhRoadmapComponent, HealthEventsComponent,
+]
 @NgModule({
   declarations: [...COMPONENTS,   ],
-  providers: [MessageService,CustomerSerachComponent,SmryEhrComponent],
+  providers: [...PORVIDED_COMPONENET,MessageService,],
   entryComponents:[...ENTRY_COMPONENTS],
   imports: [
     GlobalComponentModule, DrviewRoutingModule,FileUploadModule,ShareModule,TabMenuModule

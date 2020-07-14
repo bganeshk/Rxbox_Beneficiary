@@ -17,15 +17,11 @@
     </div>
     <div class="p-col-12">
         
-            <div style="width: 100%; height:40vh">
-                <app-smry-ehr [visibleCount]="1" ></app-smry-ehr> 
-                
-                
-                <!--
-                    <app-smry-ehr [visibleCount]="1" *ngSwitchCase="'smryEhr'"></app-smry-ehr> 
-                 <app-smry-ehr [visibleCount]="1" *ngSwitchCase="'hev'"></app-smry-ehr> 
-                <app-smry-ehr [visibleCount]="1" *ngSwitchCase="'hrmap'"></app-smry-ehr> 
-                <app-smry-ehr [visibleCount]="1" *ngSwitchCase="'otherEhr'"></app-smry-ehr>  -->
+            <div style="width: 100%; height:40vh" [ngSwitch]="ehrType">
+                <app-smry-ehr [visibleCount]="1" *ngSwitchCase="'smryEhr'"></app-smry-ehr> 
+                <app-other-doc *ngSwitchCase="'otherEhr'"></app-other-doc> 
+                <app-eh-roadmap *ngSwitchCase="'hrmap'"></app-eh-roadmap> 
+                <app-health-events *ngSwitchCase="'hev'"></app-health-events>
             </div>
 
             

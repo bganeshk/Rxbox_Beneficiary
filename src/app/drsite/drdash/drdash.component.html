@@ -82,27 +82,36 @@
 
                             </p-panel>
                         </div>
-                       
+
                     </div>
                 </div>
-                <div class="p-col-6">
+                
+                <div [ngClass]="rsbar ? 'p-col-6' : 'p-col-8'">        
+                    
+                  
                     <p-tabMenu [model]="items" [activeItem]="items[0]">
+                        
                     </p-tabMenu>
-                  <div [ngSwitch]="mnuItem" >
-                      <app-drhome *ngSwitchCase="'Home'" (onReviewSelect)="selectReview($event);"></app-drhome>
-                      <app-drconsent *ngSwitchCase="'Consent'"></app-drconsent>
-                      <app-drehr *ngSwitchCase="'Ehr'" [reviewRef]="reviewRef"></app-drehr>
-                      <app-drnotes *ngSwitchCase="'Notes'" [reviewRef]="reviewRef"></app-drnotes>
-                      <app-myappointment *ngSwitchCase="'Appointment'"></app-myappointment>
-                  </div>
+                   
+                    <div [ngSwitch]="mnuItem">
+                        <app-drhome *ngSwitchCase="'Home'" (onReviewSelect)="selectReview($event);"></app-drhome>
+                        <app-drconsent *ngSwitchCase="'Consent'"></app-drconsent>
+                        <app-drehr *ngSwitchCase="'Ehr'" [reviewRef]="reviewRef"></app-drehr>
+                        <app-drnotes *ngSwitchCase="'Notes'" [reviewRef]="reviewRef"></app-drnotes>
+                        <app-myappointment *ngSwitchCase="'Appointment'"></app-myappointment>
+                    </div>     
+                                               
                 </div>
-                <div class="p-col-3">
+               
+                <div [ngClass]="rsbar ? 'p-col-3' : 'p-col-1'" >                    
+                   
                     <div class="p-grid">
                         <div class="p-col-12">
-                            <p-panel [toggleable]="true" >
+                            <p-panel [toggleable]="true">
                                 <p-header class="tblHLbl">
-
-                                    <span class="pi pi-bookmark">Prescription(s)</span>
+                                        
+                                    <span class="pi pi-bookmark">
+                                        Prescription(s)</span>
                                     <i class="pi pi-window-maximize  spacarund hower"></i>
                                 </p-header>
                                 <div class="tblLbl">
@@ -181,3 +190,4 @@
         </div>
     </div>
 </p-card>
+

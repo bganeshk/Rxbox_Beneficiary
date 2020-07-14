@@ -38,6 +38,9 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 import {AccordionModule} from 'primeng/accordion';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {FullCalendarModule} from 'primeng/fullcalendar';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { FileUploadModule } from 'primeng/fileupload';
+import { TreeModule } from 'primeng/tree';
 
 const IMPORT_PRIME_MODULE = [
   MessagesModule,MessageModule,ScrollPanelModule,OverlayPanelModule,  ButtonModule,
@@ -46,7 +49,8 @@ const IMPORT_PRIME_MODULE = [
    DataViewModule,DropdownModule,PanelModule, AutoCompleteModule, ToastModule,
    ContextMenuModule, TabViewModule, CarouselModule, CheckboxModule,SplitButtonModule,
    DragDropModule,InputSwitchModule,TreeTableModule,RadioButtonModule,AccordionModule,
-   ProgressBarModule,FullCalendarModule
+   ProgressBarModule,FullCalendarModule,TieredMenuModule,
+   FileUploadModule,TreeModule,
 ];
 
 const IMPORT_ANG_MODULE = [

@@ -12,9 +12,10 @@ import { MessageService } from 'primeng/api';
 import {CalendarModule} from 'primeng/calendar';
 import { RxsettingsComponent } from './rxsettings/rxsettings.component';
 import { MiscComponent } from './misc/misc.component';
+import { ShareModule } from '../global/share/share.module';
 
 const MISC_COMPONENTS = [
-  MiscComponent, AppointmentComponent, EhRoadmapComponent, HealthEventsComponent, ReminderComponent,
+  MiscComponent, AppointmentComponent,  ReminderComponent,
     
 ]
 
@@ -24,10 +25,10 @@ const MISC_ENTRY_COMPONENTS = [
 
 @NgModule({
   declarations: [...MISC_COMPONENTS, RxsettingsComponent, MiscComponent],
-  providers: [MessageService],
+  providers: [MessageService,EhRoadmapComponent, HealthEventsComponent,],
   entryComponents:[...MISC_ENTRY_COMPONENTS],
   imports: [
-    GlobalComponentModule, MiscRoutingModule,  CalendarModule
+    GlobalComponentModule, MiscRoutingModule,  CalendarModule, ShareModule
   ]
 })
 export class MiscModule { }
