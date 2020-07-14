@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MetadataService, HealthRec, SummaryHealthRec, DailyMed, RxNote } from 'src/app/global/metadata.service';
 import { MessageService, SelectItemGroup } from 'primeng/api';
 
@@ -11,6 +11,7 @@ export class SmryEhrComponent implements OnInit {
   summryRecs:SummaryHealthRec[];
   newsmryRec:SummaryHealthRec;
   showDlg:boolean=false;
+  visibleCnt:number=3;
   otherOpts: SelectItemGroup[];
   smryDailyMed:DailyMed[];
   smryLabRpt:HealthRec[];
@@ -25,6 +26,9 @@ export class SmryEhrComponent implements OnInit {
     this.rxnotes=this.mdataSrvs.getRxNote();
   }
 
+@Input() public set visibleCount(cnt:number){
+  this.visibleCnt=cnt;
+}
   onDelete(rec){
     let recs=this.summryRecs.splice(this.summryRecs.indexOf(rec),1);
     this.summryRecs.push(recs[0]);

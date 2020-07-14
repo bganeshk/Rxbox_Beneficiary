@@ -1,38 +1,40 @@
 <p-card [style]="{height:'78vh'}"> 
     <p-toast preventOpenDuplicates='true'></p-toast>
-    <p-panel header="Summary Records(s)">
-        <p-carousel [value]="summryRecs" [numVisible]="3" [numScroll]="1" [circular]="false">
-            <p-header>
+   
+        <p-carousel [value]="summryRecs" [numVisible]="visibleCnt" [numScroll]="1" [circular]="false">
+            <!--p-header>
                 <button pButton type="button" label="Add" icon="pi pi-plus" (click)="addNewData()"></button>
-            </p-header>
+            </p-header-->
             <ng-template let-crq pTemplate="item">
 
                 <div class="cnst_detail">
 
                     <div class="p-grid p-nogutter">
-                        <div class="p-col-4 ">
+                        <div class="p-col-4 tblLbl">
                             Admission Date:
                         </div>
                         <div class="p-col-8 req_data">
                             {{crq.admissionDt|date}} 
                         </div>
-                        <div class="p-col-4">Discharge Date:</div>
+                        <div class="p-col-4  tblLbl">Discharge Date:</div>
                         <div class="p-col-8 req_data">
                             {{crq.dischargeDate|date}}
                         </div>
-                        <div class="p-col-4">
+                        <div class="p-col-12  tblLbl">
                             Reference Number:
                         </div>
-                        <div class="p-col-8 req_data">
+                        <div class="p-col-12 req_data">
                              {{crq.refNumber}}
                         </div>
-
+                        <div class="p-col-12 tblLbl">
+                        Subject
+                        </div>
                         <div class="p-col-12 req_data">
                             {{crq.desc}}
                         </div>
                         <br />
                         <div class="p-col-12 req_data2">
-                            <div class="req_data">Created By: {{crq.recIssuer}}</div>
+                            <div class="tblLbl">Created By: <span class="req_data">{{crq.recIssuer}}</span></div>
                             <div>
                                 <div class="req_data" *ngIf="crq.issuerDetails">
                                    Phone: {{crq.issuerDetails.primemobile}}
@@ -51,7 +53,8 @@
                 </div>
             </ng-template>
         </p-carousel>
-    </p-panel>
+   
+
 
     <p-dialog #dv header="Consent Details" [(visible)]="showDlg" [responsive]="true" showEffect="fade" [modal]="true"
         [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '50vw'}"        

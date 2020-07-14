@@ -8,10 +8,12 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 })
 export class DrehrComponent  implements OnInit {
   reffNo: string;
-  
+  ehrType:string="smryEhr";
+
   constructor() { 
    
   }
+
 
   ngOnInit(): void {
     
