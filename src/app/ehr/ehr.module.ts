@@ -12,10 +12,11 @@ import { MessageService } from 'primeng/api';
 import {FileUploadModule} from 'primeng/fileupload';
 import {TreeModule} from 'primeng/tree';
 import { EhrComponent } from './ehr/ehr.component';
+import { ShareModule } from '../global/share/share.module';
 
 const EHR_COMPONENTS = [
   MgntEhrComponent, LabEhrComponent, FmlyEhrComponent, 
-  SmryEhrComponent, OtherDocComponent, MgntDiaganosisComponent,EhrComponent
+   OtherDocComponent, MgntDiaganosisComponent,EhrComponent
 ]
 
 const EHR_ENTRY_COMPONENTS = [
@@ -26,10 +27,10 @@ const EHR_ENTRY_COMPONENTS = [
 @NgModule({
   declarations: [...EHR_COMPONENTS,  ],
   entryComponents: [...EHR_ENTRY_COMPONENTS],
-  providers: [MessageService],
+  providers: [MessageService,SmryEhrComponent],
   imports: [
     EhrRoutingModule, GlobalComponentModule,TieredMenuModule,
-    FileUploadModule,TreeModule
+    FileUploadModule,TreeModule, ShareModule
   ]
 })
 export class EHRModule { }

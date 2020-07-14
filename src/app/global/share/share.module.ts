@@ -3,15 +3,16 @@ import { CustomerSerachComponent } from '../customer-serach/customer-serach.comp
 import { GlobalComponentModule } from '../global-component/global-component.module';
 import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
+import { SmryEhrComponent } from 'src/app/ehr/smry-ehr/smry-ehr.component';
 
 
 
 @NgModule({
-  declarations: [CustomerSerachComponent],
+  declarations: [CustomerSerachComponent,SmryEhrComponent],
   providers: [MessageService],
   imports:[CommonModule, GlobalComponentModule],
   exports: [
-    CustomerSerachComponent
+    CustomerSerachComponent,SmryEhrComponent
   ]
 })
 export class ShareModule { }

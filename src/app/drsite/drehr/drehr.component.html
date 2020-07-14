@@ -1,3 +1,33 @@
 
-<div class="tblHLbl" *ngIf="reffNo"> Refference No:{{reffNo }}</div>
-<p>drehr works!</p>
+
+
+<div class="ui-g">    
+    <div class="p-col-12 tblHLbl" *ngIf="reffNo"> Refference No:{{reffNo }}</div>
+    <div class="p-col-3"> 
+        <p-radioButton class="tblHLbl" name="eht" value="smryEhr" [(ngModel)]="ehrType" label="Summary Records"></p-radioButton>        
+    </div>
+    <div class="p-col-3"> 
+        <p-radioButton class="tblHLbl" name="eht" value="otherEhr" [(ngModel)]="ehrType" label="Other Records"></p-radioButton>
+    </div>
+    <div class="p-col-3"> 
+        <p-radioButton class="tblHLbl" name="eht" value="hev" [(ngModel)]="ehrType" label="Health Events"></p-radioButton>
+    </div>
+    <div class="p-col-3"> 
+        <p-radioButton class="tblHLbl" name="eht" value="hrmap" [(ngModel)]="ehrType" label="Health Roadmap"></p-radioButton>
+    </div>
+    <div class="p-col-12">
+        
+            <div style="width: 100%; height:40vh">
+                <app-smry-ehr [visibleCount]="1" ></app-smry-ehr> 
+                
+                
+                <!--
+                    <app-smry-ehr [visibleCount]="1" *ngSwitchCase="'smryEhr'"></app-smry-ehr> 
+                 <app-smry-ehr [visibleCount]="1" *ngSwitchCase="'hev'"></app-smry-ehr> 
+                <app-smry-ehr [visibleCount]="1" *ngSwitchCase="'hrmap'"></app-smry-ehr> 
+                <app-smry-ehr [visibleCount]="1" *ngSwitchCase="'otherEhr'"></app-smry-ehr>  -->
+            </div>
+
+            
+    </div>
+</div>

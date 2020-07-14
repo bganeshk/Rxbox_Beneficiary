@@ -25,7 +25,7 @@
                     <li class="pi pi-star" *ngIf="selectedReviewDetails &&(dm.refNo===selectedReviewDetails.refNo)"></li>
                     {{dm.refNo}}
                 </td>
-                <td class="tblLbl">{{dm.lastReviewDate| date:'short'}}</td>
+                <td class="tblLbl">{{dm.lastReviewDate | date:'short'}}</td>
                 <td class="tblLbl" style="width: 55%;">{{dm.desc}}</td>
                 <td style="width: 2em;">
                     <button pButton  class="actbtn" icon="pi pi-trash" type="button" 
