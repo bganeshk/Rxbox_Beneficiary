@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FmlyHealthRec, MetadataService, HealthRec } from 'src/app/global/metadata.service';
 import { SelectItem, MessageService, SelectItemGroup } from 'primeng/api';
+import { GlobalBeeService } from 'bee-lib';
 
 @Component({
   selector: 'app-lab-ehr',
@@ -14,8 +15,11 @@ export class LabEhrComponent implements OnInit {
   newLabRec:HealthRec;
   visibleDlg:boolean=false;
   otherOpts: SelectItemGroup[];
-
-  constructor(private mdataSrvs: MetadataService, private messageService: MessageService) { 
+  isReadOnly: boolean;
+  
+  constructor(private mdataSrvs: MetadataService, 
+    private messageService: MessageService,
+    private beeSrvs:GlobalBeeService) { 
     
   }
 
@@ -23,6 +27,9 @@ export class LabEhrComponent implements OnInit {
     this.otherOpts = this.mdataSrvs.getEhrCategoryDetList();
     this.labRecs=this.mdataSrvs.getLabHealthRec();
     this.newLabRec=this.labRecs[0];
+    if('dash'===this.beeSrvs.getCurrentPage()){
+      this.isReadOnly=true;
+    }
   }
 
   onDelete(e){

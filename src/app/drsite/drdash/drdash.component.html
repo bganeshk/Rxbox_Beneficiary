@@ -17,7 +17,7 @@
                                         
                                     <span class="pi pi-bookmark">
                                         Prescription(s)</span>
-                                    <i class="pi pi-window-maximize  spacarund hower"></i>
+                                    <i class="pi pi-window-maximize  spacarund hower" (click)="showDialogue('presc')"></i>
                                 </p-header>
                                 <div class="tblLbl">
                                     <p-scrollPanel [style]="{height:'35vh'}">
@@ -41,7 +41,7 @@
                                 <p-header class="tblHLbl">
                                     <span class="pi pi-pencil"> Lab Reports </span>
 
-                                    <i class="pi pi-window-maximize  spacarund hower"></i>
+                                    <i class="pi pi-window-maximize  spacarund hower" (click)="showDialogue('labrpt')"></i>
                                 </p-header>
                                 <div class="tblLbl">
                                     <p-scrollPanel [style]="{height:'35vh'}">
@@ -115,7 +115,7 @@
                             <p-panel [toggleable]="true">
                                 <p-header class="tblHLbl">
                                     <span class="pi pi-chart-bar">High-low Facts</span>
-                                    <i class="pi pi-window-maximize  spacarund hower"></i>
+                                    <i class="pi pi-window-maximize  spacarund hower" (click)="showDialogue('hilo')"></i>
                                 </p-header>
                                 <div class="tblLbl">
                                     <p-scrollPanel [style]="{height:'35vh'}">
@@ -168,12 +168,12 @@
                             <p-panel [toggleable]="true" [collapsed]="true">
                                 <p-header class="tblHLbl">
                                     <span class="pi pi-users">Family Facts :</span>
-                                    <i class="pi pi-window-maximize  spacarund hower"></i>
+                                    <i class="pi pi-window-maximize  spacarund hower" (click)="showDialogue('fmlyEHR')"></i>
                                 </p-header>
                                 <div class="tblLbl">
                                     <p-scrollPanel [style]="{height:'35vh'}">
-                                        <span *ngFor="let ehr of fmlyEHRs">
-                                            <div class="tblHLbl">{{ehr.data.recTypeDesc}}({{ehr.data.recType}})</div>
+                                        <span *ngFor="let ehr of fmlyEHRs">                                            
+                                            <b>{{ehr.data.desc}}</b>
                                             <p class="hilow">Content realted to allergy care health highlights and
                                                 lowlights shall be displayed. Right now system could not find the
                                                 details realted to the care provided or treatment realted to the
@@ -193,3 +193,14 @@
     </div>
 </p-card>
 
+<p-dialog [(visible)]="dlgVisible" [ngSwitch]="dlgType" (onHide)="dlgVisible=false;" [maximizable]="true">
+    <p-header *ngSwitchCase="'labrpt'">Lab Reports</p-header>
+    <p-header *ngSwitchCase="'presc'"> Prescriptions</p-header>
+    <p-header *ngSwitchCase="'fmlyEHR'"> Family History</p-header>
+    <p-header *ngSwitchCase="'hilo'"> Hi-Lo Fact Analysis</p-header>
+
+    <app-mgnt-prescription *ngSwitchCase="'presc'"></app-mgnt-prescription>
+    <app-lab-ehr *ngSwitchCase="'labrpt'"></app-lab-ehr>
+    <app-fmly-ehr *ngSwitchCase="'fmlyEHR'"></app-fmly-ehr>
+    <app-dashboard *ngSwitchCase="'hilo'"></app-dashboard>
+</p-dialog>

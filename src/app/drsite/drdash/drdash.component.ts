@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MetadataService, HealthRec, FmlyHealthRec, DailyMed } from 'src/app/global/metadata.service';
 import { MessageService } from 'primeng/api';
 import { MenuItem } from 'primeng/api';
+import { NgSwitchCase } from '@angular/common';
 
 
 @Component({
@@ -19,8 +20,9 @@ export class DrdashComponent implements OnInit {
   labRecs:HealthRec[];
   mnuItem:string;
   reviewRef:string;
-  lsbar:boolean=true;
+  dlgVisible:boolean;
   rsbar:boolean=true;
+  dlgType: string;
   constructor(private mdataSrvs: MetadataService, private messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -58,5 +60,9 @@ export class DrdashComponent implements OnInit {
   }
   selectReview(e){
     this.reviewRef=e;
+  }
+  showDialogue(e){
+    this.dlgType=e;
+    this.dlgVisible=true;
   }
 }

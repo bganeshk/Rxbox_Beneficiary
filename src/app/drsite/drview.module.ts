@@ -20,6 +20,9 @@ import { SmryEhrComponent } from '../ehr/smry-ehr/smry-ehr.component';
 import { OtherDocComponent } from '../ehr/other-doc/other-doc.component';
 import { EhRoadmapComponent } from '../misc/eh-roadmap/eh-roadmap.component';
 import { HealthEventsComponent } from '../misc/health-events/health-events.component';
+import { MgntPrescriptionComponent } from '../prescription/mgnt-prescription/mgnt-prescription.component';
+import { LabEhrComponent } from '../ehr/lab-ehr/lab-ehr.component';
+import { FmlyEhrComponent } from '../ehr/fmly-ehr/fmly-ehr.component';
 
 
 
@@ -33,6 +36,7 @@ const ENTRY_COMPONENTS = [
 ];
 const PORVIDED_COMPONENET=[
   CustomerSerachComponent,SmryEhrComponent,OtherDocComponent,EhRoadmapComponent, HealthEventsComponent,
+  MgntPrescriptionComponent,LabEhrComponent,FmlyEhrComponent,
 ]
 @NgModule({
   declarations: [...COMPONENTS,   ],

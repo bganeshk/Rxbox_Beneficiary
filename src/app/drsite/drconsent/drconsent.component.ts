@@ -16,6 +16,7 @@ export class DrconsentComponent implements OnInit {
      private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.myConsents=this.mdataSrvs.getConsReq(null,null);
   }
 
   onEdit(e){
@@ -25,7 +26,7 @@ export class DrconsentComponent implements OnInit {
 
 
   }
-
+ 
   reqNewConsent(){
 
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DashPoints, BeeNotification, DashboardService, TransData } from 'bee-lib';
+import { DashPoints, BeeNotification, DashboardService, TransData, GlobalBeeService } from 'bee-lib';
 import { MenuItem } from 'primeng/api';
 
 import { EChartOption } from 'echarts';
@@ -42,8 +42,10 @@ export class DashboardComponent implements OnInit {
   mgntMenuItems: MenuItem[];
   miscMenuItems: MenuItem[];
   checked1: boolean = false;
+  drView:boolean;
 
-  constructor(private dashboardService: DashboardService, private mdataSrvs:MetadataService) {
+  constructor(private dashboardService: DashboardService, private beeSrvs:GlobalBeeService,
+    private mdataSrvs:MetadataService) {
     dashboardService.getNotification().then(res => this.notifi = res);
     this.mgntMenuItems = [
       { label: 'Consents', icon: 'pi pi-fw pi-tags', routerLink: ['/pages/mgntConsent'] },
@@ -62,7 +64,9 @@ export class DashboardComponent implements OnInit {
   }
   ngOnInit() {
     this.notidlg = false;
-
+    if('dash'===this.beeSrvs.getCurrentPage()){
+      this.drView=true;
+    }
     this.selectedNotifi = new BeeNotification();
     this.dms = this.mdataSrvs.getDailyMed();
   }

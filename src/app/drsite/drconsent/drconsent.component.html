@@ -1,20 +1,37 @@
+
 <p-scrollPanel [style]="{height:'55vh'}">
-    <p-table [value]="myConsents" [style]="{height:'50vh'}" selectionMode="single" 
+    <p-table #dtb [value]="myConsents" selectionMode="single" 
+    [paginator]="true" [rows]="3" [showCurrentPageReport]="true"
+    [globalFilterFields]="['reqId','beneficiary.beId','beneficiary.beName','remarks']"
     [(selection)]="selectedConsent" dataKey="refNo" (onRowSelect)="onRowSelect()">
         <ng-template pTemplate="caption">
             <div class="p-grid">
-                <div class="p-col-10 tblHLbl">Patient Review Record</div>
-                <div class="p-col-2" style="text-align: right">
+                <div class="p-col-7 tblHLbl">
+                    <div style="text-align: right">                                
+                        <input type="text" pInputText size="40" placeholder="Global Filter"                                 
+                               (input)="dtb.filterGlobal($event.target.value, 'contains')" 
+                               style="width:auto">
+                    </div>
+
+                </div>
+                <div class="p-col-5" style="text-align: right">
                     <button pButton type="button" label="New Consent Request" icon="pi pi-plus"
                         (click)="reqNewConsent()"></button>
                 </div>
             </div>
         </ng-template>
-        <ng-template pTemplate="header" >
-            <tr>
+        <ng-template pTemplate="header">
+            <tr >
                 <th class="tblHLbl">Ref:No#</th>
-                <th class="tblHLbl">Review Date</th>
-                <th class="tblHLbl" style="width: 55%;">Desc </th>  
+                <th class="tblHLbl" [pSortableColumn]="'reqCreated_on'">
+                    Req:Date 
+                    <p-sortIcon [field]="'reqCreated_on'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                </th>  
+                <th class="tblHLbl" style="width: 45%;"> Detail</th>                
+                <th class="tblHLbl" [pSortableColumn]="'status'">
+                    Status
+                    <p-sortIcon [field]="'status'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                </th>  
                 <th style="width: 3em;"></th>
                 <th style="width: 3em;"></th>             
             </tr>
@@ -22,10 +39,14 @@
         <ng-template pTemplate="body" let-dm>
             <tr [pSelectableRow]="dm">
                 <td class="tblLbl">
-                    {{dm.refNo}}
+                    {{dm.reqId}}
                 </td>
-                <td class="tblLbl">{{dm.lastReviewDate | date:'short'}}</td>
-                <td class="tblLbl" style="width: 55%;">{{dm.desc}}</td>
+                <td class="tblLbl">{{dm.reqCreated_on | date}}</td>                
+                <td class="tblLbl " style="width: 45%;">
+                    <span class="detailOverFlow"><b>{{ dm.beneficiary.beId}}- ({{dm.beneficiary.beName}})</b><br/>{{dm.remarks}}
+                    </span>
+                    </td>
+                <td class="tblLbl">{{dm.status}}</td>
                 <td style="width: 2em;">
                     <button pButton  class="actbtn" icon="pi pi-trash" type="button" 
                     (click)="onDelete(dm)"></button>
@@ -37,3 +58,4 @@
         </ng-template>
     </p-table>
 </p-scrollPanel>
+

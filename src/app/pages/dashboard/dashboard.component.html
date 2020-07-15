@@ -4,7 +4,9 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
 -->
 <div class="dash">
     <div class="p-grid">
-        <div class="p-col-12 p-md-12 p-lg-6 dshchart">
+        <div 
+        [ngClass]="drView ? 'p-col dshchart' : 'p-col-12 p-md-12 p-lg-6 dshchart'"
+        >
             <p-card class="dshlft">
                 <div class="divhed">
                     <p-header>
@@ -73,17 +75,17 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                     </div>
                                 </div>
 
-                                <div class=" p-col p-col-align-center baroption">
+                                <div class=" p-col p-col-align-center baroption" *ngIf="!drView">
                                     <a [routerLink]="['/ehr/vaccine']" routerLinkActive="router-link-active">Vaccine history</a>
                                 </div>
                             </div>
 
-                            <div class=" p-col p-col-align-center">
+                            <div class=" p-col p-col-align-center" *ngIf="!drView">
                                 <p-tieredMenu #menu [model]="mgntMenuItems" [popup]="true"></p-tieredMenu>
                                 <button pButton type="button" class="ui-button-raised ui-button-rounded"
                                     (click)="menu.toggle($event)" label="ManageData" icon="pi pi-share-alt"></button>
                             </div>
-                            <div class=" p-col p-col-align-center">
+                            <div class=" p-col p-col-align-center" *ngIf="!drView">
                                 <p-tieredMenu #miscmenu [model]="miscMenuItems" [popup]="true"></p-tieredMenu>
                                 <button pButton type="button" class="ui-button-raised ui-button-rounded"
                                     (click)="miscmenu.toggle($event)" label="Miscellaneous"
@@ -135,7 +137,7 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                 </div>
             </p-card>
         </div>
-        <div class="p-col-12  p-md-12 p-lg-6">
+        <div class="p-col-12  p-md-12 p-lg-6" *ngIf="!drView">
             <div class="pgrid p-dir-col">
                 <div class="p-col prof">
                     <p-card >                        
@@ -240,7 +242,7 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
         </div>
     </div>
 </div>
-<div class="dlg">
+<div class="dlg" *ngIf="!drView" >
     <p-dialog [(visible)]="notidlg" dismissableMask="true">
         <p-header>
             <div *ngIf="selectedNotifi.type=='noti'"><i class="pi pi-bell npi">Notification Details</i></div>

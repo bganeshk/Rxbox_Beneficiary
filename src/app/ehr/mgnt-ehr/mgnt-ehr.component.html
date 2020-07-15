@@ -2,7 +2,7 @@
     <p-toast preventOpenDuplicates='true' modal='true'></p-toast>
     <p-accordion [multiple]="false">
 
-    <p-accordionTab header="Generic Records" [selected]="true">
+    <p-accordionTab class="accoHLbl" header="Generic Records" [selected]="true">
         <div class="p-grid">
             <div class="p-col-12 p-md-6 p-lg-4">
              
@@ -112,7 +112,7 @@
                             <tr class="tblHLbl">
                                 <th class="tblHLbl">Pulse</th>
                                 <th class="tblHLbl">Temp:</th>
-                                <th class="tblHLbl">Saturaiton</th>
+                                <th class="tblHLbl">Saturation</th>
                                 <th class="tblHLbl" style="width: 35%;">Date</th>
                             </tr>
                         </ng-template>
@@ -179,7 +179,7 @@
             </div>
         </div>
     </p-accordionTab>
-    <p-accordionTab  header="Vaccine Records">
+    <p-accordionTab  class="accoHLbl" header="Vaccine Records">
         <div class="p-grid">
             <div class="p-col-12">
                 <div *ngIf="selectedOpts">

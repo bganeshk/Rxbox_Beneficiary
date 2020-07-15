@@ -45,7 +45,7 @@
         </tr>
     </ng-template>
 
-    <ng-template pTemplate="summary" let-rowData>
+    <ng-template pTemplate="caption" let-rowData>
         <div style="text-align:left">
             <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
         </div>
@@ -127,7 +127,7 @@
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" pButton icon="pi pi-trash" (click)="delete()" label="Delete" *ngIf="!newphr"></button>
+            <button type="button" pButton icon="pi pi-trash" (click)="delete()" label="Stop" *ngIf="!newphr"></button>
             <button type="button" pButton icon="pi pi-times" (click)="displayDlg=false;selectedphr=null;"
                 label="Cancel"></button>
             <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>

@@ -12,7 +12,7 @@ import { EhrComponent } from './ehr/ehr.component';
 import { RxSharedModule } from '../global/share/share.module';
 
 const EHR_COMPONENTS = [
-  MgntEhrComponent, LabEhrComponent, FmlyEhrComponent, 
+  MgntEhrComponent,   
     MgntDiaganosisComponent,EhrComponent
 ]
 
@@ -24,7 +24,7 @@ const EHR_ENTRY_COMPONENTS = [
 @NgModule({
   declarations: [...EHR_COMPONENTS,  ],
   entryComponents: [...EHR_ENTRY_COMPONENTS],
-  providers: [MessageService,SmryEhrComponent,OtherDocComponent],
+  providers: [MessageService,SmryEhrComponent,OtherDocComponent,LabEhrComponent,FmlyEhrComponent],
   imports: [
     EhrRoutingModule, GlobalComponentModule, RxSharedModule
   ]

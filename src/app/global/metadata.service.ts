@@ -49,9 +49,12 @@ export interface Consnt{
 }
 
 export interface ConsntReq{
+  reqId:string;
   reqCreated_on:Date;
   reqCreater:string;
+  beneficiary:Beneficiary;  
   access_statrdt:Date;
+  status:string;
   reqAccess_category:string[];
   access_type:string;//view,edit/upload
   remarks:string;
@@ -101,6 +104,15 @@ export interface AuditData{
   updatedBy?:string;
 }
 
+export interface ServiceProvider {
+  providerId:string;
+  providerName:string;
+}
+export interface Beneficiary{
+  beId:string;
+  beName:string;
+}
+
 export class DailyMedClass implements DailyMed{
 
 }
@@ -117,7 +129,7 @@ export interface DailyMed {
   repeatCycleNumber?:string//everymondy for 5times or everymonth for 12 months
   numberOfCycle?:number;//number of days to consme the medicine -1 for indefiniete
   startDate?:Date;
-  endDate?:Date;//need to fill after calculation
+  endDate?:Date;//need to fill after calculation or while stopping
   prescribedBy?:string;
   prescribed_dt?:Date;
  
@@ -302,10 +314,10 @@ getSummaryHealthRec():SummaryHealthRec[]{
     ];
   return dm;
   }
-  getConsReq(staus: string): ConsntReq[] {
+  getConsReq(staus?: string,drId?:string): ConsntReq[] {
    // throw new Error("Method not implemented.");
    return [
-         {reqCreated_on:new Date(),reqCreater:'Dr.Gkumar (SRS Hospital)', access_statrdt:new Date(), reqAccess_category:['Family_health'], access_type:'view',remarks:'I am from hospital SRS, Plesae provide access to get the details of history',
+         {reqId:'Con/12/12-1',reqCreated_on:new Date(),status:'Pending',reqCreater:'Dr.Gkumar (SRS Hospital)', access_statrdt:new Date(), reqAccess_category:['Family_health'], access_type:'view',remarks:'I am from hospital SRS, Plesae provide access to get the details of history',
           requstor_details:{
             adId:'343',
             primemobile:'3498787654',
@@ -315,17 +327,17 @@ getSummaryHealthRec():SummaryHealthRec[]{
             pin: '3434', primephoneStatus:null, primeemailStatus:null, 
             address_line1:'address-line1', 
             address_line2 :'address-line2'
-          }
+          },beneficiary:{beId:"34f3d3",beName:'Patient 1'}
         },
-         {reqCreated_on:new Date(),reqCreater:'Dr GRS2', access_statrdt:new Date(), reqAccess_category:['Cardiac'], access_type:'All',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'Dr GRS3', access_statrdt:new Date(), reqAccess_category:['Summary'], access_type:'All',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'Dr GRS4', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'view',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'Dr GRS2', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'All',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'Dr GRS2', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'Dr Klm kong S3', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'SRS', access_statrdt:new Date(), reqAccess_category:[''], access_type:'',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'Kolmn', access_statrdt:new Date(), reqAccess_category:[''], access_type:'',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,
-         {reqCreated_on:new Date(),reqCreater:'Komn', access_statrdt:new Date(), reqAccess_category:[''], access_type:'',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null} ,          
+         {reqId:'Con/12/12-2',reqCreated_on:new Date(),status:'New',reqCreater:'Dr GRS2', access_statrdt:new Date(), reqAccess_category:['Cardiac'], access_type:'All',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null,beneficiary:{beId:"34f3d3",beName:'Patient 3'}} ,
+         {reqId:'Con/12/12-3',reqCreated_on:new Date(),status:'Expired',reqCreater:'Dr GRS3', access_statrdt:new Date(), reqAccess_category:['Summary'], access_type:'All',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null,beneficiary:{beId:"34f3d3",beName:'Patient 2'}} ,
+         {reqId:'Con/12/12-3',reqCreated_on:new Date(),status:'Pending',reqCreater:'Dr GRS4', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'view',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null,beneficiary:{beId:"34f3d3",beName:'Patient 4'}} ,
+         {reqId:'Con/12/12-4',reqCreated_on:new Date(),status:'Approved',reqCreater:'Dr GRS2', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'All',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null,beneficiary:{beId:"34f3d3",beName:'Patient 5'}} ,
+         {reqId:'Con/12/12-5',reqCreated_on:new Date(),status:'Approved',reqCreater:'Dr GRS2', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null,beneficiary:{beId:"34f3d3",beName:'Patient 1'}} ,
+         {reqId:'Con/12/12-6',reqCreated_on:new Date(),status:'New',reqCreater:'Dr Klm kong S3', access_statrdt:new Date(), reqAccess_category:['Lab'], access_type:'',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null,beneficiary:{beId:"34f3d3",beName:'Patient 3'}} ,
+         {reqId:'Con/12/12-7',reqCreated_on:new Date(),status:'Approved',reqCreater:'SRS', access_statrdt:new Date(), reqAccess_category:[''], access_type:'',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null,beneficiary:{beId:"34f3d3",beName:'Patient 3'}} ,
+         {reqId:'Con/12/12-8',reqCreated_on:new Date(),status:'Pending',reqCreater:'Kolmn', access_statrdt:new Date(), reqAccess_category:[''], access_type:'',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null,beneficiary:{beId:"34f3d3",beName:'Patient 2'}} ,
+         {reqId:'Con/12/12-9',reqCreated_on:new Date(),status:'Expired',reqCreater:'Komn', access_statrdt:new Date(), reqAccess_category:[''], access_type:'',remarks:'The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner', requstor_details:null,beneficiary:{beId:"34f3d3",beName:'Patient 2'}} ,          
    ];
   }
   getConsentValidityUnit(): SelectItem[] {
