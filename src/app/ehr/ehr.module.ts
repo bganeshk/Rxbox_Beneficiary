@@ -9,7 +9,7 @@ import { OtherDocComponent } from './other-doc/other-doc.component';
 import { MgntDiaganosisComponent } from './mgnt-diaganosis/mgnt-diaganosis.component';
 import { MessageService } from 'primeng/api';
 import { EhrComponent } from './ehr/ehr.component';
-import { ShareModule } from '../global/share/share.module';
+import { RxSharedModule } from '../global/share/share.module';
 
 const EHR_COMPONENTS = [
   MgntEhrComponent, LabEhrComponent, FmlyEhrComponent, 
@@ -26,7 +26,7 @@ const EHR_ENTRY_COMPONENTS = [
   entryComponents: [...EHR_ENTRY_COMPONENTS],
   providers: [MessageService,SmryEhrComponent,OtherDocComponent],
   imports: [
-    EhrRoutingModule, GlobalComponentModule, ShareModule
+    EhrRoutingModule, GlobalComponentModule, RxSharedModule
   ]
 })
 export class EHRModule { }

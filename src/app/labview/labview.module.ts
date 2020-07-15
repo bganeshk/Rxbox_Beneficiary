@@ -8,7 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LabviewComponent } from './labview/labview.component';
 import {FileUploadModule} from 'primeng/fileupload';
 import { CustomerSerachComponent } from '../global/customer-serach/customer-serach.component';
-import { ShareModule } from '../global/share/share.module';
+import { RxSharedModule } from '../global/share/share.module';
 
 
 const COMPONENTS = [
@@ -22,7 +22,7 @@ const ENTRY_COMPONENTS = [
   providers: [MessageService,CustomerSerachComponent],
   entryComponents:[...ENTRY_COMPONENTS],
   imports: [
-    GlobalComponentModule, LabviewRoutingModule,FileUploadModule,ShareModule
+    GlobalComponentModule, LabviewRoutingModule,FileUploadModule,RxSharedModule
   ]
 })
 export class LabviewModule { }

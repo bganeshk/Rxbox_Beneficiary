@@ -22,4 +22,4 @@ const DECLARE_COMPO=[
     ...DECLARE_COMPO,
   ]
 })
-export class ShareModule { }
+export class RxSharedModule { }

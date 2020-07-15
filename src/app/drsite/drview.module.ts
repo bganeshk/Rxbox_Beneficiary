@@ -9,7 +9,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { DrviewComponent } from './drview/drview.component';
 import { DrdashComponent } from './drdash/drdash.component';
 import { CustomerSerachComponent } from '../global/customer-serach/customer-serach.component';
-import { ShareModule } from '../global/share/share.module';
+import { RxSharedModule } from '../global/share/share.module';
 import {TabMenuModule} from 'primeng/tabmenu';
 import { DrconsentComponent } from './drconsent/drconsent.component';
 import { DrehrComponent } from './drehr/drehr.component';
@@ -39,7 +39,7 @@ const PORVIDED_COMPONENET=[
   providers: [...PORVIDED_COMPONENET,MessageService,],
   entryComponents:[...ENTRY_COMPONENTS],
   imports: [
-    GlobalComponentModule, DrviewRoutingModule,FileUploadModule,ShareModule,TabMenuModule
+    GlobalComponentModule, DrviewRoutingModule,FileUploadModule,RxSharedModule,TabMenuModule
   ]
 })
 

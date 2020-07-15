@@ -12,7 +12,7 @@ import { MessageService } from 'primeng/api';
 import {CalendarModule} from 'primeng/calendar';
 import { RxsettingsComponent } from './rxsettings/rxsettings.component';
 import { MiscComponent } from './misc/misc.component';
-import { ShareModule } from '../global/share/share.module';
+import { RxSharedModule } from '../global/share/share.module';
 
 const MISC_COMPONENTS = [
   MiscComponent, AppointmentComponent,  ReminderComponent,
@@ -28,7 +28,7 @@ const MISC_ENTRY_COMPONENTS = [
   providers: [MessageService,EhRoadmapComponent, HealthEventsComponent,],
   entryComponents:[...MISC_ENTRY_COMPONENTS],
   imports: [
-    GlobalComponentModule, MiscRoutingModule,  CalendarModule, ShareModule
+    GlobalComponentModule, MiscRoutingModule,  CalendarModule, RxSharedModule
   ]
 })
 export class MiscModule { }

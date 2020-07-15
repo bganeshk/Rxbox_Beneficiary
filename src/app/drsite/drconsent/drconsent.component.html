@@ -1,1 +1,39 @@
-<p>drconsent works!</p>
+<p-scrollPanel [style]="{height:'55vh'}">
+    <p-table [value]="myConsents" [style]="{height:'50vh'}" selectionMode="single" 
+    [(selection)]="selectedConsent" dataKey="refNo" (onRowSelect)="onRowSelect()">
+        <ng-template pTemplate="caption">
+            <div class="p-grid">
+                <div class="p-col-10 tblHLbl">Patient Review Record</div>
+                <div class="p-col-2" style="text-align: right">
+                    <button pButton type="button" label="New Consent Request" icon="pi pi-plus"
+                        (click)="reqNewConsent()"></button>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" >
+            <tr>
+                <th class="tblHLbl">Ref:No#</th>
+                <th class="tblHLbl">Review Date</th>
+                <th class="tblHLbl" style="width: 55%;">Desc </th>  
+                <th style="width: 3em;"></th>
+                <th style="width: 3em;"></th>             
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-dm>
+            <tr [pSelectableRow]="dm">
+                <td class="tblLbl">
+                    {{dm.refNo}}
+                </td>
+                <td class="tblLbl">{{dm.lastReviewDate | date:'short'}}</td>
+                <td class="tblLbl" style="width: 55%;">{{dm.desc}}</td>
+                <td style="width: 2em;">
+                    <button pButton  class="actbtn" icon="pi pi-trash" type="button" 
+                    (click)="onDelete(dm)"></button>
+                </td>
+                <td style="width: 2em;">
+                    <button pButton  class="actbtn" icon="pi pi-pencil" type="button" (click)="onEdit(dm)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-scrollPanel>

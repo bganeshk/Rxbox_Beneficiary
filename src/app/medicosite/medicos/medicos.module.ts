@@ -6,7 +6,7 @@ import { MedicosComponent } from './medicos.component';
 import { MessageService } from 'primeng/api';
 import { GlobalComponentModule } from 'src/app/global/global-component/global-component.module';
 import { MedidashComponent } from '../medidash/medidash.component';
-import { ShareModule } from 'src/app/global/share/share.module';
+import { RxSharedModule } from 'src/app/global/share/share.module';
 import { CustomerSerachComponent } from 'src/app/global/customer-serach/customer-serach.component';
 
 const COMPONENTS = [
@@ -21,7 +21,7 @@ const ENTRY_COMPONENTS = [
   providers: [MessageService,CustomerSerachComponent],
   entryComponents:[...ENTRY_COMPONENTS],
   imports: [
-    GlobalComponentModule, MedicosRoutingModule,ShareModule
+    GlobalComponentModule, MedicosRoutingModule,RxSharedModule
   ]
  
 })
