@@ -193,7 +193,8 @@
     </div>
 </p-card>
 
-<p-dialog [(visible)]="dlgVisible" [ngSwitch]="dlgType" (onHide)="dlgVisible=false;" [maximizable]="true">
+<p-dialog [(visible)]="dlgVisible" [ngSwitch]="dlgType" (onHide)="dlgVisible=false;" 
+[maximizable]="true">
     <p-header *ngSwitchCase="'labrpt'">Lab Reports</p-header>
     <p-header *ngSwitchCase="'presc'"> Prescriptions</p-header>
     <p-header *ngSwitchCase="'fmlyEHR'"> Family History</p-header>

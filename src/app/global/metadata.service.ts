@@ -8,6 +8,7 @@ import { SelectItemGroup } from 'primeng/api';
 export interface RxNote{
   recId:string;
   rxNote:string;
+  subject?:string;
   refNumber?:string;
   metadata?:AuditData;
 }
@@ -55,7 +56,7 @@ export interface ConsntReq{
   beneficiary:Beneficiary;  
   access_statrdt:Date;
   status:string;
-  reqAccess_category:string[];
+  reqAccess_category?:string[];
   access_type:string;//view,edit/upload
   remarks:string;
   requstor_details:ProfileAdd

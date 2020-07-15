@@ -2,6 +2,7 @@
 <p-scrollPanel [style]="{height:'55vh'}">
     <p-table #dtb [value]="myConsents" selectionMode="single" 
     [paginator]="true" [rows]="3" [showCurrentPageReport]="true"
+    [dataKey]="'reqId'"
     [globalFilterFields]="['reqId','beneficiary.beId','beneficiary.beName','remarks']"
     [(selection)]="selectedConsent" dataKey="refNo" (onRowSelect)="onRowSelect()">
         <ng-template pTemplate="caption">
@@ -59,3 +60,38 @@
     </p-table>
 </p-scrollPanel>
 
+<p-dialog [(visible)]="visibleDlg" (onHide)="visibleDlg=false;"  *ngIf="selectedConsent" 
+[style]="{width:'40vw'}" [maximizable]="true">
+    <p-header>Consent Request</p-header>
+    <div class="p-grid">
+        <div class="p-col-2 tblHLbl">Reff #:</div>
+        <div class="p-col-10">
+            <b>{{reffNo}}</b>
+        </div>
+        <div class="p-col-2 tblHLbl">Beneficiary</div>
+        <div class="p-col-10">
+            <input type="text" pInputText size="30" required="true" maxlength="50" [(ngModel)]="selectedConsent.beneficiary.beId"
+            [placeholder]="'You can scan beneficiary QR-Code using your mobileApp'"
+            />
+            <p class="ghint">You can scan beneficiary QR-Code using your mobileApp </p>
+        </div>
+        <div class="p-col-2 tblHLbl">Access from:</div>
+        <div class="p-col-10">
+            <p-calendar [inline]="false" [ngModel]="selectedConsent.access_statrdt" dateFormat="dd/M/yy"></p-calendar>
+        </div>
+        <div class="p-col-2 tblHLbl">Remark:</div>
+        <div class="p-col-10">
+            <textarea pInputTextarea [rows]="5" [required]="true" [cols]="30" [(ngModel)]="selectedConsent.remarks"></textarea>
+        </div>
+    </div>
+  
+        <p-footer>
+     
+            <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" (click)="blDlgSave()"
+                label="Save">
+            </button>
+            <button pButton type="button" class="ui-button-secondary" (click)="blDlgCancel()" icon="pi pi-times"
+                label="Cancel"></button>
+        </p-footer>
+</p-dialog>
+-->
