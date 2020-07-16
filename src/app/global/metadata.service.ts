@@ -7,7 +7,7 @@ import { SelectItemGroup } from 'primeng/api';
 
 export interface RxNote{
   recId:string;
-  rxNote:string;
+  rxNote:string; 
   subject?:string;
   refNumber?:string;
   metadata?:AuditData;
