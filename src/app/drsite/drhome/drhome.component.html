@@ -38,3 +38,37 @@
         </ng-template>
     </p-table>
 </p-scrollPanel>
+<p-dialog [(visible)]='viewDlg' (onHide)="viewDlg=false;" [maximizable]="true"
+    
+[style]="{width:'50%'}">
+    <p-header class="tblHLbl">Manage Record</p-header>
+    <div class="p-grid">
+        <div class="p-col-4 tblHLbl">Entry Type</div>
+        <div class="p-col-8" [style]="{'width':'350px'}">
+            <p-dropdown [options]="typeLst" [(ngModel)]="newRecType"></p-dropdown>
+        </div>        
+        <div class="p-col-12">
+            <div class="p-grid">
+                <div class="p-col-4 tblHLbl">Patient Ref#:</div>
+                <div class="p-col-8">
+                    <input type="text" required="true" pInputText size="25" maxlength="50"/>
+                </div>
+                <div class="p-col-4 tblHLbl" >Review Date:</div>
+                <div class="p-col-8">
+                    <p-calendar [inline]="false" [ngModel]="" dateFormat="dd/M/yy"></p-calendar>
+                </div>                
+                <div class="p-col-4 tblHLbl">Description:</div>
+                <div class="p-col-8">
+                    <input type="text" pInputText size="35" maxlength="150"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" (click)="saveNewRview()"
+        label="Save">
+    </button>
+    <button pButton type="button" class="ui-button-secondary" (click)="viewDlg=false" icon="pi pi-times"
+        label="Cancel"></button>
+    </p-footer>
+</p-dialog>
