@@ -96,6 +96,7 @@
     margin: 5px;
     margin-right: 25px;
     line-height:2;
+    border-radius: 5px;
 }
 .thermnt{
     text-align: right;
@@ -103,4 +104,5 @@
     margin: 5px;
     margin-left: 25px;
     line-height:2;
+    border-radius: 5px;
 }

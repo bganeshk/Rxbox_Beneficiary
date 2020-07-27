@@ -1,0 +1,50 @@
+<div class="p-grid">
+    
+    <div class="p-col-8" *ngIf="vflag">
+        <img src="../../../assets/Video.png" height="100%" width="100%">
+    </div>
+    <div [ngClass]="vflag? 'p-col-4':'p-col-12'">
+
+        <div class="p-grid ">
+            <div class="p-col-12 chat">
+                <p-scrollPanel [style]="{width: '100%', height: '99%'}">
+
+                    
+                    <div class="mycmnt">
+                        Hi, Can i get an appointment
+                    </div>
+                  
+                    <div class="thermnt">
+                        Yes, please book of this saturday
+                    </div>
+                    <div class="mycmnt">
+                        ok,I am making
+                    </div>
+
+
+                    <div class="mycmnt">
+                        Done!!:)
+                    </div>
+                </p-scrollPanel>
+            </div>
+            <div class="p-col-12 chatAct">
+
+                <div class="p-grid ">
+                    <div class="p-col-2"></div>
+                    <div class="p-col-2">
+                        <li class="pi pi-save"></li>
+                    </div>
+                    <div class="p-col-1"></div>
+                    <div class="p-col-2">
+                        <li class="pi pi-paperclip"></li>
+                    </div>
+                    <div class="p-col-1"></div>
+                    <div class="p-col-2">
+                        <li class="pi pi-download"></li>
+                    </div>
+                    <div class="p-col-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

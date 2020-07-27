@@ -1,6 +1,6 @@
 <p-card [style]="{height:'78vh'}"> 
     <p-toast preventOpenDuplicates='true' modal='true' [hideTransitionOptions]="'100ms'"></p-toast>
-    <p-table [value]="labRecs" [scrollable]="true" [paginator]="true"   
+    <p-table [value]="labRecs" [scrollable]="true" [paginator]="true"   [dataKey]="'rec_no'"
     selectionMode="single" [(selection)]="newLabRec" dataKey="rec_no" scrollHeight="200px;"
     [rows]='5'>
     <ng-template pTemplate="caption">

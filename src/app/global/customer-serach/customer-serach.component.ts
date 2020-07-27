@@ -18,7 +18,8 @@ export class CustomerSerachComponent {
   verifyPhoneOTP:boolean;
   phoneOTP:String;
   visibleDlg:boolean=false;
-
+  showDlg:boolean;
+  videoFlag: any;
   constructor(private mdataSrvs: MetadataService, private messageService: MessageService) { }
 
 
@@ -59,4 +60,8 @@ export class CustomerSerachComponent {
     this.messageService.add({key: 'c',sticky:true,severity:'success', summary:'Verify OTP', detail:'OTP has been send to registered email and phone'});
   }
 
+  showChat(videoFlag){
+    this.showDlg=true;
+    this.videoFlag=videoFlag;
+  }
 }

@@ -41,6 +41,7 @@ import {FullCalendarModule} from 'primeng/fullcalendar';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { FileUploadModule } from 'primeng/fileupload';
 import { TreeModule } from 'primeng/tree';
+import {MatBadgeModule} from '@angular/material/badge'; 
 
 const IMPORT_PRIME_MODULE = [
   MessagesModule,MessageModule,ScrollPanelModule,OverlayPanelModule,  ButtonModule,
@@ -56,7 +57,7 @@ const IMPORT_PRIME_MODULE = [
 const IMPORT_ANG_MODULE = [
   FormsModule, ReactiveFormsModule,MatTooltipModule,
   MatIconModule, MatButtonModule,MatCheckboxModule,
-  
+  MatBadgeModule,
 ];
 
 @NgModule({

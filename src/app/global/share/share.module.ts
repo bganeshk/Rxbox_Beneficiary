@@ -13,11 +13,14 @@ import { FmlyEhrComponent } from 'src/app/ehr/fmly-ehr/fmly-ehr.component';
 import { DashboardComponent } from 'src/app/pages/dashboard/dashboard.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import * as echarts from 'echarts';
+import { ChatwindowComponent } from '../chatwindow/chatwindow.component';
+
+
 
 const DECLARE_COMPO=[
   CustomerSerachComponent,SmryEhrComponent,OtherDocComponent,
   EhRoadmapComponent, HealthEventsComponent, MgntPrescriptionComponent,
-  LabEhrComponent,FmlyEhrComponent,DashboardComponent
+  LabEhrComponent,FmlyEhrComponent,DashboardComponent,ChatwindowComponent
 ]
 
 @NgModule({
