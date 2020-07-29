@@ -1,12 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { GlobalBeeService } from 'bee-lib';
+import { GlobalBeeService, BeeNotification, DashboardService } from 'bee-lib';
 import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [GlobalBeeService]
+  providers: [GlobalBeeService,DashboardService]
 })
 export class AppComponent implements OnInit {
   title = 'Rxbox-Beneficiary';
@@ -15,14 +15,18 @@ export class AppComponent implements OnInit {
   date = new Date();
   myTemplate: any = "";
   private env;
+  newNoti:BeeNotification[];
+  newMsg:BeeNotification[];
+  newChat:BeeNotification[];
   items: MenuItem[];
   ngOnInit() {
     this.items = this.getMenuItems();
-
+    this.dashboardService.getNotification().then(res => this.newNoti = res);
 
   }
 
-  constructor(private gsrv: GlobalBeeService, @Inject('environment') environment) {
+  constructor(private gsrv: GlobalBeeService, @Inject('environment') environment,
+  private dashboardService: DashboardService,) {
     this.env = environment;
     if (this.env.production) {
       //disable the debugs

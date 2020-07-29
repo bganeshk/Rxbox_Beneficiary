@@ -1,47 +1,109 @@
 <p-toast preventOpenDuplicates='true' modal='true'></p-toast>
 
 <div class="p-grid " style="height: 11vh;">
-    <div class="p-col-12 tblHLbl">
-
-    </div>
-    <div class="p-col-4 tblHLbl">
-        Please enter/Scan Customer QR code/ID
-        <div class="ui-inputgroup">
-            <button pButton type="button" label="Search" (click)="selectCutomer($event)"></button>
-            <p-autoComplete [(ngModel)]="customerId" [suggestions]="filteredCustomers"
-                (completeMethod)="filterCustomer($event)" maxlength="15" [minLength]="1" placeholder="Select Customer "
-                field="name" (onSelect)="selectCutomer($event)">
-            </p-autoComplete>
-        </div>
-    </div>
-    <div class="p-col-8" *ngIf="selectedCustomerId">
+    <div class="p-col-1  tblHLbl">
+        <p-inputSwitch [(ngModel)]="privateConsultation" (onChange)="handleModeChange($event)"></p-inputSwitch>
+        <div *ngIf="privateConsultation">Private Mode</div>
+        <div *ngIf="!privateConsultation">Hospital Mode</div>
+    </div>    
+    <div class="p-col-11" *ngIf="privateConsultation">
         <div class="p-grid">
-            <div class="p-col-9">
-                <div class="p-grid">
-                    <div class="p-col-1 tblHLbl">Name </div>
-                    <div class="p-col-4 tblLbl">Sample Patient </div>
-                    <div class="p-col-1 tblHLbl">Age </div>
-                    <div class="p-col-2 tblLbl">36 </div>
-                    <div class="p-col-1 tblHLbl">Sex </div>
-                    <div class="p-col-3 tblLbl">36 </div>
-                    <div class="p-col-1 tblHLbl">Address </div>
-                    <div class="p-col-4 tblLbl">Address Line1, State, City, </div>
-
-                    <div class="p-col-1 tblHLbl">Mobile </div>
-                    <div class="p-col-2 tblLbl">9343292332</div>
-                    <div class="p-col-4 tblLbl">email@em.com</div>
+            <div class="p-col-3 tblHLbl">
+                Please enter/Scan Customer QR code/ID
+                <div class="ui-inputgroup">
+                    <button pButton type="button" label="Search" (click)="selectCutomer($event)"></button>
+                    <p-autoComplete [(ngModel)]="customerId" [suggestions]="filteredCustomers"
+                        (completeMethod)="filterCustomer($event)" maxlength="15" [minLength]="1" placeholder="Search Name "
+                        field="name" (onSelect)="selectCutomer($event)">
+                    </p-autoComplete>
                 </div>
             </div>
-            <div class="p-col-1">
-                <img src="../../../assets//profile_pic.png" height="80%" width="60">
+            <div class="p-col-8" *ngIf="selectedCustomerId">
+                <div class="p-grid">
+                    <div class="p-col-9">
+                        <div class="p-grid">
+                            <div class="p-col-1 tblHLbl">Name </div>
+                            <div class="p-col-4 tblLbl">Sample Patient </div>
+                            <div class="p-col-1 tblHLbl">Age </div>
+                            <div class="p-col-2 tblLbl">36 </div>
+                            <div class="p-col-1 tblHLbl">Sex </div>
+                            <div class="p-col-3 tblLbl">36 </div>
+                            <div class="p-col-1 tblHLbl">Address </div>
+                            <div class="p-col-4 tblLbl">Address Line1, State, City, </div>
+        
+                            <div class="p-col-1 tblHLbl">Mobile </div>
+                            <div class="p-col-2 tblLbl">9343292332</div>
+                            <div class="p-col-4 tblLbl">email@em.com</div>
+                        </div>
+                    </div>
+                    <div class="p-col-1">
+                        <img src="../../../assets//profile_pic.png" height="80%" width="60">
+                    </div>
+                    <div class="p-col-1">
+                        <button type="button" pButton icon="pi pi-comments" (click)="showChat(false)"
+                        class="ui-button-raised ui-button-rounded ui-button-info" style="width: 40px;"></button>    
+                    </div>
+                    <div class="p-col-1">
+                        <button type="button" pButton icon="pi pi-video" (click)="showChat(true)"
+                        class="ui-button-raised ui-button-rounded ui-button-success" style="width: 40px;"></button>
+                    </div>
+                </div>
             </div>
-            <div class="p-col-1">
-                <button type="button" pButton icon="pi pi-comments" (click)="showChat(false)"
-                class="ui-button-raised ui-button-rounded ui-button-info" style="width: 40px;"></button>    
+        </div>
+    </div>
+    <div class="p-col-11" *ngIf="!privateConsultation">
+        <div class="p-grid">
+            <div class="p-col-5">
+        <p-carousel [value]="appointments" [numVisible]="2" [numScroll]="1" [verticalViewPortHeight]="'150px'">
+            <ng-template let-row pTemplate="item">
+                <div [ngClass]="row.tokenNum.startsWith('A')?'tkn1':'tkn2'" 
+                
+                (click)="selectAppointment($event)">
+                <div class="p-grid p-nogutter" >                    
+                    <div class="p-col-10 " >
+                        <span class="tblLbl" >Token - {{row.tokenNum}}</span>                        
+                    </div>              
+                    <div class="p-col-2" > &nbsp;</div>      
+                    <div class="p-col-12 tblLbl">
+                        Name -{{row.pname}},  Age - ({{row.age}})
+                    </div> 
+                    <div class="p-col-12 tblLbl">
+                        {{row.refNum}}
+                    </div>                    
+                </div>
             </div>
-            <div class="p-col-1">
-                <button type="button" pButton icon="pi pi-video" (click)="showChat(true)"
-                class="ui-button-raised ui-button-rounded ui-button-success" style="width: 40px;"></button>
+            </ng-template>
+        </p-carousel>
+        </div>
+        <div class="p-col-7" *ngIf="selectedCustomerId">
+            <div class="p-grid">
+                <div class="p-col-9">
+                    <div class="p-grid">
+                        <div class="p-col-1 tblHLbl">Name </div>
+                        <div class="p-col-4 tblLbl">Sample Patient </div>
+                        <div class="p-col-1 tblHLbl">Age </div>
+                        <div class="p-col-2 tblLbl">36 </div>
+                        <div class="p-col-1 tblHLbl">Sex </div>
+                        <div class="p-col-3 tblLbl">36 </div>
+                        <div class="p-col-1 tblHLbl">Address </div>
+                        <div class="p-col-4 tblLbl">Address Line1, State, City, </div>
+    
+                        <div class="p-col-1 tblHLbl">Mobile </div>
+                        <div class="p-col-2 tblLbl">9343292332</div>
+                        <div class="p-col-4 tblLbl">email@em.com</div>
+                    </div>
+                </div>
+                <div class="p-col-1">
+                    <img src="../../../assets//profile_pic.png" height="80%" width="60">
+                </div>
+                <div class="p-col-1">
+                    <button type="button" pButton icon="pi pi-comments" (click)="showChat(false)"
+                    class="ui-button-raised ui-button-rounded ui-button-info" style="width: 40px;"></button>    
+                </div>
+                <div class="p-col-1">
+                    <button type="button" pButton icon="pi pi-video" (click)="showChat(true)"
+                    class="ui-button-raised ui-button-rounded ui-button-success" style="width: 40px;"></button>
+                </div>
             </div>
         </div>
     </div>

@@ -5,10 +5,10 @@
         <div class="ui-g">
             <div class="ui-g-6">
                 <span class="ui-fluid">
-                    <label class="tblHLbl" for="assig">Assignee(s) </label>
+                    <label class="tblHLbl" for="assig">Assignee(s)* </label>
                     <p-autoComplete [(ngModel)]="newConst.cosnt_assignee" [suggestions]="filteredAssigneeMultiple" 
                         (completeMethod)="filterAssigneMultiple($event)"  id='assig'
-                maxlength="5" 
+                maxlength="5" [required]="true"
                         [minLength]="1" placeholder="Select Assignee " field="name" [multiple]="true">
                     </p-autoComplete>                    
                 </span>
@@ -60,7 +60,7 @@
         </div>
         <div class="ui-g-12">
             <label for="cnst-rem" class="tblLbl" > Direct Share</label><br/>
-            <p class="ghint">Enter emailId(Email) or phone number(SMS), Valid for 7days </p>
+            <p class="ghint">Enter emailId(Email) or phone number(SMS) </p>
             <div class="ui-inputgroup">
                 <p-chips [(ngModel)]="cosnt_tag" separator="," ></p-chips>                
                 <button pButton type="button" icon="pi pi-share-alt" class="ui-button-secondary ui-button-raised" style="margin-right:10px;"

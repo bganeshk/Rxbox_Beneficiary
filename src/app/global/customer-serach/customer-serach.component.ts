@@ -13,6 +13,8 @@ export class CustomerSerachComponent {
   filteredCustomers:any[];
   customerId:string;
   selectedCustomerId:string;
+  privateConsultation:boolean=true;
+  appointments:any[];
   
   @Output() public onSelect = new EventEmitter();
   verifyPhoneOTP:boolean;
@@ -60,8 +62,27 @@ export class CustomerSerachComponent {
     this.messageService.add({key: 'c',sticky:true,severity:'success', summary:'Verify OTP', detail:'OTP has been send to registered email and phone'});
   }
 
+  selectAppointment(e){
+    this.selectedCustomerId='1';
+    this.onSelect.emit(this.selectedCustomerId);    
+  }
+
   showChat(videoFlag){
     this.showDlg=true;
     this.videoFlag=videoFlag;
+  }
+
+  handleModeChange(e){
+    if(this.privateConsultation){
+      this.appointments=[];
+    }else{
+      this.appointments=[
+        {tokenNum:"A-001",pname:'Pateint 1',age:43, refNum:'20012/12/124' },
+        {tokenNum:"E-001",pname:'Pateint 2',age:3, refNum:'20012/12/124' },
+        {tokenNum:"A-002",pname:'Pateint 3',age:73, refNum:'20012/12/124' },
+        {tokenNum:"A-004",pname:'Pateint 4',age:33, refNum:'20012/12/124' },
+        {tokenNum:"A-003",pname:'Pateint 5',age:23, refNum:'20012/12/124' },
+      ];
+    }
   }
 }

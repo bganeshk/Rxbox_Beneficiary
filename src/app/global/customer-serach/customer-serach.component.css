@@ -12,6 +12,18 @@
     font-size: 13px;
 }
 
+.tkn1{
+    border: 1px solid rgb(11, 187, 128);
+    border-radius:5px;
+    margin: 1px;
+    background-color: aquamarine;
+}
+.tkn2{
+    border: 1px solid #9c4624;
+    border-radius:5px;
+    margin: 1px;
+    background-color: rgb(216, 154, 135);
+}
 .grpitem{
     padding-left: 5px;
     font-size: 8px;

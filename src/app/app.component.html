@@ -45,16 +45,21 @@
 
       </div>
       <div class="p-col-1 p-offset-7"><br/>
-        <div class="p-grid">
-          <div class="p-col-4">
-            <li class="pi pi-bell" matBadgeColor="warn"  matBadge="4"></li>
+        <div class="p-grid" >
+          <div class="p-col-4" >            
+            <span (mouseenter)="noti.toggle($event)" (mouseout)="noti.toggle($event)" (click)="noti.toggle($event)">
+            <li class="pi pi-bell" matBadgeColor="warn"  matBadge="4" ></li>
+          </span>
           </div>                  
           <div class="p-col-4">
+            <span (mouseenter)="noti.toggle($event)" (mouseout)="noti.toggle($event)" (click)="noti.toggle($event)">
             <li class="pi pi-comment" matBadgeColor="accent"></li>
+            </span>
           </div>
           <div class="p-col-4">
-           
+            <span (mouseenter)="noti.toggle($event)" (mouseout)="noti.toggle($event)" (click)="noti.toggle($event)">
             <li class="pi pi-envelope" matBadge="2"></li>
+            </span>
           </div>
         </div>
       </div>
@@ -96,3 +101,9 @@
     </div>
   </div>
 </p-scrollPanel>
+
+<p-overlayPanel #noti >
+  <ng-template pTemplate >     
+    need to put p-list of new message which should be poinitng as list with highlight
+  </ng-template>
+</p-overlayPanel>
