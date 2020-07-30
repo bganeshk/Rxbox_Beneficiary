@@ -26,7 +26,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-" npm link bee-lib" to link a dist file before this command the libraray module has to get build in a distributed options like below
+" npm link rx-lib cmn-lib" to link a dist file before this command the libraray module has to get build in a distributed options like below
 
 
 create a global link for libraray

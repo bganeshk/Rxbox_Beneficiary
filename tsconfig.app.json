@@ -16,8 +16,6 @@
     "src/**/*.spec.ts"
   ],
   "paths": {
-      "bee-lib/*": [
-        "./node_modules/bee-lib/*"
-      ]
+     
     }
 }
