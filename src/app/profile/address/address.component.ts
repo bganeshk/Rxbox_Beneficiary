@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileService, ProfileAdd, Profiledet } from 'bee-lib';
+import { ProfileService, ProfileAdd, Profiledet } from 'cmn-lib';
 import { MessageService, SelectItem } from 'primeng/api';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 

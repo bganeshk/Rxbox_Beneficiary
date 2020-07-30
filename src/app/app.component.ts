@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { GlobalBeeService, BeeNotification, DashboardService } from 'bee-lib';
+import { GlobalBeeService } from 'cmn-lib';
+import { BeeNotification,DashboardService } from 'rx-lib';
 import { MenuItem } from 'primeng/api';
 
 @Component({

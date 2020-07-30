@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MessageService} from 'primeng/api';
-import { GlobalBeeService } from 'bee-lib';
+import { GlobalBeeService } from 'cmn-lib';
 
 @Component({
   selector: 'app-pages',

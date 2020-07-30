@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { BeeAuthService } from 'bee-lib';
+import { BeeAuthService } from 'cmn-lib';
 
 @Component({
   selector: 'app-prfpasswd',

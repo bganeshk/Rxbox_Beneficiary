@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SelectItem } from 'primeng/api/selectitem';
-import { Profiledet, ProfileAdd } from 'bee-lib';
+import { Profiledet, ProfileAdd } from 'cmn-lib';
 import { Url } from 'url';
 import { SelectItemGroup } from 'primeng/api';
 

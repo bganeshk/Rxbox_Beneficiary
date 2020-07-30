@@ -11,8 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
 import { GlobalComponentModule} from './global/global-component/global-component.module';
-import { GlobalErrorHandler, GlobalBeeService } from 'bee-lib';
-import { BeeHttpInterceptorService } from 'bee-lib';
+import { GlobalErrorHandler, GlobalBeeService } from 'cmn-lib';
+import { BeeHttpInterceptorService } from 'cmn-lib';
 import { MessageService } from 'primeng/api';
 
 

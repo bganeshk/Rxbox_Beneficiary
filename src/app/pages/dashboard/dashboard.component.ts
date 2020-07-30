@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DashPoints, BeeNotification, DashboardService, TransData, GlobalBeeService } from 'bee-lib';
+import {   GlobalBeeService } from 'cmn-lib';
+import { BeeNotification, DashboardService } from 'rx-lib';
 import { MenuItem } from 'primeng/api';
 
 import { EChartOption } from 'echarts';

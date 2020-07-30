@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MessageService, Message } from 'primeng/api';
 import { Router } from '@angular/router';
-import { GlobalBeeService, BeeAuthService } from 'bee-lib';
+import { GlobalBeeService, BeeAuthService } from 'cmn-lib';
 
 @Component({
   selector: 'app-userlogin',
