@@ -5,21 +5,13 @@
 export const environment = {
   production: false,
   apiUrl: '',
-  transUrl:'assets/mockdata/pointsdata.json'  ,
-  givesTx: 'assets/mockdata/pointsdata.json',
-  getsTx: 'assets/mockdata/pointsdata.json',
-  earnedTx: 'assets/mockdata/pointsdata.json',
   noti: 	'assets/mockdata/pointsdata.json',
   notiread: 'assets/mockdata/pointsdata.json',
-  pointSplit: 'assets/mockdata/pointsdata.json',
-  ptsSummary: 'assets/mockdata/pointsdata.json',
-  pointAccruvel: 'assets/mockdata/pointsdata.json',
   helpContent: 'assets/help/',
   errorLog: 'api/error',
   cities:  'assets/mockdata/pointsdata.json',
   otherAddress: 'assets/mockdata/pointsdata.json',
   primAddress: 'assets/mockdata/pointsdata.json',
-  getBees: 'assets/mockdata/pointsdata.json',
   beeAuth: '/api/v1/bauth/pwd',
   beePwdUpdate: '/api/v1/user/pwdupdate'
 };

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
-import { MetadataService, Consnt } from 'src/app/global/metadata.service';
+import { MetadataService, } from 'src/app/global/metadata.service';
 import {MessageService} from 'primeng/api';
+import { Consnt } from 'rx-lib';
 
 
 

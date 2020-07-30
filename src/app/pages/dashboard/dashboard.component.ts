@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {   GlobalBeeService } from 'cmn-lib';
-import { BeeNotification, DashboardService } from 'rx-lib';
+import { BeeNotification, DashboardService, DailyMed } from 'rx-lib';
 import { MenuItem } from 'primeng/api';
 
 import { EChartOption } from 'echarts';
-import { DailyMed, MetadataService } from 'src/app/global/metadata.service';
+import {  MetadataService } from 'src/app/global/metadata.service';
 import { OverlayPanel } from 'primeng/overlaypanel';
 
 

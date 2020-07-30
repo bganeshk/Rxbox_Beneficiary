@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MetadataService, FmlyHealthRec } from 'src/app/global/metadata.service';
+import { MetadataService } from 'src/app/global/metadata.service';
 import { MessageService, SelectItem, SelectItemGroup } from 'primeng/api';
+import { FmlyHealthRec } from 'rx-lib';
 
 @Component({
   selector: 'app-fmly-ehr',

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MetadataService, HealthRec, FmlyHealthRec, DailyMed } from 'src/app/global/metadata.service';
+import { MetadataService,  } from 'src/app/global/metadata.service';
 import { MessageService } from 'primeng/api';
 import { MenuItem } from 'primeng/api';
 import { NgSwitchCase } from '@angular/common';
+import { FmlyHealthRec, DailyMed, HealthRec } from 'rx-lib';
 
 
 @Component({

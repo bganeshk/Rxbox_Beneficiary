@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MetadataService, HealthRec, SummaryHealthRec, DailyMed, RxNote } from 'src/app/global/metadata.service';
+import { MetadataService,} from 'src/app/global/metadata.service';
 import { MessageService, SelectItemGroup } from 'primeng/api';
+import { SummaryHealthRec, DailyMed, HealthRec, RxNote } from 'rx-lib';
 
 @Component({
   selector: 'app-smry-ehr',

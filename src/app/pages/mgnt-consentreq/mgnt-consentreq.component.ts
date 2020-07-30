@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
-import { ConsntReq, MetadataService } from 'src/app/global/metadata.service';
+import {  MetadataService } from 'src/app/global/metadata.service';
+import { ConsntReq } from 'rx-lib';
 
 @Component({
   selector: 'app-mgnt-consentreq',

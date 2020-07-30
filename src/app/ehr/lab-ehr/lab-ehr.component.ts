@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FmlyHealthRec, MetadataService, HealthRec } from 'src/app/global/metadata.service';
+import {  MetadataService, } from 'src/app/global/metadata.service';
 import { SelectItem, MessageService, SelectItemGroup } from 'primeng/api';
 import { GlobalBeeService } from 'cmn-lib';
+import { HealthRec } from 'rx-lib';
 
 @Component({
   selector: 'app-lab-ehr',

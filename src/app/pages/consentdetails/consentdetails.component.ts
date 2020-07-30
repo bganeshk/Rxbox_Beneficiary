@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MetadataService, Consnt } from 'src/app/global/metadata.service';
+import { MetadataService,  } from 'src/app/global/metadata.service';
 import { MessageService, SelectItem } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Consnt } from 'rx-lib';
 
 @Component({
   selector: 'app-consentdetails',

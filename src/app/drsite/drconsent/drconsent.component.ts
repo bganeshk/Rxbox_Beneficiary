@@ -1,7 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { DrViewdataService } from 'src/app/global/dr-viewdata.service';
 import { MessageService } from 'primeng/api';
-import { MetadataService, ConsntReq } from 'src/app/global/metadata.service';
+import { MetadataService } from 'src/app/global/metadata.service';
+import { ConsntReq } from 'rx-lib';
 
 @Component({
   selector: 'app-drconsent',

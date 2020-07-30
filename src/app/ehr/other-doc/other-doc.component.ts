@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HealthRec, MetadataService } from 'src/app/global/metadata.service';
+import {  MetadataService } from 'src/app/global/metadata.service';
 import { MessageService, MenuItem } from 'primeng/api';
 import {TreeNode} from 'primeng/api';
 import {TreeDragDropService} from 'primeng/api';

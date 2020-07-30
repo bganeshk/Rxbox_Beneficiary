@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TreeNode} from 'primeng/api';
-import { MetadataService, Prescription } from 'src/app/global/metadata.service';
+import { MetadataService,  } from 'src/app/global/metadata.service';
+import { Prescription } from 'rx-lib';
 
 @Component({
   selector: 'app-presc-history',

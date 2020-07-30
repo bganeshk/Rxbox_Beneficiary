@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { RxNote, MetadataService } from 'src/app/global/metadata.service';
+import {  MetadataService } from 'src/app/global/metadata.service';
 import { MessageService } from 'primeng/api';
+import { RxNote } from 'rx-lib';
 
 @Component({
   selector: 'app-drnotes',

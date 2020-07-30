@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
-import { MedFullFillment, MetadataService, HealthRec } from 'src/app/global/metadata.service';
+import { MetadataService } from 'src/app/global/metadata.service';
 import { MessageService, SelectItemGroup } from 'primeng/api';
+import { HealthRec } from 'rx-lib';
 
 @Component({
   selector: 'app-dashboard',

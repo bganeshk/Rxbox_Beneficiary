@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DailyMed, MetadataService, MedFullFillment } from 'src/app/global/metadata.service';
+import {  MetadataService,} from 'src/app/global/metadata.service';
+import { MedFullFillment } from 'rx-lib';
 
 @Component({
   selector: 'app-presc-ffmnt',

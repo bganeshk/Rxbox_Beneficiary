@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MetadataService, HealthType, HealthRec } from 'src/app/global/metadata.service';
+import { MetadataService, } from 'src/app/global/metadata.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService, MenuItem } from 'primeng/api';
+import { HealthType, HealthRec } from 'rx-lib';
 
 @Component({
   selector: 'app-mgnt-template',

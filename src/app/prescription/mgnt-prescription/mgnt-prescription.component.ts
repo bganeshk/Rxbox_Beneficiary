@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MetadataService, DailyMed, Medicine, DailyMedClass } from 'src/app/global/metadata.service';
+import { MetadataService,  } from 'src/app/global/metadata.service';
 import { MessageService, SelectItem } from 'primeng/api';
+import { DailyMed, Medicine, DailyMedClass } from 'rx-lib';
 
 
 

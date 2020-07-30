@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SelectItem } from 'primeng/api/selectitem';
 import { Profiledet, ProfileAdd } from 'cmn-lib';
+import {SummaryHealthRec, HealthRec, RxNote, FmlyHealthRec, Prescription, MedFullFillment, MedFullFillmentC, Medicine, DailyMed, ConsntReq} from 'rx-lib';
 import { Url } from 'url';
 import { SelectItemGroup } from 'primeng/api';
-
+/*
 export interface RxNote{
   recId:string;
   rxNote:string; 
@@ -185,7 +186,7 @@ export interface Medicine{
  mfgDt:Date;
  manufacturer:string;
 }
-
+*/
 @Injectable({
   providedIn: 'root'
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MedFullFillment, MetadataService } from 'src/app/global/metadata.service';
+import {  MetadataService } from 'src/app/global/metadata.service';
 import { MessageService } from 'primeng/api';
+import { MedFullFillment } from 'rx-lib';
 
 @Component({
   selector: 'app-medidash',

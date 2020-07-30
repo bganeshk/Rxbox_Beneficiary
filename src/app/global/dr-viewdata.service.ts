@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { RxNote, AuditData } from './metadata.service';
+import { RxNote } from 'rx-lib';
+import { AuditData } from 'cmn-lib';
 
 
 

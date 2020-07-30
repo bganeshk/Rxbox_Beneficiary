@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MetadataService, ehr_bp, ehr_diabetic, ehr_tempoxypulse, HealthRec } from 'src/app/global/metadata.service';
+import { MetadataService, } from 'src/app/global/metadata.service';
 import { SelectItemGroup, MenuItem } from 'primeng/api';
 import { Message } from 'primeng//api';
 import { MessageService } from 'primeng/api';
+import { ehr_bp, ehr_diabetic, ehr_tempoxypulse, HealthRec } from 'rx-lib';
 
 @Component({
   selector: 'app-mgnt-ehr',
