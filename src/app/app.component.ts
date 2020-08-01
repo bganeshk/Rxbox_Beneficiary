@@ -11,6 +11,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class AppComponent implements OnInit {
   title = 'Rxbox-Beneficiary';
+
   visibleSideMenu: boolean;
   visiblefull: boolean;
   date = new Date();
@@ -22,8 +23,12 @@ export class AppComponent implements OnInit {
   items: MenuItem[];
   ngOnInit() {
     this.items = this.getMenuItems();
-    this.dashboardService.getNotification().then(res => this.newNoti = res);
-
+    this.dashboardService.getNewNotification().then(res => {
+      let tn:BeeNotification[]=res;
+      this.newNoti = tn.filter(e=>(e.type==='noti'));
+      this.newChat = tn.filter(e=>(e.type==='chat')); 
+      this.newMsg = tn.filter(e=>(e.type==='msg')); 
+    });
   }
 
   constructor(private gsrv: GlobalBeeService, @Inject('environment') environment,

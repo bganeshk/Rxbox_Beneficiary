@@ -98,23 +98,27 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                     <div class="p-col-3 hilo_lights">
                                         <button mat-fab color="primary1" class="tempbtn"
                                             (click)="getTempChart()"
-                                            matTooltip="80c at 1/12/2020:16:20">
-                                            80c
+                                            *ngIf="tempoxyData"
+                                            matTooltip="{{tempoxyData[0].temp}} at {{tempoxyData[0].auditData.created_on}}">
+                                            <span *ngIf="tempoxyData" class="spanImage">  
+                                            {{tempoxyData[0].temp}}
+                                            </span>
                                         </button>
                                     </div>
                                     <div class="p-col-3 hilo_lights">
                                         <button mat-fab color="primary1" class="sugbtn"
-                                           (click)="getDiabeticChart()"
-                                            matTooltip="80c at 1/12/2020:16:20">
-                                            80/180
+                                           (click)="getDiabeticChart()">
+                                           <span *ngIf="diabeticData" class="spanImage">
+                                            {{diabeticData[0].bf}}//{{diabeticData[0].af}}
+                                        </span>
                                         </button>
                                     </div>
                                     <div class="p-col-3 hilo_lights">
                                         <button mat-fab color="primary1" class="bpbtn"
-                                        (click)="getBPChart()"
-                                            matTooltip="80c at 1/12/2020:16:20">
-                                            <span class="spanImage">
-                                                80/120
+                                        (click)="getBPChart()" >
+                                            <span class="spanImage"
+                                            *ngIf="bpData">
+                                                {{bpData[0].syst}}/{{bpData[0].dias}}
                                             </span>
                                         </button>
                                     </div>
@@ -122,8 +126,8 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                         <button mat-fab color="primary1" class="pulsebtn"
                                         (click)="getPulseChart()"
                                             matTooltip="80c at 1/12/2020:16:20">
-                                            <span class="spanImage">
-                                                80c
+                                            <span class="spanImage" *ngIf="tempoxyData">
+                                                {{tempoxyData[0].pulsepersec}}
                                             </span>
                                         </button>
                                     </div>
@@ -150,12 +154,13 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                 <div class="p-col-12 p-md-6 p-lg-3 pointer">
                                     <a [routerLink]="['/profile/prf']" routerLinkActive="router-link-active">
                                         <img src="../../../assets/profile_pic.png" class="circletag">
-                                        <div class="pname">pet name</div>
+                                        <div class="pname">{{profDet?.patId}}</div>
                                         <div class="pname">Age :
-                                            <span>34</span>
+                                            <span>{{profDet?.p_age}}</span>
                                         </div>
                                         <div class="pname">Sex :
-                                            <span>Female</span>
+                                            <span *ngIf="profDet?.psex=='M'">Male</span>
+                                            <span *ngIf="profDet?.psex=='F'">Female</span>                                            
                                         </div>
                                     </a>
                                 </div>
@@ -163,9 +168,10 @@ https://echarts.apache.org/examples/en/index.html#chart-type-linesGL
                                     <div class="p-grid">
                                         <div class="p-col-12 profdet divhed">
                                             Health Tier`&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <img src="../../../assets/gold_star.jpg" width="20px" height="20px">&nbsp;
-                                            <img src="../../../assets/gold_star.jpg" width="20px" height="20px">&nbsp;
-                                            <img src="../../../assets/gold_star.jpg" width="20px" height="20px">
+                                            ({{profDet?.rating}})-
+                                            <p-rating [iconOnStyle]="{'color':'gold','font-size':'13px'}"
+                                            [iconOffStyle]="{'font-size':'13px'}"
+                                             [ngModel]="profDet.rating" readonly="true" stars="7" [cancel]="false" *ngIf="profDet"></p-rating>
                                         </div>
                                         <div class="p-col-12 profdet ">
                                             <a [routerLink]="['/presc/mgmntpres']" routerLinkActive="router-link-active">Daily Doseage</a>

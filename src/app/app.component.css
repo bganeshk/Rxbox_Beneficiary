@@ -63,3 +63,16 @@
       display: inline-block;
       height: 70vh;
   }
+  .msgTop{
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 1px;
+      box-shadow: 0px 1px 0px 0px #ececec;
+      width: 30vw;
+      line-height: 1.5;
+      overflow: hidden;
+      height: 60px;
+  }
+  .msgTop :hover{
+      background-color: aquamarine;
+  }

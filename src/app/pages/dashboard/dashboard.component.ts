@@ -1,39 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import {   GlobalBeeService } from 'cmn-lib';
-import { BeeNotification, DashboardService, DailyMed } from 'rx-lib';
+import {   GlobalBeeService, ProfileAdd, Profiledet, ProfileService } from 'cmn-lib';
+import { BeeNotification, DashboardService,PrescriptionService, DailyMed, ehr_tempoxypulse, ehr_bp, ehr_diabetic, RxLibService, PatientProfile } from 'rx-lib';
 import { MenuItem } from 'primeng/api';
-
+import moment from 'moment';
 import { EChartOption } from 'echarts';
 import {  MetadataService } from 'src/app/global/metadata.service';
 import { OverlayPanel } from 'primeng/overlaypanel';
 
 
-
-const data = [["2000-06-05", 101], ["2000-06-06", 100], ["2000-07-24", 80], ["2000-06-07", 100.5], ["2000-06-08", 86], ["2000-06-09", 91],
-["2000-06-10", 85], ["2000-06-11", 83], ["2000-06-12", 88],
-["2000-06-13", 92], ["2000-06-14", 103.10], ["2000-06-15", 102.45], ["2000-06-16", 103.9], ["2000-06-17", 101.5],
-["2000-06-18", 101.1], ["2000-06-19", 93.9], ["2000-06-20", 96.9], ["2000-06-21", 103.7], ["2000-06-22", 102.8],
-["2000-06-23", 85], ["2000-06-24", 94], ["2000-06-25", 71], ["2000-06-26", 106], ["2000-06-27", 84], ["2000-06-28", 93],
-["2000-06-29", 85], ["2000-06-30", 83], ["2000-07-01", 83], ["2000-07-02", 102.5], ["2000-07-03", 101.7], ["2000-07-04", 82],
-["2000-07-05", 84], ["2000-07-06", 92], ["2000-07-07", 101.6], ["2000-07-08", 100.7], ["2000-07-09", 86], ["2000-07-10", 91],
-["2000-07-11", 92], ["2000-07-12", 101.3], ["2000-07-13", 100.7], ["2000-07-14", 103.1], ["2000-07-15", 101.1], ["2000-07-16", 94],
-["2000-07-17", 99], ["2000-07-18", 101.8], ["2000-07-19", 77], ["2000-07-20", 83], ["2000-07-21", 101.1], ["2000-07-22", 97], ["2000-07-23", 95]];
-
-var dateList = data.map(function (item) {
-  return item[0];
-});
-var valueList = data.map(function (item) {
-  return item[1];
-});
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  providers: [DashboardService]
+  providers: [DashboardService,PrescriptionService,ProfileService]
 })
 export class DashboardComponent implements OnInit {
-
+  tempoxyData:ehr_tempoxypulse[];
+  bpData:ehr_bp[];
+  diabeticData:ehr_diabetic[];
   chartOption: EChartOption;
   overlaypanelContent:string;
   dms: DailyMed[];
@@ -44,10 +28,17 @@ export class DashboardComponent implements OnInit {
   miscMenuItems: MenuItem[];
   checked1: boolean = false;
   drView:boolean;
+  rating:number=4.1;
+  primeAddress:Profiledet;
+  profDet:PatientProfile;
+  //Patinets  same dash board is visible for doctor while taking the patienr in dr view. 
+  //Flag is used ot hide/show some elemenr
 
   constructor(private dashboardService: DashboardService, private beeSrvs:GlobalBeeService,
-    private mdataSrvs:MetadataService) {
-    dashboardService.getNotification().then(res => this.notifi = res);
+    private profSrvs:ProfileService,private rxSrvs:RxLibService,
+    private prescriptionSrvs:PrescriptionService) {
+ 
+
     this.mgntMenuItems = [
       { label: 'Consents', icon: 'pi pi-fw pi-tags', routerLink: ['/pages/mgntConsent'] },
       { separator: true },
@@ -61,15 +52,34 @@ export class DashboardComponent implements OnInit {
       { label: 'My Appointments', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/misc/appointment']},
       { label: 'Set Reminder ', icon: 'pi pi-fw pi-clock', routerLink: ['/misc'] }
     ];
-    this.getTempChart();
+   
   }
   ngOnInit() {
+    this.dashboardService.getNotification().then(res => this.notifi = res);
+    this.rxSrvs.getPatientProfile().then(res => {
+      this.profDet = res[0];     
+    }).catch(err => {
+      console.debug("err", err);
+      return false;
+    });
+
+    this.dashboardService.getUserTempOxyPulseData().then(res => {
+      this.tempoxyData = res.data;
+      this.getTempChart();
+    });
+    this.profSrvs.getPrimaryAddress().then(res=>{
+      this.primeAddress=res;
+    })
     this.notidlg = false;
     if('dash'===this.beeSrvs.getCurrentPage()){
       this.drView=true;
     }
     this.selectedNotifi = new BeeNotification();
-    this.dms = this.mdataSrvs.getDailyMed();
+    
+    this.prescriptionSrvs.getActivePrescription().then(res=>{
+      this.dms= res.medicine;
+    });
+
   }
 
 
@@ -90,7 +100,6 @@ export class DashboardComponent implements OnInit {
 
   deleteMsg(e, msg: BeeNotification): boolean {
     this.notidlg = false;
-    console.debug("err start");
     this.dashboardService.setMsgDeleted(msg.msgId)
       .then((res) => {
         this.notifi.splice(this.notifi.indexOf(msg), 1);
@@ -107,7 +116,15 @@ export class DashboardComponent implements OnInit {
   switchBar(ty: string) {
     return //this.dashboardService.getPointAccruvel(ty).then(res => this.barData = res);
   }
+  //get the temperature chart
   getTempChart() {
+      let dateList= this.tempoxyData.map(e=> {
+        return moment(e.auditData.created_on).format('YYYY-MM-D');
+    });
+    let valueList= this.tempoxyData.map(e=> {
+      return e.temp;//temperature
+    });
+    
     this.chartOption =
     {
       visualMap: [{
@@ -205,6 +222,20 @@ export class DashboardComponent implements OnInit {
     };
   }
   getBPChart() {
+    this.dashboardService.getUserBpEhrData().then(res => {
+      this.bpData = res.data;    
+      let sysReads: number[] = this.bpData.map(e => {
+        return e.syst;
+      });
+      let diasReads: number[] = this.bpData.map(e => {
+        return e.dias;
+      });
+      
+      return this.getBPChartData(sysReads, diasReads);
+    });
+  }
+  getBPChartData(sysReads:number[],diasReads:number[]) {
+
     var bpChartOption: EChartOption = {
       title: {
         subtext: 'Pressure'
@@ -259,7 +290,7 @@ export class DashboardComponent implements OnInit {
         {
           name: 'Sys..',
           type: 'line',
-          data: [110, 110, 105, 130, 120, 130, 110],
+          data: sysReads,
           markPoint: {
             data: [
               { type: 'max', name: 'max' },
@@ -275,7 +306,7 @@ export class DashboardComponent implements OnInit {
         {
           name: 'Dias..',
           type: 'line',
-          data: [80, 82, 72, 85, 83, 82, 50],
+          data: diasReads,
           markPoint: {
             data: [
               { type: 'max', name: 'max' },
@@ -292,7 +323,24 @@ export class DashboardComponent implements OnInit {
     }
     this.chartOption = bpChartOption;
   }
-  getDiabeticChart() {
+  getDiabeticChart(){
+    this.dashboardService.getUserDiabeticData().then(res => {
+      this.diabeticData = res.data;    
+
+      let afDiaData: number[] = this.diabeticData.map(e => {
+        return e.af;
+      });
+      let bfDiaData: number[] = this.diabeticData.map(e => {
+        return e.bf;
+      });
+      let readDate: string[] = this.diabeticData.map(e => {
+        return  moment(e.auditData.created_on).format('YYYY-MM-D');
+      });
+
+      return this.getDiabeticChartData(afDiaData,bfDiaData,readDate);
+    }); 
+  }
+  getDiabeticChartData(afDiaData:number[], bfDiaData:number[],readDate:string[]) {
     var bpChartOption: EChartOption = {
       title: {
         subtext: 'Blood Sugar'
@@ -327,7 +375,7 @@ export class DashboardComponent implements OnInit {
       xAxis: {
         type: 'category',
         boundaryGap: false,
-        data: ['Data1', 'Data2', 'Data3', 'Data4', 'Data5', 'Data6', 'Data7'],
+        data: readDate,
         axisLabel: {
           interval: 1,
           rotate: 70,
@@ -349,7 +397,7 @@ export class DashboardComponent implements OnInit {
           lineStyle: {
             color: '#019'
           },
-          data: [110, 110, 105, 130, 120, 130, 110],
+          data: afDiaData,
           markPoint: {
             itemStyle: {
               color: '#019'
@@ -370,9 +418,8 @@ export class DashboardComponent implements OnInit {
           type: 'line',
           lineStyle: {
             color: '#f18',
-
           },
-          data: [80, 82, 72, 85, 83, 82, 50],
+          data: bfDiaData,
           markPoint: {
             itemStyle: {
               color: '#f16'
@@ -517,41 +564,7 @@ var data0 = splitData([
   ['2013/4/15', 79.91, 78.94, 77.39, 70.99],
   ['2013/4/16', 76.63, 79.85, 76.78, 79.43],
   ['2013/4/17', 79.03, 79.8, 79.47, 79.51],
-  ['2013/4/18', 78.82, 79.6, 77.44, 70.03],
-  ['2013/4/19', 70.12, 79.64, 70.58, 75.11],
-  ['2013/4/22', 78.4, 72.17, 72.26, 745.12],
-  ['2013/4/23', 72.62, 78.54, 78.81, 72.62],
-  ['2013/4/24', 787.35, 71.32, 78.11, 76.12],
-  ['2013/4/25', 71.19, 79.31, 79.85, 74.63],
-  ['2013/4/26', 70.89, 77.91, 77.86, 71.58],
-  ['2013/5/2', 77.78, 77.12, 76.14, 78.65],
-  ['2013/5/3', 78.05, 70.5, 78.05, 72.81],
-  ['2013/5/6', 71.5, 71.17, 71.5, 78.07],
-  ['2013/5/7', 77.86, 75.57, 71.44, 74.26],
-  ['2013/5/8', 72.39, 74.3, 75.42, 75.21],
-  ['2013/5/9', 74.96, 72.97, 71.38, 75.86],
-  ['2013/5/10', 79.82, 74.83, 75.81, 75.67],
-  ['2013/5/13', 75.68, 71.92, 71.36, 75.85],
-  ['2013/5/14', 78.9, 71.01, 70.87, 79.93],
-  ['2013/5/15', 71.09, 74.8, 71.58, 75.19],
-  ['2013/5/16', 71.34, 75.81, 71.77, 75.87],
-  ['2013/5/17', 79.81, 79.87, 74.41, 76.09],
-  ['2013/5/20', 79.33, 79.99, 79.9, 80.39],
-  ['2013/5/21', 79.11, 80.11, 79.12, 80.3],
-  ['2013/5/22', 80.75, 80.4, 79.43, 71.18],
-  ['2013/5/23', 79.81, 77.67, 77.1, 80.95],
-  ['2013/5/24', 79.45, 76.53, 77.25, 79.59],
-  ['2013/5/27', 79.66, 79.08, 79.94, 80.7],
-  ['2013/5/28', 79.4, 72.32, 79.47, 72.1],
-  ['2013/5/29', 72.54, 72.02, 72.17, 73.33],
-  ['2013/5/30', 71.25, 71.75, 71.49, 72.72],
-  ['2013/5/31', 72.76, 72.59, 79.37, 72.53],
-  ['2013/6/3', 72.21, 79.25, 79.11, 71.43],
-  ['2013/6/4', 79.1, 77.42, 76.76, 79.1],
-  ['2013/6/5', 77.71, 77.93, 76.87, 77.86],
-  ['2013/6/6', 76.43, 72.11, 74.07, 76.69],
-  ['2013/6/7', 72.26, 71.9, 70.07, 75.63],
-  ['2013/6/13', 79.1, 74.35, 76.22, 79.1]
+  ['2013/4/18', 78.82, 79.6, 77.44, 70.03]
 ]);
 
 
@@ -559,6 +572,7 @@ function splitData(rawData) {
   var categoryData = [];
   var values = []
   for (var i = 0; i < rawData.length; i++) {
+    //['2013/1/24', 72.26, 72.26, 77.3, 76.94],
     categoryData.push(rawData[i].splice(0, 1)[0]);
     values.push(rawData[i])
   }
@@ -571,8 +585,7 @@ function splitData(rawData) {
 function calculateMA(dayCount) {
   var result = [];
   for (var i = 0, len = data0.values.length; i < len; i++) {
-    if (i < dayCount) {
-      result.push('-');
+    if (i < dayCount) {     
       continue;
     }
     var sum = 0;

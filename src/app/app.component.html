@@ -47,18 +47,18 @@
       <div class="p-col-1 p-offset-7"><br/>
         <div class="p-grid" >
           <div class="p-col-4" >            
-            <span (mouseenter)="noti.toggle($event)" (mouseout)="noti.toggle($event)" (click)="noti.toggle($event)">
-            <li class="pi pi-bell" matBadgeColor="warn"  matBadge="4" ></li>
+            <span (mouseenter)="noti.toggle($event)" (mouseleave)="noti.toggle($event)" (click)="noti.toggle($event)">
+            <li class="pi pi-bell" matBadgeColor="warn"  [matBadge]="newNoti.length" *ngIf="newNoti"></li>
           </span>
           </div>                  
           <div class="p-col-4">
-            <span (mouseenter)="noti.toggle($event)" (mouseout)="noti.toggle($event)" (click)="noti.toggle($event)">
-            <li class="pi pi-comment" matBadgeColor="accent"></li>
+            <span (mouseenter)="chat.toggle($event)" (mouseleave)="chat.toggle($event)" (click)="chat.toggle($event)">
+            <li class="pi pi-comment" [matBadge]="newChat.length" matBadgeColor="accent" *ngIf="newChat"></li>
             </span>
           </div>
           <div class="p-col-4">
-            <span (mouseenter)="noti.toggle($event)" (mouseout)="noti.toggle($event)" (click)="noti.toggle($event)">
-            <li class="pi pi-envelope" matBadge="2"></li>
+            <span (mouseenter)="msg.toggle($event)"  (click)="msg.toggle($event)">
+            <li class="pi pi-envelope" [matBadge]="newMsg.length" *ngIf="newMsg"></li>
             </span>
           </div>
         </div>
@@ -103,7 +103,19 @@
 </p-scrollPanel>
 
 <p-overlayPanel #noti >
-  <ng-template pTemplate >     
-    need to put p-list of new message which should be poinitng as list with highlight
+  <ng-template pTemplate class="msgTop1">     
+      <div  class="msgTop" *ngFor="let n of newNoti"> <b>{{n.subj}}</b>{{n.body}} </div>
+  </ng-template>
+</p-overlayPanel>
+
+<p-overlayPanel #msg >
+  <ng-template pTemplate class="msgTop1">     
+      <div  class="msgTop" *ngFor="let n of newMsg"> <b>{{n.subj}}</b>{{n.body}} </div>
+  </ng-template>
+</p-overlayPanel>
+
+<p-overlayPanel #chat >
+  <ng-template pTemplate class="msgTop1">     
+      <div  class="msgTop" *ngFor="let n of newChat"> <b>{{n.subj}}</b>{{n.body}} </div>
   </ng-template>
 </p-overlayPanel>

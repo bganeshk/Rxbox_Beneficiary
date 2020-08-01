@@ -13,7 +13,10 @@ export const environment = {
   otherAddress: 'assets/mockdata/pointsdata.json',
   primAddress: 'assets/mockdata/pointsdata.json',
   beeAuth: '/api/v1/bauth/pwd',
-  beePwdUpdate: '/api/v1/user/pwdupdate'
+  beePwdUpdate: '/api/v1/user/pwdupdate',
+  tempRecord:'assets/mockdata/pointsdata.json',
+  prescription:'assets/mockdata/pointsdata.json',
+  patientProfile:'assets/mockdata/pointsdata.json',
 };
 
 /*

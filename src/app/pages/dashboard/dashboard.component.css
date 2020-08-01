@@ -101,7 +101,7 @@
     font-weight: 600;
     font-size: 9px;
     vertical-align: bottom;
-    padding-bottom: 3%;
+    
     width: 90%;
     white-space: nowrap;
 }
@@ -200,4 +200,10 @@
 .opanel{
     display: inline-block;
     width: 25vw;
+}
+.rxrating{
+    color:gold;
+}
+.spanImage{
+    font-size: 10px;    
 }

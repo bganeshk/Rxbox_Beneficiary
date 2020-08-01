@@ -14,7 +14,7 @@ import { DashboardComponent } from 'src/app/pages/dashboard/dashboard.component'
 import { NgxEchartsModule } from 'ngx-echarts';
 import * as echarts from 'echarts';
 import { ChatwindowComponent } from '../chatwindow/chatwindow.component';
-
+import {RatingModule} from 'primeng/rating';
 
 
 const DECLARE_COMPO=[
@@ -26,7 +26,7 @@ const DECLARE_COMPO=[
 @NgModule({
   declarations: [...DECLARE_COMPO,],
   providers: [MessageService],
-  imports:[CommonModule, GlobalComponentModule,NgxEchartsModule,
+  imports:[CommonModule, GlobalComponentModule,NgxEchartsModule,RatingModule,
     NgxEchartsModule.forRoot({
       echarts,
     }),
