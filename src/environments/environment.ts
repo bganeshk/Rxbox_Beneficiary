@@ -17,6 +17,7 @@ export const environment = {
   tempRecord:'assets/mockdata/pointsdata.json',
   prescription:'assets/mockdata/pointsdata.json',
   patientProfile:'assets/mockdata/pointsdata.json',
+  consent:'assets/mockdata/consentdata.json'
 };
 
 /*

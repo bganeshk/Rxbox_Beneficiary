@@ -1,37 +1,39 @@
 <div class="serch">
 <p-toast></p-toast>
     <p-card>
+       
         <p-fieldset [collapsed]="true" [toggleable]="true">
+            <form [formGroup]="consentSerachForm" (ngSubmit)="searchConsent($event)">
             <p-header class="tblHLbl"> Search Consent(s)</p-header>
             <div class="p-grid forms-grid p-justify-start">
 
                 <div class="p-col-12 p-md-4">
                     <span class="ui-float-label">
-                        <p-calendar id="float-dtrang" [(ngModel)]="search_dtrange" selectionMode="range"
+                        <p-calendar id="float-dtrang" formControlName="dtbetween" selectionMode="range"
                             showButtonBar="true" readonlyInput="true" class="tblLbl"></p-calendar>
                         <label class="tblHLbl" for="float-dtrang">Consent Created between</label>
                     </span>
                 </div>
                 <div class="p-col-12 p-md-4">
                     <span class="ui-float-label">
-                        <p-chips id="float-tag" [(ngModel)]="cosnt_tag" separator="," class="tblLbl"></p-chips>
+                        <p-chips id="float-tag" formControlName="ctag" separator="," class="tblLbl"></p-chips>
                         <label class="tblHLbl" for="float-tag">Consent Tag</label>
                     </span>
                 </div>
                 <div class="p-col-12 p-md-4">
                     <span class="ui-float-label">
-                        <input id="float-input" type="text" size="30" pInputText class="tblLbl">
+                        <input id="float-input" type="text" size="30"  formControlName="assignee" pInputText class="tblLbl">
                         <label for="float-input" class="tblHLbl">Assignee Name</label>
                     </span>
                 </div>
                 <div class="p-col-12 p-md-4">
-                    <div class="tblHLbl">Cons: Type</div>
-                    <p-multiSelect [options]="cosnt_type" class="tblLbl"></p-multiSelect>
+                    <div class="tblHLbl">Visibility Type</div>
+                    <p-multiSelect [options]="cosnt_type" class="tblLbl" formControlName="visitype"></p-multiSelect>
                 </div>
 
                 <div class="p-col-12 p-md-4">
-                    <div class="tblHLbl">Visibility Type</div>
-                    <p-multiSelect class="seltype" [options]="cosnt_cat_type"></p-multiSelect>
+                    <div class="tblHLbl">Cons: category</div>
+                    <p-multiSelect class="seltype" [options]="cosnt_cat_type"  formControlName="conscatType"></p-multiSelect>
                 </div>
                 <div class="p-col-12 p-md-12">
                     <div class="p-grid p-justify-end">
@@ -42,6 +44,7 @@
 
                 </div>
             </div>
+            </form>
         </p-fieldset>
 
         <p-dataView #dv [value]="cosnts" [paginator]="true" [rows]="10" paginatorPosition="both"
@@ -78,8 +81,8 @@
                                     <div class="p-col-12 tblLbl">Created: <b class="tblLbl">{{cnst.created}}</b></div>
                                     <div class="p-col-12 tblLbl">Assignee: <b class="tblLbl">{{cnst.cosnt_assignee}}</b>
                                     </div>
-                                    <div class="p-col-12 tblLbl">Consent Type:
-                                        <b class="tblLbl">{{cnst.cosnt_type}}</b>
+                                    <div class="p-col-12 tblLbl">Visibility Type:
+                                        <b class="tblLbl">{{cnst.cosnt_type=='pub'?'Public':'Custom'}}</b>
                                     </div>
                                 </div>
                             </div>
@@ -88,6 +91,7 @@
                             </div>
                             <div class="p-col-3">
                                 <button pButton class="ui-button-secondary" icon="pi pi-fw pi-pencil"
+                                    [disabled]="isDrRole()"
                                     (click)="editSelectConsent($event, cnst)" label="Edit"></button>
                                 <br /><br />
                                 <button pButton class="ui-button-secondary" icon="pi pi-search"
@@ -113,7 +117,7 @@
                         </p-header>
                         <div class="p-grid tblLbl">
                             <div class="p-col-12 ">Assignee: <b>{{cnst.cosnt_assignee}}</b></div>
-                            <div class="p-col-12">Consent Type: <b>{{cnst.cosnt_type}}</b></div>
+                            <div class="p-col-12">Visibility Type: <b>{{cnst.cosnt_type=='pub'?'Public':'Custom'}}</b></div>
                             <div class="p-col-12">Created: <b>{{cnst.created}}</b></div>
                         </div>
                         <p-footer>
@@ -141,11 +145,13 @@
                 <div class="ui-g-4 tblHLbl">Cons Validity : </div>
                 <div class="ui-g-8">{{selectedCons.validity}}<sub>.{{selectedCons.validity_unit}}</sub></div>
                 <div class="ui-g-4 tblHLbl">EHR Categories: </div>
-                <div class="ui-g-8">{{selectedCons.cosnted_ehr}}</div>
+                <div class="ui-g-8">{{selectedCons.cosnt_cat_type}}</div>
                 <div class="ui-g-4 tblHLbl">Consent Tags : </div>
                 <div class="ui-g-8">{{selectedCons.cosnt_tag}}</div>
                 <div class="ui-g-4 tblHLbl" *ngIf="selectedCons.cosnted_ehr">EHR Records : </div>
                 <div class="ui-g-8" *ngIf="selectedCons.cosnted_ehr">{{selectedCons.cosnted_ehr}}</div>
+                <div class="ui-g-4 tblHLbl" *ngIf="selectedCons.cosnted_template">Attached Templates : </div>
+                <div class="ui-g-8" *ngIf="selectedCons.cosnted_template">{{selectedCons.cosnted_template}}</div>
                 <div class="ui-g-4 tblHLbl">Consent Note : </div>
                 <div class="ui-g-8">{{selectedCons.remarks}}</div>
             </div>
@@ -162,49 +168,71 @@
 </div>
 
 <p-dialog header="Edit Consent" [(visible)]="displayEditDialog" [responsive]="true" showEffect="fade" [modal]="true"
-    [closeOnEscape]="true" *ngIf="selectedCons" [dismissableMask]="true" [style]="{width: '325px'}"
+    [closeOnEscape]="true" *ngIf="selectedCons" [dismissableMask]="true" [style]="{width: '50vw'}"
     (onAfterHide)="onDialogHide($event)">
+    <form [formGroup]="consentForm" (ngSubmit)="saveConsent($event)">
     <div class="ui-g">
-        <div class="ui-g-12">
+        <div class="ui-g-5">
             <label class="tblHLbl" for="cons_name">Consent Name*</label><br />
-            <input id="cons_name" type="text" pInputText [(ngModel)]="selectedCons.cosnt_name" />
-
-
+            <input id="cons_name" type="text" pInputText formControlName='consName'/>
         </div>
-        <div class="ui-g-12">
-            <label class="tblHLbl" for="cnst-validity">Expire After</label><br />
+        <div class="ui-g-7">
+            <label class="tblHLbl" for="cnst-validity">Expire After
+                <span class="ghint">Default will be 7 days</span>
+            </label><br />
             <span>
                 <input id="cnst-validity" type="text" size="4" class="tblLbl"
-                    style="padding-top: 10px; padding-bottom: 0px;" pInputText [(ngModel)]="selectedCons.validity" />
+                    style="padding-top: 10px; padding-bottom: 0px;" pInputText 
+                    pattern="\b([1-9]|1[0-2])\b" #expdt='ngModel' [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="selectedCons.validity">
 
-                <p-dropdown [options]="valididty_unty" [(ngModel)]="selectedCons.validity_unit"></p-dropdown>
+                <p-dropdown [options]="valididty_unty" [(ngModel)]="selectedCons.validity_unit" 
+                [ngModelOptions]="{standalone: true}">
+
+            </p-dropdown>
+            <p-message severity="error" text="Invalid Expiery date" *ngIf="expdt.errors?.pattern">
+
+            </p-message>    
             </span>
         </div>
-        <div class="ui-g-12 ">
-            <label for="cnst-cat" class="tblHLbl">Consent Category*</label><br />
-            <p-dropdown id="cnst-cat" [options]="cosnt_cat_type" class="tblLbl"
-                [(ngModel)]="selectedCons.cosnt_cat_type">
-            </p-dropdown>
+        
+        <div class="ui-g-4 ">
+            <span class="ui-fluid">
+                <label for="cnstempl" class="tblHLbl">Consent Template *</label>
+                <p-autoComplete  [suggestions]="filteredTemplate" 
+                    (completeMethod)="filterTemplate($event)"  id='assig'
+                    formControlName="templateName" [forceSelection]="true"
+                    [minLength]="1" placeholder="Select Template" field="name" [multiple]="false">
+                </p-autoComplete>                
+                <p-message severity="error" text="TemplateName is required" *ngIf="!consentForm.controls['templateName'].valid&&consentForm.controls['templateName'].dirty"></p-message>    
+            </span>
 
         </div>
-        <div class="ui-g-12 ">
+        <div class="ui-g-8 ">
             <label for="cnst-tag" class="tblHLbl">Consent Tags</label><br />
-            <p-chips id="cnst-tag" class="tblLbl" [(ngModel)]="selectedCons.cosnt_tag" separator=","></p-chips>
+            <p-chips id="cnst-tag" class="tblLbl" [(ngModel)]="selectedCons.cosnt_tag" separator=","
+            [ngModelOptions]="{standalone: true}"></p-chips>
 
+        </div>
+        
+        <div class="ui-g-12">
+            <label for="cnst-cat" class="tblHLbl">Consent Category</label><br />
+            <p-multiSelect [(ngModel)]="selectedCons.cosnt_cat_type" id="cnst-cat" [ngModelOptions]="{standalone: true}" [options]="cosnt_cat_type"></p-multiSelect>
         </div>
         <div class="ui-g-12 ">
             <label for="cnst-rem" class="tblHLbl">Consent Note</label><br />
-
-            <textarea id="cnst-rem" class="tblLbl" pInputTextarea [(ngModel)]="selectedCons.remarks"></textarea>
+            <textarea id="cnst-rem" class="tblLbl" pInputTextarea cols="70"
+            [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedCons.remarks"></textarea>
 
         </div>
     </div>
+    
     <p-footer class="acbtn">
-        <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" style="margin-right:10px;"
-            label="Save">
+        <button pButton type="submit" icon="pi pi-save" class="ui-button-secondary" style="margin-right:10px;"
+        [disabled]="!consentForm.valid"  label="Save">
         </button>
         <button (click)="onDialogHide($event)" pButton type="button" class="ui-button-secondary" icon="pi pi-times"
             label="Cancel"></button>
     </p-footer>
-
+</form>
 </p-dialog>

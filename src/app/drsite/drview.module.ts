@@ -23,6 +23,7 @@ import { HealthEventsComponent } from '../misc/health-events/health-events.compo
 import { MgntPrescriptionComponent } from '../prescription/mgnt-prescription/mgnt-prescription.component';
 import { LabEhrComponent } from '../ehr/lab-ehr/lab-ehr.component';
 import { FmlyEhrComponent } from '../ehr/fmly-ehr/fmly-ehr.component';
+import { PrescriptionService } from 'rx-lib';
 
 
 
@@ -40,7 +41,7 @@ const PORVIDED_COMPONENET=[
 ]
 @NgModule({
   declarations: [...COMPONENTS,   ],
-  providers: [...PORVIDED_COMPONENET,MessageService,],
+  providers: [...PORVIDED_COMPONENET,MessageService,PrescriptionService],
   entryComponents:[...ENTRY_COMPONENTS],
   imports: [
     GlobalComponentModule, DrviewRoutingModule,FileUploadModule,RxSharedModule,TabMenuModule

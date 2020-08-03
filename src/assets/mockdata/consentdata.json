@@ -1,0 +1,25 @@
+{
+   
+	"consents":{
+		"data":[
+		{"cons_id":"id1","cosnt_name":"sample name1","cosnt_assignee":["gkumar2"],"cosnt_tag":null,"cosnt_cat_type":null,"cosnt_type":"pub","cosnted_template":null,"cosnted_ehr":null,"remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":null,"validity_unit":null,"is_active":true},
+		{"cons_id":"id2","cosnt_name":"nam2","cosnt_assignee":null,"cosnt_tag":null,"cosnt_cat_type":["Summary_Report","Lab_Report"],"cosnt_type":"gen","cosnted_template":["template1"],"cosnted_ehr":["Ehr_023243","Ehr_0232e43"],"remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":"8","validity_unit":"days","is_active":true},
+		{"cons_id":"id3","cosnt_name":"nam1","cosnt_assignee":["gkumar1"],"cosnt_tag":null,"cosnt_cat_type":null,"cosnt_type":null,"cosnted_template":null,"cosnted_ehr":"cust","remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":null,"validity_unit":null,"is_active":true},
+		{"cons_id":"id4","cosnt_name":"nam2","cosnt_assignee":null,"cosnt_tag":null,"cosnt_cat_type":["Summary_Report","Lab_Report"],"cosnt_type":"cust","cosnted_template":null,"cosnted_ehr":["Ehr_023243","Ehr_0232e43"],"remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":"8","validity_unit":"days","is_active":true},
+		{"cons_id":"id5","cosnt_name":"nam1","cosnt_assignee":["gkumar1"],"cosnt_tag":null,"cosnt_cat_type":null,"cosnt_type":null,"cosnted_template":null,"cosnted_ehr":"cust","remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":null,"validity_unit":null,"is_active":true},
+		{"cons_id":"id6","cosnt_name":"nam2","cosnt_assignee":null,"cosnt_tag":null,"cosnt_cat_type":["Summary_Report","Lab_Report"],"cosnt_type":"cust","cosnted_template":null,"cosnted_ehr":["Ehr_023243","Ehr_0232e43"],"remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":"8","validity_unit":"days","is_active":true},
+		{"cons_id":"id7","cosnt_name":"nam1","cosnt_assignee":["gkumar1"],"cosnt_tag":null,"cosnt_cat_type":null,"cosnt_type":null,"cosnted_template":null,"cosnted_ehr":"cust","remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":null,"validity_unit":null,"is_active":true},
+		{"cons_id":"id8","cosnt_name":"nam2","cosnt_assignee":null,"cosnt_tag":null,"cosnt_cat_type":["Summary_Report","Lab_Report"],"cosnt_type":"cust","cosnted_template":null,"cosnted_ehr":["Ehr_023243","Ehr_0232e43"],"remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":"8","validity_unit":"days","is_active":true},
+		{"cons_id":"id9","cosnt_name":"nam1","cosnt_assignee":["gkumar1"],"cosnt_tag":null,"cosnt_cat_type":null,"cosnt_type":null,"cosnted_template":null,"cosnted_ehr":"cust","remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":null,"validity_unit":null,"is_active":true},
+		{"cons_id":"id10","cosnt_name":"nam2","cosnt_assignee":null,"cosnt_tag":null,"cosnt_cat_type":["Summary_Report","Lab_Report"],"cosnt_type":"cust","cosnted_template":null,"cosnted_ehr":["Ehr_023243","Ehr_0232e43"],"remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":"8","validity_unit":"days","is_active":true},
+		{"cons_id":"id11","cosnt_name":"nam1","cosnt_assignee":["gkumar1"],"cosnt_tag":null,"cosnt_cat_type":null,"cosnt_type":null,"cosnted_template":null,"cosnted_ehr":"cust","remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":null,"validity_unit":null,"is_active":true},
+		{"cons_id":"id12","cosnt_name":"nam2","cosnt_assignee":null,"cosnt_tag":null,"cosnt_cat_type":["Summary_Report","Lab_Report"],"cosnt_type":"cust","cosnted_template":null,"cosnted_ehr":["Ehr_023243","Ehr_0232e43"],"remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":"8","validity_unit":"days","is_active":true},
+		{"cons_id":"id13","cosnt_name":"nam1","cosnt_assignee":["gkumar1"],"cosnt_tag":null,"cosnt_cat_type":null,"cosnt_type":null,"cosnted_template":null,"cosnted_ehr":"cust","remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":null,"validity_unit":null,"is_active":true},
+		{"cons_id":"id14","cosnt_name":"nam2","cosnt_assignee":null,"cosnt_tag":null,"cosnt_cat_type":["Summary_Report","Lab_Report"],"cosnt_type":"cust","cosnted_template":null,"cosnted_ehr":["Ehr_023243","Ehr_0232e43"],"remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":"8","validity_unit":"days","is_active":true},
+		{"cons_id":"id15","cosnt_name":"nam1","cosnt_assignee":["gkumar1"],"cosnt_tag":null,"cosnt_cat_type":null,"cosnt_type":null,"cosnted_template":null,"cosnted_ehr":"cust","remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":null,"validity_unit":null,"is_active":true}
+	 
+		]
+	}
+}
+	
+	

@@ -47,12 +47,12 @@
       <div class="p-col-1 p-offset-7"><br/>
         <div class="p-grid" >
           <div class="p-col-4" >            
-            <span (mouseenter)="noti.toggle($event)" (mouseleave)="noti.toggle($event)" (click)="noti.toggle($event)">
+            <span (mouseenter)="noti.toggle($event)" (click)="noti.toggle($event)">
             <li class="pi pi-bell" matBadgeColor="warn"  [matBadge]="newNoti.length" *ngIf="newNoti"></li>
           </span>
           </div>                  
           <div class="p-col-4">
-            <span (mouseenter)="chat.toggle($event)" (mouseleave)="chat.toggle($event)" (click)="chat.toggle($event)">
+            <span (mouseenter)="chat.toggle($event)"  (click)="chat.toggle($event)">
             <li class="pi pi-comment" [matBadge]="newChat.length" matBadgeColor="accent" *ngIf="newChat"></li>
             </span>
           </div>
@@ -102,19 +102,19 @@
   </div>
 </p-scrollPanel>
 
-<p-overlayPanel #noti >
+<p-overlayPanel #noti [showCloseIcon]="true" [dismissable]="false">
   <ng-template pTemplate class="msgTop1">     
       <div  class="msgTop" *ngFor="let n of newNoti"> <b>{{n.subj}}</b>{{n.body}} </div>
   </ng-template>
 </p-overlayPanel>
 
-<p-overlayPanel #msg >
+<p-overlayPanel #msg [showCloseIcon]="true" [dismissable]="false">
   <ng-template pTemplate class="msgTop1">     
       <div  class="msgTop" *ngFor="let n of newMsg"> <b>{{n.subj}}</b>{{n.body}} </div>
   </ng-template>
 </p-overlayPanel>
 
-<p-overlayPanel #chat >
+<p-overlayPanel #chat [showCloseIcon]="true" [dismissable]="false">
   <ng-template pTemplate class="msgTop1">     
       <div  class="msgTop" *ngFor="let n of newChat"> <b>{{n.subj}}</b>{{n.body}} </div>
   </ng-template>

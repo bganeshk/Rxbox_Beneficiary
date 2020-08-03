@@ -5,193 +5,30 @@ import { Profiledet, ProfileAdd } from 'cmn-lib';
 import {SummaryHealthRec, HealthRec, RxNote, FmlyHealthRec, Prescription, MedFullFillment, MedFullFillmentC, Medicine, DailyMed, ConsntReq} from 'rx-lib';
 import { Url } from 'url';
 import { SelectItemGroup } from 'primeng/api';
-/*
-export interface RxNote{
-  recId:string;
-  rxNote:string; 
-  subject?:string;
-  refNumber?:string;
-  metadata?:AuditData;
-}
+import { Observable } from 'rxjs';
 
-export interface ehr_bp{
-  ehrId:string;
-  dias:number;
-  syst:number;
-  auditData:AuditData;
-}
 
-export interface ehr_diabetic{
-  ehrId:string;
-  bf:number;
-  af:number;
-  auditData:AuditData;
-}
-export interface ehr_tempoxypulse{
-  ehrId:string;
-  temp:number;
-  oxireading:number;
-  pulsepersec:number;
-  auditData:AuditData;
-}
-
-export interface Consnt{
-  cons_id:string
-  created:Date,
-  cosnt_name:string,
-  cosnt_type:string,
-  validity:string,
-  validity_unit:string,
-  cosnt_tag:string[],
-  cosnt_assignee:string[],
-  cosnt_cat_type:string[],
-  cosnted_ehr:string[],
-  is_active:boolean;
-  remarks:string;
-}
-
-export interface ConsntReq{
-  reqId:string;
-  reqCreated_on:Date;
-  reqCreater:string;
-  beneficiary:Beneficiary;  
-  access_statrdt:Date;
-  status:string;
-  reqAccess_category?:string[];
-  access_type:string;//view,edit/upload
-  remarks:string;
-  requstor_details:ProfileAdd
-}
-export interface HealthType{
-  typeName:string;
-  typeOpt:Map<string,string>;
-}
-
-export interface FmlyHealthRec {
-  realtions:string[];
-  data:HealthRec;
-}
-export interface SummaryHealthRec extends HealthRec{
-  admissionDt:Date;
-  dischargeDate:Date;
-  summaryNote:string;
-  refRecNo:Set<string>;  
-  attachments:URL[];
-}
-
-export interface  HealthRec{
-  rec_no:string;
-  desc:string;  
-  dataValue?:Map<string,string>;
-  recType:string;
-  recTypeDesc?:string;
-  refNumber:string;
-  recRequester?:string;
-  requesterDetails?:ProfileAdd
-  reqDate?:Date;
-  recIssuer:string;
-  issuerDetails?:ProfileAdd
-  issueDate?:Date;
-  attachments:URL[];
-  remarks?:string;
-  metadata:AuditData;
-  recFullfilled?:boolean;//to indicate whether the requet is completed or not
-}
-
-export interface AuditData{
-  created_on:Date;
-  updated_on?:Date;
-  version:number;
-  createdBy:string;
-  updatedBy?:string;
-}
-
-export interface ServiceProvider {
-  providerId:string;
-  providerName:string;
-}
-export interface Beneficiary{
-  beId:string;
-  beName:string;
-}
-
-export class DailyMedClass implements DailyMed{
-
-}
-export interface DailyMed {
-  pid?:string;
-  med?:Medicine;
-  afterFood?:String;
-  morningQty?:number;
-  afternoongQty?:number; 
-  eveninggQty?:number;
-  medType?:string;
-  medNotes?:string;  
-  repeatCycle?:string;//Daily, every monday
-  repeatCycleNumber?:string//everymondy for 5times or everymonth for 12 months
-  numberOfCycle?:number;//number of days to consme the medicine -1 for indefiniete
-  startDate?:Date;
-  endDate?:Date;//need to fill after calculation or while stopping
-  prescribedBy?:string;
-  prescribed_dt?:Date;
- 
-}
-
-export interface Prescription{
-  pid:string;
-  prescribedBy?:string;
-  prescribed_dt?:Date;
-  medNotes?:string;  
-  medicine:DailyMed[];
-}
-
-export interface FullFillmentSummary{
-  totalQty:number;
-  fullfilledQty:number;
-  balanceQty?:number;
-  nextRefill:Date;
-  lastRefill:Date;
-  totalNoRefill:number;
-  newQty?:number;
-  fullfillpercentage?:number;
-}
-
-export interface MedFFill{
-  purchaseQty:number;
-  fullfilledBy?:string;
-  purchase_dt?:Date;
-  purchaseAmnt?:number;
-}
-
-export interface MedFullFillment{
-  pid:string;
-  medi:DailyMed; 
-  fullFillsmry:FullFillmentSummary;
-  fullFillDetails?:MedFFill[];
-}
-
-export class MedFullFillmentC implements MedFullFillment{
-  pid:string;
-  medi: DailyMed;
-  fullFillsmry: FullFillmentSummary;
-  fullFillDetails?:MedFFill[];
-}
-
-export interface Medicine{
- id:string;
- medname:string;
- genericName:string;
- dose:string;
- expDt:Date;
- mfgDt:Date;
- manufacturer:string;
-}
-*/
 @Injectable({
   providedIn: 'root'
 })
 export class MetadataService {
- 
+
+  private _jsonURL = 'assets/data/references.json';
+  private jsonRefData;
+
+
+  constructor(private http: HttpClient) {
+    this.getJSONRef()
+    
+   }
+   
+   public getJSONRef() {
+      return this.http.get(this._jsonURL).toPromise().then(res =>{
+        this.jsonRefData=res;
+        res;
+      }); 
+   }
+
 getSummaryHealthRec():SummaryHealthRec[]{
     let smryRecs:SummaryHealthRec[]=[];
     this.getCustSelectedRec().forEach(e => {
@@ -249,22 +86,14 @@ getSummaryHealthRec():SummaryHealthRec[]{
     });
     return fmlyRecs;
  }
-  getPrescription(): Prescription[] {
-    let pres:Prescription[]=[
-      { pid:'1',prescribedBy:'Dr GKumar',prescribed_dt:new Date(), medNotes:'This medical presciption does not have any valid notes. this is created as sample note to display how an actula notes looks like in the system. This may give overall idea of how notes are created and presented to the end user',medicine:null},
-      { pid:'2',prescribedBy:'Dr Xing',prescribed_dt:new Date(), medNotes:'This medical presciption does not have any valid notes. this is created as sample note to display how an actula notes looks like in the system',medicine:null}
-    ]
-    pres[0].medicine=this.getDailyMed();
-    pres[1].medicine=this.getDailyMed();
-    return pres;
-  }
+ 
   
   
   getMedFullFillments():MedFullFillment[]{
     var mdfill:MedFullFillment[]=[];
     for(let i=0;i<5;i++){
         let mdf=new MedFullFillmentC();
-        mdf.medi=this.getDailyMed()[i];
+       // mdf.medi=this.getDailyMed()[i];
         mdf.fullFillsmry={ totalQty:Math.floor(Math.random() * 10),lastRefill:new Date(),fullfilledQty:Math.floor(Math.random() * 10)/2,nextRefill:new Date(),totalNoRefill:2};
         let fullfillpercentage=Math.floor( (100*mdf.fullFillsmry.fullfilledQty)/mdf.fullFillsmry.totalNoRefill);
         mdf.fullFillsmry.fullfillpercentage=fullfillpercentage;
@@ -301,21 +130,7 @@ getSummaryHealthRec():SummaryHealthRec[]{
     return hrec;
   }
 
-  getDailyMed():DailyMed[]{
-    var dm = [
-      { pid:'1',prescribedBy:'Dr.Ganesh kumar (SRS Hospital)',med:{ id:'1',medname:'p-amol',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'Y', morningQty: 1, afternoongQty: 0, eveninggQty: 1, medType: 'C', medNotes: 'water mix' ,numberOfdays:-1,startDate:new Date(),endDate:new Date()},
-      { pid:'2',prescribedBy:'Dr.Doctor Name',med:{ id:'1',medname:'dolo-23-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'} , afterFood: 'Y', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50',numberOfdays:1,endDate:new Date() },
-      { pid:'3',prescribedBy:'Dr.Doctor Name2',med: { id:'1',medname:'Capo-23-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'Y', morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'4',prescribedBy:'Dr.Doctor Name',med: { id:'1',medname:'Abra-23-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N/A', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:10},
-      { pid:'5',prescribedBy:'Dr.Doctor Name',med: { id:'1',medname:'Kada-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'6',prescribedBy:'Dr.Doctor Name',med: { id:'1',medname:'Bara-15mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'7',prescribedBy:'Dr.Doctor Name',med: { id:'1',medname:'Tilu-43-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N/A', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'8',prescribedBy:'Dr.Doctor Name',med: { id:'1',medname:'Kotil-33-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'I', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'9',prescribedBy:'Dr.Doctor Name',med: { id:'1',medname:'Botin-23-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N', morningQty: 0, afternoongQty: 1, eveninggQty: 0, medType: 'T', medNotes: 'if b/w30&50' ,numberOfdays:1},
-      { pid:'10',prescribedBy:'Dr.Doctor Name',med: { id:'1',medname:'Chemos-13-25mg',genericName:'name2',dose:'50ml',expDt:new Date(),mfgDt:new Date(),manufacturer:'Cipla'}, afterFood: 'N/A', morningQty: 0, afternoongQty: 0, eveninggQty: 1, medType: 'O', medNotes: 'if b/w30&50' ,numberOfdays:1}
-    ];
-  return dm;
-  }
+ 
   getConsReq(staus?: string,drId?:string): ConsntReq[] {
    // throw new Error("Method not implemented.");
    return [
@@ -343,32 +158,14 @@ getSummaryHealthRec():SummaryHealthRec[]{
    ];
   }
   getConsentValidityUnit(): SelectItem[] {
-    return [
-      {label: 'Days', value: 'd'},
-      {label: 'Weeks', value: 'w'},
-      {label: 'Months', value: 'm'}];
-   
-  }
-
-  constructor(private httpClient: HttpClient) {
-
+    return this.jsonRefData.consentValType.data;
   }
 
   public getConsentTypeList():SelectItem[]{
-    return [
-      {label: 'Generic Consents', value: 'gen'},
-      {label: 'Public Consents', value: 'pub'},
-      {label: 'Custom Consents', value: 'cust'}];
+    return this.jsonRefData.consentType.data;
   }
   public getEhrCategoryList():SelectItem[]{
-    return [
-      {label: 'Summary Report', value: 'Summary_Report'},
-      {label: 'Lab Report', value: 'Lab_Report'},
-      {label: 'Mental Record', value: 'Mental_Record'},
-      {label: 'Sexual Record', value: 'Sexual_Record'},
-      {label: 'Heart/Cardiac Report', value: 'Cardiac_Report'},
-      {label: 'Eye/Opthalmic Report', value: 'Opthalmic_Report'},
-      {label: 'Family Report', value: 'Family_Report'}];
+    return this.jsonRefData.ehrCategory.data;
   }
   public getEhrCategoryDetList(): SelectItemGroup[] {
     return [

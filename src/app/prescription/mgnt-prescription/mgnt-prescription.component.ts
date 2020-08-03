@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MetadataService,  } from 'src/app/global/metadata.service';
 import { MessageService, SelectItem } from 'primeng/api';
-import { DailyMed, Medicine, DailyMedClass } from 'rx-lib';
+import { DailyMed, Medicine, DailyMedClass,PrescriptionService } from 'rx-lib';
 
 
 
@@ -14,7 +14,7 @@ export class MgntPrescriptionComponent implements OnInit {
 
   prescriptions: DailyMed[];
   selectedphr: DailyMed;
-  constructor(private mdataSrvs: MetadataService) { }
+  constructor(private mdataSrvs: MetadataService, private presSrvs:PrescriptionService) { }
   cols: any[]
   newphr: boolean;
   displayDlg: boolean;
@@ -24,7 +24,10 @@ export class MgntPrescriptionComponent implements OnInit {
   isBenifeciary:boolean
 
   ngOnInit() {
-    this.prescriptions = this.mdataSrvs.getDailyMed();
+    
+    this.presSrvs.getActivePrescription().then(res=>{
+      this.prescriptions=res;
+    })
 
     this.cols = [
       { field: 'med.medname', header: 'Medicine' },

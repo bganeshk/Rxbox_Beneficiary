@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TreeNode} from 'primeng/api';
 import { MetadataService,  } from 'src/app/global/metadata.service';
-import { Prescription } from 'rx-lib';
+import { Prescription, DashboardService, PrescriptionService } from 'rx-lib';
 
 @Component({
   selector: 'app-presc-history',
@@ -13,10 +13,12 @@ export class PrescHistoryComponent implements OnInit {
   prescriptions:Prescription[];
   selectedPerscription:Prescription;
   
-  constructor(private mdataSrvs: MetadataService) { }
+  constructor(private mdataSrvs: MetadataService, private prescSrvs:PrescriptionService) { }
 
   ngOnInit() {
-    this.prescriptions=this.mdataSrvs.getPrescription();
+    this.prescSrvs.getActivePrescription().then(res=>{
+      this.prescriptions=res.medicine;
+    })
   }
 
 }

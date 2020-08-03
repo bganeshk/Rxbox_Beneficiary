@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MetadataService,} from 'src/app/global/metadata.service';
 import { MessageService, SelectItemGroup } from 'primeng/api';
-import { SummaryHealthRec, DailyMed, HealthRec, RxNote } from 'rx-lib';
+import { SummaryHealthRec, DailyMed, HealthRec, RxNote, PrescriptionService } from 'rx-lib';
 
 @Component({
   selector: 'app-smry-ehr',
@@ -19,7 +19,8 @@ export class SmryEhrComponent implements OnInit {
   rxnotes:RxNote[];
 
 
-  constructor(private mdataSrvs: MetadataService, private messageService: MessageService) { }
+  constructor(private mdataSrvs: MetadataService, private messageService: MessageService,
+    private presSrvs:PrescriptionService) { }
 
   ngOnInit() {    
     this.otherOpts = this.mdataSrvs.getEhrCategoryDetList();
@@ -77,7 +78,9 @@ export class SmryEhrComponent implements OnInit {
   onTabOpen(event){
     switch(event.index){
       case 0:{
-        this.smryDailyMed=this.mdataSrvs.getDailyMed();
+        this.presSrvs.getActivePrescription().then(res=>{
+          this.smryDailyMed=res;
+        })
       }case 1:{
         this.smryLabRpt=this.mdataSrvs.getLabHealthRec();
       }case 2:{

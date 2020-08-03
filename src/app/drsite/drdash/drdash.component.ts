@@ -3,12 +3,11 @@ import { MetadataService,  } from 'src/app/global/metadata.service';
 import { MessageService } from 'primeng/api';
 import { MenuItem } from 'primeng/api';
 import { NgSwitchCase } from '@angular/common';
-import { FmlyHealthRec, DailyMed, HealthRec } from 'rx-lib';
+import { FmlyHealthRec, DailyMed, HealthRec, PrescriptionService } from 'rx-lib';
 
 
 @Component({
   selector: 'app-drdash',
-
   templateUrl: './drdash.component.html',
   styleUrls: ['./drdash.component.css']
 })
@@ -24,7 +23,8 @@ export class DrdashComponent implements OnInit {
   dlgVisible:boolean;
   rsbar:boolean=true;
   dlgType: string;
-  constructor(private mdataSrvs: MetadataService, private messageService: MessageService) { }
+  constructor(private mdataSrvs: MetadataService, private messageService: MessageService,
+    private presSrvs:PrescriptionService) { }
 
   ngOnInit(): void {
     this.items = [
@@ -46,7 +46,9 @@ export class DrdashComponent implements OnInit {
     ];
     
     this.fmlyEHRs=this.mdataSrvs.getFmlyHealthRec();
-    this.dms = this.mdataSrvs.getDailyMed();
+     this.presSrvs.getActivePrescription().then(res=>{
+      this.dms =res;
+    });
     this.labRecs=this.mdataSrvs.getLabHealthRec(); 
     this.mnuItem='Home';
   }

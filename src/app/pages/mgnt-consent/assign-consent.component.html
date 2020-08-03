@@ -1,14 +1,15 @@
 <p-toast></p-toast>
 <p-card>
+    <form [formGroup]="consAssignmentform" (ngSubmit)="saveAssignment(consAssignmentform.value)">
     <p-fieldset >
         <p-header class="tblH1Lbl">Assign Consent - Grant Health record access</p-header>
         <div class="ui-g">
             <div class="ui-g-6">
                 <span class="ui-fluid">
-                    <label class="tblHLbl" for="assig">Assignee(s)* </label>
+                    <label class="tblHLbl" for="assig">Assignee(s) </label>
                     <p-autoComplete [(ngModel)]="newConst.cosnt_assignee" [suggestions]="filteredAssigneeMultiple" 
                         (completeMethod)="filterAssigneMultiple($event)"  id='assig'
-                maxlength="5" [required]="true"
+                        maxlength="5" [ngModelOptions]="{standalone: true}"
                         [minLength]="1" placeholder="Select Assignee " field="name" [multiple]="true">
                     </p-autoComplete>                    
                 </span>
@@ -16,45 +17,65 @@
             <div class="ui-g-6">
                
                 <label class="tblHLbl" for="contype">Consent Type</label><br/>
-                <p-multiSelect id="contype" [options]="cosnt_type"></p-multiSelect>
+                <p-multiSelect id="contype" [options]="cosnt_type" [(ngModel)]="newConst.cosnt_type"
+                [ngModelOptions]="{standalone: true}"></p-multiSelect>
                
             </div>
             
-            <div class="ui-g-6">
+            <div class="ui-g-4">
                
-                <label class="tblHLbl" for="concattype">Consent Category</label><br/>
-                <p-multiSelect id="concattype" [options]="cosnt_cat_type"></p-multiSelect>
+                <label class="tblHLbl" for="conname">Consent Name*</label><br/>
+                <input id="conname" type="text" size="15"    
+                formControlName="consName"
+                 pInputText maxlength="25" required="true"/>                    
+                 <p-message severity="error" text="Consent Name is required"
+                  *ngIf="!consAssignmentform.controls['consName'].valid&&consAssignmentform.controls['consName'].dirty"></p-message>    
                
             </div>
-            <div class="ui-g-6">
+            <div class="ui-g-4">
+               
+                <label class="tblHLbl" for="concattype">Consent Category</label><br/>
+                <p-multiSelect id="concattype" [options]="cosnt_cat_type" [ngModelOptions]="{standalone: true}" [(ngModel)]="newConst.cosnt_cat_type"></p-multiSelect>
+               
+            </div>
+            <div class="ui-g-4">
                
                 <label class="tblHLbl" for="contag">Consent Tag(s)</label><br/>
-                <p-chips id="contag" [(ngModel)]="cosnt_tag" separator=","></p-chips>
+                <p-chips id="contag" [ngModelOptions]="{standalone: true}" 
+                [(ngModel)]="newConst.cosnt_tag" separator=","></p-chips>
                
             </div>
             <div class="ui-g-6">
                 <span class="ui-fluid">
                     <label for="cnstempl" class="tblHLbl">Consent Template *</label>
-                    <p-autoComplete [(ngModel)]="newConst.cosnt_assignee" [suggestions]="filteredTemplate" 
+                    <p-autoComplete  [suggestions]="filteredTemplate" 
                         (completeMethod)="filterTemplate($event)"  id='assig'
+                        formControlName="templateName" [forceSelection]="true"
                         [minLength]="1" placeholder="Select Template" field="name" [multiple]="false">
-                    </p-autoComplete>                    
+                    </p-autoComplete>                
+                    <p-message severity="error" text="TemplateName is required" *ngIf="!consAssignmentform.controls['templateName'].valid&&consAssignmentform.controls['templateName'].dirty"></p-message>    
                 </span>
                
             </div>
             <div class="ui-g-6">
                 <span>
-                    <label class="tblLbl"  for="cnst-validity">Expire After *</label><br/>
-                    <input id="cnst-validity" style="padding-bottom: 0px;
-                    padding-top: 12px;" type="text" size="3"   pInputText />
-                <p-dropdown [options]="valididty_unty" ></p-dropdown>
+                    <label class="tblLbl"  for="cnst_validity">Expire After
+                        <span class="ghint">Default will be 7 days</span>
+                    </label>
+                    
+                    <br/>
+                    <input id="cnst_validity" style="padding-bottom: 0px;
+                    padding-top: 12px;" type="text" size="3" 
+                     pInputText  pattern="\b([1-9]|1[0-2])\b" formControlName="expiryDt"/>                    
+                <p-dropdown [options]="valididty_unty" [(ngModel)]="newConst.validity_unit" [ngModelOptions]="{standalone: true}"></p-dropdown>
+                <p-message severity="error" text="Invalid Expiery" *ngIf="!consAssignmentform.controls['expiryDt'].valid&&consAssignmentform.controls['expiryDt'].dirty"></p-message>    
             </span>   
             </div>
         </div>
         <div class="ui-g-6">
             <label for="cnst-rem" class="tblLbl" > Consent Note</label><br/>
                 
-             <textarea id="cnst-rem" pInputTextarea [(ngModel)]="newConst.remarks" style="width: 100%;"></textarea>
+             <textarea id="cnst-rem" pInputTextarea [ngModelOptions]="{standalone: true}" [(ngModel)]="newConst.remarks" style="width: 100%;"></textarea>
             
         
         </div>
@@ -62,27 +83,29 @@
             <label for="cnst-rem" class="tblLbl" > Direct Share</label><br/>
             <p class="ghint">Enter emailId(Email) or phone number(SMS) </p>
             <div class="ui-inputgroup">
-                <p-chips [(ngModel)]="cosnt_tag" separator="," ></p-chips>                
+                <p-chips [ngModelOptions]="{standalone: true}" [(ngModel)]="cosnt_shares" separator="," ></p-chips>                
                 <button pButton type="button" icon="pi pi-share-alt" class="ui-button-secondary ui-button-raised" style="margin-right:10px;"
-                (click)="saveAssignment($event)" 
+                [disabled]="!consAssignmentform.valid || !cosnt_shares||cosnt_shares.length<=0"
+                (click)="shareAssignment($event)" 
                 label="Share"></button>                
             </div>
         </div>
         <div class="ui-g-12" >
             <div class="p-grid p-justify-end">
-            <button pButton type="button" icon="pi pi-save" class="ui-button-secondary ui-button-raised" style="margin-right:10px;"
-                (click)="saveAssignment($event)" 
+            <button pButton type="submit" icon="pi pi-save" class="ui-button-secondary ui-button-raised" style="margin-right:10px;"
+                [disabled]="!consAssignmentform.valid || (!this.newConst.cosnt_assignee || this.newConst.cosnt_assignee.length<=0)"                
                 label="Assign">
             </button>
            
             <button  pButton type="button" class="ui-button-secondary ui-button-raised"
-            icon="pi pi-times" (click)="cancelAssing()"
+            icon="pi pi-times" (click)="cancelAssign()"
             label="Clear"></button>
             </div>
         </div>
     </p-fieldset>
+    </form>
 </p-card>
-<p-toast position="center" key="c" (onClose)="cancelAssing()" [modal]="true" [baseZIndex]="5000">
+<p-toast position="center" key="otp" (onClose)="cancelAssign()"  >
     <ng-template let-message pTemplate="message">
         <div style="text-align: center">
             <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
@@ -97,7 +120,7 @@
         <div class="p-grid ui-fluid">
             <div class="p-col-6">
                 <button pButton type="button" icon="pi pi-check" class="ui-button-secondary ui-button-raised" style="margin-right:10px;"
-            (click)="verifyOTP()" *ngIf="verifyPhoneOTP"
+            (click)="verifyOTP()" 
             label="Verify">
         </button>
             </div>
