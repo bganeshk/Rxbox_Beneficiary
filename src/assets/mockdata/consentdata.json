@@ -19,6 +19,34 @@
 		{"cons_id":"id15","cosnt_name":"nam1","cosnt_assignee":["gkumar1"],"cosnt_tag":null,"cosnt_cat_type":null,"cosnt_type":null,"cosnted_template":null,"cosnted_ehr":"cust","remarks":"cosnent is crated for the generic test for Dr.Rama","created":null,"validity":null,"validity_unit":null,"is_active":true}
 	 
 		]
+	},
+	
+	"consenReqs":{
+		"data":[
+			{
+		  "reqId":"Con/12/12-1","reqCreated_on":"2020-02-02","status":"Pending","reqCreater":"Dr.Gkumar (SRS Hospital)", "access_statrdt":"2020-02-02", "reqAccess_category":["Family_health"], "access_type":"view","remarks":"I am from hospital SRS, Plesae provide access to get the details of history",
+          "requstor_details":{
+				"adId":"343",
+				"primemobile":"3498787654",
+				"primeEmail": "exg@sample.com",
+				"city": "city",
+				"state": "state",
+				"pin": "3434", "primephoneStatus":null, "primeemailStatus":null, 
+				"address_line1":"address-line1", 
+				"address_line2" :"address-line2"
+			  },"beneficiary":{"beId":"34f3d3","beName":"Patient 1"}			
+			},        
+			 {"reqId":"Con/12/12-2","reqCreated_on":"2020-07-28","status":"New","reqCreater":"Dr GRS2", "access_statrdt":"2020-02-02", "reqAccess_category":["Cardiac"], "access_type":"All","remarks":"The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner", "requstor_details":null,"beneficiary":{"beId":"34f3d3","beName":"Patient 3"}} ,
+			 {"reqId":"Con/12/12-3","reqCreated_on":"2020-08-12","status":"Expired","reqCreater":"Dr GRS3", "access_statrdt":"2020-02-02", "reqAccess_category":["Summary"], "access_type":"All","remarks":"The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner", "requstor_details":null,"beneficiary":{"beId":"34f3d3","beName":"Patient 2"}} ,
+			 {"reqId":"Con/12/12-3","reqCreated_on":"2020-08-04","status":"Pending","reqCreater":"Dr GRS4", "access_statrdt":"2020-02-02", "reqAccess_category":["Lab"], "access_type":"view","remarks":"The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner", "requstor_details":null,"beneficiary":{"beId":"34f3d3","beName":"Patient 4"}} ,
+			 {"reqId":"Con/12/12-4","reqCreated_on":"2020-02-03","status":"Approved","reqCreater":"Dr GRS2", "access_statrdt":"2020-02-02", "reqAccess_category":["Lab"], "access_type":"All","remarks":"The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner", "requstor_details":null,"beneficiary":{"beId":"34f3d3","beName":"Patient 5"}} ,
+			 {"reqId":"Con/12/12-5","reqCreated_on":"2020-07-30","status":"Approved","reqCreater":"Dr GRS2", "access_statrdt":"2020-02-02", "reqAccess_category":["Lab"], "access_type":"","remarks":"The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner", "requstor_details":null,"beneficiary":{"beId":"34f3d3","beName":"Patient 1"}} ,
+			 {"reqId":"Con/12/12-6","reqCreated_on":"2020-07-29","status":"New","reqCreater":"Dr Klm kong S3", "access_statrdt":"2020-02-02", "reqAccess_category":["Lab"], "access_type":"","remarks":"The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner", "requstor_details":null,"beneficiary":{"beId":"34f3d3","beName":"Patient 3"}} ,
+			 {"reqId":"Con/12/12-7","reqCreated_on":"2020-08-01","status":"Approved","reqCreater":"SRS", "access_statrdt":"2020-02-02", "reqAccess_category":[""], "access_type":"","remarks":"The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner", "requstor_details":null,"beneficiary":{"beId":"34f3d3","beName":"Patient 3"}} ,
+			 {"reqId":"Con/12/12-8","reqCreated_on":"2020-02-02","status":"Pending","reqCreater":"Kolmn", "access_statrdt":"2020-02-02", "reqAccess_category":[""], "access_type":"","remarks":"The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner", "requstor_details":null,"beneficiary":{"beId":"34f3d3","beName":"Patient 2"}} ,
+			 {"reqId":"Con/12/12-9","reqCreated_on":"2020-02-02","status":"Expired","reqCreater":"Komn", "access_statrdt":"2020-02-02", "reqAccess_category":[""], "access_type":"","remarks":"The sample rempark is created by the consultantn doctor for demo purpose . The actual content may vary based on the comments created by the practioner", "requstor_details":null,"beneficiary":{"beId":"34f3d3","beName":"Patient 2"}}           
+
+		]
 	}
 }
 	
