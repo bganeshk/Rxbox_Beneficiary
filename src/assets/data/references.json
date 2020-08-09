@@ -25,5 +25,38 @@
 		{"label": "Weeks", "value": "w"},
 		{"label": "Months", "value": "m"}
 	  ]
+	},
+	"personalEHRSubType":{
+		"data":[		
+			{"alphr"   : {"label":"All","visible":"false"}},
+			{"vacnan"  : {"label":"Vaccination Details","visible":false}},
+			{"alrmed"  : {"label":"Allergic Details","visible":false}},
+			{"lifest"  : {"label":"Lifestyle","visible":false}},
+			{"orgtrn"  : {"label":"Organ Transplanted","visible":false}},
+			{"hevent"  : {"label":"Health Events","visible":false}},
+			{"hroadmap": {"label":"Health Roadmap","visible":false}}			
+		]
+	},
+	"genericEHRSubType":{
+		"data":[
+			 {"allghr": {"label":"All","visible":false}},
+			 {"diarec": {"label":"Diabetic Records","visible":false}},
+			 {"prsrec": {"label":"Pressure Records","visible":false}},
+			 {"crdrec": {"label":"Cardiac Record","visible":false}},
+			 {"nodrec": {"label":"Neuro diseases Records","visible":false}},
+			 {"dlsrec": {"label":"Dialysis Records","visible":false}}
+			
+		]
+	},
+	"eHealthTyp":{
+		"data":[
+			   {"allehr":{"label":"All","visible":false}},
+			   {"fmlrec":{"label":"Family reocrd","visible":false}},
+			   {"labrpt":{"label":"Lab Reports","visible":false}},
+			   {"dcrsmr":{"label":"Discharge Summary","visible":false}},
+			   {"gendoc":{"label":"Generic Documnets","visible":false}},
+			   {"dailpil":{"label":"Daily Pills","visible":false}},
+			   {"dailpil":{"label":"Health Summary/Index","visible":false}}
+		]
 	}
 }

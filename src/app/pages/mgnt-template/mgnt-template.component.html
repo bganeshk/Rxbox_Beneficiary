@@ -25,12 +25,13 @@
                         </div>
                         <div class="p-col-4">
                             <span class="ui-float-label">
-                                <input id="float-input" type="text" size="30" pInputText >
-                                <label for="float-input">Tempalte Name</label>
+                                <input id="float-input" type="text" size="30" pInputText [required]="true" [(ngModel)]="templName">
+                                <label for="float-input">Tempalte Name*</label>
                             </span>
                         </div>
                         <div class="p-col-4">
-                            <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" style="margin-right:10px;"
+                            <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" 
+                                style="margin-right:10px;" (click)="saveCustTemplate()"
                                 label="Save">                    
                             </button></div>
                     </div>
@@ -87,20 +88,17 @@
                     </div>
                     <div class="p-grid">
                         <div class="p-col-6" *ngFor="let typ of typ.typeOpt | keyvalue"
-                            (click)="setVisibility(typ.key)">
+                            (click)="toggleVisibility(typ)">
                             <div>
-                                <p-checkbox [value]="typ.value" matTooltip="Edit/Create">
-                                    <div class="tblLblptr">Edit/Create</div>
-                                </p-checkbox>
-                                <li class="pi pi-eye tblLblptr" *ngIf="visibilty.get(typ.key)">
-                                    {{typ.value}}
+                                <li class="pi pi-eye tblLblptr" *ngIf="typ.value.visible" >
+                                    {{typ.value.label}}
                                 </li>
-                                <li class="pi pi-eye-slash tblLblptr" *ngIf="!visibilty.get(typ.key)">
+                                <li class="pi pi-eye-slash tblLblptr" *ngIf=" !typ.value.visible" >
                                     <span >
-                                        {{typ.value}}
+                                        {{typ.value.label}}
                                     </span>
                                 </li>
-                                
+                                 
                             </div>
                         </div>
                     </div>
@@ -113,8 +111,7 @@
 
      <p-dialog #dv header="Consent Details" [(visible)]="showRecTblDlg" [responsive]="true" showEffect="fade" [modal]="true"
     [closeOnEscape]="true" [dismissableMask]="true" [style]="{width: '50vw'}"
-    header="eHR Records" maximizable='true'
-    (onAfterHide)="onDialogHide($event)">
+    header="eHR Records" maximizable='true'>
 
     <div class="ui-g" >
        <div [ngClass]="dv.maximized ? 'ui-g-7' : 'ui-g-12'">

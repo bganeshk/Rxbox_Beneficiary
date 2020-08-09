@@ -208,49 +208,27 @@ getSummaryHealthRec():SummaryHealthRec[]{
     var htype=[
       {
       typeName:'Personal',
-      typeOpt:this.getPersonalHealthType()
-    },{
+      typeOpt:this.getHealthTypeMap('personalEHRSubType')
+    }
+    ,{
       typeName:'General',
-      typeOpt:this.getGeneralHealthType()
+      typeOpt:this.getHealthTypeMap('genericEHRSubType')
     },{
       typeName:'eHR',
-      typeOpt:this.getEHealthType()
-    },
+      typeOpt:this.getHealthTypeMap('eHealthTyp')
+    }
   ];
     return htype;
   }
-  private getGeneralHealthType(){
-    var ghrtype=new Map();
-    ghrtype.set('allghr', 'All');
-    ghrtype.set('diarec', 'Diabetic Records');
-    ghrtype.set('prsrec','Pressure Records');
-    ghrtype.set('crdrec','Cardiac Record');
-    ghrtype.set('nodrec','Neuro diseases Records');
-    ghrtype.set('dlsrec','Dialysis Records');
-    return ghrtype
-  }
-  private getPersonalHealthType(){
-    var phrtype=new Map();
-    phrtype.set('alphr', 'All');
-    phrtype.set('vacnan', 'Vaccination Details');
-    phrtype.set('alrmed', 'Allergic Details');
-    phrtype.set('lifest', 'Lifestyle');
-    phrtype.set('orgtrn', 'Organ Transplanted');
-    phrtype.set('hevent', 'Health Events');
-    phrtype.set('hroadmap', 'Health Roadmap');
-    return phrtype    
-    
-  }
-  private getEHealthType(){
-    var ehrtype=new Map();
-    ehrtype.set('allehr', 'All');
-    ehrtype.set('fmlrec', 'Family reocrd');
-    ehrtype.set('labrpt', 'Lab Reports');
-    ehrtype.set('dcrsmr', 'Discharge Summary');
-    ehrtype.set('gendoc', 'Generic Documnets');
-    ehrtype.set('dailpil', 'Daily Pills');
-    ehrtype.set('dailpil', 'Health Summary/Indica:');
-    return ehrtype
-
-  }
+  private getHealthTypeMap(typ:string){
+    let phrtype=new Map();      
+    this.jsonRefData[typ].data.forEach(e => {
+        for(var key in e){
+          if(key!='visible'){
+           phrtype.set(key,e[key]);
+          }
+        }
+      });      
+    return phrtype;
+   }
 }

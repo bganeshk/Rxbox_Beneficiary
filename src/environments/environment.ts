@@ -19,7 +19,8 @@ export const environment = {
   prescription:'assets/mockdata/pointsdata.json',
   patientProfile:'assets/mockdata/pointsdata.json',
   consent:'assets/mockdata/consentdata.json',
-  consenReq:'assets/mockdata/consentdata.json'
+  consentReq:'assets/mockdata/consentdata.json',
+  consentTemplate:'assets/mockdata/consentdata.json'
 };
 
 /*
