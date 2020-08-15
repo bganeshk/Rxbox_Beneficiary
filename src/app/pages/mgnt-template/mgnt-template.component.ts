@@ -3,6 +3,7 @@ import { MetadataService, } from 'src/app/global/metadata.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService, MenuItem } from 'primeng/api';
 import { HealthType, HealthRec, ConsentService, EhrService} from 'rx-lib';
+import { KeyValuePipe } from '@angular/common';
 
 @Component({
   selector: 'app-mgnt-template',
@@ -103,8 +104,33 @@ export class MgntTemplateComponent implements OnInit {
        this.newVisible.push(rec.key);
       }
       rec.value.visible=!rec.value.visible;
+      let keyString:string=rec.key;
+      if(keyString.startsWith('all')){
+        this.toggleAllVisibility(rec);
+      }else{
+        this.healthType .forEach(pe => {
+          if(pe.typeOpt.has(rec.key)){
+            pe.typeOpt.forEach( (e,k) =>{
+              if(k.startsWith('all')){
+                e.visible=false;
+              }
+            })}   
+        });    
+      }
     }
   }
+
+  toggleAllVisibility(rec: any) {
+    this.healthType .forEach(pe => {
+      if(pe.typeOpt.has(rec.key)){
+      pe.typeOpt.forEach(e=>{
+        e.visible=rec.value.visible;
+      })}      
+    });
+
+  }
+
+
   removeFromCosnent(rec: HealthRec) {
     this.custSelectedRecs.splice(this.custRecs.indexOf(rec), 1);
   }

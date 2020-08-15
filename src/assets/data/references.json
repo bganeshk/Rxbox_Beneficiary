@@ -28,7 +28,7 @@
 	},
 	"personalEHRSubType":{
 		"data":[		
-			{"alphr"   : {"label":"All","visible":"false"}},
+			{"allphr"   : {"label":"All","visible":"false"}},
 			{"vacnan"  : {"label":"Vaccination Details","visible":false}},
 			{"alrmed"  : {"label":"Allergic Details","visible":false}},
 			{"lifest"  : {"label":"Lifestyle","visible":false}},
@@ -51,12 +51,12 @@
 	"eHealthTyp":{
 		"data":[
 			   {"allehr":{"label":"All","visible":false}},
-			   {"fmlrec":{"label":"Family reocrd","visible":false}},
+			   {"fmlrec":{"label":"Family record","visible":false}},
 			   {"labrpt":{"label":"Lab Reports","visible":false}},
 			   {"dcrsmr":{"label":"Discharge Summary","visible":false}},
 			   {"gendoc":{"label":"Generic Documnets","visible":false}},
 			   {"dailpil":{"label":"Daily Pills","visible":false}},
-			   {"dailpil":{"label":"Health Summary/Index","visible":false}}
+			   {"summrec":{"label":"Health Summary","visible":false}}
 		]
 	}
 }
