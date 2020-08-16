@@ -1,0 +1,60 @@
+{
+	"bpd":{
+		"data":[
+			{ "ehrId": "1", "syst": 90.9, "dias": 83.3, "auditData": { "createdBy": "GK", "created_on": "2019-1-12", "version": 1 } },
+      		{ "ehrId": "2", "syst": 90.9, "dias": 83.3, "auditData": { "createdBy": "GK", "created_on": "2020-1-12", "version": 1 } },
+      		{ "ehrId": "3", "syst": 90.9, "dias": 83.3, "auditData": { "createdBy": "GK", "created_on": "2020-1-12", "version": 1 } }
+			
+		]
+	},
+	"dia":{
+		"data":[
+		    { "ehrId": "1", "af": 90.9, "bf": 83.3, "auditData": { "createdBy": "GK", "created_on": "2020-1-12", "version": 1 } },
+			{ "ehrId": "2", "af": 90.9, "bf": 83.3, "auditData": { "createdBy": "GK", "created_on": "2020-1-12", "version": 1 } },
+			{ "ehrId": "3", "af": 90.9, "bf": 83.3, "auditData": { "createdBy": "GK", "created_on": "2020-1-12", "version": 1 } }
+		]
+	},
+	"tempoxy":{
+		"data":[
+		    { "ehrId": "1", "temp": 90.9, "oxireading": 83.3, "pulsepersec": 80, "auditData": { "createdBy": "GK", "created_on": "2020-1-12", "version": 1 } },
+			{ "ehrId": "2", "temp": 90.9, "oxireading": 83.3,"pulsepersec": 82, "auditData": { "createdBy": "GK", "created_on": "2020-1-12", "version": 1 } },
+			{ "ehrId": "3", "temp": 90.9, "oxireading": 83.3, "pulsepersec": 81,"auditData": { "createdBy": "GK", "created_on": "2020-1-12", "version": 1 } }
+		]
+	},
+	"smry_ehr":{
+		"data": [			
+		  {"rec_no":"sum/10102020110/234567891","recType":"summary_rec","created_on":"2020-2-21","desc":"Summary of admission due to headhache","recIssuer":"GK Hospital",		  "attachments":["ftp://lab_cult_test1.pdf","ftp://lab_cult_test1.pdf"]},
+		  {"rec_no":"lab/1010/2020110234567891","recType":"lab_report","created_on":"2020-2-21","desc":"Lab test conducted for virus test","recIssuer":"DDRC"},
+		  {"rec_no":"sum/10102020110234567892","recType":"summary_rec","created_on":"2020-2-21","desc":"Summary of admission due to viral fever","recIssuer":"GK Hospital"},
+		  {"rec_no":"lab/20102020110234567892","recRequester":"Dr.Gkumar" , "recType":"lab_report","created_on":"2020-2-21","desc":"Lab test conducted for cuture test","refNumber":"203Ref/2323/2f","recIssuer":"LAb 1"},
+		  {"rec_no":"sum/10102020110234567893","recType":"summary_rec","created_on":"2020-2-21","desc":"Summary of admission by accident","recIssuer":"df"},
+		  {"rec_no":"lab/11102020110234567893","recType":"lab_report","created_on":"2020-2-21","desc":"Lab test conducted for bloodsugar test","recIssuer":"dsf"},
+		  {"rec_no":"lab/12102020110234567894","recType":"lab_report","created_on":"2020-2-21","desc":"Lab test conducted for virus test after antibody","recIssuer":"sdf"},
+		  {"rec_no":"fmly/1102020110234567891","recType":"family_rec","created_on":"2020-2-21","desc":"diabetic history","recIssuer":"sdf"},
+		  {"rec_no":"other/102020110234567891","recType":"other_rec","created_on":"2020-2-21","desc":"genric activity test","recIssuer":"sdfsd"}		
+		]
+	},
+	"lab_ehr":{
+		"data": [			
+		  {"rec_no":"lab/1010/2020110234567891","dataValue":{"1391":"583","1392":"582"},"recType":"lab_report","created_on":"2020-2-21","desc":"Lab test conducted for virus test","recIssuer":"DDRC1","remarks":"Test remarks for the testing purpose"},
+		  {"rec_no":"lab/20102020110234567892","dataValue":{"1391":"583"},"recRequester":"Dr.Gkumar" , "recType":"lab_report","created_on":"2020-2-21","desc":"Lab test conducted for cuture test","refNumber":"203Ref/2323/2f","recIssuer":"LAb 1"},
+		  {"rec_no":"lab/11102020110234567893","dataValue":{"1390":"583"},"recType":"lab_report","created_on":"2020-2-21","desc":"Lab test conducted for bloodsugar test","recIssuer":"dsf"},
+		  {"rec_no":"lab/12102020110234567894","dataValue":{"1391":"583"},"recType":"lab_report","created_on":"2020-2-21","desc":"Lab test conducted for virus test after antibody","recIssuer":"sdf"}
+		]
+	},
+	"fmly_ehr":{
+		"data": [			
+		  {"rec_no":"fmly/1102020110234567891","recType":"family_rec","created_on":"2020-2-21","desc":"diabetic history","recIssuer":"sdf"}
+		  
+		]
+	},
+	"oth_ehr":{
+		"data": [			
+		  {"rec_no":"other/102020110234567891","recType":"other_rec","created_on":"2020-2-21","desc":"genric activity test","recIssuer":"sdfsd"}		
+		]
+	}
+
+	
+}
+	
+	

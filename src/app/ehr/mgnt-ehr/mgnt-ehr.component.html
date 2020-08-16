@@ -1,7 +1,7 @@
 <p-card [style]="{height:'78vh'}"> 
     <p-toast preventOpenDuplicates='true' modal='true'></p-toast>
     <p-accordion [multiple]="false">
-
+ 
     <p-accordionTab class="accoHLbl" header="Generic Records" [selected]="true">
         <div class="p-grid">
             <div class="p-col-12 p-md-6 p-lg-4">
@@ -135,7 +135,7 @@
             <label for="dsel" class="tblLbl">Select Type :</label>
                             <p-dropdown [options]="otherOpts" [(ngModel)]="selectedOpts" placeholder="Select a Category"
                                 id="dsel"    
-                            (onChange)="onSelectOthrOpt()" [group]="true" class="grpitem">
+                            (onChange)="onSelectOthrOpt($event)" [group]="true" class="grpitem"> 
                             </p-dropdown>
         </p-header>
         <div class="p-grid">
@@ -146,6 +146,7 @@
                         selectionMode="single" [(selection)]="newOtherEhr" dataKey="rec_no" scrollHeight="200px;"
                         [rows]='5'>
                         <ng-template pTemplate="caption">
+                            
                             <div class="p-grid">
                                 <div class="p-col-2">
                                     <button type="button" pButton icon="pi pi-chevron-left" style="margin-right:.5em"
@@ -158,7 +159,7 @@
                                 <div class="p-col-3 tblHLbl">{{selectedOpts}}</div>
                                 <div class="p-col-2" style="text-align: right">
                                     <button pButton type="button" label="Add" icon="pi pi-plus"
-                                        (click)="addNewData('OE')"></button>
+                                        (click)="addNewData('OE')" *ngIf="!beneficiaryRole"></button>
                                 </div>
                             </div>
                         </ng-template>
@@ -242,7 +243,7 @@
     </div>
     <p-footer>
         <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" (click)="blDlgDelete('BP')"
-            label="Delete">
+            label="Delete" *ngIf="newBpData.ehrId">
         </button>
         <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" (click)="blDlgSave('BP')"
             label="Save">
@@ -269,7 +270,7 @@
     </div>
     <p-footer>
         <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" (click)="blDlgDelete('BS')"
-            label="Delete">
+            label="Delete" *ngIf="newDiaData.ehrId">
         </button>
         <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" (click)="blDlgSave('BS')"
             label="Save">
@@ -303,7 +304,7 @@
     </div>
     <p-footer>
         <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" (click)="blDlgDelete('TO')"
-            label="Delete">
+            label="Delete" *ngIf="newTempoxyData.ehrId">
         </button>
         <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" (click)="blDlgSave('TO')"
             label="Save">
@@ -351,7 +352,7 @@
     </div>
     <p-footer>
         <button pButton type="button" icon="pi pi-trash" class="ui-button-secondary" (click)="blDlgDelete('OE')"
-            label="Delete">
+            label="Delete" *ngIf="newOtherEhr.rec_no">
         </button>
         <button pButton type="button" icon="pi pi-save" class="ui-button-secondary" (click)="blDlgSave('OE')"
             label="Save">

@@ -2,6 +2,8 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { EhrService } from 'rx-lib';
+
 export const environment = {
   production: false,
   apiUrl: '',
@@ -20,7 +22,8 @@ export const environment = {
   patientProfile:'assets/mockdata/pointsdata.json',
   consent:'assets/mockdata/consentdata.json',
   consentReq:'assets/mockdata/consentdata.json',
-  consentTemplate:'assets/mockdata/consentdata.json'
+  consentTemplate:'assets/mockdata/consentdata.json',
+  genericEhr:'assets/mockdata/ehrdata.json'
 };
 
 /*

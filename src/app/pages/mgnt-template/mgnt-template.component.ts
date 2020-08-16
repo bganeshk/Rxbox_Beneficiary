@@ -130,7 +130,6 @@ export class MgntTemplateComponent implements OnInit {
 
   }
 
-
   removeFromCosnent(rec: HealthRec) {
     this.custSelectedRecs.splice(this.custRecs.indexOf(rec), 1);
   }
